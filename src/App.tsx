@@ -10,10 +10,12 @@ import {
   IonTabs
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+import { people, home, document, documents, help } from 'ionicons/icons';
+import Topics from './pages/topics/Topics';
+import Constitution from './pages/constitution/Constitution';
+import Home from './pages/home/Home';
+import Cases from './pages/cases/Cases';
+import Help from './pages/help/Help';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -39,23 +41,33 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route path="/tab1" component={Tab1} exact={true} />
-          <Route path="/tab2" component={Tab2} exact={true} />
-          <Route path="/tab3" component={Tab3} />
-          <Route path="/" render={() => <Redirect to="/tab1" />} exact={true} />
+          <Route path="/topics" component={Topics} exact={true} />
+          <Route path="/constitution" component={Constitution} exact={true} />
+          <Route path="/home" component={Home} exact={true} />
+          <Route path="/cases" component={Cases} exact={true} />
+          <Route path="/help" component={Help} exact={true} />
+          <Route path="/" render={() => <Redirect to="/topics" />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
+          <IonTabButton tab="topics" href="/topics">
+            <IonIcon icon={people} />
+            <IonLabel>Topics</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
+          <IonTabButton tab="constitution" href="/constitution">
+            <IonIcon icon={document} />
+            <IonLabel>Constitution</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+          <IonTabButton tab="home" href="/home">
+            <IonIcon icon={home} />
+            <IonLabel>Home</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="cases" href="/cases">
+            <IonIcon icon={documents} />
+            <IonLabel>Cases</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="help" href="/help">
+            <IonIcon icon={help} />
+            <IonLabel>Help</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
