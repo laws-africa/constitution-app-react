@@ -10,6 +10,7 @@ import {
   IonRow,
   IonCol,
   IonCard,
+  IonSearchbar,
   IonCardHeader,
   IonCardTitle,
   IonCardContent
@@ -25,7 +26,7 @@ const Home: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Home</IonTitle>
+          <IonSearchbar></IonSearchbar>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -38,9 +39,9 @@ const Home: React.FC = () => {
               <IonCol size="12" size-sm="6" size-xl="4" key={index}>
                 <IonCard>
                   <IonCardHeader>
-                    <IonCardTitle>{ highlight.title }</IonCardTitle>
+                    <IonCardTitle>{highlight.title}</IonCardTitle>
                   </IonCardHeader>
-                  <IonCardContent>{ parse(highlight.snippet) }</IonCardContent>
+                  <IonCardContent>{parse(highlight.snippet)}</IonCardContent>
                 </IonCard>
               </IonCol>
             ))}
@@ -55,16 +56,16 @@ const Home: React.FC = () => {
               <IonCol size="12" size-sm="6" size-xl="4" key={index}>
                 <IonCard>
                   <IonCardHeader>
-                    <IonCardTitle>{ topic.title }</IonCardTitle>
+                    <IonCardTitle>{topic.title}</IonCardTitle>
                   </IonCardHeader>
                   <IonCardContent>
                     <IonGrid>
                       <IonRow>
                         <IonCol size="3">
-                          <img src={"../../assets/images/" + topic.id + ".svg"} onError={(e)=>{e.currentTarget.src = "../../assets/shapes.svg"}} alt={topic.title} />
+                          <img src={"../../assets/images/" + topic.id + ".svg"} onError={(e) => { e.currentTarget.src = "../../assets/shapes.svg" }} alt={topic.title} />
                         </IonCol>
                         <IonCol size="9">
-                          { parse(topic.snippet) }
+                          {parse(topic.snippet)}
                         </IonCol>
                       </IonRow>
                     </IonGrid>
@@ -83,9 +84,9 @@ const Home: React.FC = () => {
               <IonCol size="12" size-sm="6" size-xl="4" key={index}>
                 <IonCard>
                   <IonCardHeader>
-                    <IonCardTitle>{ article.title }</IonCardTitle>
+                    <IonCardTitle>{article.title}</IonCardTitle>
                   </IonCardHeader>
-                  <IonCardContent>{ parse(article.snippet) }</IonCardContent>
+                  <IonCardContent>{parse(article.snippet)}</IonCardContent>
                 </IonCard>
               </IonCol>
             ))}
