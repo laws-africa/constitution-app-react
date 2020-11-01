@@ -3,7 +3,6 @@ import {
   IonContent,
   IonHeader,
   IonPage,
-  IonTitle,
   IonToolbar,
   IonListHeader,
   IonGrid,
@@ -13,9 +12,7 @@ import {
   IonSearchbar,
   IonCardHeader,
   IonCardTitle,
-  IonCardContent,
-  IonThumbnail
-} from '@ionic/react';
+  IonCardContent} from '@ionic/react';
 import data from "../../assets/data/data.json";
 import './Home.css';
 import parse from 'html-react-parser';

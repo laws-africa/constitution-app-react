@@ -1,7 +1,6 @@
 import React from 'react';
 import { IonButtons, IonContent, IonHeader, IonItem, IonList, IonMenu, IonMenuButton, IonMenuToggle, IonPage, IonRouterOutlet, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../../components/ExploreContainer';
-import * as Data from '../../assets/data/constitution.json';
+import * as data from '../../assets/data/constitution.json';
 import './Constitution.css';
 
 const Tab1: React.FC = () => {
@@ -15,8 +14,8 @@ const Tab1: React.FC = () => {
   function renderItems(item: any) {
     let elements: JSX.Element[] = [];
     if (item.children) {
-      item.children.map((child: any) => {
-        elements.push(<IonItem onClick={() => { scroll(child.id) }}>&nbsp;&nbsp;&nbsp;{child.title}</IonItem>);
+      item.children.map((child: any, index: any) => {
+        return elements.push(<IonItem key={index} onClick={() => { scroll(child.id) }}>&nbsp;&nbsp;&nbsp;{child.title}</IonItem>);
       });
     }
 
@@ -38,14 +37,14 @@ const Tab1: React.FC = () => {
         <IonContent>
           <IonList>
             <IonMenuToggle auto-hide="true">
-              {Data.toc.map((item) => {
+              {data.toc.map((item, index) => {
                 return (
-                  <>
+                  <div key={index}>
                     <IonItem onClick={() => { scroll(item.id) }}>{item.title}</IonItem>
                     <IonList>
                       {renderItems(item)}
                     </IonList>
-                  </>)
+                  </div>)
               })}
             </IonMenuToggle>
           </IonList>
@@ -56,7 +55,7 @@ const Tab1: React.FC = () => {
 
       <IonContent fullscreen>
         <div className="ion-padding">
-          <div className="akoma-ntoso" dangerouslySetInnerHTML={{ __html: Data.body }}></div>
+          <div className="akoma-ntoso" dangerouslySetInnerHTML={{ __html: data.body }}></div>
         </div>
       </IonContent>
     </IonPage >

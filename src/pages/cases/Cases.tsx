@@ -6,12 +6,9 @@ import {
   IonTitle,
   IonToolbar,
   IonText,
-  IonThumbnail,
   IonList,
   IonItem,
-  IonLabel,
-  IonListHeader
-} from '@ionic/react';
+  IonLabel} from '@ionic/react';
 import data from "../../assets/data/data.json";
 import './Cases.css';
 import parse from 'html-react-parser';
