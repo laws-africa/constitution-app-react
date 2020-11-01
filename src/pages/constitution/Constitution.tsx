@@ -4,12 +4,6 @@ import ExploreContainer from '../../components/ExploreContainer';
 import * as Data from '../../assets/data/constitution.json';
 import './Constitution.css';
 
-interface Item {
-  title: String,
-  id: String,
-  children: []
-}
-
 const Tab1: React.FC = () => {
   const menu = Data.toc.map((toc) => {
     return (
