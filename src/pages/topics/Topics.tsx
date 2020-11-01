@@ -32,7 +32,7 @@ const Topics: React.FC = () => {
         </IonText>
         <IonList>
           {data.topics.map((topic, index) => (
-            <IonItem key={index}>
+            <IonItem key={index} routerLink={"topics/" + topic.id}>
               <IonThumbnail slot="start">
                 <img src={"../../assets/images/" + topic.id + ".svg"} onError={(e)=>{e.currentTarget.src = "../../assets/shapes.svg"}} alt={topic.title} />
               </IonThumbnail>

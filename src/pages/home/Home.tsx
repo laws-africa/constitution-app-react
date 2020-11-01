@@ -20,8 +20,6 @@ import './Home.css';
 import parse from 'html-react-parser';
 
 const Home: React.FC = () => {
-  console.log(data);
-
   return (
     <IonPage>
       <IonHeader>
@@ -54,7 +52,7 @@ const Home: React.FC = () => {
           <IonRow>
             {data.topics.filter((o) => o.featured === true).map((topic, index) => (
               <IonCol size="12" size-sm="6" size-xl="4" key={index}>
-                <IonCard>
+                <IonCard routerLink={"topics/" + topic.id}>
                   <IonCardHeader>
                     <IonCardTitle>{topic.title}</IonCardTitle>
                   </IonCardHeader>
