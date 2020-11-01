@@ -29,7 +29,7 @@ const Topics: React.FC = () => {
         </IonText>
         <IonList>
           {data.cases.map((article, index) => (
-            <IonItem key={index}>
+            <IonItem key={index} routerLink={"/cases/" + article.id}>
               <IonLabel>
                 <h3>{ article.title }</h3>
                 <p>{ parse(article.snippet) }</p>

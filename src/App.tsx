@@ -16,6 +16,7 @@ import Topic from './pages/topics/Topic';
 import Constitution from './pages/constitution/Constitution';
 import Home from './pages/home/Home';
 import Cases from './pages/cases/Cases';
+import Case from './pages/cases/Case';
 import Help from './pages/help/Help';
 
 /* Core CSS required for Ionic components to work properly */
@@ -47,6 +48,7 @@ const App: React.FC = () => (
           <Route path="/constitution" component={Constitution} exact={true} />
           <Route path="/home" component={Home} exact={true} />
           <Route path="/cases" component={Cases} exact={true} />
+          <Route path="/cases/:id" component={Case} exact={true} />
           <Route path="/help" component={Help} exact={true} />
           <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
         </IonRouterOutlet>
