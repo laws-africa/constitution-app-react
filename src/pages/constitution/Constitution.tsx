@@ -1,9 +1,16 @@
 import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../../components/ExploreContainer';
+import * as Data from '../../assets/data/constitution.json';
 import './Constitution.css';
 
 const Tab1: React.FC = () => {
+
+  const constitutionData = () => {
+    return {
+      __html: Data
+    }
+  }
   return (
     <IonPage>
       <IonHeader>
@@ -12,14 +19,11 @@ const Tab1: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Constitution</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Constitution Page" />
+        <div className="ion-padding">
+          <div className="akoma-ntoso" dangerouslySetInnerHTML={{__html: Data.body}}></div>
+        </div>
       </IonContent>
-    </IonPage>
+    </IonPage >
   );
 };
 
