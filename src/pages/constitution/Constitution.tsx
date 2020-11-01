@@ -4,17 +4,33 @@ import ExploreContainer from '../../components/ExploreContainer';
 import * as Data from '../../assets/data/constitution.json';
 import './Constitution.css';
 
-const Tab1: React.FC = () => {
+interface Item {
+  title: String,
+  id: String,
+  children: []
+}
 
-  const menu = Data.toc.map((toc, i) => {
+const Tab1: React.FC = () => {
+  const menu = Data.toc.map((toc) => {
     return (
       {
         title: toc.title,
         id: toc.id,
-        children: toc.children
+        children: toc.children || []
       }
     )
   });
+
+  function renderItems(item: any) {
+    let elements: JSX.Element[] = [];
+    if (item.children) {
+      item.children.map((child: any) => {
+        elements.push(<IonItem>&nbsp;&nbsp;&nbsp;{child.title}</IonItem>);
+      });
+    }
+
+    return elements;
+  }
 
   return (
     <IonPage>
@@ -31,14 +47,15 @@ const Tab1: React.FC = () => {
         <IonContent>
           <IonList>
             <IonMenuToggle auto-hide="true">
-              {menu.map((item, index) => {
-                return (<IonItem>{item.title}</IonItem>)
+              {Data.toc.map((item) => {
+                return (
+                  <>
+                    <IonItem>{item.title}</IonItem>
+                    <IonList>
+                      {renderItems(item)}
+                    </IonList>
+                  </>)
               })}
-              <IonList>
-                <IonItem>
-                  Test Child
-                </IonItem>
-              </IonList>
             </IonMenuToggle>
           </IonList>
         </IonContent>
