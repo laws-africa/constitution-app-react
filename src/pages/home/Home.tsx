@@ -12,8 +12,7 @@ import {
   IonCard,
   IonCardHeader,
   IonCardTitle,
-  IonCardContent,
-  IonThumbnail
+  IonCardContent
 } from '@ionic/react';
 import data from "../../assets/data/data.json";
 import './Home.css';
