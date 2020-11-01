@@ -41,10 +41,7 @@ const Tab1: React.FC = () => {
               {Data.toc.map((item) => {
                 return (
                   <>
-                    <IonItem onClick={
-                      () => {
-                        scroll(item.id)
-                      }}>{item.title}</IonItem>
+                    <IonItem onClick={() => { scroll(item.id) }}>{item.title}</IonItem>
                     <IonList>
                       {renderItems(item)}
                     </IonList>
