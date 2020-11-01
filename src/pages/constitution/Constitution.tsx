@@ -5,21 +5,18 @@ import * as Data from '../../assets/data/constitution.json';
 import './Constitution.css';
 
 const Tab1: React.FC = () => {
-  const menu = Data.toc.map((toc) => {
-    return (
-      {
-        title: toc.title,
-        id: toc.id,
-        children: toc.children || []
-      }
-    )
-  });
+  function scroll(id: any) {
+    let el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView();
+    }
+  }
 
   function renderItems(item: any) {
     let elements: JSX.Element[] = [];
     if (item.children) {
       item.children.map((child: any) => {
-        elements.push(<IonItem>&nbsp;&nbsp;&nbsp;{child.title}</IonItem>);
+        elements.push(<IonItem onClick={() => { scroll(child.id) }}>&nbsp;&nbsp;&nbsp;{child.title}</IonItem>);
       });
     }
 
@@ -44,7 +41,10 @@ const Tab1: React.FC = () => {
               {Data.toc.map((item) => {
                 return (
                   <>
-                    <IonItem>{item.title}</IonItem>
+                    <IonItem onClick={
+                      () => {
+                        scroll(item.id)
+                      }}>{item.title}</IonItem>
                     <IonList>
                       {renderItems(item)}
                     </IonList>
