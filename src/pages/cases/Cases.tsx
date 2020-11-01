@@ -1,9 +1,24 @@
 import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../../components/ExploreContainer';
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  IonText,
+  IonThumbnail,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonListHeader
+} from '@ionic/react';
+import data from "../../assets/data/data.json";
 import './Cases.css';
+import parse from 'html-react-parser';
 
-const Tab1: React.FC = () => {
+const Topics: React.FC = () => {
+  console.log(data);
+
   return (
     <IonPage>
       <IonHeader>
@@ -12,15 +27,22 @@ const Tab1: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Cases</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Cases Page" />
+        <IonText>
+          For short summaries of cases from the Constitutional Court, please click on the case which you want to read more about.
+        </IonText>
+        <IonList>
+          {data.cases.map((article, index) => (
+            <IonItem key={index}>
+              <IonLabel>
+                <h3>{ article.title }</h3>
+                <p>{ parse(article.snippet) }</p>
+              </IonLabel>
+            </IonItem>
+          ))}
+        </IonList>
       </IonContent>
     </IonPage>
   );
 };
 
-export default Tab1;
+export default Topics;

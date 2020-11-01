@@ -12,7 +12,8 @@ import {
   IonCard,
   IonCardHeader,
   IonCardTitle,
-  IonCardContent
+  IonCardContent,
+  IonThumbnail
 } from '@ionic/react';
 import data from "../../assets/data/data.json";
 import './Home.css';
@@ -57,7 +58,18 @@ const Home: React.FC = () => {
                   <IonCardHeader>
                     <IonCardTitle>{ topic.title }</IonCardTitle>
                   </IonCardHeader>
-                  <IonCardContent>{ parse(topic.snippet) }</IonCardContent>
+                  <IonCardContent>
+                    <IonGrid>
+                      <IonRow>
+                        <IonCol size="3">
+                          <img src={"../../assets/images/" + topic.id + ".svg"} onError={(e)=>{e.currentTarget.src = "../../assets/shapes.svg"}} alt={topic.title} />
+                        </IonCol>
+                        <IonCol size="9">
+                          { parse(topic.snippet) }
+                        </IonCol>
+                      </IonRow>
+                    </IonGrid>
+                  </IonCardContent>
                 </IonCard>
               </IonCol>
             ))}
