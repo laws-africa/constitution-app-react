@@ -10,12 +10,14 @@ import {
   IonList,
   IonItem,
   IonLabel,
-  IonListHeader
+  IonListHeader,
+  IonIcon
 } from '@ionic/react';
 import data from "../../assets/data/data.json";
 import './Cases.css';
 import parse from 'html-react-parser';
 import { useParams } from "react-router-dom";
+import { arrowBack } from 'ionicons/icons';
 
 const Case: React.FC = () => {
   let thisCase: any = {}
@@ -29,11 +31,18 @@ const Case: React.FC = () => {
     if(topic) topics.push(topic)
   }
 
+  const back = () => {
+    window.history.back()
+  }
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>{thisCase.title}</IonTitle>
+          <IonTitle class="ion-title">
+            <IonIcon class="ion-icon" icon={arrowBack} onClick={back} />
+            {thisCase.title}
+            </IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>

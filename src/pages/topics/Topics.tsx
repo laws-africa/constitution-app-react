@@ -10,20 +10,20 @@ import {
   IonList,
   IonItem,
   IonLabel,
-  IonListHeader
+  IonListHeader,
 } from '@ionic/react';
 import data from "../../assets/data/data.json";
 import './Topics.css';
 import parse from 'html-react-parser';
 
 const Topics: React.FC = () => {
-  console.log(data);
-
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Topics</IonTitle>
+          <IonTitle class="ion-title">
+            <IonText>Topics</IonText>
+          </IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>

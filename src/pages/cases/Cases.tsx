@@ -8,19 +8,18 @@ import {
   IonText,
   IonList,
   IonItem,
-  IonLabel} from '@ionic/react';
+  IonLabel,
+} from '@ionic/react';
 import data from "../../assets/data/data.json";
 import './Cases.css';
 import parse from 'html-react-parser';
 
 const Topics: React.FC = () => {
-  console.log(data);
-
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Cases</IonTitle>
+          <IonTitle class="ion-title">Cases</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>

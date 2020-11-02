@@ -34,7 +34,7 @@ const Home: React.FC = () => {
           <IonRow>
             {data.topics.filter((o) => o.highlighted === true).map((highlight, index) => (
               <IonCol size="12" size-sm="6" size-xl="4" key={index}>
-                <IonCard>
+                <IonCard routerLink={"topics/" + highlight.id}>
                   <IonCardHeader>
                     <IonCardTitle>{highlight.title}</IonCardTitle>
                   </IonCardHeader>
