@@ -68,6 +68,7 @@ const Home: React.FC = () => {
       setSearchTerm(event.target.value.toLowerCase());
     } else {
       setIsSearching(false);
+      setCurrentSegment("all")
       setSearchTerm("")
     }
 
@@ -86,18 +87,17 @@ const Home: React.FC = () => {
         <IonSegment onIonChange={(e) => setCurrentSegment(e.detail.value || "all")} value={currentSegement}>
           <IonSegmentButton value="all">
             All
-      </IonSegmentButton>
+          </IonSegmentButton>
           <IonSegmentButton value="constitution">
             Constitution
-      </IonSegmentButton>
+          </IonSegmentButton>
           <IonSegmentButton value="cases">
             Cases
-      </IonSegmentButton>
+          </IonSegmentButton>
           <IonSegmentButton value="topics">
             Topics
-      </IonSegmentButton>
+          </IonSegmentButton>
         </IonSegment>
-
       </IonToolbar>
       <IonList>
         {renderProvisions(provisions)}
@@ -133,7 +133,7 @@ const Home: React.FC = () => {
     }
   }
   const renderTopics = (topics: any) => {
-    if (currentSegement == "all" || currentSegement == "cases") {
+    if (currentSegement == "all" || currentSegement == "topics") {
 
       return topics.map((topic: any, index: any) => (
         <IonItem key={index} routerLink={"topics/" + topic.id}>
