@@ -12,7 +12,11 @@ import {
   IonSearchbar,
   IonCardHeader,
   IonCardTitle,
-  IonCardContent
+  IonCardContent,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonThumbnail
 } from '@ionic/react';
 import data from "../../assets/data/data.json";
 import constitution from "../../assets/data/constitution.json";
@@ -74,12 +78,36 @@ const Home: React.FC = () => {
     const topics = data.topics.filter((x: any) => x.title.toLowerCase().includes(needle) || (x.summary ? x.summary.includes(needle) : null));
     const provisions = searchableProvisions.filter((x: any) => x.titleLower.includes(needle) || x.content.includes(needle));
 
-    return <>
-      {JSON.stringify(provisions)}
-      {/* {JSON.stringify(cases)} */}
-
-      {/* {JSON.stringify(topics)} */}
-    </>
+    return <IonList>
+      {provisions.map((provision: any, index: any) => (
+        <IonItem key={index} routerLink={"/cases/" + provision.id}>
+          <IonLabel>
+            <h3>{provision.title}</h3>
+          </IonLabel>
+        </IonItem>
+      ))}
+      {cases.map((article: any, index: any) => (
+        <IonItem key={index} routerLink={"/cases/" + article.id}>
+          <IonLabel>
+            <h3>{article.title}</h3>
+            <p>{parse(article.snippet)}</p>
+          </IonLabel>
+        </IonItem>
+      ))}
+      {topics.map((topic, index) => (
+        <IonItem key={index} routerLink={"topics/" + topic.id}>
+          <IonThumbnail slot="start">
+            <img src={"../../assets/images/" + topic.id + ".svg"} onError={(e) => { e.currentTarget.src = "../../assets/shapes.svg" }} alt={topic.title} />
+          </IonThumbnail>
+          <IonListHeader>
+            {topic.title}
+          </IonListHeader>
+          <IonLabel>
+            {parse(topic.snippet)}
+          </IonLabel>
+        </IonItem>
+      ))}
+    </IonList>
   }
 
   return (
