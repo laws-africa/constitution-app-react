@@ -108,7 +108,7 @@ const Home: React.FC = () => {
   }
 
   const renderProvisions = (provisions: any) => {
-    if (currentSegement == "all" || currentSegement == "constitution") {
+    if (currentSegement === "all" || currentSegement === "constitution") {
       return provisions.map((provision: any, index: any) => (
         <IonItem key={index} routerLink={"/cases/" + provision.id}>
           <IonLabel>
@@ -120,7 +120,7 @@ const Home: React.FC = () => {
   }
 
   const renderCases = (cases: any) => {
-    if (currentSegement == "all" || currentSegement == "cases") {
+    if (currentSegement === "all" || currentSegement === "cases") {
 
       return cases.map((article: any, index: any) => (
         <IonItem key={index} routerLink={"/cases/" + article.id}>
@@ -133,7 +133,7 @@ const Home: React.FC = () => {
     }
   }
   const renderTopics = (topics: any) => {
-    if (currentSegement == "all" || currentSegement == "topics") {
+    if (currentSegement === "all" || currentSegement === "topics") {
 
       return topics.map((topic: any, index: any) => (
         <IonItem key={index} routerLink={"topics/" + topic.id}>
