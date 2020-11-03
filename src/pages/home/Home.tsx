@@ -64,7 +64,6 @@ const Home: React.FC = () => {
     return
   }
 
-
   const renderSearchResults = () => {
     const needle = searchTerm.toLocaleLowerCase();
 
