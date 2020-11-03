@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   IonContent,
   IonHeader,
@@ -23,6 +23,11 @@ const Home: React.FC = () => {
   const [isSearching, setIsSearching] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
   const [searchableProvisions, setSearchableProvisions] = useState<any>([]);
+
+  useEffect(() => {
+    const searchData = setupConstitutionSearch();
+    setSearchableProvisions(searchData);
+  }, [])
 
   const setupConstitutionSearch = () => {
     let searchData: { titleLower: string; title: string | null; content: string; id: string; }[] = [];
@@ -52,8 +57,6 @@ const Home: React.FC = () => {
   }
   const search = (event: any) => {
     if (event.target.value.length > 0) {
-      const searchData = setupConstitutionSearch();
-      setSearchableProvisions(searchData);
       setIsSearching(true);
       setSearchTerm(event.target.value.toLowerCase());
     } else {
