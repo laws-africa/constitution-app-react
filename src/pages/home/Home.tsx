@@ -29,6 +29,7 @@ const Home: React.FC = () => {
   const [isSearching, setIsSearching] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
   const [searchableProvisions, setSearchableProvisions] = useState<any>([]);
+  const [currentSegement, setCurrentSegment] = useState("all");
 
   useEffect(() => {
     const searchData = setupConstitutionSearch();
@@ -82,7 +83,7 @@ const Home: React.FC = () => {
 
     return <>
       <IonToolbar>
-        <IonSegment onIonChange={e => console.log('Segment selected', e.detail.value)} value="all">
+        <IonSegment onIonChange={(e) => setCurrentSegment(e.detail.value || "all")} value={currentSegement}>
           <IonSegmentButton value="all">
             All
       </IonSegmentButton>
@@ -99,36 +100,55 @@ const Home: React.FC = () => {
 
       </IonToolbar>
       <IonList>
-        {provisions.map((provision: any, index: any) => (
-          <IonItem key={index} routerLink={"/cases/" + provision.id}>
-            <IonLabel>
-              <h3>{provision.title}</h3>
-            </IonLabel>
-          </IonItem>
-        ))}
-        {cases.map((article: any, index: any) => (
-          <IonItem key={index} routerLink={"/cases/" + article.id}>
-            <IonLabel>
-              <h3>{article.title}</h3>
-              <p>{parse(article.snippet)}</p>
-            </IonLabel>
-          </IonItem>
-        ))}
-        {topics.map((topic, index) => (
-          <IonItem key={index} routerLink={"topics/" + topic.id}>
-            <IonThumbnail slot="start">
-              <img src={"../../assets/images/" + topic.id + ".svg"} onError={(e) => { e.currentTarget.src = "../../assets/shapes.svg" }} alt={topic.title} />
-            </IonThumbnail>
-            <IonListHeader>
-              {topic.title}
-            </IonListHeader>
-            <IonLabel>
-              {parse(topic.snippet)}
-            </IonLabel>
-          </IonItem>
-        ))}
+        {renderProvisions(provisions)}
+        {renderCases(cases)}
+        {renderTopics(topics)}
       </IonList>
     </>
+  }
+
+  const renderProvisions = (provisions: any) => {
+    if (currentSegement == "all" || currentSegement == "constitution") {
+      return provisions.map((provision: any, index: any) => (
+        <IonItem key={index} routerLink={"/cases/" + provision.id}>
+          <IonLabel>
+            <h3>{provision.title}</h3>
+          </IonLabel>
+        </IonItem>
+      ))
+    }
+  }
+
+  const renderCases = (cases: any) => {
+    if (currentSegement == "all" || currentSegement == "cases") {
+
+      return cases.map((article: any, index: any) => (
+        <IonItem key={index} routerLink={"/cases/" + article.id}>
+          <IonLabel>
+            <h3>{article.title}</h3>
+            <p>{parse(article.snippet)}</p>
+          </IonLabel>
+        </IonItem>
+      ))
+    }
+  }
+  const renderTopics = (topics: any) => {
+    if (currentSegement == "all" || currentSegement == "cases") {
+
+      return topics.map((topic: any, index: any) => (
+        <IonItem key={index} routerLink={"topics/" + topic.id}>
+          <IonThumbnail slot="start">
+            <img src={"../../assets/images/" + topic.id + ".svg"} onError={(e) => { e.currentTarget.src = "../../assets/shapes.svg" }} alt={topic.title} />
+          </IonThumbnail>
+          <IonListHeader>
+            {topic.title}
+          </IonListHeader>
+          <IonLabel>
+            {parse(topic.snippet)}
+          </IonLabel>
+        </IonItem>
+      ))
+    }
   }
 
   return (
