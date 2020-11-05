@@ -22,9 +22,12 @@ const Topics: React.FC = () => {
           <IonTitle class="ion-title">Cases</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen class="ion-padding">
+      <IonContent fullscreen>
         <IonText>
-          For short summaries of cases from the Constitutional Court, please click on the case which you want to read more about.
+        <div className="ion-padding">
+          For short summaries of cases from the Constitutional Court, please click on the case which you want to read more
+          about.
+        </div>
         </IonText>
         <IonList>
           {data.cases.map((article, index) => (

@@ -10,7 +10,6 @@ import {
   IonList,
   IonItem,
   IonLabel,
-  IonListHeader,
 } from '@ionic/react';
 import data from "../../assets/data/data.json";
 import './Topics.css';

@@ -1,8 +1,23 @@
 import React, { useEffect } from 'react';
-import { IonBackButton, IonButtons, IonContent, IonHeader, IonItem, IonList, IonMenu, IonMenuButton, IonMenuToggle, IonPage, IonRouterOutlet, IonTitle, IonToolbar } from '@ionic/react';
+import {
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonItem,
+  IonList,
+  IonMenu,
+  IonMenuButton,
+  IonMenuToggle,
+  IonPage,
+  IonRouterOutlet,
+  IonTitle,
+  IonToolbar,
+  IonIcon
+} from '@ionic/react';
 import * as data from '../../assets/data/constitution.json';
 import './Constitution.css';
 import { useParams } from 'react-router-dom';
+import { arrowBack } from 'ionicons/icons';
 
 const Tab1: React.FC = () => {
   const provisionRef: any = React.createRef();
@@ -29,7 +44,7 @@ const Tab1: React.FC = () => {
       const elements = provisionRef.current.getElementsByTagName('a')
       for (let index = 0; index < elements.length; index++) {
         const element = elements[index];
-     
+
         if (element.href.includes("#")) {
           element.addEventListener('click', (e: any) => {
             e.preventDefault();
@@ -68,7 +83,7 @@ const Tab1: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton />
+            <IonIcon icon={arrowBack}></IonIcon>
           </IonButtons>
           <IonTitle>Constitution</IonTitle>
           <IonButtons slot="end">
@@ -76,7 +91,6 @@ const Tab1: React.FC = () => {
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-
       <IonMenu side="end" menuId="first" contentId="constitution">
         <IonContent>
           <IonList>
@@ -86,7 +100,9 @@ const Tab1: React.FC = () => {
                   <div key={index}>
                     <IonItem onClick={() => { scroll(item.id) }}>{item.title}</IonItem>
                     <IonList>
-                      {renderItems(item)}
+                      <IonItem>
+                        {renderItems(item)}
+                      </IonItem>
                     </IonList>
                   </div>)
               })}
