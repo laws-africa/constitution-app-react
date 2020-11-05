@@ -9,6 +9,12 @@ const Tab1: React.FC = () => {
   const { id } = useParams()
 
   useEffect(() => {
+    if(provisionRef.current) {
+      provisionRef.current.innerHTML = data.body;
+    }
+  }, provisionRef);
+
+  useEffect(() => {
     if (id) {
       setTimeout(() => {
         scroll(id);
@@ -87,14 +93,11 @@ const Tab1: React.FC = () => {
         </IonContent>
       </IonMenu>
       <IonRouterOutlet id="constitution"></IonRouterOutlet>
-
-
       <IonContent>
         <div className="ion-padding">
-          <div className="akoma-ntoso" ref={provisionRef} dangerouslySetInnerHTML={{ __html: data.body }}></div>
+          <div className="akoma-ntoso" ref={provisionRef}></div>
         </div>
       </IonContent>
-
     </IonPage >
   );
 };
