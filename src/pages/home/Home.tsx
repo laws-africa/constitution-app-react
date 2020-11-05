@@ -155,7 +155,7 @@ const Home: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonSearchbar onIonChange={(e) => search(e)}></IonSearchbar>
+          <IonSearchbar placeholder="Find topics, cases or sections..." onIonChange={(e) => search(e)}></IonSearchbar>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
