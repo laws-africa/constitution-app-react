@@ -5,6 +5,7 @@ import './Constitution.css';
 import { useParams } from 'react-router-dom';
 
 const Tab1: React.FC = () => {
+  const provisionRef: any = React.createRef();
   const { id } = useParams()
 
   useEffect(() => {
@@ -14,6 +15,22 @@ const Tab1: React.FC = () => {
       }, 600);
     }
   })
+
+  useEffect(() => {
+    if (provisionRef.current) {
+      const elements = provisionRef.current.getElementsByTagName('a')
+      for (let index = 0; index < elements.length; index++) {
+        const element = elements[index];
+        if (element.href.includes("#")) {
+          element.addEventListener('click', (e: any) => {
+            e.preventDefault();
+
+            scroll(e.target.getAttribute('href').slice(1));
+          });
+        }
+      }
+    }
+  }, provisionRef);
 
   function scroll(id: any) {
     let el = document.getElementById(id);
@@ -69,14 +86,14 @@ const Tab1: React.FC = () => {
           </IonList>
         </IonContent>
       </IonMenu>
+      <IonRouterOutlet id="constitution"></IonRouterOutlet>
 
 
       <IonContent>
         <div className="ion-padding">
-          <div className="akoma-ntoso" dangerouslySetInnerHTML={{ __html: data.body }}></div>
+          <div className="akoma-ntoso" ref={provisionRef} dangerouslySetInnerHTML={{ __html: data.body }}></div>
         </div>
       </IonContent>
-      <IonRouterOutlet id="constitution"></IonRouterOutlet>
 
     </IonPage >
   );
