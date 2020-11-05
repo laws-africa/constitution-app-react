@@ -110,7 +110,7 @@ const Home: React.FC = () => {
   const renderProvisions = (provisions: any) => {
     if (currentSegement === "all" || currentSegement === "constitution") {
       return provisions.map((provision: any, index: any) => (
-        <IonItem key={index} routerLink={"/cases/" + provision.id}>
+        <IonItem key={index} routerLink={"/constitution/" + provision.id}>
           <IonLabel>
             <h3>{provision.title}</h3>
           </IonLabel>

@@ -1,13 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { IonButtons, IonContent, IonHeader, IonItem, IonList, IonMenu, IonMenuButton, IonMenuToggle, IonPage, IonRouterOutlet, IonTitle, IonToolbar } from '@ionic/react';
 import * as data from '../../assets/data/constitution.json';
 import './Constitution.css';
+import { useParams } from 'react-router-dom';
 
 const Tab1: React.FC = () => {
+  const { id } = useParams()
+
+  useEffect(() => {
+    if(id) {    
+      setTimeout(() => {
+        scroll(id);      
+      }, 600);
+    }
+  })
+
   function scroll(id: any) {
     let el = document.getElementById(id);
+
     if (el) {
-      el.scrollIntoView();
+      el.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "start"
+      });
     }
   }
 
