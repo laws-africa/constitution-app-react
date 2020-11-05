@@ -23,7 +23,7 @@ const Home: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonSearchbar></IonSearchbar>
+          <IonSearchbar placeholder="Find topics, cases or sections..."></IonSearchbar>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
