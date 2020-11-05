@@ -27,6 +27,7 @@ const Tab1: React.FC = () => {
       const elements = provisionRef.current.getElementsByTagName('a')
       for (let index = 0; index < elements.length; index++) {
         const element = elements[index];
+     
         if (element.href.includes("#")) {
           element.addEventListener('click', (e: any) => {
             e.preventDefault();
