@@ -23,7 +23,6 @@ const Case: React.FC = () => {
   let thisCase: any = {}
   const { id } = useParams()
   thisCase = data.cases.find((item) => item.id === id)
-  console.log(thisCase)
   let topics = []
 
   for(const id of thisCase.topics) {
@@ -45,7 +44,7 @@ const Case: React.FC = () => {
             </IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
+      <IonContent fullscreen class="ion-padding">
         <IonText>{parse(thisCase.summary)}</IonText>
         {topics.length > 0 && (
         <IonList>

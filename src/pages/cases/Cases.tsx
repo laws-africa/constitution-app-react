@@ -22,7 +22,7 @@ const Topics: React.FC = () => {
           <IonTitle class="ion-title">Cases</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
+      <IonContent fullscreen class="ion-padding">
         <IonText>
           For short summaries of cases from the Constitutional Court, please click on the case which you want to read more about.
         </IonText>

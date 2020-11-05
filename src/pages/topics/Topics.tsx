@@ -22,28 +22,28 @@ const Topics: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonTitle class="ion-title">
-            <IonText>Topics</IonText>
+            Topics
           </IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
-        <IonText>
-          For legal commentary for sections and Chapters of the Constitution, please click on the topic which you want to read more about.
-        </IonText>
-        <IonList>
-          {data.topics.map((topic, index) => (
-            <IonItem key={index} routerLink={"topics/" + topic.id}>
-              <IonThumbnail slot="start">
-                <img src={"../../assets/images/" + topic.id + ".svg"} onError={(e)=>{e.currentTarget.src = "../../assets/shapes.svg"}} alt={topic.title} />
-              </IonThumbnail>
-              <IonListHeader>
-                { topic.title }
-              </IonListHeader>
-              <IonLabel>
-                { parse(topic.snippet) }
-              </IonLabel>
-            </IonItem>
-          ))}
+        <IonContent fullscreen>
+          <IonText>
+            <div className="ion-padding">
+              For legal commentary for sections and Chapters of the Constitution, please click on the topic which you want to read more about.
+            </div>
+          </IonText>
+          <IonList>
+            {data.topics.map((topic, index) => (
+              <IonItem key={index} routerLink={"topics/" + topic.id}>
+                <IonThumbnail slot="start">
+                  <img src={"../../assets/images/" + topic.id + ".svg"} onError={(e)=>{e.currentTarget.src = "../../assets/shapes.svg"}} alt={topic.title} />
+                </IonThumbnail>
+                <IonLabel>
+                  <h3>{ topic.title }</h3>
+                  <p>{ parse(topic.snippet) }</p>
+                </IonLabel>
+              </IonItem>
+            ))}
         </IonList>
       </IonContent>
     </IonPage>

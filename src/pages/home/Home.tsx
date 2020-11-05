@@ -216,7 +216,7 @@ const Home: React.FC = () => {
               <IonRow>
                 {data.cases.filter((o) => o.featured === true).map((article, index) => (
                   <IonCol size="12" size-sm="6" size-xl="4" key={index}>
-                    <IonCard>
+                    <IonCard routerLink={"cases/" + article.id}>
                       <IonCardHeader>
                         <IonCardTitle>{article.title}</IonCardTitle>
                       </IonCardHeader>
