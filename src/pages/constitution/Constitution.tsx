@@ -11,6 +11,8 @@ const Tab1: React.FC = () => {
   useEffect(() => {
     if(provisionRef.current) {
       provisionRef.current.innerHTML = data.body;
+
+      
     }
   }, provisionRef);
 
@@ -18,7 +20,7 @@ const Tab1: React.FC = () => {
     if (id) {
       setTimeout(() => {
         scroll(id);
-      }, 600);
+      }, 800);
     }
   })
 
@@ -45,7 +47,6 @@ const Tab1: React.FC = () => {
     if (el) {
       el.scrollIntoView({
         behavior: "smooth",
-        block: "nearest",
         inline: "start"
       });
     }
