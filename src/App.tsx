@@ -46,6 +46,7 @@ const App: React.FC = () => (
           <Route path="/topics" component={Topics} exact={true} />
           <Route path="/topics/:id" component={Topic} exact={true} />
           <Route path="/constitution" component={Constitution} exact={true} />
+          <Route path="/constitution/:id" component={Constitution} exact={true} />
           <Route path="/home" component={Home} exact={true} />
           <Route path="/cases" component={Cases} exact={true} />
           <Route path="/cases/:id" component={Case} exact={true} />
