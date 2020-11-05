@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { IonButtons, IonContent, IonHeader, IonItem, IonList, IonMenu, IonMenuButton, IonMenuToggle, IonPage, IonRouterOutlet, IonTitle, IonToolbar } from '@ionic/react';
+import { IonBackButton, IonButtons, IonContent, IonHeader, IonItem, IonList, IonMenu, IonMenuButton, IonMenuToggle, IonPage, IonRouterOutlet, IonTitle, IonToolbar } from '@ionic/react';
 import * as data from '../../assets/data/constitution.json';
 import './Constitution.css';
 import { useParams } from 'react-router-dom';
@@ -8,9 +8,9 @@ const Tab1: React.FC = () => {
   const { id } = useParams()
 
   useEffect(() => {
-    if(id) {    
+    if (id) {
       setTimeout(() => {
-        scroll(id);      
+        scroll(id);
       }, 600);
     }
   })
@@ -42,6 +42,9 @@ const Tab1: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
+          <IonButtons slot="start">
+            <IonBackButton />
+          </IonButtons>
           <IonTitle>Constitution</IonTitle>
           <IonButtons slot="end">
             <IonMenuButton></IonMenuButton>
@@ -67,13 +70,14 @@ const Tab1: React.FC = () => {
         </IonContent>
       </IonMenu>
 
-      <IonRouterOutlet id="constitution"></IonRouterOutlet>
 
-      <IonContent fullscreen>
+      <IonContent>
         <div className="ion-padding">
           <div className="akoma-ntoso" dangerouslySetInnerHTML={{ __html: data.body }}></div>
         </div>
       </IonContent>
+      <IonRouterOutlet id="constitution"></IonRouterOutlet>
+
     </IonPage >
   );
 };
