@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   IonContent,
   IonHeader,
@@ -12,24 +12,37 @@ import {
   IonListHeader,
   IonIcon,
   IonButtons,
-  IonButton
+  IonButton,
+  useIonViewWillEnter
 } from '@ionic/react';
 import data from "../../assets/data/data.json";
 import './Cases.css';
 import parse from 'html-react-parser';
-import { useParams } from "react-router-dom";
+import { RouteComponentProps } from "react-router-dom";
 import { arrowBack } from 'ionicons/icons';
 
-const Case: React.FC = () => {
-  let thisCase: any = {};
-  const { id } = useParams();
-  thisCase = data.cases.find((item) => item.id === id);
-  let topics = [];
+interface Props extends RouteComponentProps<{ id: string; }> { }
 
-  for(const id of thisCase.topics) {
-    const topic = data.topics.find((topic) => topic.id === id);
-    if(topic) topics.push(topic);
-  }
+const Case: React.FC<Props> = ({ match }) => {
+  const [thisCase, setCase] = useState({title: '', summary: ''});
+  const [topics, setTopics] = useState([]);
+
+  useIonViewWillEnter(() => {
+    const thisCase = data.cases.find(c => c.id === match.params.id);
+    // @ts-ignore
+    setCase(thisCase);
+
+    let topics = [];
+    if (thisCase) {
+      for (const id of thisCase.topics) {
+        const topic = data.topics.find((topic) => topic.id === id);
+        if (topic) topics.push(topic);
+      }
+    }
+
+    // @ts-ignore
+    setTopics(topics);
+  });
 
   const previous = () => {
     window.history.back();
