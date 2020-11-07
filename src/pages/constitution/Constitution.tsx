@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import {
   IonButtons,
   IonContent,
@@ -17,7 +17,7 @@ import {
 import './Constitution.css';
 import { useParams } from 'react-router-dom';
 import { arrowBack } from 'ionicons/icons';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { constitutionState } from '../../recoil/atoms/constitution';
 import * as data from '../../assets/data/constitution.json';
 
@@ -31,15 +31,12 @@ const Tab1: React.FC = () => {
       toc: data.toc,
       body: data.body
     });
-  }, []);
-
-
+  }, [constitution.toc.length]);
 
   const { id } = useParams()
   
   useEffect(() => {
     if(provisionRef.current) {
-console.log('rendering consitution');
      provisionRef.current.innerHTML = constitution.body;
     }
   }, [constitution]);
