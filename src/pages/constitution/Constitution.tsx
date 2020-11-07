@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useLayoutEffect, useMemo } from 'react';
 import {
   IonButtons,
   IonContent,
@@ -14,22 +14,35 @@ import {
   IonToolbar,
   IonIcon
 } from '@ionic/react';
-import * as data from '../../assets/data/constitution.json';
 import './Constitution.css';
 import { useParams } from 'react-router-dom';
 import { arrowBack } from 'ionicons/icons';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { constitutionState } from '../../recoil/atoms/constitution';
+import * as data from '../../assets/data/constitution.json';
 
 const Tab1: React.FC = () => {
   const provisionRef: any = React.createRef();
-  const { id } = useParams()
-  
-  // const memorizedConstitution = useMemo(() =>  data.body, []);
+  const [constitution, setConstitution] = useRecoilState(constitutionState);
 
   useEffect(() => {
-    if(provisionRef.current) {
-      provisionRef.current.innerHTML = data.body;
-    }
+    console.log('setting data')
+    setConstitution({
+      toc: data.toc,
+      body: data.body
+    });
   }, []);
+
+
+
+  const { id } = useParams()
+  
+  useEffect(() => {
+    if(provisionRef.current) {
+console.log('rendering consitution');
+     provisionRef.current.innerHTML = constitution.body;
+    }
+  }, [constitution]);
 
   useEffect(() => {
     if (id) {
@@ -54,7 +67,7 @@ const Tab1: React.FC = () => {
         }
       }
     }
-  }, []);
+  }, [constitution]);
 
   function scroll(id: any) {
     let el = document.getElementById(id);
@@ -95,7 +108,7 @@ const Tab1: React.FC = () => {
         <IonContent>
           <IonList>
             <IonMenuToggle auto-hide="true">
-              {data.toc.map((item, index) => {
+              {data.toc.map((item: any, index: any) => {
                 return (
                   <div key={index}>
                     <IonItem onClick={() => { scroll(item.id) }}>{item.title}</IonItem>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
@@ -19,6 +19,16 @@ import Cases from './pages/cases/Cases';
 import Case from './pages/cases/Case';
 import Help from './pages/help/Help';
 
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from 'recoil';
+
+
+
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -38,46 +48,51 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route path="/topics" component={Topics} exact={true} />
-          <Route path="/topics/:id" component={Topic} exact={true} />
-          <Route path="/constitution" component={Constitution} exact={true} />
-          <Route path="/constitution/:id" component={Constitution} exact={true} />
-          <Route path="/home" component={Home} exact={true} />
-          <Route path="/cases" component={Cases} exact={true} />
-          <Route path="/cases/:id" component={Case} exact={true} />
-          <Route path="/help" component={Help} exact={true} />
-          <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="topics" href="/topics">
-            <IonIcon icon={people} />
-            <IonLabel>Topics</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="constitution" href="/constitution">
-            <IonIcon icon={document} />
-            <IonLabel>Constitution</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="home" href="/home">
-            <IonIcon icon={home} />
-            <IonLabel>Home</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="cases" href="/cases">
-            <IonIcon icon={documents} />
-            <IonLabel>Cases</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="help" href="/help">
-            <IonIcon icon={help} />
-            <IonLabel>Help</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
-  </IonApp>
-);
+const App: React.FC = () => {
+  return (
+    <RecoilRoot>
+
+      <IonApp>
+        <IonReactRouter>
+          <IonTabs>
+            <IonRouterOutlet>
+              <Route path="/topics" component={Topics} exact={true} />
+              <Route path="/topics/:id" component={Topic} exact={true} />
+              <Route path="/constitution" component={Constitution} exact={true} />
+              <Route path="/constitution/:id" component={Constitution} exact={true} />
+              <Route path="/home" component={Home} exact={true} />
+              <Route path="/cases" component={Cases} exact={true} />
+              <Route path="/cases/:id" component={Case} exact={true} />
+              <Route path="/help" component={Help} exact={true} />
+              <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
+            </IonRouterOutlet>
+            <IonTabBar slot="bottom">
+              <IonTabButton tab="topics" href="/topics">
+                <IonIcon icon={people} />
+                <IonLabel>Topics</IonLabel>
+              </IonTabButton>
+              <IonTabButton tab="constitution" href="/constitution">
+                <IonIcon icon={document} />
+                <IonLabel>Constitution</IonLabel>
+              </IonTabButton>
+              <IonTabButton tab="home" href="/home">
+                <IonIcon icon={home} />
+                <IonLabel>Home</IonLabel>
+              </IonTabButton>
+              <IonTabButton tab="cases" href="/cases">
+                <IonIcon icon={documents} />
+                <IonLabel>Cases</IonLabel>
+              </IonTabButton>
+              <IonTabButton tab="help" href="/help">
+                <IonIcon icon={help} />
+                <IonLabel>Help</IonLabel>
+              </IonTabButton>
+            </IonTabBar>
+          </IonTabs>
+        </IonReactRouter>
+      </IonApp>
+    </RecoilRoot>
+  )
+}
 
 export default App;
