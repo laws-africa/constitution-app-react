@@ -31,8 +31,8 @@ const Home: React.FC = () => {
   const [searchableProvisions, setSearchableProvisions] = useState<any>([]);
   const [currentSegement, setCurrentSegment] = useState("all");
 
-  const moemorizedCases = useMemo(() =>  data.cases, [data.cases]);
-  const moemorizedTopics = useMemo(() =>  data.topics, [data.topics]);
+  const moemorizedCases = useMemo(() =>  data.cases, []);
+  const moemorizedTopics = useMemo(() =>  data.topics, []);
 
   useEffect(() => {
     const searchData = setupConstitutionSearch();
@@ -219,7 +219,7 @@ const Home: React.FC = () => {
               <IonRow>
                 {moemorizedCases.filter((o) => o.featured === true).map((article, index) => (
                   <IonCol size="12" size-sm="6" size-xl="4" key={index}>
-                    <IonCard>
+                    <IonCard routerLink={"cases/" + article.id}>
                       <IonCardHeader>
                         <IonCardTitle>{article.title}</IonCardTitle>
                       </IonCardHeader>

@@ -10,7 +10,7 @@ const Tab1: React.FC = () => {
           <IonTitle>About</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
+      <IonContent fullscreen className="ion-padding">
         <IonGrid>
           <IonRow>
             <h3>About the Constitution App</h3>

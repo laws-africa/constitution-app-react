@@ -5,19 +5,20 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-  IonText,
   IonList,
   IonItem,
   IonLabel,
   IonListHeader,
+  IonButtons,
+  IonButton,
   IonIcon
 } from '@ionic/react';
+import { arrowBack } from 'ionicons/icons';
 import data from "../../assets/data/data.json";
 import './Topics.css';
 import parse from 'html-react-parser';
 import { useParams } from "react-router-dom";
 import * as Constitution from '../../assets/data/constitution.json';
-import { arrowBack } from 'ionicons/icons';
 
 function getObject(array: [], key: string, value: string) {
   var o;
@@ -47,7 +48,7 @@ const Topic: React.FC = () => {
     cases.push(linkedCase);
   }
 
-  const back = () => {
+  const previous = () => {
     window.history.back()
   }
 
@@ -55,14 +56,21 @@ const Topic: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
+          <IonButtons slot="start">
+            <IonButton onClick={previous}>
+              <IonIcon icon={arrowBack}></IonIcon>
+            </IonButton>
+          </IonButtons>
           <IonTitle class="ion-title">
-            <IonIcon class="ion-icon" icon={arrowBack} onClick={back} />
             {topic.title}
             </IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonText>{parse(topic.content)}</IonText>
+        <div className="ion-padding">
+          <h3>{ topic.title }</h3>
+          <div className="topic-content">{ parse(topic.content) }</div>
+        </div>
           {cases.length > 0 && (
           <IonList>
             <IonListHeader>

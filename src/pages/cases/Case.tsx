@@ -5,13 +5,14 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-  IonText,
   IonThumbnail,
   IonList,
   IonItem,
   IonLabel,
   IonListHeader,
-  IonIcon
+  IonIcon,
+  IonButtons,
+  IonButton
 } from '@ionic/react';
 import data from "../../assets/data/data.json";
 import './Cases.css';
@@ -23,7 +24,6 @@ const Case: React.FC = () => {
   let thisCase: any = {}
   const { id } = useParams()
   thisCase = data.cases.find((item) => item.id === id)
-  console.log(thisCase)
   let topics = []
 
   for(const id of thisCase.topics) {
@@ -31,7 +31,7 @@ const Case: React.FC = () => {
     if(topic) topics.push(topic)
   }
 
-  const back = () => {
+  const previous = () => {
     window.history.back()
   }
 
@@ -39,14 +39,21 @@ const Case: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
+          <IonButtons slot="start">
+            <IonButton onClick={previous}>
+              <IonIcon icon={arrowBack}></IonIcon>
+            </IonButton>
+          </IonButtons>
           <IonTitle class="ion-title">
-            <IonIcon class="ion-icon" icon={arrowBack} onClick={back} />
             {thisCase.title}
             </IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonText>{parse(thisCase.summary)}</IonText>
+        <div className="ion-padding">
+          <h3>{ thisCase.title }</h3>
+          <div className="case-summary">{ parse(thisCase.summary) }</div>
+        </div>
         {topics.length > 0 && (
         <IonList>
           <IonListHeader>

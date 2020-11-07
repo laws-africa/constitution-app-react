@@ -15,7 +15,7 @@ import './Cases.css';
 import parse from 'html-react-parser';
 
 const Cases: React.FC = () => {
-  const cases = useMemo(() =>  data.cases, [data.cases]);
+  const cases = useMemo(() =>  data.cases, []);
 
   return (
     <IonPage>
@@ -26,7 +26,10 @@ const Cases: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen>
         <IonText>
-          For short summaries of cases from the Constitutional Court, please click on the case which you want to read more about.
+        <div className="ion-padding">
+          For short summaries of cases from the Constitutional Court, please click on the case which you want to read more
+          about.
+        </div>
         </IonText>
         <IonList>
           {cases.map((article, index) => (

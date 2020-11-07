@@ -1,3 +1,5 @@
-.item-native {
-    padding-left: 0 !important;
-}
+.case-summary {
+    font-family: Palatino,"Book Antiqua","PT Serif",Georgia,serif;
+    font-size: 15px;
+    line-height: 1.35;
+  }
