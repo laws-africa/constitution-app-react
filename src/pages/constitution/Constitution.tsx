@@ -35,9 +35,9 @@ const Tab1: React.FC = () => {
   }, [constitution.toc.length, setConstitution]);
 
   const { id } = useParams()
-  
+
   useEffect(() => {
-    if(provisionRef.current) {
+    if (provisionRef.current) {
       provisionRef.current.innerHTML = constitution.body;
     }
   }, [constitution, provisionRef]);
@@ -117,9 +117,7 @@ const Tab1: React.FC = () => {
                   <div key={index}>
                     <IonItem onClick={() => { scroll(item.id) }}>{item.title}</IonItem>
                     <IonList>
-                      <IonItem>
-                        {renderItems(item)}
-                      </IonItem>
+                      {renderItems(item)}
                     </IonList>
                   </div>)
               })}
