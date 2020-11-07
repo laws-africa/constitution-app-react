@@ -33,15 +33,15 @@ function getObject(array: [], key: string, value: string) {
 }
 
 const Topic: React.FC = () => {
-  let constitutionData: any = (Constitution as any).default
-  let topic: any = {}
-  let cases = []
-  let references = []
-  const { id } = useParams()
-  topic = data.topics.find((topic) => topic.id === id)
+  let constitutionData: any = (Constitution as any).default;
+  let topic: any = {};
+  let cases = [];
+  let references = [];
+  const { id } = useParams();
+  topic = data.topics.find((topic) => topic.id === id);
   for (const reference of topic.references) {
     const linkedReference = getObject(constitutionData.toc, "id", reference);
-    references.push(linkedReference)
+    references.push(linkedReference);
   }
   for (const caseId of topic.cases) {
     const linkedCase = data.cases.find((c) => c.id === caseId);
@@ -50,7 +50,7 @@ const Topic: React.FC = () => {
 
   const previous = () => {
     window.history.back()
-  }
+  };
 
   return (
     <IonPage>
@@ -61,9 +61,7 @@ const Topic: React.FC = () => {
               <IonIcon icon={arrowBack}></IonIcon>
             </IonButton>
           </IonButtons>
-          <IonTitle class="ion-title">
-            {topic.title}
-            </IonTitle>
+          <IonTitle>{topic.title}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -71,7 +69,7 @@ const Topic: React.FC = () => {
           <h3>{ topic.title }</h3>
           <div className="topic-content">{ parse(topic.content) }</div>
         </div>
-          {cases.length > 0 && (
+        {cases.length > 0 && (
           <IonList>
             <IonListHeader>
               <IonLabel>Related Cases</IonLabel>
@@ -84,21 +82,21 @@ const Topic: React.FC = () => {
                 </IonLabel>
               </IonItem>
             ))}
-        </IonList>
+          </IonList>
         )}
         {references.length > 0 &&
-        <IonList>
-          <IonListHeader>
-            <IonLabel>References</IonLabel>
-          </IonListHeader>
-          {references.map((reference: any, index) => (
-          <IonItem key={index} routerLink={"/constitution/" + reference.id}>
-            <IonLabel>
-              <h3>{ reference.title }</h3>
-            </IonLabel>
-          </IonItem>
-          ))}
-        </IonList>
+          <IonList>
+            <IonListHeader>
+              <IonLabel>References</IonLabel>
+            </IonListHeader>
+            {references.map((reference: any, index) => (
+            <IonItem key={index} routerLink={"/constitution/" + reference.id}>
+              <IonLabel>
+                <h3>{ reference.title }</h3>
+              </IonLabel>
+            </IonItem>
+            ))}
+          </IonList>
         }
       </IonContent>
     </IonPage>

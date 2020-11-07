@@ -21,15 +21,15 @@ const Cases: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle class="ion-title">Cases</IonTitle>
+          <IonTitle>Cases</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonText>
-        <div className="ion-padding">
-          For short summaries of cases from the Constitutional Court, please click on the case which you want to read more
-          about.
-        </div>
+          <div className="ion-padding">
+            For short summaries of cases from the Constitutional Court, please click on the case which you want to read more
+            about.
+          </div>
         </IonText>
         <IonList>
           {cases.map((article, index) => (

@@ -21,19 +21,19 @@ import { useParams } from "react-router-dom";
 import { arrowBack } from 'ionicons/icons';
 
 const Case: React.FC = () => {
-  let thisCase: any = {}
-  const { id } = useParams()
-  thisCase = data.cases.find((item) => item.id === id)
-  let topics = []
+  let thisCase: any = {};
+  const { id } = useParams();
+  thisCase = data.cases.find((item) => item.id === id);
+  let topics = [];
 
   for(const id of thisCase.topics) {
-    const topic = data.topics.find((topic) => topic.id === id)
-    if(topic) topics.push(topic)
+    const topic = data.topics.find((topic) => topic.id === id);
+    if(topic) topics.push(topic);
   }
 
   const previous = () => {
-    window.history.back()
-  }
+    window.history.back();
+  };
 
   return (
     <IonPage>
@@ -55,22 +55,22 @@ const Case: React.FC = () => {
           <div className="case-summary">{ parse(thisCase.summary) }</div>
         </div>
         {topics.length > 0 && (
-        <IonList>
-          <IonListHeader>
-            <IonLabel>Related Topics</IonLabel>
-          </IonListHeader>
-          {topics.map((topic: any, index: any) => (
-          <IonItem key={index} routerLink={"/topics/" + topic.id}>
-            <IonThumbnail slot="start">
-              <img src={"../../assets/images/" + topic.id + ".svg"} onError={(e) => { e.currentTarget.src = "../../assets/shapes.svg" }} alt={topic.title} />
-            </IonThumbnail>
-            <IonLabel>
-              <h3>{ topic.title }</h3>
-              <p>{ parse(topic.snippet) }</p>
-            </IonLabel>
-          </IonItem>
-          ))}
-        </IonList>
+          <IonList>
+            <IonListHeader>
+              <IonLabel>Related Topics</IonLabel>
+            </IonListHeader>
+            {topics.map((topic: any, index: any) => (
+              <IonItem key={index} routerLink={"/topics/" + topic.id}>
+                <IonThumbnail slot="start">
+                  <img src={"../../assets/images/" + topic.id + ".svg"} onError={(e) => { e.currentTarget.src = "../../assets/shapes.svg" }} alt={topic.title} />
+                </IonThumbnail>
+                <IonLabel>
+                  <h3>{ topic.title }</h3>
+                  <p>{ parse(topic.snippet) }</p>
+                </IonLabel>
+              </IonItem>
+            ))}
+          </IonList>
         )}
       </IonContent>
     </IonPage>
