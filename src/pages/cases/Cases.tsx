@@ -15,7 +15,7 @@ import './Cases.css';
 import parse from 'html-react-parser';
 
 const Cases: React.FC = () => {
-  const cases = useMemo(() =>  data.cases, []);
+  const cases = data.cases;
 
   return (
     <IonPage>
