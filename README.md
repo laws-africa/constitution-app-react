@@ -24,7 +24,7 @@ This should open your browser window on http://localhost:8100!
 
 $ ionic build --prod --engine=web
 
-Generates a 'www' folder which can be uploaded to an S3 bucket as an example.
+Generates a 'build' folder which can be uploaded to an S3 bucket as an example.
 
 
 # Setup Instructions for content refresh script (backend)
