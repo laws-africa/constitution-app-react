@@ -36,7 +36,7 @@ const Cases: React.FC = () => {
             <IonItem key={index} routerLink={"/cases/" + article.id}>
               <IonLabel>
                 <h3>{article.title}</h3>
-                <p>{parse(article.snippet)}</p>
+                <span>{parse(article.snippet)}</span>
               </IonLabel>
             </IonItem>
           ))}
