@@ -12,7 +12,8 @@ import {
   IonRouterOutlet,
   IonTitle,
   IonToolbar,
-  IonIcon
+  IonIcon,
+  IonButton
 } from '@ionic/react';
 import './Constitution.css';
 import { useParams } from 'react-router-dom';
@@ -88,12 +89,18 @@ const Tab1: React.FC = () => {
     return elements;
   }
 
+  const previous = () => {
+    window.history.back()
+  }
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonIcon icon={arrowBack}></IonIcon>
+            <IonButton onClick={previous}>
+              <IonIcon icon={arrowBack}></IonIcon>
+            </IonButton>
           </IonButtons>
           <IonTitle>Constitution</IonTitle>
           <IonButtons slot="end">
