@@ -31,15 +31,15 @@ const Tab1: React.FC = () => {
       toc: data.toc,
       body: data.body
     });
-  }, [constitution.toc.length]);
+  }, [constitution.toc.length, setConstitution]);
 
   const { id } = useParams()
   
   useEffect(() => {
     if(provisionRef.current) {
-     provisionRef.current.innerHTML = constitution.body;
+      provisionRef.current.innerHTML = constitution.body;
     }
-  }, [constitution]);
+  }, [constitution, provisionRef]);
 
   useEffect(() => {
     if (id) {
@@ -64,7 +64,7 @@ const Tab1: React.FC = () => {
         }
       }
     }
-  }, [constitution]);
+  }, [provisionRef]);
 
   function scroll(id: any) {
     let el = document.getElementById(id);
