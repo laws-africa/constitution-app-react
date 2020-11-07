@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
   IonContent,
   IonHeader,
@@ -14,7 +14,9 @@ import data from "../../assets/data/data.json";
 import './Cases.css';
 import parse from 'html-react-parser';
 
-const Topics: React.FC = () => {
+const Cases: React.FC = () => {
+  const cases = useMemo(() =>  data.cases, [data.cases]);
+
   return (
     <IonPage>
       <IonHeader>
@@ -27,11 +29,11 @@ const Topics: React.FC = () => {
           For short summaries of cases from the Constitutional Court, please click on the case which you want to read more about.
         </IonText>
         <IonList>
-          {data.cases.map((article, index) => (
+          {cases.map((article, index) => (
             <IonItem key={index} routerLink={"/cases/" + article.id}>
               <IonLabel>
-                <h3>{ article.title }</h3>
-                <p>{ parse(article.snippet) }</p>
+                <h3>{article.title}</h3>
+                <p>{parse(article.snippet)}</p>
               </IonLabel>
             </IonItem>
           ))}
@@ -41,4 +43,4 @@ const Topics: React.FC = () => {
   );
 };
 
-export default Topics;
+export default Cases;

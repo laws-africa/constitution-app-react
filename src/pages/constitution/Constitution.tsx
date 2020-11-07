@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { IonBackButton, IonButtons, IonContent, IonHeader, IonItem, IonList, IonMenu, IonMenuButton, IonMenuToggle, IonPage, IonRouterOutlet, IonTitle, IonToolbar } from '@ionic/react';
 import * as data from '../../assets/data/constitution.json';
 import './Constitution.css';
@@ -7,14 +7,14 @@ import { useParams } from 'react-router-dom';
 const Tab1: React.FC = () => {
   const provisionRef: any = React.createRef();
   const { id } = useParams()
+  
+  const memorizedConstitution = useMemo(() =>  data.body, []);
 
   useEffect(() => {
     if(provisionRef.current) {
-      provisionRef.current.innerHTML = data.body;
-
-      
+      provisionRef.current.innerHTML = memorizedConstitution;
     }
-  }, provisionRef);
+  }, [provisionRef, memorizedConstitution]);
 
   useEffect(() => {
     if (id) {
