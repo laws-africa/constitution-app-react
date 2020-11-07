@@ -33,9 +33,9 @@ function getObject(array: [], key: string, value: string) {
   return o;
 }
 
-interface TopicProps extends RouteComponentProps<{ id: string; }> { }
+interface Props extends RouteComponentProps<{ id: string; }> { }
 
-const Topic: React.FC<TopicProps> = ({ match }) => {
+const Topic: React.FC<Props> = ({ match }) => {
   const [topic, setTopic] = useState({title: '', content: ''});
   const [cases, setCases] = useState([]);
   const [references, setReferences] = useState([]);
