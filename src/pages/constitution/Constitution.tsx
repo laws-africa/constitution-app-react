@@ -31,30 +31,30 @@ const Tab1: React.FC = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (id !== undefined) {
-  //     setTimeout(() => {
-  //       scroll(id);
-  //     }, 800);
-  //   }
-  // })
+  useEffect(() => {
+    if (id) {
+      setTimeout(() => {
+        scroll(id);
+      }, 800);
+    }
+  })
 
-  // useEffect(() => {
-  //   if (provisionRef.current) {
-  //     const elements = provisionRef.current.getElementsByTagName('a')
-  //     for (let index = 0; index < elements.length; index++) {
-  //       const element = elements[index];
+  useEffect(() => {
+    if (provisionRef.current) {
+      const elements = provisionRef.current.getElementsByTagName('a')
+      for (let index = 0; index < elements.length; index++) {
+        const element = elements[index];
 
-  //       if (element.href.includes("#")) {
-  //         element.addEventListener('click', (e: any) => {
-  //           e.preventDefault();
+        if (element.href.includes("#")) {
+          element.addEventListener('click', (e: any) => {
+            e.preventDefault();
 
-  //           scroll(e.target.getAttribute('href').slice(1));
-  //         });
-  //       }
-  //     }
-  //   }
-  // }, [provisionRef]);
+            scroll(e.target.getAttribute('href').slice(1));
+          });
+        }
+      }
+    }
+  }, []);
 
   function scroll(id: any) {
     let el = document.getElementById(id);
