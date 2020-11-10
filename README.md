@@ -27,16 +27,7 @@ $ ionic serve
 
 This should open your browser window on http://localhost:8100!
 
-## Building for production
-
-```
-$ ionic build --prod --engine=web
-```
-
-Generates a 'build' folder which can be uploaded to an S3 bucket as an example.
-
-
-## Setup Instructions for content refresh script (backend)
+## Updating content (backend)
 
 Dependencies: Python (3.8)
 
@@ -52,3 +43,16 @@ Run the script:
 ```
 $ python main.py
 ```
+
+# Production deployment
+
+The app is hosted by GitHub pages. It is built automatically from the master branch by the GitHub action script at [.github/workflows/deploy.yml](.github/workflows/deploy.yml).
+
+To mimic this process, use:
+
+```
+$ ionic build --prod --engine=web
+```
+
+This generates a `build` folder which contains the entire public website.
+
