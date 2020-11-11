@@ -10,7 +10,7 @@ import {
   IonTabs
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { people, home, document, documents, help } from 'ionicons/icons';
+import { people, home, document, documents, help, search } from 'ionicons/icons';
 import Topics from './pages/topics/Topics';
 import Topic from './pages/topics/Topic';
 import Constitution from './pages/constitution/Constitution';
@@ -18,6 +18,7 @@ import Home from './pages/home/Home';
 import Cases from './pages/cases/Cases';
 import Case from './pages/cases/Case';
 import Help from './pages/help/Help';
+import Search from './pages/search/Search';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -51,6 +52,7 @@ const App: React.FC = () => (
           <Route path="/cases" component={Cases} exact={true} />
           <Route path="/cases/:id" component={Case} exact={true} />
           <Route path="/help" component={Help} exact={true} />
+          <Route path="/search" component={Search} exact={true} />
           <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
@@ -73,6 +75,10 @@ const App: React.FC = () => (
           <IonTabButton tab="help" href="/help">
             <IonIcon icon={help} />
             <IonLabel>Help</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="search" href="/search">
+            <IonIcon icon={search} />
+            <IonLabel>Search</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
