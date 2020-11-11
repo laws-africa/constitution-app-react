@@ -43,8 +43,8 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route path="/topics" component={Topics} exact={true} />
-          <Route path="/topics/:id" component={Topic} exact={true} />
+          <Route path="/guides" component={Topics} exact={true} />
+          <Route path="/guides/:id" component={Topic} exact={true} />
           <Route path="/constitution" component={Constitution} exact={true} />
           <Route path="/constitution/:id" component={Constitution} exact={true} />
           <Route path="/home" component={Home} exact={true} />
@@ -54,9 +54,9 @@ const App: React.FC = () => (
           <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
-          <IonTabButton tab="topics" href="/topics">
+          <IonTabButton tab="guides" href="/guides">
             <IonIcon icon={people} />
-            <IonLabel>Topics</IonLabel>
+            <IonLabel>Guides</IonLabel>
           </IonTabButton>
           <IonTabButton tab="constitution" href="/constitution">
             <IonIcon icon={document} />
