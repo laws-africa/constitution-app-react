@@ -11,17 +11,13 @@ import {
   IonLabel,
   IonThumbnail,
   IonSegment,
-  IonButtons,
-  IonIcon,
   IonTitle,
-  IonMenuButton,
   IonSegmentButton
 } from '@ionic/react';
 import data from "../../assets/data/data.json";
 import constitution from "../../assets/data/constitution.json";
 import './Search.css';
 import parse from 'html-react-parser';
-import { arrowBack } from 'ionicons/icons';
 
 const Search: React.FC = () => {
   const [isSearching, setIsSearching] = useState(false)
@@ -153,9 +149,6 @@ const Search: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-        <IonButtons slot="start">
-            <IonIcon icon={arrowBack}></IonIcon>
-          </IonButtons>
           <IonTitle>Search</IonTitle>
         </IonToolbar>
         <IonSearchbar placeholder="Find topics, cases or sections..." onIonChange={(e) => search(e)}></IonSearchbar>
