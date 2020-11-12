@@ -20,7 +20,6 @@ const Topics: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-<<<<<<< HEAD
           <IonTitle class="ion-title">
             Guides
           </IonTitle>
@@ -44,29 +43,6 @@ const Topics: React.FC = () => {
                 </IonLabel>
               </IonItem>
             ))}
-=======
-          <IonTitle>Topics</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent>
-        <IonText>
-          <div className="ion-padding">
-            For legal commentary for sections and Chapters of the Constitution, please click on the topic which you want to read more about.
-          </div>
-        </IonText>
-        <IonList>
-          {data.topics.map((topic, index) => (
-            <IonItem key={index} routerLink={"topics/" + topic.id}>
-              <IonThumbnail slot="start">
-                <img src={"../../assets/images/" + topic.id + ".svg"} onError={(e)=>{e.currentTarget.src = "../../assets/shapes.svg"}} alt={topic.title} />
-              </IonThumbnail>
-              <IonLabel>
-                <h3>{ topic.title }</h3>
-                <p>{ parse(topic.snippet) }</p>
-              </IonLabel>
-            </IonItem>
-          ))}
->>>>>>> dd44c8d149bd5b6c427a82a894121f1bd0c8d78f
         </IonList>
       </IonContent>
     </IonPage>
