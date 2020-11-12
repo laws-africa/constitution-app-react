@@ -77,22 +77,6 @@ const Search: React.FC = () => {
     const provisions = searchableProvisions.filter((x: any) => x.titleLower.includes(needle) || x.content.includes(needle));
 
     return <>
-      <IonToolbar>
-        <IonSegment onIonChange={(e) => setCurrentSegment(e.detail.value || "all")} value={currentSegement}>
-          <IonSegmentButton value="all">
-            All
-          </IonSegmentButton>
-          <IonSegmentButton value="constitution">
-            Constitution
-          </IonSegmentButton>
-          <IonSegmentButton value="cases">
-            Cases
-          </IonSegmentButton>
-          <IonSegmentButton value="topics">
-            Topics
-          </IonSegmentButton>
-        </IonSegment>
-      </IonToolbar>
       <IonList>
         {renderProvisions(provisions)}
         {renderCases(cases)}
@@ -134,11 +118,9 @@ const Search: React.FC = () => {
           <IonThumbnail slot="start">
             <img src={"../../assets/images/" + topic.id + ".svg"} onError={(e) => { e.currentTarget.src = "../../assets/shapes.svg" }} alt={topic.title} />
           </IonThumbnail>
-          <IonListHeader>
-            {topic.title}
-          </IonListHeader>
           <IonLabel>
-            {parse(topic.snippet)}
+            <h3>{topic.title}</h3>
+            <p>{parse(topic.snippet)}</p>
           </IonLabel>
         </IonItem>
       ))
@@ -152,8 +134,24 @@ const Search: React.FC = () => {
           <IonTitle>Search</IonTitle>
         </IonToolbar>
         <IonSearchbar placeholder="Find topics, cases or sections..." onIonChange={(e) => search(e)}></IonSearchbar>
+        {isSearching && (
+          <IonSegment onIonChange={(e) => setCurrentSegment(e.detail.value || "all")} value={currentSegement}>
+            <IonSegmentButton value="all">
+              All
+            </IonSegmentButton>
+            <IonSegmentButton value="constitution">
+              Constitution
+            </IonSegmentButton>
+            <IonSegmentButton value="cases">
+              Cases
+            </IonSegmentButton>
+            <IonSegmentButton value="topics">
+              Topics
+            </IonSegmentButton>
+          </IonSegment>
+        )}
       </IonHeader>
-      <IonContent fullscreen>
+      <IonContent>
         {isSearching && (
           renderSearchResults()
         )}
