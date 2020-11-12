@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   IonButtons,
   IonContent,
@@ -12,51 +12,62 @@ import {
   IonRouterOutlet,
   IonTitle,
   IonToolbar,
-  IonIcon
+  IonIcon,
+  IonButton,
+  withIonLifeCycle
 } from '@ionic/react';
-import * as data from '../../assets/data/constitution.json';
 import './Constitution.css';
-import { useParams } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 import { arrowBack } from 'ionicons/icons';
+import * as constitution from '../../assets/data/constitution.json';
 
-const Tab1: React.FC = () => {
-  const provisionRef: any = React.createRef();
-  const { id } = useParams()
+function previous() {
+  window.history.back();
+}
 
-  useEffect(() => {
-    if(provisionRef.current) {
-      provisionRef.current.innerHTML = data.body;
+interface Props extends RouteComponentProps<{ id: string; }> { }
 
-      
-    }
-  }, provisionRef);
+class Constitution extends React.Component<Props> {
+  private readonly rootRef: React.RefObject<HTMLDivElement>;
+  private readonly constitutionRoot: Element | null;
+  
+  constructor(props: any) {
+    super(props);
+    this.rootRef = React.createRef();
 
-  useEffect(() => {
-    if (id) {
-      setTimeout(() => {
-        scroll(id);
-      }, 800);
-    }
-  })
+    // parse the constitution HTML once
+    this.constitutionRoot = new DOMParser().parseFromString(
+      "<div>" + constitution.body + "</div>", 'text/html'
+    ).body.firstElementChild;
 
-  useEffect(() => {
-    if (provisionRef.current) {
-      const elements = provisionRef.current.getElementsByTagName('a')
+    // add event handlers to scroll to provision when internal link is clicked
+    if (this.constitutionRoot) {
+      const elements = this.constitutionRoot.getElementsByTagName('a')
       for (let index = 0; index < elements.length; index++) {
         const element = elements[index];
 
         if (element.href.includes("#")) {
           element.addEventListener('click', (e: any) => {
             e.preventDefault();
-
-            scroll(e.target.getAttribute('href').slice(1));
+            this.scroll(e.target.getAttribute('href').slice(1));
           });
         }
       }
     }
-  }, provisionRef);
+  }
 
-  function scroll(id: any) {
+  renderItems(item: any) {
+    let elements: JSX.Element[] = [];
+    if (item.children) {
+      item.children.map((child: any, index: any) => {
+        return elements.push(<IonItem key={index} onClick={() => { this.scroll(child.id) }}>&nbsp;&nbsp;&nbsp;{child.title}</IonItem>);
+      });
+    }
+
+    return elements;
+  }
+
+  scroll(id: any) {
     let el = document.getElementById(id);
 
     if (el) {
@@ -67,57 +78,67 @@ const Tab1: React.FC = () => {
     }
   }
 
-  function renderItems(item: any) {
-    let elements: JSX.Element[] = [];
-    if (item.children) {
-      item.children.map((child: any, index: any) => {
-        return elements.push(<IonItem key={index} onClick={() => { scroll(child.id) }}>&nbsp;&nbsp;&nbsp;{child.title}</IonItem>);
-      });
+  ionViewWillEnter() {
+    if (this.props.match.params.id) {
+      this.scroll(this.props.match.params.id);
     }
-
-    return elements;
   }
 
-  return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonIcon icon={arrowBack}></IonIcon>
-          </IonButtons>
-          <IonTitle>Constitution</IonTitle>
-          <IonButtons slot="end">
-            <IonMenuButton></IonMenuButton>
-          </IonButtons>
-        </IonToolbar>
-      </IonHeader>
-      <IonMenu side="end" menuId="first" contentId="constitution">
-        <IonContent>
-          <IonList>
-            <IonMenuToggle auto-hide="true">
-              {data.toc.map((item, index) => {
-                return (
-                  <div key={index}>
-                    <IonItem onClick={() => { scroll(item.id) }}>{item.title}</IonItem>
-                    <IonList>
-                      <IonItem>
-                        {renderItems(item)}
-                      </IonItem>
-                    </IonList>
-                  </div>)
-              })}
-            </IonMenuToggle>
-          </IonList>
-        </IonContent>
-      </IonMenu>
-      <IonRouterOutlet id="constitution"></IonRouterOutlet>
-      <IonContent>
-        <div className="ion-padding">
-          <div className="akoma-ntoso" ref={provisionRef}></div>
-        </div>
-      </IonContent>
-    </IonPage >
-  );
-};
+  componentDidMount(): void {
+    if (this.rootRef.current && this.rootRef.current.childElementCount === 0) {
+      console.log('rendering constitution');
+      // @ts-ignore
+      this.rootRef.current.appendChild(this.constitutionRoot);
+    }
+  }
 
-export default Tab1;
+  shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
+    // the view state never actually changes
+    return false;
+  }
+
+  render() {
+    return (
+      <IonPage>
+        <IonHeader>
+          <IonToolbar>
+            <IonButtons slot="start">
+              <IonButton onClick={previous}>
+                <IonIcon icon={arrowBack}></IonIcon>
+              </IonButton>
+            </IonButtons>
+            <IonTitle>Constitution</IonTitle>
+            <IonButtons slot="end">
+              <IonMenuButton></IonMenuButton>
+            </IonButtons>
+          </IonToolbar>
+        </IonHeader>
+        <IonMenu side="end" menuId="first" contentId="constitution">
+          <IonContent>
+            <IonList>
+              <IonMenuToggle auto-hide="true">
+                {constitution.toc.map((item: any, index: any) => {
+                  return (
+                      <div key={index}>
+                        <IonItem onClick={() => { this.scroll(item.id) }}>{item.title}</IonItem>
+                        <IonList>
+                          {this.renderItems(item)}
+                        </IonList>
+                      </div>)
+                })}
+              </IonMenuToggle>
+            </IonList>
+          </IonContent>
+        </IonMenu>
+        <IonRouterOutlet id="constitution"></IonRouterOutlet>
+        <IonContent>
+          <div className="ion-padding">
+            <div className="akoma-ntoso" ref={this.rootRef}></div>
+          </div>
+        </IonContent>
+      </IonPage>
+    );
+  }
+}
+
+export default withIonLifeCycle(Constitution);

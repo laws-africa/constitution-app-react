@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   IonContent,
   IonHeader,
@@ -30,6 +30,9 @@ const Home: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("")
   const [searchableProvisions, setSearchableProvisions] = useState<any>([]);
   const [currentSegement, setCurrentSegment] = useState("all");
+
+  const moemorizedCases = useMemo(() =>  data.cases, []);
+  const moemorizedTopics = useMemo(() =>  data.topics, []);
 
   useEffect(() => {
     const searchData = setupConstitutionSearch();
@@ -78,8 +81,8 @@ const Home: React.FC = () => {
   const renderSearchResults = () => {
     const needle = searchTerm.toLocaleLowerCase();
 
-    const cases = data.cases.filter((x: any) => x.title.toLowerCase().includes(needle) || (x.summary ? x.summary.includes(needle) : null));
-    const topics = data.topics.filter((x: any) => x.title.toLowerCase().includes(needle) || (x.summary ? x.summary.includes(needle) : null));
+    const cases = moemorizedCases.filter((x: any) => x.title.toLowerCase().includes(needle) || (x.summary ? x.summary.includes(needle) : null));
+    const topics = moemorizedTopics.filter((x: any) => x.title.toLowerCase().includes(needle) || (x.summary ? x.summary.includes(needle) : null));
     const provisions = searchableProvisions.filter((x: any) => x.titleLower.includes(needle) || x.content.includes(needle));
 
     return <>
@@ -169,7 +172,7 @@ const Home: React.FC = () => {
             </IonListHeader>
             <IonGrid>
               <IonRow>
-                {data.topics.filter((o) => o.highlighted === true).map((highlight, index) => (
+                {moemorizedTopics.filter((o) => o.highlighted === true).map((highlight, index) => (
                   <IonCol size="12" size-sm="6" size-xl="4" key={index}>
                     <IonCard routerLink={"topics/" + highlight.id}>
                       <IonCardHeader>
@@ -186,7 +189,7 @@ const Home: React.FC = () => {
             </IonListHeader>
             <IonGrid>
               <IonRow>
-                {data.topics.filter((o) => o.featured === true).map((topic, index) => (
+                {moemorizedTopics.filter((o) => o.featured === true).map((topic, index) => (
                   <IonCol size="12" size-sm="6" size-xl="4" key={index}>
                     <IonCard routerLink={"topics/" + topic.id}>
                       <IonCardHeader>
@@ -214,7 +217,7 @@ const Home: React.FC = () => {
             </IonListHeader>
             <IonGrid>
               <IonRow>
-                {data.cases.filter((o) => o.featured === true).map((article, index) => (
+                {moemorizedCases.filter((o) => o.featured === true).map((article, index) => (
                   <IonCol size="12" size-sm="6" size-xl="4" key={index}>
                     <IonCard routerLink={"cases/" + article.id}>
                       <IonCardHeader>

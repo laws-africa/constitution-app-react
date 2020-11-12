@@ -14,27 +14,29 @@ import data from "../../assets/data/data.json";
 import './Cases.css';
 import parse from 'html-react-parser';
 
-const Topics: React.FC = () => {
+const Cases: React.FC = () => {
+  const cases = data.cases;
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle class="ion-title">Cases</IonTitle>
+          <IonTitle>Cases</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonText>
-        <div className="ion-padding">
-          For short summaries of cases from the Constitutional Court, please click on the case which you want to read more
-          about.
-        </div>
+          <div className="ion-padding">
+            For short summaries of cases from the Constitutional Court, please click on the case which you want to read more
+            about.
+          </div>
         </IonText>
         <IonList>
-          {data.cases.map((article, index) => (
+          {cases.map((article, index) => (
             <IonItem key={index} routerLink={"/cases/" + article.id}>
               <IonLabel>
-                <h3>{ article.title }</h3>
-                <p>{ parse(article.snippet) }</p>
+                <h3>{article.title}</h3>
+                <span>{parse(article.snippet)}</span>
               </IonLabel>
             </IonItem>
           ))}
@@ -44,4 +46,4 @@ const Topics: React.FC = () => {
   );
 };
 
-export default Topics;
+export default Cases;
