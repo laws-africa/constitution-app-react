@@ -39,48 +39,46 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-const App: React.FC = () => {
-  return (
-    <IonApp>
-      <IonReactRouter>
-        <IonTabs>
-          <IonRouterOutlet>
-            <Route path="/topics" component={Topics} exact={true} />
-            <Route path="/topics/:id" component={Topic} exact={true} />
-            <Route path="/constitution" component={Constitution} exact={true} />
-            <Route path="/constitution/:id" component={Constitution} exact={true} />
-            <Route path="/home" component={Home} exact={true} />
-            <Route path="/cases" component={Cases} exact={true} />
-            <Route path="/cases/:id" component={Case} exact={true} />
-            <Route path="/help" component={Help} exact={true} />
-            <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
-          </IonRouterOutlet>
-          <IonTabBar slot="bottom">
-            <IonTabButton tab="topics" href="/topics">
-              <IonIcon icon={people} />
-              <IonLabel>Topics</IonLabel>
-            </IonTabButton>
-            <IonTabButton tab="constitution" href="/constitution">
-              <IonIcon icon={document} />
-              <IonLabel>Constitution</IonLabel>
-            </IonTabButton>
-            <IonTabButton tab="home" href="/home">
-              <IonIcon icon={home} />
-              <IonLabel>Home</IonLabel>
-            </IonTabButton>
-            <IonTabButton tab="cases" href="/cases">
-              <IonIcon icon={documents} />
-              <IonLabel>Cases</IonLabel>
-            </IonTabButton>
-            <IonTabButton tab="help" href="/help">
-              <IonIcon icon={help} />
-              <IonLabel>Help</IonLabel>
-            </IonTabButton>
-          </IonTabBar>
-        </IonTabs>
-      </IonReactRouter>
-    </IonApp>
-  )
-}
+const App: React.FC = () => (
+  <IonApp>
+    <IonReactRouter>
+      <IonTabs>
+        <IonRouterOutlet>
+          <Route path="/guides" component={Topics} exact={true} />
+          <Route path="/guides/:id" component={Topic} exact={true} />
+          <Route path="/constitution" component={Constitution} exact={true} />
+          <Route path="/constitution/:id" component={Constitution} exact={true} />
+          <Route path="/home" component={Home} exact={true} />
+          <Route path="/cases" component={Cases} exact={true} />
+          <Route path="/cases/:id" component={Case} exact={true} />
+          <Route path="/help" component={Help} exact={true} />
+          <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
+        </IonRouterOutlet>
+        <IonTabBar slot="bottom">
+          <IonTabButton tab="guides" href="/guides">
+            <IonIcon icon={people} />
+            <IonLabel>Guides</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="constitution" href="/constitution">
+            <IonIcon icon={document} />
+            <IonLabel>Constitution</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="home" href="/home">
+            <IonIcon icon={home} />
+            <IonLabel>Home</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="cases" href="/cases">
+            <IonIcon icon={documents} />
+            <IonLabel>Cases</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="help" href="/help">
+            <IonIcon icon={help} />
+            <IonLabel>Help</IonLabel>
+          </IonTabButton>
+        </IonTabBar>
+      </IonTabs>
+    </IonReactRouter>
+  </IonApp>
+);
 
 export default App;
