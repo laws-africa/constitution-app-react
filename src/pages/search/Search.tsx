@@ -113,7 +113,7 @@ const Search: React.FC = () => {
     if (currentSegement === "all" || currentSegement === "topics") {
 
       return topics.map((topic: any, index: any) => (
-        <IonItem key={index} routerLink={"topics/" + topic.id}>
+        <IonItem key={index} routerLink={"guides/" + topic.id}>
           <IonThumbnail slot="start">
             <img src={"../../assets/images/" + topic.id + ".svg"} onError={(e) => { e.currentTarget.src = "../../assets/shapes.svg" }} alt={topic.title} />
           </IonThumbnail>
