@@ -5,6 +5,9 @@ import {
   IonHeader,
   IonItem,
   IonList,
+  IonMenu,
+  IonMenuButton,
+  IonMenuToggle,
   IonPage,
   IonRouterOutlet,
   IonTitle,
@@ -57,7 +60,7 @@ class Constitution extends React.Component<Props> {
     let elements: JSX.Element[] = [];
     if (item.children) {
       item.children.map((child: any, index: any) => {
-        return elements.push(<IonItem key={index} routerLink={"/constitution"}>&nbsp;&nbsp;&nbsp;{child.title}</IonItem>);
+        return elements.push(<IonItem key={index} onClick={() => { this.scroll(child.id) }}>&nbsp;&nbsp;&nbsp;{child.title}</IonItem>);
       });
     }
 
@@ -105,20 +108,33 @@ class Constitution extends React.Component<Props> {
               </IonButton>
             </IonButtons>
             <IonTitle>Constitution</IonTitle>
+            <IonButtons slot="end">
+              <IonMenuButton></IonMenuButton>
+            </IonButtons>
           </IonToolbar>
         </IonHeader>
+        <IonMenu side="end" menuId="first" contentId="constitution">
+          <IonContent>
+            <IonList>
+              <IonMenuToggle auto-hide="true">
+                {constitution.toc.map((item: any, index: any) => {
+                  return (
+                      <div key={index}>
+                        <IonItem onClick={() => { this.scroll(item.id) }}>{item.title}</IonItem>
+                        <IonList>
+                          {this.renderItems(item)}
+                        </IonList>
+                      </div>)
+                })}
+              </IonMenuToggle>
+            </IonList>
+          </IonContent>
+        </IonMenu>
         <IonRouterOutlet id="constitution"></IonRouterOutlet>
         <IonContent>
-          <IonItem routerLink={"/constitution/full"}>Read the full constitution</IonItem>
-          {constitution.toc.map((item: any, index: any) => {
-            return (
-                <div key={index}>
-                  <IonItem routerLink={"/constitution"}>{item.title}</IonItem>
-                  <IonList>
-                    {this.renderItems(item)}
-                  </IonList>
-                </div>)
-          })}
+          <div className="ion-padding">
+            <div className="akoma-ntoso" ref={this.rootRef}></div>
+          </div>
         </IonContent>
       </IonPage>
     );
