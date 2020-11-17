@@ -112,12 +112,12 @@ class Constitution extends React.Component<Props> {
           <IonItem routerLink={"/constitution/full"}>Read the full constitution</IonItem>
           {constitution.toc.map((item: any, index: any) => {
             return (
-                <div key={index}>
-                  <IonItem routerLink={"/constitution"}>{item.title}</IonItem>
-                  <IonList>
-                    {this.renderItems(item)}
-                  </IonList>
-                </div>)
+              <div key={index}>
+                <IonItem routerLink={"constitutions/" + item.id}>{item.title}</IonItem>
+                <IonList>
+                  {this.renderItems(item)}
+                </IonList>
+              </div>)
           })}
         </IonContent>
       </IonPage>

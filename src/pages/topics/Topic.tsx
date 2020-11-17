@@ -108,7 +108,7 @@ const Topic: React.FC<Props> = ({ match }) => {
               <IonLabel>References</IonLabel>
             </IonListHeader>
             {references.map((reference: any, index) => (
-            <IonItem key={index} routerLink={"/constitution/" + reference.id}>
+            <IonItem key={index} routerLink={"/constitution/full/" + reference.id}>
               <IonLabel>
                 <h3>{ reference.title }</h3>
               </IonLabel>

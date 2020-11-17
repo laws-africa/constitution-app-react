@@ -14,6 +14,7 @@ import { people, home, document, documents, help, search } from 'ionicons/icons'
 import Topics from './pages/topics/Topics';
 import Topic from './pages/topics/Topic';
 import Constitution from './pages/constitution/Constitution';
+import Constitutions from './pages/constitution/Constitutions';
 import Constitution_Full from './pages/constitution/Constitution_Full';
 import Home from './pages/home/Home';
 import Cases from './pages/cases/Cases';
@@ -50,6 +51,8 @@ const App: React.FC = () => (
           <Route path="/guides/:id" component={Topic} exact={true} />
           <Route path="/constitution" component={Constitution} exact={true} />
           <Route path="/constitution/full" component={Constitution_Full} exact={true} />
+          <Route path="/constitution/full/:id" component={Constitution_Full} exact={true} />
+          <Route path="/constitutions/:id" component={Constitutions} exact={true} />
           <Route path="/home" component={Home} exact={true} />
           <Route path="/cases" component={Cases} exact={true} />
           <Route path="/cases/:id" component={Case} exact={true} />
