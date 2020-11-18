@@ -14,7 +14,7 @@ import { people, home, document, documents, help, search } from 'ionicons/icons'
 import Topics from './pages/topics/Topics';
 import Topic from './pages/topics/Topic';
 import Constitution from './pages/constitution/Constitution';
-import Constitutions from './pages/constitution/Constitutions';
+import ConstitutionTOC from './pages/constitution/ConstitutionTOC';
 import Constitution_Full from './pages/constitution/Constitution_Full';
 import Home from './pages/home/Home';
 import Cases from './pages/cases/Cases';
@@ -49,7 +49,7 @@ const App: React.FC = () => (
         <IonRouterOutlet>
           <Route path="/guides" component={Topics} exact={true} />
           <Route path="/guides/:id" component={Topic} exact={true} />
-          <Route path="/constitutions" component={Constitutions} exact={true} />
+          <Route path="/constitutionTOC" component={ConstitutionTOC} exact={true} />
           <Route path="/constitution/full" component={Constitution_Full} exact={true} />
           <Route path="/constitution/full/:id" component={Constitution_Full} exact={true} />
           <Route path="/constitution/:id" component={Constitution} exact={true} />
@@ -65,7 +65,7 @@ const App: React.FC = () => (
             <IonIcon icon={people} />
             <IonLabel>Guides</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="constitution" href="/constitutions">
+          <IonTabButton tab="constitution" href="/constitutionTOC">
             <IonIcon icon={document} />
             <IonLabel>Constitution</IonLabel>
           </IonTabButton>
