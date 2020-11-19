@@ -26,40 +26,21 @@ interface Props extends RouteComponentProps<{ id: string; }> { }
 
 class constitutionTOC extends React.Component<Props> {
   private readonly rootRef: React.RefObject<HTMLDivElement>;
-  private readonly constitutionRoot: Element | null;
   
   constructor(props: any) {
     super(props);
     this.rootRef = React.createRef();
-
-    // parse the constitution HTML once
-    this.constitutionRoot = new DOMParser().parseFromString(
-      "<div>" + constitution.body + "</div>", 'text/html'
-    ).body.firstElementChild;
   }
 
   renderItems(item: any) {
     let elements: JSX.Element[] = [];
     if (item.children) {
       item.children.map((child: any, index: any) => {
-        return elements.push(<IonItem key={index} routerLink={"constitution/" + item.id}>&nbsp;&nbsp;&nbsp;{child.title}</IonItem>);
+        return elements.push(<IonItem key={index} routerLink={"provision/" + child.id}>&nbsp;&nbsp;&nbsp;{child.title}</IonItem>);
       });
     }
 
     return elements;
-  }
-
-  componentDidMount(): void {
-    if (this.rootRef.current && this.rootRef.current.childElementCount === 0) {
-      console.log('rendering constitution');
-      // @ts-ignore
-      this.rootRef.current.appendChild(this.constitutionRoot);
-    }
-  }
-
-  shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
-    // the view state never actually changes
-    return false;
   }
 
   render() {
@@ -81,7 +62,7 @@ class constitutionTOC extends React.Component<Props> {
           {constitution.toc.map((item: any, index: any) => {
             return (
               <div key={index}>
-                <IonItem routerLink={"constitution/" + item.id}>{item.title}</IonItem>
+                <IonItem>{item.title}</IonItem>
                 <IonList>
                   {this.renderItems(item)}
                 </IonList>
