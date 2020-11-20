@@ -3,9 +3,7 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
-  IonMenuButton,
   IonPage,
-  IonRouterOutlet,
   IonTitle,
   IonToolbar,
   IonIcon,
@@ -62,9 +60,6 @@ class Constitution extends React.Component<Props> {
               </IonButton>
             </IonButtons>
             <IonTitle>Constitution</IonTitle>
-            <IonButtons slot="end">
-              <IonMenuButton></IonMenuButton>
-            </IonButtons>
           </IonToolbar>
         </IonHeader>
         <IonContent>
