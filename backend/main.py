@@ -10,7 +10,7 @@ GOOGLE_SHEETS_CASES_URL = r'https://docs.google.com/spreadsheets/d/e/2PACX-1vQo8
 NUMBER_OF_CASES = 3
 NUMBER_OF_TOPICS = 3
 GOOGLE_SHEETS_SECTIONS_URL = r'https://docs.google.com/spreadsheets/d/e/2PACX-1vQo8vfq0cVnNmNs8XBXtkQzWdcL-dFDQAmoXhMrfv-L-5SaitTcADF-vI5i6DWYIKZ3eEZbLiu72x42/pub?gid=721746947&single=true&output=csv'
-PRODUCTION_DOCUMENTS_OUTPUT_PATH = r'JSON'
+PRODUCTION_DOCUMENTS_OUTPUT_PATH = r'../src/assets/data/'
 
 
 # Get your auth token from https://edit.laws.africa/accounts/profile/api/
@@ -23,17 +23,30 @@ def write_constitution():
     resp.raise_for_status()
     # {"toc": [...]}
     data = resp.json()
+    fix_attachment_ids(data['toc'])
 
     resp = requests.get('https://api.laws.africa/v2/akn/za/act/1996/constitution.html', headers=headers)
     resp.raise_for_status()
     data['body'] = resp.text
     write_json('constitution.json', data)
 
+def fix_attachment_ids(toc):
+    # ensure that children of attachments have scoped ids
+    def rewrite(prefix, children):
+        for kid in children:
+            kid['id'] = prefix + '/' + kid['id']
+            rewrite(prefix, kid.get('children') or [])
+
+    for entry in toc:
+        if entry['type'] == 'attachment':
+            rewrite(entry['id'], entry.get('children') or [])
+
 
 def main():
     cases = read_google_sheets('cases')
     topics = read_google_sheets('topics')
     write_all_documents(cases, topics)
+    #write_constitution()
 
 
 def _excel_date_to_timestamp(date):
