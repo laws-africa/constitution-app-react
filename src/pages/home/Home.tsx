@@ -30,7 +30,7 @@ const Home: React.FC = () => {
           <IonRow>
             {moemorizedTopics.filter((o) => o.highlighted === true).map((highlight, index) => (
               <IonCol size="12" size-sm="6" size-xl="4" key={index}>
-                <IonCard routerLink={"topics/" + highlight.id}>
+                <IonCard routerLink={"guides/" + highlight.id}>
                   <IonCardHeader>
                     <IonCardTitle>{highlight.title}</IonCardTitle>
                   </IonCardHeader>
@@ -47,7 +47,7 @@ const Home: React.FC = () => {
           <IonRow>
             {moemorizedTopics.filter((o) => o.featured === true).map((topic, index) => (
               <IonCol size="12" size-sm="6" size-xl="4" key={index}>
-                <IonCard routerLink={"topics/" + topic.id}>
+                <IonCard routerLink={"guides/" + topic.id}>
                   <IonCardHeader>
                     <IonCardTitle>{topic.title}</IonCardTitle>
                   </IonCardHeader>
