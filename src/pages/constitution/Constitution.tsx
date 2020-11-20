@@ -23,7 +23,7 @@ function previous() {
 
 interface Props extends RouteComponentProps<{ id: string; }> { }
 
-class Constitution_Full extends React.Component<Props> {
+class Constitution extends React.Component<Props> {
   private readonly rootRef: React.RefObject<HTMLDivElement>;
   private readonly constitutionRoot: Element | null;
   
@@ -78,4 +78,4 @@ class Constitution_Full extends React.Component<Props> {
   }
 }
 
-export default withIonLifeCycle(Constitution_Full);
+export default withIonLifeCycle(Constitution);
