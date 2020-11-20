@@ -67,7 +67,6 @@ class Constitution extends React.Component<Props> {
             </IonButtons>
           </IonToolbar>
         </IonHeader>
-        <IonRouterOutlet id="constitution"></IonRouterOutlet>
         <IonContent>
           <div className="ion-padding">
             <div className="akoma-ntoso" ref={this.rootRef}></div>
