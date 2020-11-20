@@ -30,7 +30,7 @@ class constitutionTOC extends React.Component<Props> {
     if (item.children) {
       for (const child of item.children) {
         if (child.id) {
-          elements.push(<IonItem key={child.id} className="ion-padding-start" routerLink={"provision/" + child.id}>{child.title}</IonItem>);
+          elements.push(<IonItem key={child.id} className="ion-padding-start" routerLink={"toc/" + child.id}>{child.title}</IonItem>);
         }
       }
     }
@@ -55,7 +55,7 @@ class constitutionTOC extends React.Component<Props> {
             {this.provisions.map((item: any, index: any) => {
               return (
                 <div key={index}>
-                  <IonItem routerLink={"provision/" + item.id}>{item.title}</IonItem>
+                  <IonItem routerLink={"toc/" + item.id}>{item.title}</IonItem>
                   <IonList>
                     {this.renderItems(item)}
                   </IonList>

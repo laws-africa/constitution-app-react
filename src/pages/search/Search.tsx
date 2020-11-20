@@ -87,7 +87,7 @@ const Search: React.FC = () => {
   const renderProvisions = (provisions: any) => {
     if (currentSegement === "all" || currentSegement === "constitution") {
       return provisions.map((provision: any, index: any) => (
-        <IonItem key={index} routerLink={"/constitution/provision/" + provision.id}>
+        <IonItem key={index} routerLink={"/constitution/toc/" + provision.id}>
           <IonLabel>
             <h3>{provision.title}</h3>
           </IonLabel>
