@@ -3,9 +3,7 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
-  IonMenuButton,
   IonPage,
-  IonRouterOutlet,
   IonTitle,
   IonToolbar,
   IonIcon,
@@ -25,30 +23,25 @@ interface Props extends RouteComponentProps<{ id: string; }> { }
 
 class Constitution extends React.Component<Props> {
   private readonly rootRef: React.RefObject<HTMLDivElement>;
-  private readonly constitutionRoot: Element | null;
-  
+  private readonly constitution: Document;
+
   constructor(props: any) {
     super(props);
     this.rootRef = React.createRef();
 
     // parse the constitution HTML once
-    this.constitutionRoot = new DOMParser().parseFromString(
-      "<div>" + constitution.body + "</div>", 'text/html'
-    ).body.firstElementChild;
-
+    this.constitution = new DOMParser().parseFromString(constitution.body, 'text/html');
   }
 
-  componentDidMount(): void {
-    if (this.rootRef.current && this.rootRef.current.childElementCount === 0) {
-      console.log('rendering constitution');
-      // @ts-ignore
-      this.rootRef.current.appendChild(this.constitutionRoot.querySelector('#' + this.props.match.params.id).cloneNode(true));
+  ionViewWillEnter() {
+    if (this.props.match.params.id && this.rootRef.current) {
+      let provision = this.constitution.getElementById(this.props.match.params.id);
+      if (provision) {
+        // remove current elements
+        while (this.rootRef.current.hasChildNodes()) this.rootRef.current.childNodes[0].remove();
+        this.rootRef.current.appendChild(provision.cloneNode(true));
+      }
     }
-  }
-
-  shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
-    // the view state never actually changes
-    return false;
   }
 
   render() {
@@ -62,9 +55,6 @@ class Constitution extends React.Component<Props> {
               </IonButton>
             </IonButtons>
             <IonTitle>Constitution</IonTitle>
-            <IonButtons slot="end">
-              <IonMenuButton></IonMenuButton>
-            </IonButtons>
           </IonToolbar>
         </IonHeader>
         <IonContent>
