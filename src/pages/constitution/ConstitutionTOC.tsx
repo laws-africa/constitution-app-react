@@ -46,7 +46,7 @@ class constitutionTOC extends React.Component<Props> {
             <IonLabel>Constitution of the Republic of South Africa</IonLabel>
           </IonListHeader>
           <IonList>
-            <IonItem routerLink={"/constitution/full"}>Read the full constitution</IonItem>
+            <IonItem routerLink={"/constitution/full"}>Read the full Constitution</IonItem>
           </IonList>
           <IonList>
             <IonListHeader>
