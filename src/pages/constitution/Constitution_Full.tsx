@@ -60,7 +60,7 @@ class Constitution_Full extends React.Component<Props> {
     let elements: JSX.Element[] = [];
     if (item.children) {
       item.children.map((child: any, index: any) => {
-        return elements.push(<IonItem key={index} onClick={() => { this.scroll(child.id) }}>&nbsp;&nbsp;&nbsp;{child.title}</IonItem>);
+        return elements.push(<IonItem key={index} className="ion-padding-start" onClick={() => { this.scroll(child.id) }}>{child.title}</IonItem>);
       });
     }
 
