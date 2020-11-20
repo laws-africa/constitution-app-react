@@ -1,26 +1,14 @@
 import React from 'react';
 import {
-  IonButtons,
   IonContent,
-  IonHeader,
   IonItem,
   IonList,
   IonPage,
-  IonRouterOutlet,
-  IonTitle,
-  IonToolbar,
-  IonIcon,
-  IonButton,
   withIonLifeCycle
 } from '@ionic/react';
 import './Constitution.css';
 import { RouteComponentProps } from 'react-router-dom';
-import { arrowBack } from 'ionicons/icons';
 import * as constitution from '../../assets/data/constitution.json';
-
-function previous() {
-  window.history.back();
-}
 
 interface Props extends RouteComponentProps<{ id: string; }> { }
 
@@ -46,17 +34,6 @@ class constitutionTOC extends React.Component<Props> {
   render() {
     return (
       <IonPage>
-        <IonHeader>
-          <IonToolbar>
-            <IonButtons slot="start">
-              <IonButton onClick={previous}>
-                <IonIcon icon={arrowBack}></IonIcon>
-              </IonButton>
-            </IonButtons>
-            <IonTitle>Constitution</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonRouterOutlet id="constitution"></IonRouterOutlet>
         <IonContent>
           <IonItem routerLink={"/constitution/full"}>Read the full constitution</IonItem>
           {constitution.toc.map((item: any, index: any) => {
