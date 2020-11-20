@@ -9,10 +9,7 @@ import {
   IonCard,
   IonCardHeader,
   IonCardTitle,
-  IonCardContent,
-  IonHeader,
-  IonToolbar,
-  IonTitle
+  IonCardContent
 } from '@ionic/react';
 import data from "../../assets/data/data.json";
 import './Home.css';
@@ -25,11 +22,6 @@ const Home: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Home</IonTitle>
-        </IonToolbar>
-      </IonHeader>
       <IonContent fullscreen>
         <IonListHeader>
           Highlights
