@@ -62,7 +62,7 @@ class constitutionTOC extends React.Component<Props> {
           {constitution.toc.map((item: any, index: any) => {
             return (
               <div key={index}>
-                <IonItem>{item.title}</IonItem>
+                <IonItem routerLink={"provision/" + item.id}>{item.title}</IonItem>
                 <IonList>
                   {this.renderItems(item)}
                 </IonList>
