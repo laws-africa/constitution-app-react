@@ -3,13 +3,7 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
-  IonItem,
-  IonList,
-  IonMenu,
-  IonMenuButton,
-  IonMenuToggle,
   IonPage,
-  IonRouterOutlet,
   IonTitle,
   IonToolbar,
   IonIcon,
@@ -29,72 +23,25 @@ interface Props extends RouteComponentProps<{ id: string; }> { }
 
 class Constitution extends React.Component<Props> {
   private readonly rootRef: React.RefObject<HTMLDivElement>;
-  private readonly constitutionRoot: Element | null;
-  
+  private readonly constitution: Document;
+
   constructor(props: any) {
     super(props);
     this.rootRef = React.createRef();
 
     // parse the constitution HTML once
-    this.constitutionRoot = new DOMParser().parseFromString(
-      "<div>" + constitution.body + "</div>", 'text/html'
-    ).body.firstElementChild;
-
-    // add event handlers to scroll to provision when internal link is clicked
-    if (this.constitutionRoot) {
-      const elements = this.constitutionRoot.getElementsByTagName('a')
-      for (let index = 0; index < elements.length; index++) {
-        const element = elements[index];
-
-        if (element.href.includes("#")) {
-          element.addEventListener('click', (e: any) => {
-            e.preventDefault();
-            this.scroll(e.target.getAttribute('href').slice(1));
-          });
-        }
-      }
-    }
-  }
-
-  renderItems(item: any) {
-    let elements: JSX.Element[] = [];
-    if (item.children) {
-      item.children.map((child: any, index: any) => {
-        return elements.push(<IonItem key={index} onClick={() => { this.scroll(child.id) }}>&nbsp;&nbsp;&nbsp;{child.title}</IonItem>);
-      });
-    }
-
-    return elements;
-  }
-
-  scroll(id: any) {
-    let el = document.getElementById(id);
-
-    if (el) {
-      el.scrollIntoView({
-        behavior: "smooth",
-        inline: "start"
-      });
-    }
+    this.constitution = new DOMParser().parseFromString(constitution.body, 'text/html');
   }
 
   ionViewWillEnter() {
-    if (this.props.match.params.id) {
-      this.scroll(this.props.match.params.id);
+    if (this.props.match.params.id && this.rootRef.current) {
+      let provision = this.constitution.getElementById(this.props.match.params.id);
+      if (provision) {
+        // remove current elements
+        while (this.rootRef.current.hasChildNodes()) this.rootRef.current.childNodes[0].remove();
+        this.rootRef.current.appendChild(provision.cloneNode(true));
+      }
     }
-  }
-
-  componentDidMount(): void {
-    if (this.rootRef.current && this.rootRef.current.childElementCount === 0) {
-      console.log('rendering constitution');
-      // @ts-ignore
-      this.rootRef.current.appendChild(this.constitutionRoot);
-    }
-  }
-
-  shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
-    // the view state never actually changes
-    return false;
   }
 
   render() {
@@ -108,29 +55,8 @@ class Constitution extends React.Component<Props> {
               </IonButton>
             </IonButtons>
             <IonTitle>Constitution</IonTitle>
-            <IonButtons slot="end">
-              <IonMenuButton></IonMenuButton>
-            </IonButtons>
           </IonToolbar>
         </IonHeader>
-        <IonMenu side="end" menuId="first" contentId="constitution">
-          <IonContent>
-            <IonList>
-              <IonMenuToggle auto-hide="true">
-                {constitution.toc.map((item: any, index: any) => {
-                  return (
-                      <div key={index}>
-                        <IonItem onClick={() => { this.scroll(item.id) }}>{item.title}</IonItem>
-                        <IonList>
-                          {this.renderItems(item)}
-                        </IonList>
-                      </div>)
-                })}
-              </IonMenuToggle>
-            </IonList>
-          </IonContent>
-        </IonMenu>
-        <IonRouterOutlet id="constitution"></IonRouterOutlet>
         <IonContent>
           <div className="ion-padding">
             <div className="akoma-ntoso" ref={this.rootRef}></div>
