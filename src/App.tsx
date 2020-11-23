@@ -49,10 +49,10 @@ const App: React.FC = () => (
         <IonRouterOutlet>
           <Route path="/guides" component={Topics} exact={true} />
           <Route path="/guides/:id" component={Topic} exact={true} />
-          <Route path="/constitution/toc" component={ConstitutionTOC} exact={true} />
+          <Route path="/constitution" component={ConstitutionTOC} exact={true} />
           <Route path="/constitution/full" component={Constitution_Full} exact={true} />
           <Route path="/constitution/full/:id+" component={Constitution_Full} exact={true} />
-          <Route path="/constitution/toc/:id+" component={Constitution} exact={true} />
+          <Route path="/constitution/provision/:id+" component={Constitution} exact={true} />
           <Route path="/home" component={Home} exact={true} />
           <Route path="/cases" component={Cases} exact={true} />
           <Route path="/cases/:id" component={Case} exact={true} />
@@ -65,7 +65,7 @@ const App: React.FC = () => (
             <IonIcon icon={people} />
             <IonLabel>Guides</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="constitution" href="/constitution/toc">
+          <IonTabButton tab="constitution" href="/constitution">
             <IonIcon icon={document} />
             <IonLabel>Constitution</IonLabel>
           </IonTabButton>
