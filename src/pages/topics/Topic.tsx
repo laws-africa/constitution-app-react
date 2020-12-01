@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   IonContent,
   IonHeader,
@@ -39,8 +39,10 @@ const Topic: React.FC<Props> = ({ match }) => {
   const [topic, setTopic] = useState({title: '', content: ''});
   const [cases, setCases] = useState([]);
   const [references, setReferences] = useState([]);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   useIonViewWillEnter(() => {
+
     const topic = data.topics.find(t => t.id === match.params.id);
     // @ts-ignore
     setTopic(topic);
@@ -64,6 +66,18 @@ const Topic: React.FC<Props> = ({ match }) => {
     setCases(cases);
     // @ts-ignore
     setReferences(references);
+
+    const constitution = new DOMParser().parseFromString(constitutionData.body, 'text/html');
+    
+    if (match.params.id && rootRef.current) {
+      let id = match.params.id.split("_", 2).join("_");
+      let provision = constitution.getElementById(id);
+      if (provision) {
+        // remove current elements
+        while (rootRef.current.hasChildNodes()) rootRef.current.childNodes[0].remove();
+        rootRef.current.appendChild(provision.cloneNode(true));
+      }
+    }
   });
 
   const previous = () => {
@@ -109,11 +123,14 @@ const Topic: React.FC<Props> = ({ match }) => {
             </IonListHeader>
             {references.map((reference: any, index) => (
             <IonItem key={index} routerLink={"/constitution/provision/" + reference.id}>
-              <IonLabel>
-                <h3>{ reference.title }</h3>
-              </IonLabel>
+              <p>{reference.title}</p>
             </IonItem>
             ))}
+            <IonItem>
+              <div className="ion-padding">
+                <div className="akoma-ntoso" ref={rootRef}></div>
+              </div>
+            </IonItem>
           </IonList>
         }
       </IonContent>
