@@ -101,6 +101,9 @@ const Search: React.FC = () => {
 
       return cases.map((article: any, index: any) => (
         <IonItem key={index} routerLink={"/cases/" + article.id}>
+          <IonThumbnail slot="start">
+            <img src={"../../assets/images/case.svg"} onError={(e)=>{e.currentTarget.src = "../../assets/shapes.svg"}} alt={article.title} />
+          </IonThumbnail>
           <IonLabel>
             <h3>{article.title}</h3>
             <p>{parse(article.snippet)}</p>
