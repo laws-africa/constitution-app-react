@@ -110,7 +110,7 @@ const Search: React.FC = () => {
     }
   }
   const renderTopics = (topics: any) => {
-    if (currentSegement === "all" || currentSegement === "topics") {
+    if (currentSegement === "all" || currentSegement === "guides") {
 
       return topics.map((topic: any, index: any) => (
         <IonItem key={index} routerLink={"guides/" + topic.id}>
@@ -144,8 +144,8 @@ const Search: React.FC = () => {
             <IonSegmentButton value="cases">
               Cases
             </IonSegmentButton>
-            <IonSegmentButton value="topics">
-              Topics
+            <IonSegmentButton value="guides">
+              Guides
             </IonSegmentButton>
           </IonSegment>
         )}
