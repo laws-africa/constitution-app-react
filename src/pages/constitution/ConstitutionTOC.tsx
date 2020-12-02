@@ -10,7 +10,7 @@ import {
 } from '@ionic/react';
 import './Constitution.css';
 import { RouteComponentProps } from 'react-router-dom';
-import * as constitution from '../../assets/data/constitution.json';
+import { tableOfContents } from '../../data/constitution';
 
 interface Props extends RouteComponentProps<{ id: string; }> { }
 
@@ -22,7 +22,7 @@ class constitutionTOC extends React.Component<Props> {
     super(props);
     this.rootRef = React.createRef();
     // we're only going to render provisions with ids
-    this.provisions = constitution.toc.filter(t => !!t.id);
+    this.provisions = tableOfContents.filter(t => !!t.id);
   }
 
   renderItems(item: any) {

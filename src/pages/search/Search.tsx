@@ -14,9 +14,9 @@ import {
   IonSegmentButton
 } from '@ionic/react';
 import data from "../../assets/data/data.json";
-import constitution from "../../assets/data/constitution.json";
 import './Search.css';
 import parse from 'html-react-parser';
+import { constitutionRoot } from "../../data/constitution";
 
 const Search: React.FC = () => {
   const [isSearching, setIsSearching] = useState(false)
@@ -33,9 +33,8 @@ const Search: React.FC = () => {
     let searchData: { titleLower: string; title: string | null; content: string; id: string; }[] = [];
     // everything that can contain searchable text
     const selector = '.akn-p, .akn-listIntroduction, .akn-intro, .akn-wrapUp';
-    const body = new DOMParser().parseFromString(constitution.body, 'text/html');
 
-    body.querySelectorAll('.akn-section').forEach((section) => {
+    constitutionRoot.querySelectorAll('.akn-section').forEach((section) => {
       // gather text content
       const text: (string | null)[] = [];
       section.querySelectorAll(selector).forEach(elem => {

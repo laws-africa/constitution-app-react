@@ -13,7 +13,7 @@ import {
 import './Constitution.css';
 import { RouteComponentProps } from 'react-router-dom';
 import { arrowBack } from 'ionicons/icons';
-import * as constitution from '../../assets/data/constitution.json';
+import { constitutionRoot } from '../../data/constitution';
 
 function previous() {
   window.history.back();
@@ -30,7 +30,7 @@ class Constitution extends React.Component<Props> {
     this.rootRef = React.createRef();
 
     // parse the constitution HTML once
-    this.constitution = new DOMParser().parseFromString(constitution.body, 'text/html');
+    this.constitution = constitutionRoot;
   }
 
   ionViewWillEnter() {
