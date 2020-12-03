@@ -19,7 +19,7 @@ import {
 import './Constitution.css';
 import { RouteComponentProps } from 'react-router-dom';
 import { arrowBack } from 'ionicons/icons';
-import * as constitution from '../../assets/data/constitution.json';
+import { constitutionBody, tableOfContents } from '../../data/constitution';
 
 function previous() {
   window.history.back();
@@ -29,20 +29,18 @@ interface Props extends RouteComponentProps<{ id: string; }> { }
 
 class Constitution_Full extends React.Component<Props> {
   private readonly rootRef: React.RefObject<HTMLDivElement>;
-  private readonly constitutionRoot: Element | null;
+  private readonly constitution: Element | null;
   
   constructor(props: any) {
     super(props);
     this.rootRef = React.createRef();
 
     // parse the constitution HTML once
-    this.constitutionRoot = new DOMParser().parseFromString(
-      "<div>" + constitution.body + "</div>", 'text/html'
-    ).body.firstElementChild;
+    this.constitution = constitutionBody;
 
     // add event handlers to scroll to provision when internal link is clicked
-    if (this.constitutionRoot) {
-      const elements = this.constitutionRoot.getElementsByTagName('a')
+    if (this.constitution) {
+      const elements = this.constitution.getElementsByTagName('a')
       for (let index = 0; index < elements.length; index++) {
         const element = elements[index];
 
@@ -88,7 +86,7 @@ class Constitution_Full extends React.Component<Props> {
     if (this.rootRef.current && this.rootRef.current.childElementCount === 0) {
       console.log('rendering constitution');
       // @ts-ignore
-      this.rootRef.current.appendChild(this.constitutionRoot);
+      this.rootRef.current.appendChild(this.constitution.cloneNode(true));
     }
   }
 
@@ -117,7 +115,7 @@ class Constitution_Full extends React.Component<Props> {
           <IonContent>
             <IonList>
               <IonMenuToggle auto-hide="true">
-                {constitution.toc.map((item: any, index: any) => {
+                {tableOfContents.map((item: any, index: any) => {
                   return (
                       <div key={index}>
                         <IonItem onClick={() => { this.scroll(item.id) }}>{item.title}</IonItem>

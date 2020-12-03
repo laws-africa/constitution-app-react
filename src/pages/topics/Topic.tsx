@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   IonContent,
   IonHeader,
@@ -19,19 +19,7 @@ import { arrowBack } from 'ionicons/icons';
 import data from "../../assets/data/data.json";
 import './Topics.css';
 import parse from 'html-react-parser';
-import * as Constitution from '../../assets/data/constitution.json';
-
-function getObject(array: [], key: string, value: string) {
-  var o;
-  array.some(function iter(a: any) {
-    if (a[key] === value) {
-      o = a;
-      return true;
-    }
-    return Array.isArray(a.children) && a.children.some(iter);
-  });
-  return o;
-}
+import { constitutionRoot, getTOCEntry } from '../../data/constitution';
 
 interface Props extends RouteComponentProps<{ id: string; }> { }
 
@@ -39,20 +27,21 @@ const Topic: React.FC<Props> = ({ match }) => {
   const [topic, setTopic] = useState({title: '', content: ''});
   const [cases, setCases] = useState([]);
   const [references, setReferences] = useState([]);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   useIonViewWillEnter(() => {
+
     const topic = data.topics.find(t => t.id === match.params.id);
     // @ts-ignore
     setTopic(topic);
 
-    let constitutionData: any = (Constitution as any).default;
     let cases = [];
-    let references = [];
+    let references: any[] = [];
 
     if (topic) {
       for (const reference of topic.references) {
-        const linkedReference = getObject(constitutionData.toc, "id", reference);
-        references.push(linkedReference);
+        const match = getTOCEntry(reference);
+        if (match) references.push(match);
       }
       for (const caseId of topic.cases) {
         const linkedCase = data.cases.find((c) => c.id === caseId);
@@ -64,6 +53,16 @@ const Topic: React.FC<Props> = ({ match }) => {
     setCases(cases);
     // @ts-ignore
     setReferences(references);
+
+    if (match.params.id && rootRef.current) {
+      let id = match.params.id.split("_", 2).join("_");
+      let provision = constitutionRoot.getElementById(id);
+      if (provision) {
+        // remove current elements
+        while (rootRef.current.hasChildNodes()) rootRef.current.childNodes[0].remove();
+        rootRef.current.appendChild(provision.cloneNode(true));
+      }
+    }
   });
 
   const previous = () => {
@@ -85,8 +84,23 @@ const Topic: React.FC<Props> = ({ match }) => {
       <IonContent fullscreen>
         <div className="ion-padding">
           <h3>{ topic.title }</h3>
+        </div>
+        <div className="ion-padding akn-insert">
+          <div className="akoma-ntoso" ref={rootRef}></div>
+        </div>
+
+        <div className="ion-padding">
           <div className="topic-content">{ parse(topic.content) }</div>
         </div>
+
+        {references.length > 0 &&
+        <div className="ion-padding">
+          {references.map((reference: any, index) => (
+            <IonButton expand="block" routerLink={"/constitution/provision/" + reference.id }>Section { reference.title }</IonButton>
+          ))}
+        </div>
+        }
+
         {cases.length > 0 && (
           <IonList>
             <IonListHeader>
@@ -102,20 +116,6 @@ const Topic: React.FC<Props> = ({ match }) => {
             ))}
           </IonList>
         )}
-        {references.length > 0 &&
-          <IonList>
-            <IonListHeader>
-              <IonLabel>References</IonLabel>
-            </IonListHeader>
-            {references.map((reference: any, index) => (
-            <IonItem key={index} routerLink={"/constitution/provision/" + reference.id}>
-              <IonLabel>
-                <h3>{ reference.title }</h3>
-              </IonLabel>
-            </IonItem>
-            ))}
-          </IonList>
-        }
       </IonContent>
     </IonPage>
   );
