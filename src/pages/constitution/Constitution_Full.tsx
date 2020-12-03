@@ -86,7 +86,7 @@ class Constitution_Full extends React.Component<Props> {
     if (this.rootRef.current && this.rootRef.current.childElementCount === 0) {
       console.log('rendering constitution');
       // @ts-ignore
-      this.rootRef.current.appendChild(this.constitution);
+      this.rootRef.current.appendChild(this.constitution.cloneNode(true));
     }
   }
 
