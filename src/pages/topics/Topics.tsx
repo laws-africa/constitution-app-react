@@ -25,10 +25,10 @@ const Topics: React.FC = () => {
           </IonTitle>
         </IonToolbar>
       </IonHeader>
-        <IonContent fullscreen>
+        <IonContent>
           <IonText>
             <div className="ion-padding">
-              For legal commentary for sections and Chapters of the Constitution, please click on the guide which you want to read more about.
+              Guides to the sections the Constitution.
             </div>
           </IonText>
           <IonList>

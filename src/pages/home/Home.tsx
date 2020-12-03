@@ -22,7 +22,7 @@ const Home: React.FC = () => {
 
   return (
     <IonPage>
-      <IonContent fullscreen>
+      <IonContent>
         <IonListHeader>
           Highlights
         </IonListHeader>

@@ -134,21 +134,13 @@ const Search: React.FC = () => {
         <IonToolbar>
           <IonTitle>Search</IonTitle>
         </IonToolbar>
-        <IonSearchbar placeholder="Find topics, cases or sections..." onIonChange={(e) => search(e)}></IonSearchbar>
+        <IonSearchbar placeholder="Find guides, cases or sections..." onIonChange={(e) => search(e)}></IonSearchbar>
         {isSearching && (
           <IonSegment onIonChange={(e) => setCurrentSegment(e.detail.value || "all")} value={currentSegement}>
-            <IonSegmentButton value="all">
-              All
-            </IonSegmentButton>
-            <IonSegmentButton value="constitution">
-              Constitution
-            </IonSegmentButton>
-            <IonSegmentButton value="cases">
-              Cases
-            </IonSegmentButton>
-            <IonSegmentButton value="guides">
-              Guides
-            </IonSegmentButton>
+            <IonSegmentButton value="all">All</IonSegmentButton>
+            <IonSegmentButton value="constitution">Constitution</IonSegmentButton>
+            <IonSegmentButton value="guides">Guides</IonSegmentButton>
+            <IonSegmentButton value="cases">Cases</IonSegmentButton>
           </IonSegment>
         )}
       </IonHeader>

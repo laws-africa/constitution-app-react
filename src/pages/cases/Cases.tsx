@@ -25,11 +25,10 @@ const Cases: React.FC = () => {
           <IonTitle>Cases</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
+      <IonContent>
         <IonText>
           <div className="ion-padding">
-            For short summaries of cases from the Constitutional Court, please click on the case which you want to read more
-            about.
+            Summaries of cases from the Constitutional Court.
           </div>
         </IonText>
         <IonList>

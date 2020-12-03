@@ -62,14 +62,15 @@ const Case: React.FC<Props> = ({ match }) => {
             </IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
+      <IonContent>
         <div className="ion-padding">
           <h3>{ thisCase.title }</h3>
           <div className="case-summary">{ parse(thisCase.summary) }</div>
         </div>
+
         {topics.length > 0 && (
-          <IonList>
-            <IonListHeader>
+          <IonList className="ion-padding-bottom">
+            <IonListHeader color="light">
               <IonLabel>Related Guides</IonLabel>
             </IonListHeader>
             {topics.map((topic: any, index: any) => (

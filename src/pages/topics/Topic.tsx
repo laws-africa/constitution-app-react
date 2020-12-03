@@ -11,6 +11,7 @@ import {
   IonListHeader,
   IonButtons,
   IonButton,
+  IonThumbnail,
   IonIcon,
   useIonViewWillEnter
 } from '@ionic/react';
@@ -81,7 +82,7 @@ const Topic: React.FC<Props> = ({ match }) => {
           <IonTitle>{topic.title}</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
+      <IonContent>
         <div className="ion-padding">
           <h3>{ topic.title }</h3>
         </div>
@@ -94,20 +95,23 @@ const Topic: React.FC<Props> = ({ match }) => {
         </div>
 
         {references.length > 0 &&
-        <div className="ion-padding">
-          {references.map((reference: any, index) => (
-            <IonButton expand="block" routerLink={"/constitution/provision/" + reference.id }>Section { reference.title }</IonButton>
+        <IonList className="ion-padding-bottom">
+          {references.map((ref: any) => (
+            <IonItem key={ref.id} routerLink={"/constitution/provision/" + ref.id} color="primary" lines="none">Section { ref.title }</IonItem>
           ))}
-        </div>
+        </IonList>
         }
 
         {cases.length > 0 && (
-          <IonList>
-            <IonListHeader>
+          <IonList className="ion-padding-bottom">
+            <IonListHeader color="light">
               <IonLabel>Related Cases</IonLabel>
             </IonListHeader>
             {cases.map((c: any, index) => (
               <IonItem key={index} routerLink={"/cases/" + c.id}>
+                <IonThumbnail slot="start">
+                  <img src={"../../assets/images/case.svg"} onError={(e)=>{e.currentTarget.src = "../../assets/shapes.svg"}} alt={c.title} />
+                </IonThumbnail>
                 <IonLabel>
                   <h3>{c.title}</h3>
                   <p>{parse(c.snippet)}</p>
