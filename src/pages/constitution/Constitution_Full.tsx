@@ -3,7 +3,6 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
-  IonItem,
   IonList,
   IonMenu,
   IonMenuButton,
@@ -19,7 +18,8 @@ import {
 import './Constitution.css';
 import { RouteComponentProps } from 'react-router-dom';
 import { arrowBack } from 'ionicons/icons';
-import { constitutionBody, tableOfContents } from '../../data/constitution';
+import { constitutionBody } from '../../data/constitution';
+import { TOCList } from "../../components/toc";
 
 function previous() {
   window.history.back();
@@ -54,19 +54,8 @@ class Constitution_Full extends React.Component<Props> {
     }
   }
 
-  renderItems(item: any) {
-    let elements: JSX.Element[] = [];
-    if (item.children) {
-      item.children.map((child: any, index: any) => {
-        return elements.push(<IonItem key={index} className="ion-padding-start" onClick={() => { this.scroll(child.id) }}>{child.title}</IonItem>);
-      });
-    }
-
-    return elements;
-  }
-
-  scroll(id: any) {
-    let el = document.getElementById(id);
+  scroll(item: any) {
+    let el = document.getElementById(item.id);
 
     if (el) {
       el.scrollIntoView({
@@ -115,15 +104,7 @@ class Constitution_Full extends React.Component<Props> {
           <IonContent>
             <IonList>
               <IonMenuToggle auto-hide="true">
-                {tableOfContents.map((item: any, index: any) => {
-                  return (
-                      <div key={index}>
-                        <IonItem onClick={() => { this.scroll(item.id) }}>{item.title}</IonItem>
-                        <IonList>
-                          {this.renderItems(item)}
-                        </IonList>
-                      </div>)
-                })}
+                <TOCList onClick={this.scroll} />
               </IonMenuToggle>
             </IonList>
           </IonContent>

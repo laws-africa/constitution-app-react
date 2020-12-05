@@ -6,17 +6,16 @@ import {
   IonToolbar,
   IonSearchbar,
   IonList,
-  IonItem,
-  IonLabel,
-  IonThumbnail,
   IonSegment,
   IonTitle,
   IonSegmentButton
 } from '@ionic/react';
 import data from "../../assets/data/data.json";
 import './Search.css';
-import parse from 'html-react-parser';
 import { constitutionRoot } from "../../data/constitution";
+import { TopicItem } from '../../components/topic';
+import { CaseItem } from "../../components/case";
+import { TOCItem } from "../../components/toc";
 
 const Search: React.FC = () => {
   const [isSearching, setIsSearching] = useState(false)
@@ -86,11 +85,7 @@ const Search: React.FC = () => {
   const renderProvisions = (provisions: any) => {
     if (currentSegement === "all" || currentSegement === "constitution") {
       return provisions.map((provision: any, index: any) => (
-        <IonItem key={index} routerLink={"/constitution/provision/" + provision.id}>
-          <IonLabel>
-            <h3>{provision.title}</h3>
-          </IonLabel>
-        </IonItem>
+        <TOCItem item={provision}/>
       ))
     }
   }
@@ -98,16 +93,8 @@ const Search: React.FC = () => {
   const renderCases = (cases: any) => {
     if (currentSegement === "all" || currentSegement === "cases") {
 
-      return cases.map((article: any, index: any) => (
-        <IonItem key={index} routerLink={"/cases/" + article.id}>
-          <IonThumbnail slot="start">
-            <img src={"../../assets/images/case.svg"} onError={(e)=>{e.currentTarget.src = "../../assets/shapes.svg"}} alt={article.title} />
-          </IonThumbnail>
-          <IonLabel>
-            <h3>{article.title}</h3>
-            <p>{parse(article.snippet)}</p>
-          </IonLabel>
-        </IonItem>
+      return cases.map((kase: any) => (
+        <CaseItem kase={kase}/>
       ))
     }
   }
@@ -115,15 +102,7 @@ const Search: React.FC = () => {
     if (currentSegement === "all" || currentSegement === "guides") {
 
       return topics.map((topic: any, index: any) => (
-        <IonItem key={index} routerLink={"guides/" + topic.id}>
-          <IonThumbnail slot="start">
-            <img src={"../../assets/images/" + topic.id + ".svg"} onError={(e) => { e.currentTarget.src = "../../assets/shapes.svg" }} alt={topic.title} />
-          </IonThumbnail>
-          <IonLabel>
-            <h3>{topic.title}</h3>
-            <p>{parse(topic.snippet)}</p>
-          </IonLabel>
-        </IonItem>
+        <TopicItem topic={topic}/>
       ))
     }
   }

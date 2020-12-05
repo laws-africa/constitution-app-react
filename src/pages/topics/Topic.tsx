@@ -11,7 +11,6 @@ import {
   IonListHeader,
   IonButtons,
   IonButton,
-  IonThumbnail,
   IonIcon,
   useIonViewWillEnter
 } from '@ionic/react';
@@ -21,6 +20,7 @@ import data from "../../assets/data/data.json";
 import './Topics.css';
 import parse from 'html-react-parser';
 import { constitutionRoot, getTOCEntry } from '../../data/constitution';
+import { CaseItem } from "../../components/case";
 
 interface Props extends RouteComponentProps<{ id: string; }> { }
 
@@ -108,15 +108,7 @@ const Topic: React.FC<Props> = ({ match }) => {
               <IonLabel>Related Cases</IonLabel>
             </IonListHeader>
             {cases.map((c: any, index) => (
-              <IonItem key={index} routerLink={"/cases/" + c.id}>
-                <IonThumbnail slot="start">
-                  <img src={"../../assets/images/case.svg"} onError={(e)=>{e.currentTarget.src = "../../assets/shapes.svg"}} alt={c.title} />
-                </IonThumbnail>
-                <IonLabel>
-                  <h3>{c.title}</h3>
-                  <p>{parse(c.snippet)}</p>
-                </IonLabel>
-              </IonItem>
+              <CaseItem kase={c}/>
             ))}
           </IonList>
         )}

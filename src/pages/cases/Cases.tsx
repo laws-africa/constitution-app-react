@@ -7,13 +7,10 @@ import {
   IonToolbar,
   IonText,
   IonList,
-  IonItem,
-  IonLabel,
-  IonThumbnail
 } from '@ionic/react';
 import data from "../../assets/data/data.json";
 import './Cases.css';
-import parse from 'html-react-parser';
+import { CaseItem } from "../../components/case";
 
 const Cases: React.FC = () => {
   const cases = data.cases;
@@ -32,16 +29,8 @@ const Cases: React.FC = () => {
           </div>
         </IonText>
         <IonList>
-          {cases.map((article, index) => (
-            <IonItem key={index} routerLink={"/cases/" + article.id}>
-              <IonThumbnail slot="start">
-                <img src={"../../assets/images/case.svg"} onError={(e)=>{e.currentTarget.src = "../../assets/shapes.svg"}} alt={article.title} />
-              </IonThumbnail>
-              <IonLabel>
-                <h3>{article.title}</h3>
-                <span>{parse(article.snippet)}</span>
-              </IonLabel>
-            </IonItem>
+          {cases.map((kase) => (
+            <CaseItem kase={kase}/>
           ))}
         </IonList>
       </IonContent>

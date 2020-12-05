@@ -5,9 +5,7 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-  IonThumbnail,
   IonList,
-  IonItem,
   IonLabel,
   IonListHeader,
   IonIcon,
@@ -20,6 +18,7 @@ import './Cases.css';
 import parse from 'html-react-parser';
 import { RouteComponentProps } from "react-router-dom";
 import { arrowBack } from 'ionicons/icons';
+import { TopicItem } from '../../components/topic';
 
 interface Props extends RouteComponentProps<{ id: string; }> { }
 
@@ -74,15 +73,7 @@ const Case: React.FC<Props> = ({ match }) => {
               <IonLabel>Related Guides</IonLabel>
             </IonListHeader>
             {topics.map((topic: any, index: any) => (
-              <IonItem key={index} routerLink={"/guides/" + topic.id}>
-                <IonThumbnail slot="start">
-                  <img src={"../../assets/images/" + topic.id + ".svg"} onError={(e) => { e.currentTarget.src = "../../assets/shapes.svg" }} alt={topic.title} />
-                </IonThumbnail>
-                <IonLabel>
-                  <h3>{ topic.title }</h3>
-                  <p>{ parse(topic.snippet) }</p>
-                </IonLabel>
-              </IonItem>
+              <TopicItem topic={topic} />
             ))}
           </IonList>
         )}
