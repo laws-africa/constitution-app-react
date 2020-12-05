@@ -4,10 +4,11 @@
   line-height: 1.35;
 }
 
-.akn-insert {
+.provision-insert {
   background-color: var(--ion-color-light);
   border-top: 1px solid var(--ion-color-light-shade);
   border-bottom: 1px solid var(--ion-color-light-shade);
+  padding-bottom: 0px !important;
   max-height: 50vh;
   overflow-y: scroll;
 }

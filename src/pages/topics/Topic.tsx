@@ -86,7 +86,7 @@ const Topic: React.FC<Props> = ({ match }) => {
         <div className="ion-padding">
           <h3>{ topic.title }</h3>
         </div>
-        <div className="ion-padding akn-insert">
+        <div className="ion-padding provision-insert">
           <div className="akoma-ntoso" ref={rootRef}></div>
         </div>
 
