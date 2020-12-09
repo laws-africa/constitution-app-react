@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import {
   IonContent,
   IonPage,
@@ -6,10 +6,6 @@ import {
   IonGrid,
   IonRow,
   IonCol,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardContent,
   IonSearchbar,
   IonAvatar,
   IonItem,
@@ -18,15 +14,10 @@ import {
   IonThumbnail,
   IonLabel
 } from '@ionic/react';
-import data from "../../assets/data/data.json";
 import { people, document, documents } from 'ionicons/icons';
 import './Home.css';
-import parse from 'html-react-parser';
 
 const Home: React.FC = () => {
-
-  const moemorizedCases = useMemo(() =>  data.cases, []);
-  const moemorizedTopics = useMemo(() =>  data.topics, []);
 
   return (
     <IonPage>
