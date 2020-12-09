@@ -7,19 +7,22 @@ import {
   IonRow,
   IonCol,
   IonSearchbar,
-  IonAvatar,
   IonItem,
   IonRouterLink,
   IonButton,
-  IonThumbnail,
+  IonList,
   IonLabel,
   IonSegment,
-  IonSegmentButton
+  IonSegmentButton,
+  IonIcon,
+  IonThumbnail
 } from '@ionic/react';
 import { people, document, documents } from 'ionicons/icons';
 import './Home.css';
+import data from "../../assets/data/data.json";
 
 const Home: React.FC = () => {
+  const guides = data.topics;
 
   return (
     <IonPage>
@@ -32,9 +35,7 @@ const Home: React.FC = () => {
           <IonGrid>
             <IonRow>
               <IonCol size="2">
-                <IonAvatar>
-                  <img alt="" src={document} />
-                </IonAvatar>
+                <IonIcon size="large" icon={document} />
               </IonCol>
               <IonCol size="7">
                 <h4>The Constitution</h4>
@@ -51,9 +52,7 @@ const Home: React.FC = () => {
           <IonGrid>
             <IonRow>
               <IonCol size="2">
-                <IonAvatar>
-                  <img alt="" src={people} />
-                </IonAvatar>
+                <IonIcon size="large" icon={people} />
               </IonCol>
               <IonCol size="7">
                 <h4>Guides</h4>
@@ -71,46 +70,36 @@ const Home: React.FC = () => {
                 <IonLabel>Recently Viewed</IonLabel>
               </IonSegmentButton>
             </IonSegment>
-            <IonItem>
-              <IonThumbnail slot="start">
-                <img alt="" src={document} onError={(e) => {
-                  e.currentTarget.src = "../../assets/shapes.svg"
-                }}/>
+          </IonGrid>
+        </IonItem>
+        <IonItem>
+          <IonList>
+            {guides.slice(0,3).map((guide) => (
+              <IonItem key={guide.id} routerLink={"/cases/" + guide.id}>
+                <IonThumbnail slot="start">
+                  <img src={"../../assets/images/" + guide.id + ".svg"} onError={(e)=>{e.currentTarget.src = "../../assets/shapes.svg"}} alt={guide.title} />
                 </IonThumbnail>
                 <IonLabel>
-                  <h4>Title</h4>
+                  <h3>{guide.title}</h3>
                 </IonLabel>
-            </IonItem>
-            <IonItem>
-              <IonThumbnail slot="start">
-                <img alt="" src={document} onError={(e) => {
-                  e.currentTarget.src = "../../assets/shapes.svg"
-                }}/>
-                </IonThumbnail>
-                <IonLabel>
-                  <h4>Title</h4>
-                </IonLabel>
-            </IonItem>
-            <IonItem>
-              <IonThumbnail slot="start">
-                <img alt="" src={document} onError={(e) => {
-                  e.currentTarget.src = "../../assets/shapes.svg"
-                }}/>
-                </IonThumbnail>
-                <IonLabel>
-                  <h4>Title</h4>
-                </IonLabel>
-            </IonItem>
-            <IonButton href="/guides" expand="block">Browse All Guides</IonButton>
+              </IonItem>
+            ))}
+          </IonList>
+        </IonItem>
+        <IonItem>
+          <IonGrid>
+            <IonRow>
+              <IonCol size="12">
+                <IonButton href="/guides" expand="block">Browse All Guides</IonButton>
+              </IonCol>
+            </IonRow>
           </IonGrid>
         </IonItem>
         <IonItem>
           <IonGrid>
             <IonRow>
               <IonCol size="2">
-                <IonAvatar>
-                  <img alt="" src={documents} />
-                </IonAvatar>
+                <IonIcon size="large" icon={documents} />
               </IonCol>
               <IonCol size="6">
                 <h4>Cases</h4>
