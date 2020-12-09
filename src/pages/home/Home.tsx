@@ -31,7 +31,7 @@ const Home: React.FC = () => {
             <IonRow>
               <IonCol size="2">
                 <IonAvatar>
-                  <img src={document} />
+                  <img alt="" src={document} />
                 </IonAvatar>
               </IonCol>
               <IonCol size="7">
@@ -50,7 +50,7 @@ const Home: React.FC = () => {
             <IonRow>
               <IonCol size="2">
                 <IonAvatar>
-                  <img src={people} />
+                  <img alt="" src={people} />
                 </IonAvatar>
               </IonCol>
               <IonCol size="7">
@@ -63,7 +63,7 @@ const Home: React.FC = () => {
             <p>Better understand the provisions of the Constitution and their implications for parlimentary matters.</p>
             <IonItem>
               <IonThumbnail slot="start">
-                <img src={document} onError={(e) => {
+                <img alt="" src={document} onError={(e) => {
                   e.currentTarget.src = "../../assets/shapes.svg"
                 }}/>
                 </IonThumbnail>
@@ -73,7 +73,7 @@ const Home: React.FC = () => {
             </IonItem>
             <IonItem>
               <IonThumbnail slot="start">
-                <img src={document} onError={(e) => {
+                <img alt="" src={document} onError={(e) => {
                   e.currentTarget.src = "../../assets/shapes.svg"
                 }}/>
                 </IonThumbnail>
@@ -83,7 +83,7 @@ const Home: React.FC = () => {
             </IonItem>
             <IonItem>
               <IonThumbnail slot="start">
-                <img src={document} onError={(e) => {
+                <img alt="" src={document} onError={(e) => {
                   e.currentTarget.src = "../../assets/shapes.svg"
                 }}/>
                 </IonThumbnail>
@@ -99,7 +99,7 @@ const Home: React.FC = () => {
             <IonRow>
               <IonCol size="2">
                 <IonAvatar>
-                  <img src={documents} />
+                  <img alt="" src={documents} />
                 </IonAvatar>
               </IonCol>
               <IonCol size="6">
