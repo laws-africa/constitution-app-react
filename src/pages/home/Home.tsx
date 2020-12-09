@@ -13,7 +13,6 @@ import {
   IonButton,
   IonThumbnail,
   IonLabel,
-  IonToolbar,
   IonSegment,
   IonSegmentButton
 } from '@ionic/react';
@@ -124,6 +123,21 @@ const Home: React.FC = () => {
             <IonButton href="/search" expand="block">Search Cases</IonButton>
           </IonGrid>
         </IonItem>
+        <p>This app is brought to you by:</p>
+        <IonGrid>
+          <IonRow>
+            <IonCol size="6">
+              <img alt="" src="../../assets/African Lii logo.ai" onError={(e) => {
+                  e.currentTarget.src = "../../assets/shapes.svg"
+              }}/>
+            </IonCol>
+            <IonCol size="6">
+              <img alt="" src="../../assets/03_KAS_Logo_Min_RGB_Blau.jpg" onError={(e) => {
+                  e.currentTarget.src = "../../assets/shapes.svg"
+              }}/>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
       </IonContent>
     </IonPage>
   );
