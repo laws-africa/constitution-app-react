@@ -9,9 +9,17 @@ import {
   IonCard,
   IonCardHeader,
   IonCardTitle,
-  IonCardContent
+  IonCardContent,
+  IonSearchbar,
+  IonAvatar,
+  IonItem,
+  IonRouterLink,
+  IonButton,
+  IonThumbnail,
+  IonLabel
 } from '@ionic/react';
 import data from "../../assets/data/data.json";
+import { people, document, documents } from 'ionicons/icons';
 import './Home.css';
 import parse from 'html-react-parser';
 
@@ -24,67 +32,96 @@ const Home: React.FC = () => {
     <IonPage>
       <IonContent>
         <IonListHeader>
-          Highlights
+          <h2>South Africa's Constitution</h2>
         </IonListHeader>
-        <IonGrid>
-          <IonRow>
-            {moemorizedTopics.filter((o) => o.highlighted === true).map((highlight, index) => (
-              <IonCol size="12" size-sm="6" size-xl="4" key={index}>
-                <IonCard routerLink={"guides/" + highlight.id}>
-                  <IonCardHeader>
-                    <IonCardTitle>{highlight.title}</IonCardTitle>
-                  </IonCardHeader>
-                  <IonCardContent>{parse(highlight.snippet)}</IonCardContent>
-                </IonCard>
+        <IonSearchbar placeholder="Find guides, cases or sections..." onIonChange={(e) => (e)}></IonSearchbar>
+        <IonItem>
+          <IonGrid>
+            <IonRow>
+              <IonCol size="2">
+                <IonAvatar>
+                  <img src={document} />
+                </IonAvatar>
               </IonCol>
-            ))}
-          </IonRow>
-        </IonGrid>
-        <IonListHeader>
-          Popular Topics
-        </IonListHeader>
-        <IonGrid>
-          <IonRow>
-            {moemorizedTopics.filter((o) => o.featured === true).map((topic, index) => (
-              <IonCol size="12" size-sm="6" size-xl="4" key={index}>
-                <IonCard routerLink={"guides/" + topic.id}>
-                  <IonCardHeader>
-                    <IonCardTitle>{topic.title}</IonCardTitle>
-                  </IonCardHeader>
-                  <IonCardContent>
-                    <IonGrid>
-                      <IonRow>
-                        <IonCol size="3">
-                          <img src={"../../assets/images/" + topic.id + ".svg"} onError={(e) => { e.currentTarget.src = "../../assets/shapes.svg" }} alt={topic.title} />
-                        </IonCol>
-                        <IonCol size="9">
-                          {parse(topic.snippet)}
-                        </IonCol>
-                      </IonRow>
-                    </IonGrid>
-                  </IonCardContent>
-                </IonCard>
+              <IonCol size="7">
+                <h4>The Constitution</h4>
               </IonCol>
-            ))}
-          </IonRow>
-        </IonGrid>
-        <IonListHeader>
-          Popular Cases
-        </IonListHeader>
-        <IonGrid>
-          <IonRow>
-            {moemorizedCases.filter((o) => o.featured === true).map((article, index) => (
-              <IonCol size="12" size-sm="6" size-xl="4" key={index}>
-                <IonCard routerLink={"cases/" + article.id}>
-                  <IonCardHeader>
-                    <IonCardTitle>{article.title}</IonCardTitle>
-                  </IonCardHeader>
-                  <IonCardContent>{parse(article.snippet)}</IonCardContent>
-                </IonCard>
+              <IonCol size="3">
+                <IonRouterLink class="ion-float-right" href="/search">Search</IonRouterLink>
               </IonCol>
-            ))}
-          </IonRow>
-        </IonGrid>
+            </IonRow>
+            <p>Browse the Constitution for the provisions that you need.</p>
+            <IonButton href="/constitution" expand="block">Browse Sections</IonButton>
+          </IonGrid>
+        </IonItem>
+        <IonItem>
+          <IonGrid>
+            <IonRow>
+              <IonCol size="2">
+                <IonAvatar>
+                  <img src={people} />
+                </IonAvatar>
+              </IonCol>
+              <IonCol size="7">
+                <h4>Guides</h4>
+              </IonCol>
+              <IonCol size="3">
+                <IonRouterLink class="ion-float-right" href="/search">Search</IonRouterLink>
+              </IonCol>
+            </IonRow>
+            <p>Better understand the provisions of the Constitution and their implications for parlimentary matters.</p>
+            <IonItem>
+              <IonThumbnail slot="start">
+                <img src={document} onError={(e) => {
+                  e.currentTarget.src = "../../assets/shapes.svg"
+                }}/>
+                </IonThumbnail>
+                <IonLabel>
+                  <h4>Title</h4>
+                </IonLabel>
+            </IonItem>
+            <IonItem>
+              <IonThumbnail slot="start">
+                <img src={document} onError={(e) => {
+                  e.currentTarget.src = "../../assets/shapes.svg"
+                }}/>
+                </IonThumbnail>
+                <IonLabel>
+                  <h4>Title</h4>
+                </IonLabel>
+            </IonItem>
+            <IonItem>
+              <IonThumbnail slot="start">
+                <img src={document} onError={(e) => {
+                  e.currentTarget.src = "../../assets/shapes.svg"
+                }}/>
+                </IonThumbnail>
+                <IonLabel>
+                  <h4>Title</h4>
+                </IonLabel>
+            </IonItem>
+            <IonButton href="/guides" expand="block">Browse All Guides</IonButton>
+          </IonGrid>
+        </IonItem>
+        <IonItem>
+          <IonGrid>
+            <IonRow>
+              <IonCol size="2">
+                <IonAvatar>
+                  <img src={documents} />
+                </IonAvatar>
+              </IonCol>
+              <IonCol size="6">
+                <h4>Cases</h4>
+              </IonCol>
+              <IonCol size="4">
+                <IonRouterLink class="ion-float-right" href="/cases">Browse All</IonRouterLink>
+              </IonCol>
+            </IonRow>
+            <p>See how the courts have interpreted the Constitution by reading the leading cases on constitutional provisions.</p>
+            <IonButton href="/search" expand="block">Search Cases</IonButton>
+          </IonGrid>
+        </IonItem>
       </IonContent>
     </IonPage>
   );
