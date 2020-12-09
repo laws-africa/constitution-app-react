@@ -12,7 +12,10 @@ import {
   IonRouterLink,
   IonButton,
   IonThumbnail,
-  IonLabel
+  IonLabel,
+  IonToolbar,
+  IonSegment,
+  IonSegmentButton
 } from '@ionic/react';
 import { people, document, documents } from 'ionicons/icons';
 import './Home.css';
@@ -61,6 +64,14 @@ const Home: React.FC = () => {
               </IonCol>
             </IonRow>
             <p>Better understand the provisions of the Constitution and their implications for parlimentary matters.</p>
+            <IonSegment value="all">
+              <IonSegmentButton value="all">
+                <IonLabel>Most Popular</IonLabel>
+              </IonSegmentButton>
+              <IonSegmentButton value="favorites">
+                <IonLabel>Recently Viewed</IonLabel>
+              </IonSegmentButton>
+            </IonSegment>
             <IonItem>
               <IonThumbnail slot="start">
                 <img alt="" src={document} onError={(e) => {
