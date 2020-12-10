@@ -102,7 +102,7 @@ const Search: React.FC = () => {
     if (currentSegement === "all" || currentSegement === "guides") {
 
       return topics.map((topic: any, index: any) => (
-        <TopicItem topic={topic}/>
+        <TopicItem page="search" topic={topic}/>
       ))
     }
   }

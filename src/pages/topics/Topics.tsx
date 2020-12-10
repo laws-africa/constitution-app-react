@@ -30,7 +30,7 @@ const Topics: React.FC = () => {
           </IonText>
           <IonList>
             {data.topics.map((topic) => (
-              <TopicItem topic={topic} />
+              <TopicItem page="guides" topic={topic} />
             ))}
         </IonList>
       </IonContent>

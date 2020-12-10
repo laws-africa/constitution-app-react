@@ -73,7 +73,7 @@ const Case: React.FC<Props> = ({ match }) => {
               <IonLabel>Related Guides</IonLabel>
             </IonListHeader>
             {topics.map((topic: any, index: any) => (
-              <TopicItem topic={topic} />
+              <TopicItem page="case" topic={topic} />
             ))}
           </IonList>
         )}
