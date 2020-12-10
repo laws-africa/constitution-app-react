@@ -26,10 +26,8 @@ const Home: React.FC = () => {
 
   return (
     <IonPage>
-      <IonContent>
-        <IonListHeader>
-          <h2>South Africa's Constitution</h2>
-        </IonListHeader>
+      <IonContent className="ion-padding">
+        <h2>South Africa's Constitution</h2>
         <IonSearchbar placeholder="Find guides, cases or sections..." onIonChange={(e) => (e)}></IonSearchbar>
         <IonItem>
           <IonGrid>
@@ -75,7 +73,7 @@ const Home: React.FC = () => {
         <IonItem>
           <IonList>
             {guides.slice(0,3).map((guide) => (
-              <IonItem key={guide.id} routerLink={"/cases/" + guide.id}>
+              <IonItem key={guide.id} routerLink={"/guides/" + guide.id}>
                 <IonThumbnail slot="start">
                   <img src={"../../assets/images/" + guide.id + ".svg"} onError={(e)=>{e.currentTarget.src = "../../assets/shapes.svg"}} alt={guide.title} />
                 </IonThumbnail>
