@@ -14,11 +14,11 @@ import {
   IonSegment,
   IonSegmentButton,
   IonIcon,
-  IonThumbnail
 } from '@ionic/react';
 import { people, document, documents } from 'ionicons/icons';
 import './Home.css';
 import data from "../../assets/data/data.json";
+import { TopicItem } from '../../components/topic';
 
 const Home: React.FC = () => {
   const guides = data.topics;
@@ -72,14 +72,7 @@ const Home: React.FC = () => {
         <IonItem>
           <IonList>
             {guides.slice(0,3).map((guide) => (
-              <IonItem key={guide.id} routerLink={"/guides/" + guide.id}>
-                <IonThumbnail slot="start">
-                  <img src={"../../assets/images/" + guide.id + ".svg"} onError={(e)=>{e.currentTarget.src = "../../assets/shapes.svg"}} alt={guide.title} />
-                </IonThumbnail>
-                <IonLabel>
-                  <h3>{guide.title}</h3>
-                </IonLabel>
-              </IonItem>
+              <TopicItem topic={guide} />
             ))}
           </IonList>
         </IonItem>
