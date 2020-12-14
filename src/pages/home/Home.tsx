@@ -9,9 +9,6 @@ import {
   IonRouterLink,
   IonButton,
   IonList,
-  IonLabel,
-  IonSegment,
-  IonSegmentButton,
   IonIcon,
   IonToolbar,
   IonButtons,
@@ -37,7 +34,7 @@ const Home: React.FC = () => {
             </IonButton>
           </IonButtons>
           <IonButtons slot="end">
-            <IonRouterLink class="ion-float-right" href="/search">Search</IonRouterLink>
+            <IonRouterLink class="ion-float-right" href="/search/constitution">Search</IonRouterLink>
           </IonButtons>
 
           <IonTitle>The Constitution</IonTitle>
@@ -51,20 +48,12 @@ const Home: React.FC = () => {
             </IonButton>
           </IonButtons>
           <IonButtons slot="end">
-            <IonRouterLink class="ion-float-right" href="/search">Search</IonRouterLink>
+            <IonRouterLink class="ion-float-right" href="/search/guides">Search</IonRouterLink>
           </IonButtons>
 
           <IonTitle>Guides</IonTitle>
         </IonToolbar>
         <p>Better understand the provisions of the Constitution and their implications for parlimentary matters.</p>
-        <IonSegment value="all">
-          <IonSegmentButton value="all">
-            <IonLabel>Most Popular</IonLabel>
-          </IonSegmentButton>
-          <IonSegmentButton value="favorites">
-            <IonLabel>Recently Viewed</IonLabel>
-          </IonSegmentButton>
-        </IonSegment>
         <IonList>
           {guides.slice(0,3).map((guide) => (
             <TopicItem page="home" topic={guide} />
@@ -84,12 +73,12 @@ const Home: React.FC = () => {
           <IonTitle>Cases</IonTitle>
         </IonToolbar>
         <p>See how the courts have interpreted the Constitution by reading the leading cases on constitutional provisions.</p>
-        <IonButton href="/search" expand="block">Search Cases</IonButton>
+        <IonButton href="/search/cases" expand="block">Search Cases</IonButton>
         <p>This app is brought to you by:</p>
         <IonGrid>
           <IonRow>
             <IonCol size="6">
-              <img alt="" src="../../assets/African Lii logo.ai" onError={(e) => {
+              <img alt="" src="../../assets/African Lii logo.svg" onError={(e) => {
                   e.currentTarget.src = "../../assets/shapes.svg"
               }}/>
             </IonCol>

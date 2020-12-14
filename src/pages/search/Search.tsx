@@ -8,7 +8,7 @@ import {
   IonList,
   IonSegment,
   IonTitle,
-  IonSegmentButton
+  IonSegmentButton,
 } from '@ionic/react';
 import data from "../../assets/data/data.json";
 import './Search.css';
@@ -16,17 +16,21 @@ import { constitutionRoot } from "../../data/constitution";
 import { TopicItem } from '../../components/topic';
 import { CaseItem } from "../../components/case";
 import { TOCItem } from "../../components/toc";
+import { RouteComponentProps } from "react-router-dom";
 
-const Search: React.FC = () => {
-  const [isSearching, setIsSearching] = useState(false)
+interface Props extends RouteComponentProps<{ segment: string; }> { }
+
+const Search: React.FC<Props> = ({ match }) => {
+  const isSearching = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
   const [searchableProvisions, setSearchableProvisions] = useState<any>([]);
   const [currentSegement, setCurrentSegment] = useState("all");
 
   useEffect(() => {
+    setCurrentSegment(match.params.segment ? match.params.segment : "all")
     const searchData = setupConstitutionSearch();
     setSearchableProvisions(searchData);
-  }, [])
+  }, [match.params.segment])
 
   const setupConstitutionSearch = () => {
     let searchData: { titleLower: string; title: string | null; content: string; id: string; }[] = [];
@@ -55,10 +59,8 @@ const Search: React.FC = () => {
   }
   const search = (event: any) => {
     if (event.target.value.length > 0) {
-      setIsSearching(true);
       setSearchTerm(event.target.value.toLowerCase());
     } else {
-      setIsSearching(false);
       setCurrentSegment("all")
       setSearchTerm("")
     }
@@ -113,7 +115,7 @@ const Search: React.FC = () => {
         <IonToolbar>
           <IonTitle>Search</IonTitle>
         </IonToolbar>
-        <IonSearchbar placeholder="Find guides, cases or sections..." onIonChange={(e) => search(e)}></IonSearchbar>
+        <IonSearchbar placeholder="Find guides, cases or sections..."  onIonChange={(e) => search(e)}></IonSearchbar>
         {isSearching && (
           <IonSegment onIonChange={(e) => setCurrentSegment(e.detail.value || "all")} value={currentSegement}>
             <IonSegmentButton value="all">All</IonSegmentButton>

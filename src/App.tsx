@@ -59,6 +59,7 @@ const App: React.FC = () => (
           <Route path="/cases/:id" component={Case} exact={true} />
           <Route path="/help" component={Help} exact={true} />
           <Route path="/search" component={Search} exact={true} />
+          <Route path="/search/:segment" component={Search} exact={true} />
           <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
