@@ -63,6 +63,10 @@ const App: React.FC = () => (
           <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
+          <IonTabButton tab="home" href="/home">
+            <IonIcon icon={home} />
+            <IonLabel>Home</IonLabel>
+          </IonTabButton>
           <IonTabButton tab="guides" href="/guides">
             <IonIcon icon={people} />
             <IonLabel>Guides</IonLabel>
@@ -70,18 +74,6 @@ const App: React.FC = () => (
           <IonTabButton tab="constitution" href="/constitution">
             <IonIcon icon={document} />
             <IonLabel>Constitution</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="home" href="/home">
-            <IonIcon icon={home} />
-            <IonLabel>Home</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="cases" href="/cases">
-            <IonIcon icon={documents} />
-            <IonLabel>Cases</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="help" href="/help">
-            <IonIcon icon={help} />
-            <IonLabel>Help</IonLabel>
           </IonTabButton>
           <IonTabButton tab="search" href="/search">
             <IonIcon icon={search} />

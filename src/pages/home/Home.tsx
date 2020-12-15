@@ -111,6 +111,8 @@ const Home: React.FC = () => {
             </IonCol>
           </IonRow>
         </IonGrid>
+
+        <IonButton href="/help" expand="block">About This App</IonButton>
       </IonContent>
     </IonPage>
   );
