@@ -5,14 +5,10 @@ import {
   IonGrid,
   IonRow,
   IonCol,
-  IonSearchbar,
   IonRouterLink,
   IonButton,
   IonList,
   IonIcon,
-  IonToolbar,
-  IonButtons,
-  IonTitle
 } from '@ionic/react';
 import { people, document, documents } from 'ionicons/icons';
 import './Home.css';
@@ -26,9 +22,6 @@ const Home: React.FC = () => {
     <IonPage>
       <IonContent className="ion-padding">
         <h2>South Africa's Constitution</h2>
-        <IonSearchbar className="ion-no-padding ion-padding-bottom" placeholder="Find guides, cases or sections..."
-                      onIonChange={(e) => (e)}></IonSearchbar>
-
         <IonGrid className="ion-no-padding ion-padding-bottom">
           <IonRow>
             <IonCol size="1">
@@ -67,7 +60,7 @@ const Home: React.FC = () => {
         </div>
         <IonList>
           {guides.slice(0,3).map((guide) => (
-            <TopicItem page="home" topic={guide} />
+            <TopicItem topic={guide} />
           ))}
         </IonList>
         <IonButton href="/guides" expand="block">Browse All Guides</IonButton>

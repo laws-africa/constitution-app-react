@@ -21,13 +21,17 @@ import { RouteComponentProps } from "react-router-dom";
 interface Props extends RouteComponentProps<{ segment: string; }> { }
 
 const Search: React.FC<Props> = ({ match }) => {
-  const isSearching = useState(true)
+  const [isSearching, setIsSearching] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
   const [searchableProvisions, setSearchableProvisions] = useState<any>([]);
   const [currentSegement, setCurrentSegment] = useState("all");
 
   useEffect(() => {
-    setCurrentSegment(match.params.segment ? match.params.segment : "all")
+    if (match.params.segment) {
+      setIsSearching(true);
+      setCurrentSegment(match.params.segment)
+    }
+
     const searchData = setupConstitutionSearch();
     setSearchableProvisions(searchData);
   }, [match.params.segment])
@@ -59,8 +63,10 @@ const Search: React.FC<Props> = ({ match }) => {
   }
   const search = (event: any) => {
     if (event.target.value.length > 0) {
+      setIsSearching(true);
       setSearchTerm(event.target.value.toLowerCase());
     } else {
+      setIsSearching(false);
       setCurrentSegment("all")
       setSearchTerm("")
     }
@@ -104,7 +110,7 @@ const Search: React.FC<Props> = ({ match }) => {
     if (currentSegement === "all" || currentSegement === "guides") {
 
       return topics.map((topic: any, index: any) => (
-        <TopicItem page="search" topic={topic}/>
+        <TopicItem topic={topic}/>
       ))
     }
   }
@@ -116,14 +122,12 @@ const Search: React.FC<Props> = ({ match }) => {
           <IonTitle>Search</IonTitle>
         </IonToolbar>
         <IonSearchbar placeholder="Find guides, cases or sections..."  onIonChange={(e) => search(e)}></IonSearchbar>
-        {isSearching && (
           <IonSegment onIonChange={(e) => setCurrentSegment(e.detail.value || "all")} value={currentSegement}>
             <IonSegmentButton value="all">All</IonSegmentButton>
             <IonSegmentButton value="constitution">Constitution</IonSegmentButton>
             <IonSegmentButton value="guides">Guides</IonSegmentButton>
             <IonSegmentButton value="cases">Cases</IonSegmentButton>
           </IonSegment>
-        )}
       </IonHeader>
       <IonContent>
         {isSearching && (

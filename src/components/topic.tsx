@@ -4,36 +4,20 @@ import React from "react";
 
 interface TopicItemProps {
   topic: any,
-  page: string
 }
 
-export const TopicItem: React.FC<TopicItemProps> = ({ topic, page }) => {
-  if (page === "home") {
-    return (
-      <IonItem key={topic.id} routerLink={"/guides/" + topic.id}>
-        <IonThumbnail slot="start">
-          <img src={"../../assets/images/" + topic.id + ".svg"} onError={(e) => {
-            e.currentTarget.src = "../../assets/shapes.svg"
-          }} alt={topic.title}/>
-          </IonThumbnail>
-          <IonLabel>
-            <h3>{topic.title}</h3>
-          </IonLabel>
-      </IonItem>
-    );
-  } else {
-    return (
-      <IonItem key={topic.id} routerLink={"/guides/" + topic.id}>
-        <IonThumbnail slot="start">
-          <img src={"../../assets/images/" + topic.id + ".svg"} onError={(e) => {
-            e.currentTarget.src = "../../assets/shapes.svg"
-          }} alt={topic.title}/>
-          </IonThumbnail>
-          <IonLabel>
-            <h3>{topic.title}</h3>
-            <p>{parse(topic.snippet)}</p>
-          </IonLabel>
-      </IonItem>
-    );
-  }
+export const TopicItem: React.FC<TopicItemProps> = ({ topic }) => {
+  return (
+    <IonItem key={topic.id} routerLink={"/guides/" + topic.id}>
+      <IonThumbnail slot="start">
+        <img src={"../../assets/images/" + topic.id + ".svg"} onError={(e) => {
+          e.currentTarget.src = "../../assets/shapes.svg"
+        }} alt={topic.title}/>
+        </IonThumbnail>
+        <IonLabel>
+          <h3>{topic.title}</h3>
+          <p>{parse(topic.snippet)}</p>
+        </IonLabel>
+    </IonItem>
+  );
 };
