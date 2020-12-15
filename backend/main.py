@@ -17,18 +17,19 @@ PRODUCTION_DOCUMENTS_OUTPUT_PATH = r'../src/assets/data/'
 INDIGO_AUTH_TOKEN = os.environ.get('INDIGO_AUTH_TOKEN')
 
 
-def write_constitution():
+def write_work(name, frbr_uri):
     headers = {'Authorization': f'Token {INDIGO_AUTH_TOKEN}'}
-    resp = requests.get('https://api.laws.africa/v2/akn/za/act/1996/constitution/toc.json', headers=headers)
+    resp = requests.get(f'https://api.laws.africa/v2{frbr_uri}/toc.json', headers=headers)
     resp.raise_for_status()
     # {"toc": [...]}
     data = resp.json()
     fix_attachment_ids(data['toc'])
 
-    resp = requests.get('https://api.laws.africa/v2/akn/za/act/1996/constitution.html', headers=headers)
+    resp = requests.get(f'https://api.laws.africa/v2{frbr_uri}.html', headers=headers)
     resp.raise_for_status()
     data['body'] = resp.text
-    write_json('constitution.json', data)
+    write_json(f'{name}.json', data)
+
 
 def fix_attachment_ids(toc):
     # ensure that children of attachments have scoped ids
@@ -46,7 +47,8 @@ def main():
     cases = read_google_sheets('cases')
     topics = read_google_sheets('topics')
     write_all_documents(cases, topics)
-    #write_constitution()
+    #write_work("constitution", "/akn/za/act/1996/constitution")
+    #write_work("rules", "/akn/za/act/2016/rules-of-the-national-assembly")
 
 
 def _excel_date_to_timestamp(date):
