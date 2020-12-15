@@ -26,54 +26,76 @@ const Home: React.FC = () => {
     <IonPage>
       <IonContent className="ion-padding">
         <h2>South Africa's Constitution</h2>
-        <IonSearchbar placeholder="Find guides, cases or sections..." onIonChange={(e) => (e)}></IonSearchbar>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonButton>
-              <IonIcon size="large" icon={document} />
-            </IonButton>
-          </IonButtons>
-          <IonButtons slot="end">
-            <IonRouterLink class="ion-float-right" href="/search/constitution">Search</IonRouterLink>
-          </IonButtons>
+        <IonSearchbar className="ion-no-padding ion-padding-bottom" placeholder="Find guides, cases or sections..."
+                      onIonChange={(e) => (e)}></IonSearchbar>
 
-          <IonTitle>The Constitution</IonTitle>
-        </IonToolbar>
-        <p>Browse the Constitution for the provisions that you need.</p>
+        <IonGrid className="ion-no-padding ion-padding-bottom">
+          <IonRow>
+            <IonCol size="1">
+              <IonIcon size="small" icon={document} />
+            </IonCol>
+            <IonCol>
+              <h5 className="section-heading">The Constitution</h5>
+            </IonCol>
+            <IonCol size="1">
+              <IonRouterLink class="ion-float-right" href="/search/constitution">Search</IonRouterLink>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+
+        <div className="ion-padding-bottom">Browse the Constitution for the provisions that you need.</div>
         <IonButton href="/constitution" expand="block">Browse Sections</IonButton>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonButton>
-              <IonIcon size="large" icon={people} />
-            </IonButton>
-          </IonButtons>
-          <IonButtons slot="end">
-            <IonRouterLink class="ion-float-right" href="/search/guides">Search</IonRouterLink>
-          </IonButtons>
 
-          <IonTitle>Guides</IonTitle>
-        </IonToolbar>
-        <p>Better understand the provisions of the Constitution and their implications for parlimentary matters.</p>
+        <hr className="divider" />
+
+        <IonGrid className="ion-no-padding ion-padding-vertical">
+          <IonRow>
+            <IonCol size="1">
+              <IonIcon size="small" icon={people} />
+            </IonCol>
+            <IonCol>
+              <h5 className="section-heading">Guides</h5>
+            </IonCol>
+            <IonCol size="1">
+              <IonRouterLink class="ion-float-right" href="/search/guides">Search</IonRouterLink>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+
+        <div className="ion-padding-bottom">
+          Understand the provisions of the Constitution and their implications for parliamentary matters.
+        </div>
         <IonList>
           {guides.slice(0,3).map((guide) => (
             <TopicItem page="home" topic={guide} />
           ))}
         </IonList>
         <IonButton href="/guides" expand="block">Browse All Guides</IonButton>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonButton>
-              <IonIcon size="large" icon={documents} />
-            </IonButton>
-          </IonButtons>
-          <IonButtons slot="end">
-            <IonRouterLink class="ion-float-right" href="/cases">Browse All</IonRouterLink>
-          </IonButtons>
 
-          <IonTitle>Cases</IonTitle>
-        </IonToolbar>
-        <p>See how the courts have interpreted the Constitution by reading the leading cases on constitutional provisions.</p>
+        <hr className="divider" />
+
+        <IonGrid className="ion-no-padding ion-padding-vertical">
+          <IonRow>
+            <IonCol size="1">
+              <IonIcon size="small" icon={documents} />
+            </IonCol>
+            <IonCol>
+              <h5 className="section-heading">Cases</h5>
+            </IonCol>
+            <IonCol size="1" className="ion-text-nowrap">
+              <IonRouterLink class="ion-float-right" href="/cases">Browse All</IonRouterLink>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+
+        <div className="ion-padding-bottom">
+          See how the courts have interpreted the Constitution by reading the leading cases on constitutional
+          provisions.
+        </div>
         <IonButton href="/search/cases" expand="block">Search Cases</IonButton>
+
+        <hr className="divider" />
+
         <p>This app is brought to you by:</p>
         <IonGrid>
           <IonRow>
