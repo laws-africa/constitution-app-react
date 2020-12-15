@@ -28,7 +28,6 @@ const Search: React.FC<Props> = ({ match }) => {
 
   useEffect(() => {
     if (match.params.segment) {
-      setIsSearching(true);
       setCurrentSegment(match.params.segment)
     }
 
