@@ -8,7 +8,7 @@ import {
   IonList,
   IonSegment,
   IonTitle,
-  IonSegmentButton
+  IonSegmentButton,
 } from '@ionic/react';
 import data from "../../assets/data/data.json";
 import './Search.css';
@@ -16,17 +16,24 @@ import { constitutionRoot } from "../../data/constitution";
 import { TopicItem } from '../../components/topic';
 import { CaseItem } from "../../components/case";
 import { TOCItem } from "../../components/toc";
+import { RouteComponentProps } from "react-router-dom";
 
-const Search: React.FC = () => {
+interface Props extends RouteComponentProps<{ segment: string; }> { }
+
+const Search: React.FC<Props> = ({ match }) => {
   const [isSearching, setIsSearching] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
   const [searchableProvisions, setSearchableProvisions] = useState<any>([]);
   const [currentSegement, setCurrentSegment] = useState("all");
 
   useEffect(() => {
+    if (match.params.segment) {
+      setCurrentSegment(match.params.segment)
+    }
+
     const searchData = setupConstitutionSearch();
     setSearchableProvisions(searchData);
-  }, [])
+  }, [match.params.segment])
 
   const setupConstitutionSearch = () => {
     let searchData: { titleLower: string; title: string | null; content: string; id: string; }[] = [];
@@ -113,15 +120,13 @@ const Search: React.FC = () => {
         <IonToolbar>
           <IonTitle>Search</IonTitle>
         </IonToolbar>
-        <IonSearchbar placeholder="Find guides, cases or sections..." onIonChange={(e) => search(e)}></IonSearchbar>
-        {isSearching && (
+        <IonSearchbar placeholder="Find guides, cases or sections..."  onIonChange={(e) => search(e)}></IonSearchbar>
           <IonSegment onIonChange={(e) => setCurrentSegment(e.detail.value || "all")} value={currentSegement}>
             <IonSegmentButton value="all">All</IonSegmentButton>
             <IonSegmentButton value="constitution">Constitution</IonSegmentButton>
             <IonSegmentButton value="guides">Guides</IonSegmentButton>
             <IonSegmentButton value="cases">Cases</IonSegmentButton>
           </IonSegment>
-        )}
       </IonHeader>
       <IonContent>
         {isSearching && (
