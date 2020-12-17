@@ -1,0 +1,7 @@
+.section-heading {
+  margin: 0px;
+}
+
+hr.divider {
+  border-top: 1px solid var(--ion-color-medium-tint);
+}

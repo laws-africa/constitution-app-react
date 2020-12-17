@@ -3,7 +3,7 @@ import parse from "html-react-parser";
 import React from "react";
 
 interface TopicItemProps {
-  topic: any
+  topic: any,
 }
 
 export const TopicItem: React.FC<TopicItemProps> = ({ topic }) => {
