@@ -13,10 +13,17 @@ import { people, document, documents } from 'ionicons/icons';
 import './Home.css';
 import data from "../../assets/data/data.json";
 import { TopicItem } from '../../components/topic';
-import { Link } from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 const Home: React.FC = () => {
   const guides = data.topics;
+
+  // redirect to a url from the 404.html page?
+  const params = new URLSearchParams(window.location.search);
+  const path = params.get('404') || '';
+  if (path.length) {
+    return <Redirect to={path}/>
+  }
 
   return (
     <IonPage>
