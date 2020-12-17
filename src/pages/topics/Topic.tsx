@@ -25,7 +25,14 @@ import { CaseItem } from "../../components/case";
 interface Props extends RouteComponentProps<{ id: string; }> { }
 
 const Topic: React.FC<Props> = ({ match }) => {
-  const [topic, setTopic] = useState({title: '', content: ''});
+  const [topic, setTopic] = useState({
+    title: '',
+    topic_meaning: '',
+    constitutional_prescriptions: '',
+    interpretation: '',
+    mechanism: '',
+    legislation: '',
+  });
   const [cases, setCases] = useState([]);
   const [references, setReferences] = useState([]);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -84,20 +91,42 @@ const Topic: React.FC<Props> = ({ match }) => {
       </IonHeader>
       <IonContent>
         <div className="ion-padding">
-          <h3>{ topic.title }</h3>
+          <h3>{topic.title}</h3>
         </div>
         <div className="ion-padding provision-insert">
           <div className="akoma-ntoso" ref={rootRef}></div>
         </div>
 
         <div className="ion-padding">
-          <div className="topic-content">{ parse(topic.content) }</div>
+          <h4>What does it mean?</h4>
+          <div className="topic-content">{parse(topic.topic_meaning)}</div>
+
+          <h4>What does the Constitution say?</h4>
+          <div className="topic-content">{parse(topic.constitutional_prescriptions)}</div>
+
+          <h4>How was it interpreted by the courts?</h4>
+          <div className="topic-content">{parse(topic.interpretation)}</div>
+
+          {topic.mechanism.length > 0 &&
+          <>
+            <h4>How does it work?</h4>
+            <div className="topic-content">{parse(topic.mechanism)}</div>
+          </>
+          }
+
+          {topic.mechanism.length > 0 &&
+          <>
+            <h4>Which legislation gives effect to it?</h4>
+            <div className="topic-content">{parse(topic.legislation)}</div>
+          </>
+          }
         </div>
 
         {references.length > 0 &&
         <IonList className="ion-padding-bottom">
           {references.map((ref: any) => (
-            <IonItem key={ref.id} routerLink={"/constitution/provision/" + ref.id} color="primary" lines="none">Section { ref.title }</IonItem>
+            <IonItem key={ref.id} routerLink={"/constitution/provision/" + ref.id} color="primary"
+                     lines="none">Section {ref.title}</IonItem>
           ))}
         </IonList>
         }

@@ -61,7 +61,6 @@ def process_topic(_dict):
     _ret = {
         "id": _dict["id"],
         "title": _dict["title"],
-        "content": _dict["content"],
         "featured": bool(_dict["featured"]),
         "highlighted": bool(_dict["highlighted"]),
         "references": str(_dict["references"]).split(";\n"),
