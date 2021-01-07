@@ -8,19 +8,19 @@ import {
   IonPage,
   withIonLifeCycle
 } from '@ionic/react';
-import './Constitution.css';
-import { TOCList } from '../../components/constitutionTOC';
+import './Rules.css';
+import { TOCList } from '../../components/rulesTOC';
 
-class ConstitutionTOC extends React.Component {
+class RulesTOC extends React.Component {
   render() {
     return (
       <IonPage>
         <IonContent>
           <IonListHeader>
-            <IonLabel>Constitution of the Republic of South Africa</IonLabel>
+            <IonLabel>Rules of the Republic of South Africa</IonLabel>
           </IonListHeader>
           <IonList>
-            <IonItem routerLink={"/constitution/full"}>Read the full Constitution</IonItem>
+            <IonItem routerLink={"/rules/full"}>Read the full Rules of the National Assembly</IonItem>
           </IonList>
           <IonList>
             <IonListHeader>
@@ -34,4 +34,4 @@ class ConstitutionTOC extends React.Component {
   }
 }
 
-export default withIonLifeCycle(ConstitutionTOC);
+export default withIonLifeCycle(RulesTOC);

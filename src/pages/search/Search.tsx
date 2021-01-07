@@ -15,7 +15,7 @@ import './Search.css';
 import { constitutionRoot } from "../../data/constitution";
 import { TopicItem } from '../../components/topic';
 import { CaseItem } from "../../components/case";
-import { TOCItem } from "../../components/toc";
+import { TOCItem } from "../../components/constitutionTOC";
 import { RouteComponentProps } from "react-router-dom";
 
 interface Props extends RouteComponentProps<{ segment: string; }> { }
