@@ -15,7 +15,7 @@ export const TOCList: React.FC<TOCListProps> = ({ onClick }) => {
         {provisions.map((item: any) => {
           return (
               <div key={item.id}>
-                <TOCItem item={item} onClick={onClick}/>
+                <RuleTOCItem item={item} onClick={onClick}/>
               </div>
           );
         })}
@@ -23,12 +23,12 @@ export const TOCList: React.FC<TOCListProps> = ({ onClick }) => {
   );
 };
 
-interface TOCItemProps {
+interface RuleTOCItemProps {
   item: any;
   onClick?: any;
 }
 
-export const TOCItem: React.FC<TOCItemProps> = ({ item, onClick }) => {
+export const RuleTOCItem: React.FC<RuleTOCItemProps> = ({ item, onClick }) => {
   const kids = (item.children || []).filter((c: any) => c.id);
   const props = onClick ? {onClick: () => onClick(item)} : {routerLink: '/rules/provision/' + item.id};
 
@@ -38,7 +38,7 @@ export const TOCItem: React.FC<TOCItemProps> = ({ item, onClick }) => {
       {kids.length > 0 && (
         <div className="ion-padding-start">
           {kids.map((child: any) => {
-            return (<TOCItem key={child.id} item={child} onClick={onClick} />);
+            return (<RuleTOCItem key={child.id} item={child} onClick={onClick} />);
           })}
         </div>
       )}

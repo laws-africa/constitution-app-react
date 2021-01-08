@@ -17,7 +17,7 @@ class RulesTOC extends React.Component {
       <IonPage>
         <IonContent>
           <IonListHeader>
-            <IonLabel>Rules of the Republic of South Africa</IonLabel>
+            <IonLabel>Rules of the National Assembly</IonLabel>
           </IonListHeader>
           <IonList>
             <IonItem routerLink={"/rules/full"}>Read the full Rules of the National Assembly</IonItem>

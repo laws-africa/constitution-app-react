@@ -10,7 +10,7 @@ import {
   IonList,
   IonIcon,
 } from '@ionic/react';
-import { people, document, documents } from 'ionicons/icons';
+import { people, document, documents, pencilOutline } from 'ionicons/icons';
 import './Home.css';
 import data from "../../assets/data/data.json";
 import { TopicItem } from '../../components/topic';
@@ -86,6 +86,24 @@ const Home: React.FC = () => {
           provisions.
         </div>
         <IonButton href="/search/cases" expand="block">Search Cases</IonButton>
+
+        <hr className="divider" />
+
+        <IonGrid className="ion-no-padding ion-padding-bottom">
+          <IonRow>
+            <IonCol size="1">
+              <IonIcon size="small" icon={pencilOutline} />
+            </IonCol>
+            <IonCol>
+              <h5 className="section-heading">Rules of the National Assembly</h5>
+            </IonCol>
+            <IonCol size="1">
+              <IonRouterLink class="ion-float-right" href="/search/rules">Search</IonRouterLink>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+
+        <IonButton href="/rules" expand="block">Browse Rules</IonButton>
 
         <hr className="divider" />
 
