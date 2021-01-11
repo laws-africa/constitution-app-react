@@ -38,8 +38,8 @@ const Topic: React.FC<Props> = ({ match }) => {
   const rootRef = useRef<HTMLDivElement>(null);
 
   useIonViewWillEnter(() => {
-
-    const topic = data.topics.find(t => t.id === match.params.id);
+    // @ts-ignore
+    const topic: any = data.topics.find(t => t.id === match.params.id);
     // @ts-ignore
     setTopic(topic);
 
@@ -104,8 +104,12 @@ const Topic: React.FC<Props> = ({ match }) => {
           <h4>What does the Constitution say?</h4>
           <div className="topic-content">{parse(topic.constitutional_prescriptions)}</div>
 
-          <h4>How was it interpreted by the courts?</h4>
-          <div className="topic-content">{parse(topic.interpretation)}</div>
+          {topic.interpretation.length > 0 &&
+          <>
+            <h4>How was it interpreted by the courts?</h4>
+            <div className="topic-content">{parse(topic.interpretation)}</div>
+          </>
+          }
 
           {topic.mechanism.length > 0 &&
           <>

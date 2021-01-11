@@ -58,7 +58,7 @@ def _excel_date_to_timestamp(date):
 
 
 def process_topic(_dict):
-    if any((_dict["topic_meaning"] == "", _dict["constitutional_prescriptions"] == "", _dict["interpretation"] == "")):
+    if _dict["topic_meaning"] == "":
         return None
     _ret = {
         "id": _dict["id"],
