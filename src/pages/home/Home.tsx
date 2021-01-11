@@ -105,12 +105,13 @@ const Home: React.FC = () => {
               <h5 className="section-heading">Rules of the National Assembly</h5>
             </IonCol>
             <IonCol size="1">
-              <IonRouterLink class="ion-float-right" href="/search/rules">Search</IonRouterLink>
+              <Link className="ion-float-right link-plain" to="/search/rules">Search</Link>
             </IonCol>
           </IonRow>
         </IonGrid>
 
-        <IonButton href="/rules" expand="block">Browse Rules</IonButton>
+        <div className="ion-padding-bottom">Browse the Rules of the National Assembly.</div>
+        <IonButton routerLink="/rules" expand="block">Browse Rules</IonButton>
 
         <hr className="divider" />
 
