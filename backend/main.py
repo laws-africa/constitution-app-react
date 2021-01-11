@@ -58,21 +58,25 @@ def _excel_date_to_timestamp(date):
 
 
 def process_topic(_dict):
-    if _dict["content"] == "":
+    if _dict["topic_meaning"] == "":
         return None
     _ret = {
-            "id": _dict["id"],
-            "title": _dict["title"],
-            "content": _dict["content"],
-            "featured": bool(_dict["featured"]),
-            "highlighted": bool(_dict["highlighted"]),
-            "references": str(_dict["references"]).split(";\n"),
-            "snippet": _dict["snippet"],
-            "cases": [
-                _dict["case_" + str(i+1)] for i in range(NUMBER_OF_CASES)
-                if _dict["case_" + str(i+1)] != ""
-                ],
-            }
+        "id": _dict["id"],
+        "title": _dict["title"],
+        "featured": bool(_dict["featured"]),
+        "highlighted": bool(_dict["highlighted"]),
+        "references": str(_dict["references"]).split(";\n"),
+        "snippet": _dict["snippet"],
+        "topic_meaning": _dict["topic_meaning"],
+        "constitutional_prescriptions": _dict["constitutional_prescriptions"],
+        "interpretation": _dict["interpretation"],
+        "mechanism": _dict["mechanism"],
+        "legislation": _dict["legislation"],
+        "cases": [
+            _dict["case_" + str(i+1)] for i in range(NUMBER_OF_CASES)
+            if _dict["case_" + str(i+1)] != ""
+            ],
+        }
 
     return _ret
 
@@ -82,25 +86,23 @@ def process_case(_dict):
     It defines the logic for creating the JSON
     """
     result = {
-            "id": _dict["id"],
-            "href": _dict["href"],
-            "title": _dict["title"],
-            "featured": bool(_dict["featured"]),
-            "highlighted": bool(_dict["highlighted"]),
-            "dateOfJudgment": _excel_date_to_timestamp(_dict["dateOfJudgment (DD/MM/YYYY)"]),
-            "courtName": _dict["courtName"],
-            "topics": [
-                _dict["topic_" + str(i+1)] for i in range(NUMBER_OF_TOPICS)
-                if _dict["topic_" + str(i+1)] != ""
-                ],
-            "justicesConcurring": _dict["justicesConcurring"],
-            "summary": _dict["summary"],
-            "snippet": _dict["snippet"],
-            "facts": _dict["facts"],
-            "decision": _dict["decision"],
-            "dissent": _dict["dissent"],
-            "citedCases": _dict["citedCases"].split(";\n") # TODO: put in a function
-        }
+        "id": _dict["id"],
+        "href": _dict["href"],
+        "title": _dict["title"],
+        "featured": bool(_dict["featured"]),
+        "highlighted": bool(_dict["highlighted"]),
+        "dateOfJudgment": _excel_date_to_timestamp(_dict["dateOfJudgment (DD/MM/YYYY)"]),
+        "courtName": _dict["courtName"],
+        "topics": [
+            _dict["topic_" + str(i+1)] for i in range(NUMBER_OF_TOPICS)
+            if _dict["topic_" + str(i+1)] != ""
+            ],
+        "snippet": _dict["snippet"],
+        "facts_and_issues": _dict["facts_and_issues"],
+        "right_and_principle": _dict["right_and_principle"],
+        "interpretation": _dict["interpretation"],
+        "citedCases": _dict["citedCases"].split(";\n") # TODO: put in a function
+    }
     return result
 
 

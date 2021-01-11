@@ -31,9 +31,10 @@ const Case: React.FC<Props> = ({ match }) => {
     // @ts-ignore
     setCase(thisCase);
 
-    let topics = [];
+    let topics: any[] = [];
     if (thisCase) {
       for (const id of thisCase.topics) {
+        // @ts-ignore
         const topic = data.topics.find((topic) => topic.id === id);
         if (topic) topics.push(topic);
       }
