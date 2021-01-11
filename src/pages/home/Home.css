@@ -5,3 +5,7 @@
 hr.divider {
   border-top: 1px solid var(--ion-color-medium-tint);
 }
+
+a.link-plain {
+  text-decoration: none;
+}
