@@ -15,11 +15,11 @@ import {
   IonButton,
   withIonLifeCycle
 } from '@ionic/react';
-import './Constitution.css';
+import './Rules.css';
 import { RouteComponentProps } from 'react-router-dom';
 import { arrowBack } from 'ionicons/icons';
-import { constitutionBody } from '../../data/constitution';
-import { TOCList } from "../../components/constitutionTOC";
+import { rulesBody } from '../../data/rules';
+import { TOCList } from "../../components/rulesTOC";
 
 function previous() {
   window.history.back();
@@ -27,20 +27,20 @@ function previous() {
 
 interface Props extends RouteComponentProps<{ id: string; }> { }
 
-class Constitution_Full extends React.Component<Props> {
+class Rules_Full extends React.Component<Props> {
   private readonly rootRef: React.RefObject<HTMLDivElement>;
-  private readonly constitution: Element | null;
+  private readonly rules: Element | null;
   
   constructor(props: any) {
     super(props);
     this.rootRef = React.createRef();
 
-    // parse the constitution HTML once
-    this.constitution = constitutionBody;
+    // parse the rules HTML once
+    this.rules = rulesBody;
 
     // add event handlers to scroll to provision when internal link is clicked
-    if (this.constitution) {
-      const elements = this.constitution.getElementsByTagName('a')
+    if (this.rules) {
+      const elements = this.rules.getElementsByTagName('a')
       for (let index = 0; index < elements.length; index++) {
         const element = elements[index];
 
@@ -73,9 +73,9 @@ class Constitution_Full extends React.Component<Props> {
 
   componentDidMount(): void {
     if (this.rootRef.current && this.rootRef.current.childElementCount === 0) {
-      console.log('rendering constitution');
+      console.log('rendering rules');
       // @ts-ignore
-      this.rootRef.current.appendChild(this.constitution.cloneNode(true));
+      this.rootRef.current.appendChild(this.rules.cloneNode(true));
     }
   }
 
@@ -94,13 +94,13 @@ class Constitution_Full extends React.Component<Props> {
                 <IonIcon icon={arrowBack}></IonIcon>
               </IonButton>
             </IonButtons>
-            <IonTitle>Constitution</IonTitle>
+            <IonTitle>Rules</IonTitle>
             <IonButtons slot="end">
               <IonMenuButton></IonMenuButton>
             </IonButtons>
           </IonToolbar>
         </IonHeader>
-        <IonMenu side="end" menuId="first" contentId="constitution">
+        <IonMenu side="end" menuId="first" contentId="rules">
           <IonContent>
             <IonList>
               <IonMenuToggle auto-hide="true">
@@ -109,7 +109,7 @@ class Constitution_Full extends React.Component<Props> {
             </IonList>
           </IonContent>
         </IonMenu>
-        <IonRouterOutlet id="constitution"></IonRouterOutlet>
+        <IonRouterOutlet id="rules"></IonRouterOutlet>
         <IonContent>
           <div className="ion-padding">
             <div className="akoma-ntoso" ref={this.rootRef}></div>
@@ -120,4 +120,4 @@ class Constitution_Full extends React.Component<Props> {
   }
 }
 
-export default withIonLifeCycle(Constitution_Full);
+export default withIonLifeCycle(Rules_Full);

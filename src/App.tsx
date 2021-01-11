@@ -10,12 +10,15 @@ import {
   IonTabs
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { people, home, document, search } from 'ionicons/icons';
+import { people, home, document, search, pencilOutline } from 'ionicons/icons';
 import Topics from './pages/topics/Topics';
 import Topic from './pages/topics/Topic';
 import Constitution from './pages/constitution/Constitution';
 import ConstitutionTOC from './pages/constitution/ConstitutionTOC';
 import Constitution_Full from './pages/constitution/Constitution_Full';
+import Rules from './pages/rules/Rules';
+import RulesTOC from './pages/rules/RulesTOC';
+import Rules_Full from './pages/rules/Rules_Full';
 import Home from './pages/home/Home';
 import Cases from './pages/cases/Cases';
 import Case from './pages/cases/Case';
@@ -54,6 +57,10 @@ const App: React.FC = () => (
           <Route path="/constitution/full" component={Constitution_Full} exact={true} />
           <Route path="/constitution/full/:id+" component={Constitution_Full} exact={true} />
           <Route path="/constitution/provision/:id+" component={Constitution} exact={true} />
+          <Route path="/rules" component={RulesTOC} exact={true} />
+          <Route path="/rules/full" component={Rules_Full} exact={true} />
+          <Route path="/rules/full/:id+" component={Rules_Full} exact={true} />
+          <Route path="/rules/provision/:id+" component={Rules} exact={true} />
           <Route path="/home" component={Home} exact={true} />
           <Route path="/cases" component={Cases} exact={true} />
           <Route path="/cases/:id" component={Case} exact={true} />
@@ -74,6 +81,10 @@ const App: React.FC = () => (
           <IonTabButton tab="constitution" href="/constitution">
             <IonIcon icon={document} />
             <IonLabel>Constitution</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="rules" href="/rules">
+            <IonIcon icon={pencilOutline} />
+            <IonLabel>Rules</IonLabel>
           </IonTabButton>
           <IonTabButton tab="search" href="/search">
             <IonIcon icon={search} />
