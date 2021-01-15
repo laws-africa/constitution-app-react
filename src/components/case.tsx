@@ -7,7 +7,7 @@ interface CaseItemProps {
 
 export const CaseItem: React.FC<CaseItemProps> = ({ kase }) => {
   return (
-    <IonItem key={kase.id} routerLink={"/cases/" + kase.id}>
+    <IonItem key={"case-" + kase.id} routerLink={"/cases/" + kase.id}>
       <IonThumbnail slot="start">
         <img src={"../../assets/images/case.svg"} onError={(e)=>{e.currentTarget.src = "../../assets/shapes.svg"}} alt={kase.title} />
       </IonThumbnail>

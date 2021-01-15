@@ -8,7 +8,7 @@ interface TopicItemProps {
 
 export const TopicItem: React.FC<TopicItemProps> = ({ topic }) => {
   return (
-    <IonItem key={topic.id} routerLink={"/guides/" + topic.id}>
+    <IonItem key={"topic-" + topic.id} routerLink={"/guides/" + topic.id}>
       <IonThumbnail slot="start">
         <img src={"../../assets/images/" + topic.id + ".svg"} onError={(e) => {
           e.currentTarget.src = "../../assets/shapes.svg"
