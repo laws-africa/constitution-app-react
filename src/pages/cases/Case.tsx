@@ -78,14 +78,14 @@ const Case: React.FC<Props> = ({ match }) => {
 
           {thisCase.right_and_principle.length > 0 &&
           <>
-            <h4>What did the court say about the right or principle?</h4>
+            <h4>What did the Court say about the right or principle?</h4>
             <div className="case-content">{parse(thisCase.right_and_principle)}</div>
           </>
           }
 
           {thisCase.interpretation.length > 0 &&
           <>
-            <h4>How did the court apply their interpretation?</h4>
+            <h4>How did the Court find?</h4>
             <div className="case-content">{parse(thisCase.interpretation)}</div>
           </>
           }
