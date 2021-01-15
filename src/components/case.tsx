@@ -1,5 +1,4 @@
 import {IonItem, IonLabel, IonThumbnail} from "@ionic/react";
-import parse from "html-react-parser";
 import React from "react";
 
 interface CaseItemProps {
