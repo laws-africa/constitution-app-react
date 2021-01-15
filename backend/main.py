@@ -68,7 +68,6 @@ def process_topic(_dict):
         "references": str(_dict["references"]).split(";\n"),
         "snippet": _dict["snippet"],
         "topic_meaning": _dict["topic_meaning"],
-        "constitutional_prescriptions": _dict["constitutional_prescriptions"],
         "interpretation": _dict["interpretation"],
         "mechanism": _dict["mechanism"],
         "legislation": _dict["legislation"],

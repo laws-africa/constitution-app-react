@@ -23,7 +23,7 @@ import { TopicItem } from '../../components/topic';
 interface Props extends RouteComponentProps<{ id: string; }> { }
 
 const Case: React.FC<Props> = ({ match }) => {
-  const [thisCase, setCase] = useState({title: '', summary: ''});
+  const [thisCase, setCase] = useState({title: '', snippet: ''});
   const [topics, setTopics] = useState([]);
 
   useIonViewWillEnter(() => {
@@ -65,7 +65,7 @@ const Case: React.FC<Props> = ({ match }) => {
       <IonContent>
         <div className="ion-padding">
           <h3>{ thisCase.title }</h3>
-          <div className="case-summary">{ parse(thisCase.summary) }</div>
+          <div className="case-summary">{ parse(thisCase.snippet) }</div>
         </div>
 
         {topics.length > 0 && (

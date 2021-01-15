@@ -101,9 +101,6 @@ const Topic: React.FC<Props> = ({ match }) => {
           <h4>What does it mean?</h4>
           <div className="topic-content">{parse(topic.topic_meaning)}</div>
 
-          <h4>What does the Constitution say?</h4>
-          <div className="topic-content">{parse(topic.constitutional_prescriptions)}</div>
-
           {topic.interpretation.length > 0 &&
           <>
             <h4>How was it interpreted by the courts?</h4>
