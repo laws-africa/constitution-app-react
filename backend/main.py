@@ -62,16 +62,15 @@ def process_topic(_dict):
         return None
     _ret = {
         "id": _dict["id"],
-        "title": _dict["title"],
+        "title": _dict["title"].strip(),
         "featured": bool(_dict["featured"]),
         "highlighted": bool(_dict["highlighted"]),
         "references": str(_dict["references"]).split(";\n"),
-        "snippet": _dict["snippet"],
-        "topic_meaning": _dict["topic_meaning"],
-        "constitutional_prescriptions": _dict["constitutional_prescriptions"],
-        "interpretation": _dict["interpretation"],
-        "mechanism": _dict["mechanism"],
-        "legislation": _dict["legislation"],
+        "snippet": _dict["snippet"].strip(),
+        "topic_meaning": _dict["topic_meaning"].strip(),
+        "interpretation": _dict["interpretation"].strip(),
+        "mechanism": _dict["mechanism"].strip(),
+        "legislation": _dict["legislation"].strip(),
         "cases": [
             _dict["case_" + str(i+1)] for i in range(NUMBER_OF_CASES)
             if _dict["case_" + str(i+1)] != ""
@@ -112,7 +111,7 @@ def read_google_sheets(content_type):
     for _row in df.iterrows():
         row = _row[1]
         _dict = {
-            k: v 
+            k: v
             for k, v in zip(df.columns, row)
             }
 
