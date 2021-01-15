@@ -43,7 +43,6 @@ const Search: React.FC<Props> = ({ match }) => {
 
   const renderSearchResults = () => {
     const results = searchContent(searchTerm, currentSegment);
-    console.log(results);
 
     return <>
       <IonList>
@@ -68,7 +67,6 @@ const Search: React.FC<Props> = ({ match }) => {
   };
 
   const renderCases = (results: any) => {
-    console.log(results);
     return results.map((result: any) => (
       <CaseItem kase={result.item}/>
     ))
