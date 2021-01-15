@@ -23,7 +23,9 @@ import { TopicItem } from '../../components/topic';
 interface Props extends RouteComponentProps<{ id: string; }> { }
 
 const Case: React.FC<Props> = ({ match }) => {
-  const [thisCase, setCase] = useState({title: '', snippet: ''});
+  const [thisCase, setCase] = useState({
+    title: '', snippet: '', facts_and_issues: '', right_and_principle: '', interpretation: '',
+  });
   const [topics, setTopics] = useState([]);
 
   useIonViewWillEnter(() => {
@@ -65,7 +67,28 @@ const Case: React.FC<Props> = ({ match }) => {
       <IonContent>
         <div className="ion-padding">
           <h3>{ thisCase.title }</h3>
-          <div className="case-summary">{ parse(thisCase.snippet) }</div>
+          <div className="case-content">{ parse(thisCase.snippet) }</div>
+
+          {thisCase.facts_and_issues.length > 0 &&
+          <>
+            <h4>Facts and issues</h4>
+            <div className="case-content">{parse(thisCase.facts_and_issues)}</div>
+          </>
+          }
+
+          {thisCase.right_and_principle.length > 0 &&
+          <>
+            <h4>Right and principle</h4>
+            <div className="case-content">{parse(thisCase.right_and_principle)}</div>
+          </>
+          }
+
+          {thisCase.interpretation.length > 0 &&
+          <>
+            <h4>Interpretation</h4>
+            <div className="case-content">{parse(thisCase.interpretation)}</div>
+          </>
+          }
         </div>
 
         {topics.length > 0 && (
