@@ -15,8 +15,8 @@ export const TopicItem: React.FC<TopicItemProps> = ({ topic }) => {
         }} alt={topic.title}/>
         </IonThumbnail>
         <IonLabel>
-          <h3>{topic.title}</h3>
-          <p>{parse(topic.snippet)}</p>
+          <h3 className="ion-text-wrap">{topic.title}</h3>
+          <p className="ion-text-wrap">{parse(topic.snippet)}</p>
         </IonLabel>
     </IonItem>
   );

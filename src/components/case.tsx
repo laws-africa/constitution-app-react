@@ -13,8 +13,7 @@ export const CaseItem: React.FC<CaseItemProps> = ({ kase }) => {
         <img src={"../../assets/images/case.svg"} onError={(e)=>{e.currentTarget.src = "../../assets/shapes.svg"}} alt={kase.title} />
       </IonThumbnail>
       <IonLabel>
-        <h3>{kase.title}</h3>
-        <span>{parse(kase.snippet)}</span>
+        <h3 className="ion-text-wrap">{kase.title}</h3>
       </IonLabel>
     </IonItem>
   );
