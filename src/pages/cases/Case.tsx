@@ -71,21 +71,21 @@ const Case: React.FC<Props> = ({ match }) => {
 
           {thisCase.facts_and_issues.length > 0 &&
           <>
-            <h4>Facts and issues</h4>
+            <h4>What was the case about?</h4>
             <div className="case-content">{parse(thisCase.facts_and_issues)}</div>
           </>
           }
 
           {thisCase.right_and_principle.length > 0 &&
           <>
-            <h4>Right and principle</h4>
+            <h4>What did the court say about the right or principle?</h4>
             <div className="case-content">{parse(thisCase.right_and_principle)}</div>
           </>
           }
 
           {thisCase.interpretation.length > 0 &&
           <>
-            <h4>Interpretation</h4>
+            <h4>How did the court apply their interpretation?</h4>
             <div className="case-content">{parse(thisCase.interpretation)}</div>
           </>
           }
