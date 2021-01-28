@@ -53,7 +53,7 @@ const Topic: React.FC<Props> = ({ match }) => {
       }
       for (const caseId of topic.cases) {
         const linkedCase = data.cases.find((c) => c.id === caseId);
-        cases.push(linkedCase);
+        if (linkedCase) cases.push(linkedCase);
       }
     }
 
