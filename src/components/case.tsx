@@ -1,5 +1,6 @@
 import {IonItem, IonLabel, IonThumbnail} from "@ionic/react";
 import React from "react";
+import parse from "html-react-parser";
 
 interface CaseItemProps {
   kase: any
@@ -13,6 +14,7 @@ export const CaseItem: React.FC<CaseItemProps> = ({ kase }) => {
       </IonThumbnail>
       <IonLabel>
         <h3 className="ion-text-wrap">{kase.title}</h3>
+        <p className="ion-text-wrap">{parse(kase.snippet)}</p>
       </IonLabel>
     </IonItem>
   );

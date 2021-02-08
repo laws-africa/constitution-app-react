@@ -91,7 +91,12 @@ const Topic: React.FC<Props> = ({ match }) => {
       </IonHeader>
       <IonContent>
         <div className="ion-padding">
+          <h4 className="subheading">Guide to</h4>
           <h3>{topic.title}</h3>
+        </div>
+
+        <div className="ion-padding-horizontal">
+          <h4>What does it say?</h4>
         </div>
         <div className="ion-padding provision-insert">
           <div className="akoma-ntoso" ref={rootRef}></div>

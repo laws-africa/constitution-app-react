@@ -3,3 +3,10 @@
     border-top: 1px solid var(--ion-color-light-shade);
     border-bottom: 1px solid var(--ion-color-light-shade);
 }
+
+.subheading {
+    font-size: 16px;
+    color: var(--ion-color-medium);
+    text-transform: uppercase;
+    margin-bottom: -10px;
+}
