@@ -25,6 +25,10 @@ const Home: React.FC = () => {
     return <Redirect to={path}/>
   }
 
+  const handleSupportersLink = (url: string) => {
+    window.open(url, '_blank');
+  };
+
   return (
     <IonPage>
       <IonContent className="ion-padding">
@@ -119,14 +123,35 @@ const Home: React.FC = () => {
         <IonGrid>
           <IonRow>
             <IonCol size="6">
-              <img alt="" src="../../assets/African Lii logo.svg" onError={(e) => {
+              <img
+                alt=""
+                src="../../assets/African Lii logo.svg"
+                onError={(e) => {
                   e.currentTarget.src = "../../assets/shapes.svg"
-              }}/>
+                }}
+                onClick={() => handleSupportersLink('https://africanlii.org/')}
+              />
             </IonCol>
             <IonCol size="6">
-              <img alt="" src="../../assets/03_KAS_Logo_Min_RGB_Blau.jpg" onError={(e) => {
+              <img
+                alt=""
+                src="../../assets/03_KAS_Logo_Min_RGB_Blau.jpg"
+                onError={(e) => {
                   e.currentTarget.src = "../../assets/shapes.svg"
-              }}/>
+                }}
+                onClick={() => handleSupportersLink('https://www.kas.de/en/home')}
+              />
+            </IonCol>
+            <IonCol size="6">
+              <img
+                alt=""
+                src="http://www.staff.uct.ac.za/sites/default/files/image_tool/images/431/services/comms_marketing/branding/logo_downloads/UCThoriz_logo1_CMYK.jpg"
+                onError={(e) => {
+                  e.currentTarget.src = "../../assets/shapes.svg"
+                }}
+                onClick={() => handleSupportersLink('https://www.uct.ac.za/')}
+               />
+
             </IonCol>
           </IonRow>
         </IonGrid>
