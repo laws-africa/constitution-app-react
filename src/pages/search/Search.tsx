@@ -34,7 +34,7 @@ const Search: React.FC<Props> = ({ match }) => {
   const search = (event: any) => {
     if (event.target.value.length > 0) {
       setIsSearching(true);
-      setSearchTerm(event.target.value.toLowerCase());
+      setSearchTerm(event.target.value);
     } else {
       setIsSearching(false);
       setSearchTerm("")
@@ -55,9 +55,11 @@ const Search: React.FC<Props> = ({ match }) => {
   };
 
   const renderProvisions = (results: any) => {
-    return results.map((result: any) => (
-      <TOCItem item={result.item}/>
-    ))
+    return results.map((result: any) => {
+        console.log('RESULT IN RENDER: ', result);
+      /*<TOCItem item={result.item}/>*/
+      return null;
+    });
   };
 
   const renderRuleProvisions = (results: any) => {
