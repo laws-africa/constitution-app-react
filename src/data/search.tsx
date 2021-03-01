@@ -7,7 +7,12 @@ interface IndexedObject {
   item: any,
   id: string,
   content: string,
-  title: string,
+}
+
+interface LunrResult {
+  ref: string,
+  score: number,
+  marchData: any
 }
 
 function indexAkn(html: Document): any {
@@ -26,8 +31,11 @@ function indexAkn(html: Document): any {
     let title = (titleSelector ? titleSelector.textContent : "") || "";
 
     searchData.push({
-      item: '',
-      title: title,
+      item: {
+        id: section.id,
+        title: title,
+        children: []
+      },
       id: section.id,
       content: title.toLocaleLowerCase() + text.join(' ').toLocaleLowerCase(),
     });
@@ -37,11 +45,9 @@ function indexAkn(html: Document): any {
     // @ts-ignore
     this.ref('id');
     // @ts-ignore
-    this.field('title');
+    this.field('item.title');
     // @ts-ignore
     this.field('content');
-    // @ts-ignore
-    this.metadataWhitelist = ['position'];
 
     searchData.forEach(function (doc: {}) {
       // @ts-ignore
@@ -62,8 +68,7 @@ function indexCases(cases: any[]): IndexedObject[] {
     return {
       item: c,
       id: c.id,
-      content: fields.map(f => (c[f] || '').toLocaleLowerCase()).join(' '),
-      title: c.title,
+      content: fields.map(f => (c[f] || '').toLocaleLowerCase()).join(' ')
     };
   });
 }
@@ -85,8 +90,28 @@ const searchableRuleProvisions = indexAkn(rulesRoot);
 const searchableCases = indexCases(data.cases);
 const searchableTopics = indexTopics(data.topics);
 
+function searchLunr (needle: string, searchIn: string = 'constitution') {
+  const { lunrSearch, data } = searchableProvisions;
+  const lunrResults = lunrSearch.search(needle);
+  const results: IndexedObject[] = [];
+  const secIds: string[] = [];
+
+  lunrResults.forEach((result: LunrResult) => {
+    secIds.push(result.ref);
+  });
+
+  secIds.forEach((section: string) => {
+    const result = data.find((item: any) => item.id === section);
+
+    if (result) {
+      results.push(result);
+    }
+  });
+
+  return results;
+}
+
 export function searchContent(needle: string, contentType: string) {
-console.log('SEARCH CONTENT IS CALLED: ', needle, contentType);
   // @ts-ignore
   const data = {
     "cases": searchableCases,
@@ -97,18 +122,15 @@ console.log('SEARCH CONTENT IS CALLED: ', needle, contentType);
 
   switch (contentType) {
     default:
-      const searchResult = searchableProvisions.search(needle);
-      console.log('deault SEARCH RESULTS: ', searchResult);
+      const searchResult = searchableProvisions.lunrSearch.search(needle);
       return searchResult;
 
     case "constitution":
-      const searchResultC = searchableProvisions.search(`${needle}*`);
-      console.log('CONSTITUTION SEARCH RESULTS: ', searchResultC);
+      const searchResultC = searchLunr(needle);
       return searchResultC;
 
     case "rules":
       const searchResultP = searchableRuleProvisions.search(needle);
-      console.log('CONSTITUTION SEARCH RESULTS: ', searchResultP);
       return searchResultP;
 
     case "cases":

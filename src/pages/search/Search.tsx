@@ -56,9 +56,7 @@ const Search: React.FC<Props> = ({ match }) => {
 
   const renderProvisions = (results: any) => {
     return results.map((result: any) => {
-        console.log('RESULT IN RENDER: ', result);
-      /*<TOCItem item={result.item}/>*/
-      return null;
+        return <TOCItem item={result.item}/>
     });
   };
 
