@@ -91,7 +91,7 @@ const searchableCases = indexCases(data.cases);
 const searchableTopics = indexTopics(data.topics);
 
 function searchLunr (needle: string, searchIn: string = 'constitution') {
-  const { lunrSearch, data } = searchableProvisions;
+  const { lunrSearch, data } = searchIn === 'constitution' ? searchableProvisions : searchableRuleProvisions;
   const lunrResults = lunrSearch.search(needle);
   const results: IndexedObject[] = [];
   const secIds: string[] = [];
@@ -122,16 +122,11 @@ export function searchContent(needle: string, contentType: string) {
 
   switch (contentType) {
     default:
-      const searchResult = searchableProvisions.lunrSearch.search(needle);
-      return searchResult;
+      return searchLunr(needle, contentType);
 
     case "constitution":
-      const searchResultC = searchLunr(needle);
-      return searchResultC;
-
     case "rules":
-      const searchResultP = searchableRuleProvisions.search(needle);
-      return searchResultP;
+      return searchLunr(needle, contentType);
 
     case "cases":
     case "guides":
