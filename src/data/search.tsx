@@ -91,6 +91,10 @@ const searchableCases = indexCases(data.cases);
 const searchableTopics = indexTopics(data.topics);
 
 function searchLunr (needle: string, searchIn: string = 'constitution') {
+  if (needle.length < 2) {
+    return [];
+  }
+
   const { lunrSearch, data } = searchIn === 'constitution' ? searchableProvisions : searchableRuleProvisions;
   const lunrResults = lunrSearch.search(needle);
   const results: IndexedObject[] = [];
