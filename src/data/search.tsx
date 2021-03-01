@@ -12,7 +12,7 @@ interface IndexedObject {
 interface LunrResult {
   ref: string,
   score: number,
-  marchData: any
+  matchData: any
 }
 
 function indexAkn(html: Document): any {
