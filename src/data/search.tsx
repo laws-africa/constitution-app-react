@@ -37,10 +37,6 @@ function indexAkn(html: Document): any {
     // @ts-ignore
     this.ref('id');
     // @ts-ignore
-    this.ref('title');
-    // @ts-ignore
-    this.ref('content');
-    // @ts-ignore
     this.field('title');
     // @ts-ignore
     this.field('content');
@@ -53,7 +49,10 @@ function indexAkn(html: Document): any {
     }, this);
   });
 
-  return lunrSearchData;
+  return {
+    lunrSearch: lunrSearchData,
+    data: searchData
+  };
 }
 
 function indexCases(cases: any[]): IndexedObject[] {
