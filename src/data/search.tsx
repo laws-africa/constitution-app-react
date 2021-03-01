@@ -61,16 +61,33 @@ function indexAkn(html: Document): any {
   };
 }
 
-function indexCases(cases: any[]): IndexedObject[] {
+function indexCases(cases: any[]) {
   const fields = ['snippet', 'facts_and_issues', 'right_and_principle', 'interpretation', 'title'];
 
-  return cases.map(c => {
+  const searchData = cases.map(c => {
     return {
       item: c,
       id: c.id,
       content: fields.map(f => (c[f] || '').toLocaleLowerCase()).join(' ')
     };
   });
+
+  const lunrSearchData = lunr(function () {
+    // @ts-ignore
+    this.ref('id');
+    // @ts-ignore
+    this.field('content');
+
+    searchData.forEach(function (doc: {}) {
+      // @ts-ignore
+      this.add(doc);
+    }, this);
+  });
+
+  return {
+    lunrSearch: lunrSearchData,
+    data: searchData
+  };
 }
 
 function indexTopics(topics: any[]) {
@@ -95,7 +112,31 @@ function searchLunr (needle: string, searchIn: string = 'constitution') {
     return [];
   }
 
-  const { lunrSearch, data } = searchIn === 'constitution' ? searchableProvisions : searchableRuleProvisions;
+  let lunrSearch: any = null;
+  let data: IndexedObject[] = [];
+
+  switch (searchIn) {
+    default:
+      lunrSearch = searchableProvisions.lunrSearch;
+      data = [...searchableProvisions.data];
+      break;
+
+    case 'constitution':
+      lunrSearch = searchableProvisions.lunrSearch;
+      data = [...searchableProvisions.data];
+      break;
+
+    case 'rules':
+      lunrSearch = searchableRuleProvisions.lunrSearch;
+      data = [...searchableRuleProvisions.data];
+      break;
+
+    case 'cases':
+      lunrSearch = searchableCases.lunrSearch;
+      data = [...searchableCases.data];
+      break;
+  }
+
   const lunrResults = lunrSearch.search(needle);
   const results: IndexedObject[] = [];
   const secIds: string[] = [];
@@ -130,9 +171,9 @@ export function searchContent(needle: string, contentType: string) {
 
     case "constitution":
     case "rules":
+    case "cases":
       return searchLunr(needle, contentType);
 
-    case "cases":
     case "guides":
       needle = needle.toLocaleLowerCase();
       return data.filter((x: IndexedObject) => x.content.includes(needle));
