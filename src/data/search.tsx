@@ -62,12 +62,13 @@ function indexAkn(html: Document): any {
 }
 
 function indexCases(cases: any[]) {
-  const fields = ['snippet', 'facts_and_issues', 'right_and_principle', 'interpretation', 'title'];
+  const fields = ['snippet', 'facts_and_issues', 'right_and_principle', 'interpretation'];
 
   const searchData = cases.map(c => {
     return {
       item: c,
       id: c.id,
+      title: fields.map(f => (c['title'] || '').toLocaleLowerCase()).join(' '),
       content: fields.map(f => (c[f] || '').toLocaleLowerCase()).join(' ')
     };
   });
@@ -75,6 +76,8 @@ function indexCases(cases: any[]) {
   const lunrSearchData = lunr(function () {
     // @ts-ignore
     this.ref('id');
+    // @ts-ignore
+    this.field('title');
     // @ts-ignore
     this.field('content');
 
@@ -91,12 +94,13 @@ function indexCases(cases: any[]) {
 }
 
 function indexTopics(topics: any[]) {
-  const fields = ['snippet', 'topic_meaning', 'interpretation', 'mechanism', 'legislation', 'title'];
+  const fields = ['snippet', 'topic_meaning', 'interpretation', 'mechanism', 'legislation',];
 
   const searchData = topics.map(t => {
     return {
       item: t,
       id: t.id,
+      title: fields.map(f => (t['title'] || '').toLocaleLowerCase()).join(' '),
       content: fields.map(f => (t[f] || '').toLocaleLowerCase()).join(' '),
     };
   });
@@ -104,6 +108,8 @@ function indexTopics(topics: any[]) {
   const lunrSearchData = lunr(function () {
     // @ts-ignore
     this.ref('id');
+    // @ts-ignore
+    this.field('title');
     // @ts-ignore
     this.field('content');
 
