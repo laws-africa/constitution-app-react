@@ -37,7 +37,7 @@ function indexAkn(html: Document): any {
         children: []
       },
       id: section.id,
-      content: title.toLocaleLowerCase() + text.join(' ').toLocaleLowerCase(),
+      content: text.join(' ').toLocaleLowerCase(),
     });
   });
 
@@ -68,7 +68,7 @@ function indexCases(cases: any[]) {
     return {
       item: c,
       id: c.id,
-      title: fields.map(f => (c['title'] || '').toLocaleLowerCase()).join(' '),
+      title: c.title,
       content: fields.map(f => (c[f] || '').toLocaleLowerCase()).join(' ')
     };
   });
@@ -100,7 +100,7 @@ function indexTopics(topics: any[]) {
     return {
       item: t,
       id: t.id,
-      title: fields.map(f => (t['title'] || '').toLocaleLowerCase()).join(' '),
+      title: t.title,
       content: fields.map(f => (t[f] || '').toLocaleLowerCase()).join(' '),
     };
   });
@@ -167,17 +167,12 @@ function searchLunr (needle: string, searchIn: string = 'constitution') {
 
   const lunrResults = lunrSearch.search(needle);
   const results: IndexedObject[] = [];
-  const secIds: string[] = [];
 
   lunrResults.forEach((result: LunrResult) => {
-    secIds.push(result.ref);
-  });
+    const item = data.find((item: any) => item.id === result.ref);
 
-  secIds.forEach((section: string) => {
-    const result = data.find((item: any) => item.id === section);
-
-    if (result) {
-      results.push(result);
+    if (item) {
+      results.push(item);
     }
   });
 
