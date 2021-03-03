@@ -1,3 +1,4 @@
+import lunr from "lunr";
 import { constitutionRoot } from "./constitution";
 import { rulesRoot } from "./rules";
 import data from "../assets/data/data.json";
@@ -8,7 +9,13 @@ interface IndexedObject {
   content: string,
 }
 
-function indexAkn(html: Document): IndexedObject[] {
+interface LunrResult {
+  ref: string,
+  score: number,
+  matchData: any
+}
+
+function indexAkn(html: Document): any {
   let searchData: IndexedObject[] = [];
 
   // everything that can contain searchable text
@@ -27,38 +34,95 @@ function indexAkn(html: Document): IndexedObject[] {
       item: {
         id: section.id,
         title: title,
-        children: [],
+        children: []
       },
       id: section.id,
-      content: title.toLocaleLowerCase() + text.join(' ').toLocaleLowerCase(),
+      content: text.join(' ').toLocaleLowerCase(),
     });
   });
 
-  return searchData;
+  const lunrSearchData = lunr(function () {
+    // @ts-ignore
+    this.ref('id');
+    // @ts-ignore
+    this.field('item.title');
+    // @ts-ignore
+    this.field('content');
+
+    searchData.forEach(function (doc: {}) {
+      // @ts-ignore
+      this.add(doc);
+    }, this);
+  });
+
+  return {
+    lunrSearch: lunrSearchData,
+    data: searchData
+  };
 }
 
-function indexCases(cases: any[]): IndexedObject[] {
-  const fields = ['snippet', 'facts_and_issues', 'right_and_principle', 'interpretation', 'title'];
+function indexCases(cases: any[]) {
+  const fields = ['snippet', 'facts_and_issues', 'right_and_principle', 'interpretation'];
 
-  return cases.map(c => {
+  const searchData = cases.map(c => {
     return {
       item: c,
       id: c.id,
-      content: fields.map(f => (c[f] || '').toLocaleLowerCase()).join(' '),
+      title: c.title,
+      content: fields.map(f => (c[f] || '').toLocaleLowerCase()).join(' ')
     };
   });
+
+  const lunrSearchData = lunr(function () {
+    // @ts-ignore
+    this.ref('id');
+    // @ts-ignore
+    this.field('title');
+    // @ts-ignore
+    this.field('content');
+
+    searchData.forEach(function (doc: {}) {
+      // @ts-ignore
+      this.add(doc);
+    }, this);
+  });
+
+  return {
+    lunrSearch: lunrSearchData,
+    data: searchData
+  };
 }
 
 function indexTopics(topics: any[]) {
-  const fields = ['snippet', 'topic_meaning', 'interpretation', 'mechanism', 'legislation', 'title'];
+  const fields = ['snippet', 'topic_meaning', 'interpretation', 'mechanism', 'legislation',];
 
-  return topics.map(t => {
+  const searchData = topics.map(t => {
     return {
       item: t,
       id: t.id,
+      title: t.title,
       content: fields.map(f => (t[f] || '').toLocaleLowerCase()).join(' '),
     };
   });
+
+  const lunrSearchData = lunr(function () {
+    // @ts-ignore
+    this.ref('id');
+    // @ts-ignore
+    this.field('title');
+    // @ts-ignore
+    this.field('content');
+
+    searchData.forEach(function (doc: {}) {
+      // @ts-ignore
+      this.add(doc);
+    }, this);
+  });
+
+  return {
+    lunrSearch: lunrSearchData,
+    data: searchData
+  };
 }
 
 const searchableProvisions = indexAkn(constitutionRoot);
@@ -66,15 +130,55 @@ const searchableRuleProvisions = indexAkn(rulesRoot);
 const searchableCases = indexCases(data.cases);
 const searchableTopics = indexTopics(data.topics);
 
-export function searchContent(needle: string, contentType: string) {
-  needle = needle.toLocaleLowerCase();
-  // @ts-ignore
-  const data = {
-    "cases": searchableCases,
-    "guides": searchableTopics,
-    "constitution": searchableProvisions,
-    "rules": searchableRuleProvisions,
-  }[contentType];
+function searchLunr (needle: string, searchIn: string = 'constitution') {
+  if (needle.length < 2) {
+    return [];
+  }
 
-  return data.filter((x: IndexedObject) => x.content.includes(needle));
+  let lunrSearch: any = null;
+  let data: IndexedObject[] = [];
+
+  switch (searchIn) {
+    default:
+      lunrSearch = searchableProvisions.lunrSearch;
+      data = [...searchableProvisions.data];
+      break;
+
+    case 'constitution':
+      lunrSearch = searchableProvisions.lunrSearch;
+      data = [...searchableProvisions.data];
+      break;
+
+    case 'rules':
+      lunrSearch = searchableRuleProvisions.lunrSearch;
+      data = [...searchableRuleProvisions.data];
+      break;
+
+    case 'cases':
+      lunrSearch = searchableCases.lunrSearch;
+      data = [...searchableCases.data];
+      break;
+
+    case 'guides':
+      lunrSearch = searchableTopics.lunrSearch;
+      data = [...searchableTopics.data];
+      break;
+  }
+
+  const lunrResults = lunrSearch.search(needle);
+  const results: IndexedObject[] = [];
+
+  lunrResults.forEach((result: LunrResult) => {
+    const item = data.find((item: any) => item.id === result.ref);
+
+    if (item) {
+      results.push(item);
+    }
+  });
+
+  return results;
+}
+
+export function searchContent(needle: string, contentType: string) {
+    return searchLunr(needle, contentType);
 }
