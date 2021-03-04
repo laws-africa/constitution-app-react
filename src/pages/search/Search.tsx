@@ -51,6 +51,11 @@ const Search: React.FC<Props> = ({ match }) => {
         {currentSegment === "guides" && renderTopics(results)}
         {currentSegment === "cases" && renderCases(results)}
       </IonList>
+      <IonContent class="ion-text-center ion-margin-top ion-padding-top">
+        {results.length <= 0 && (
+          <p>Nothing matches your search.</p>
+        )}
+      </IonContent>
     </>
   };
 
