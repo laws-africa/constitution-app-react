@@ -52,6 +52,22 @@ class Constitution extends React.Component<Props, State> {
     this.setState({results: [...topicResults]});
   }
 
+  renderedGuides () {
+    if (this.state.results.length > 0) {
+      return (
+        <IonCard>
+          <IonCardContent>
+            {
+              this.state.results.map((result: any) => (
+                <TopicItem key={result.id} topic={result} />
+              ))
+            }
+          </IonCardContent>
+        </IonCard>
+      )
+    } else return <h3>No related guides were found.</h3>
+  }
+
   componentDidMount() {
     this.getTopics();
   }
@@ -108,17 +124,7 @@ class Constitution extends React.Component<Props, State> {
             <IonTitle>Related Guides</IonTitle>
           </IonToolbar>
           {
-            this.state.results.length > 0 && (
-              <IonCard>
-                <IonCardContent>
-                  {
-                    this.state.results.map((result: any) => (
-                      <TopicItem key={result.id} topic={result} />
-                    ))
-                  }
-                </IonCardContent>
-              </IonCard>
-            )
+           this.renderedGuides()
           }
         </IonContent>
       </IonPage>
