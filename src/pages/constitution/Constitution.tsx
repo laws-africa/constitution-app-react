@@ -13,8 +13,7 @@ import {
   IonItem,
   IonLabel,
   IonThumbnail,
-  IonCard,
-  IonCardContent
+  IonListHeader,
 } from '@ionic/react';
 import './Constitution.css';
 import { RouteComponentProps } from 'react-router-dom';
@@ -50,22 +49,6 @@ class Constitution extends React.Component<Props, State> {
   getTopics() {
     const topicResults = findTopicsByProvisionId(this.props.match.params.id);
     this.setState({results: [...topicResults]});
-  }
-
-  renderedGuides () {
-    if (this.state.results.length > 0) {
-      return (
-        <IonCard>
-          <IonCardContent>
-            {
-              this.state.results.map((result: any) => (
-                <TopicItem key={result.id} topic={result} />
-              ))
-            }
-          </IonCardContent>
-        </IonCard>
-      )
-    } else return <h3>No related guides were found.</h3>
   }
 
   componentDidMount() {
@@ -120,12 +103,16 @@ class Constitution extends React.Component<Props, State> {
           <div className="ion-padding">
             <div className="akoma-ntoso" ref={this.rootRef}></div>
           </div>
-          <IonToolbar color="light">
-            <IonTitle>Related Guides</IonTitle>
-          </IonToolbar>
-          {
-           this.renderedGuides()
-          }
+          {this.state.results.length > 0 && (
+          <IonList className="ion-padding-bottom">
+            <IonListHeader color="light">
+              <IonLabel>Related Guides</IonLabel>
+            </IonListHeader>
+            {this.state.results.map((result: any, index: any) => (
+              <TopicItem topic={result} />
+            ))}
+          </IonList>
+        )}
         </IonContent>
       </IonPage>
     );
