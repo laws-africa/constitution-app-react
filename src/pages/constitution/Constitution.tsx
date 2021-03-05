@@ -28,7 +28,7 @@ function previous() {
 
 interface Props extends RouteComponentProps<{ id: string; }> { }
 interface State {
-  results: any[]
+  topics: any[]
 }
 
 class Constitution extends React.Component<Props, State> {
@@ -39,7 +39,7 @@ class Constitution extends React.Component<Props, State> {
     super(props);
     this.rootRef = React.createRef();
     this.state = {
-      results: []
+      topics: []
     };
 
     // parse the constitution HTML once
@@ -47,8 +47,8 @@ class Constitution extends React.Component<Props, State> {
   }
 
   getTopics() {
-    const topicResults = findTopicsByProvisionId(this.props.match.params.id);
-    this.setState({results: [...topicResults]});
+    const results = findTopicsByProvisionId(this.props.match.params.id);
+    this.setState({topics: [...results]});
   }
 
   componentDidMount() {
@@ -81,15 +81,15 @@ class Constitution extends React.Component<Props, State> {
         </IonHeader>
         <IonContent>
           {
-            this.state.results.length > 0 && (
+            this.state.topics.length > 0 && (
               <IonList>
                 {
-                  this.state.results.map((result: any) => (
-                    <IonItem detail={true} key={result.id} routerLink={"/guides/" + result.id}>
+                  this.state.topics.map((topic: any) => (
+                    <IonItem detail={true} key={topic.id} routerLink={"/guides/" + topic.id}>
                       <IonThumbnail slot="start">
-                        <img src={"../../assets/images/" + result.id + ".svg"} onError={(e) => {
+                        <img src={"../../assets/images/" + topic.id + ".svg"} onError={(e) => {
                           e.currentTarget.src = "../../assets/shapes.svg"
-                        }} alt={result.title}/>
+                        }} alt={topic.title}/>
                       </IonThumbnail>
                       <IonLabel>
                         <h3 className="ion-text-wrap">Read Section Guide</h3>
@@ -103,13 +103,13 @@ class Constitution extends React.Component<Props, State> {
           <div className="ion-padding">
             <div className="akoma-ntoso" ref={this.rootRef}></div>
           </div>
-          {this.state.results.length > 0 && (
+          {this.state.topics.length > 0 && (
           <IonList className="ion-padding-bottom">
             <IonListHeader color="light">
               <IonLabel>Related Guides</IonLabel>
             </IonListHeader>
-            {this.state.results.map((result: any, index: any) => (
-              <TopicItem topic={result} />
+            {this.state.topics.map((topic: any, index: any) => (
+              <TopicItem topic={topic} />
             ))}
           </IonList>
         )}
