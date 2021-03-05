@@ -10,9 +10,7 @@ import {
   IonButton,
   withIonLifeCycle,
   IonList,
-  IonItem,
   IonLabel,
-  IonThumbnail,
   IonListHeader,
 } from '@ionic/react';
 import './Constitution.css';
@@ -21,6 +19,8 @@ import { arrowBack } from 'ionicons/icons';
 import { constitutionRoot } from '../../data/constitution';
 import { findTopicsByProvisionId } from '../../data/search';
 import { TopicItem } from '../../components/topic';
+import Portal from '../../components/Portal';
+import Guides from '../../components/portalChild';
 
 function previous() {
   window.history.back();
@@ -80,28 +80,12 @@ class Constitution extends React.Component<Props, State> {
           </IonToolbar>
         </IonHeader>
         <IonContent>
-          {
-            this.state.topics.length > 0 && (
-              <IonList>
-                {
-                  this.state.topics.map((topic: any) => (
-                    <IonItem detail={true} key={topic.id} routerLink={"/guides/" + topic.id}>
-                      <IonThumbnail slot="start">
-                        <img src={"../../assets/images/" + topic.id + ".svg"} onError={(e) => {
-                          e.currentTarget.src = "../../assets/shapes.svg"
-                        }} alt={topic.title}/>
-                      </IonThumbnail>
-                      <IonLabel>
-                        <h3 className="ion-text-wrap">Read Section Guide</h3>
-                      </IonLabel>
-                    </IonItem>
-                  ))
-                }
-              </IonList>
-            )
-          }
           <div className="ion-padding">
-            <div className="akoma-ntoso" ref={this.rootRef}></div>
+            <div className="akoma-ntoso" ref={this.rootRef}>
+              <Portal id={this.props.match.params.id} constitution={this.constitution}>
+                <Guides topics={this.state.topics} />
+              </Portal>
+            </div>
           </div>
           {this.state.topics.length > 0 && (
           <IonList className="ion-padding-bottom">
@@ -109,7 +93,7 @@ class Constitution extends React.Component<Props, State> {
               <IonLabel>Related Guides</IonLabel>
             </IonListHeader>
             {this.state.topics.map((topic: any, index: any) => (
-              <TopicItem topic={topic} />
+              <TopicItem key={topic.id} topic={topic} />
             ))}
           </IonList>
         )}
