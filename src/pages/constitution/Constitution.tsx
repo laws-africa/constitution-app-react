@@ -12,22 +12,30 @@ import {
 } from '@ionic/react';
 import './Constitution.css';
 import { RouteComponentProps } from 'react-router-dom';
-import { arrowBack } from 'ionicons/icons';
+import { arrowBack, search, close } from 'ionicons/icons';
 import { constitutionRoot } from '../../data/constitution';
+import HeaderSearch from '../../components/headerSearch';
 
 function previous() {
   window.history.back();
-}
+};
 
 interface Props extends RouteComponentProps<{ id: string; }> { }
 
-class Constitution extends React.Component<Props> {
+type MyState = {
+  search: Boolean;
+};
+
+class Constitution extends React.Component<Props, MyState> {
   private readonly rootRef: React.RefObject<HTMLDivElement>;
   private readonly constitution: Document;
 
   constructor(props: any) {
     super(props);
     this.rootRef = React.createRef();
+    this.state = {
+      search: false
+    };
 
     // parse the constitution HTML once
     this.constitution = constitutionRoot;
@@ -55,7 +63,15 @@ class Constitution extends React.Component<Props> {
               </IonButton>
             </IonButtons>
             <IonTitle>Constitution</IonTitle>
+            <IonButtons slot="end">
+              <IonButton onClick={() => this.setState({search: !this.state.search})}>
+                <IonIcon icon={this.state.search ? close : search}></IonIcon>
+              </IonButton>
+            </IonButtons>
           </IonToolbar>
+          {
+            this.state.search && <HeaderSearch />
+          }
         </IonHeader>
         <IonContent>
           <div className="ion-padding">

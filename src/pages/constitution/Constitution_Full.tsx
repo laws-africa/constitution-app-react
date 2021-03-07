@@ -17,9 +17,10 @@ import {
 } from '@ionic/react';
 import './Constitution.css';
 import { RouteComponentProps } from 'react-router-dom';
-import { arrowBack } from 'ionicons/icons';
+import { arrowBack, close, search } from 'ionicons/icons';
 import { constitutionBody } from '../../data/constitution';
 import { TOCList } from "../../components/constitutionTOC";
+import HeaderSearch from '../../components/headerSearch';
 
 function previous() {
   window.history.back();
@@ -27,13 +28,20 @@ function previous() {
 
 interface Props extends RouteComponentProps<{ id: string; }> { }
 
-class Constitution_Full extends React.Component<Props> {
+type MyState = {
+  search: Boolean;
+};
+
+class Constitution_Full extends React.Component<Props, MyState> {
   private readonly rootRef: React.RefObject<HTMLDivElement>;
   private readonly constitution: Element | null;
   
   constructor(props: any) {
     super(props);
     this.rootRef = React.createRef();
+    this.state = {
+      search: false
+    };
 
     // parse the constitution HTML once
     this.constitution = constitutionBody;
@@ -79,10 +87,10 @@ class Constitution_Full extends React.Component<Props> {
     }
   }
 
-  shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
-    // the view state never actually changes
-    return false;
-  }
+  // shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
+  //   // the view state never actually changes
+  //   return false;
+  // }
 
   render() {
     return (
@@ -96,9 +104,15 @@ class Constitution_Full extends React.Component<Props> {
             </IonButtons>
             <IonTitle>Constitution</IonTitle>
             <IonButtons slot="end">
+              <IonButton onClick={() => this.setState({search: !this.state.search})}>
+                <IonIcon icon={this.state.search ? close : search}></IonIcon>
+              </IonButton>
               <IonMenuButton></IonMenuButton>
             </IonButtons>
           </IonToolbar>
+          {
+            this.state.search && <HeaderSearch />
+          }
         </IonHeader>
         <IonMenu side="end" menuId="first" contentId="constitution">
           <IonContent>

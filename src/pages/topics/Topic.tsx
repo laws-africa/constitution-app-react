@@ -15,12 +15,13 @@ import {
   useIonViewWillEnter
 } from '@ionic/react';
 import { RouteComponentProps } from 'react-router';
-import { arrowBack } from 'ionicons/icons';
+import { arrowBack, search, close } from 'ionicons/icons';
 import data from "../../assets/data/data.json";
 import './Topics.css';
 import parse from 'html-react-parser';
 import { constitutionRoot, getTOCEntry } from '../../data/constitution';
 import { CaseItem } from "../../components/case";
+import HeaderSearch from '../../components/headerSearch';
 
 interface Props extends RouteComponentProps<{ id: string; }> { }
 
@@ -36,6 +37,7 @@ const Topic: React.FC<Props> = ({ match }) => {
   const [cases, setCases] = useState([]);
   const [references, setReferences] = useState([]);
   const rootRef = useRef<HTMLDivElement>(null);
+  const [onSearch, setOnSearch] = useState(false);
 
   useIonViewWillEnter(() => {
     // @ts-ignore
@@ -87,7 +89,15 @@ const Topic: React.FC<Props> = ({ match }) => {
             </IonButton>
           </IonButtons>
           <IonTitle>{topic.title}</IonTitle>
+          <IonButtons slot="end">
+            <IonButton onClick={() => setOnSearch(!onSearch)}>
+              <IonIcon icon={onSearch ? close : search}></IonIcon>
+            </IonButton>
+          </IonButtons>
         </IonToolbar>
+        {
+          onSearch && <HeaderSearch />
+        }
       </IonHeader>
       <IonContent>
         <div className="ion-padding">
