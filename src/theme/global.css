@@ -10,3 +10,7 @@
     text-transform: uppercase;
     margin-bottom: -10px;
 }
+
+mark.current {
+    background-color: orange;
+}
