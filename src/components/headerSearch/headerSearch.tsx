@@ -32,33 +32,29 @@ const HeaderSearch: React.FC<Props> = ({doc}) => {
       }
     }
   }
-    
-  const jumpToPrevious = () => {
-    if (marks.length > 0) {
-      setCurrentIndex(currentIndex - 1);
-      if (currentIndex < 0) {
-        setCurrentIndex(marks.length - 1);
-      }
-      if (currentIndex > marks.length - 1) {
-        setCurrentIndex(0);
-      }
-      jumpTo();
-    }
-  }
 
-  const jumpToNext = () => {
+  const jumpThrough = () => {
     if (marks.length > 0) {
-      setCurrentIndex(currentIndex + 1);
       if (currentIndex < 0) {
         setCurrentIndex(marks.length - 1);
-      }
-      if (currentIndex > marks.length - 1) {
+      }else if (currentIndex > marks.length - 1) {
         setCurrentIndex(0);
       }
       jumpTo();
     }
   }
+  const jumpToNext = () => {
+    setCurrentIndex(currentIndex + 1);
+  }
+  const jumpToPrevious = () => {
+    setCurrentIndex(currentIndex - 1);
+  }
     
+  useEffect(() => {
+    jumpThrough()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentIndex])
+
   const search = () => {
     setCurrentIndex(0)
 
@@ -113,7 +109,7 @@ const HeaderSearch: React.FC<Props> = ({doc}) => {
           </IonButton>
         </IonButtons>
       </div>
-      <IonItemDivider style={{ minHeight: '1px'}} class="ion-no-padding" />
+      <IonItemDivider class="ion-no-padding" />
     </div>
   )
 };
