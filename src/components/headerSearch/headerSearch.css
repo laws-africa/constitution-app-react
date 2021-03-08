@@ -1,0 +1,11 @@
+.search-tab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px auto;
+  padding-left: 0.5rem
+}
+
+.ion-no-padding {
+  min-height: 1px;
+}
