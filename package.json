@@ -51,7 +51,8 @@
     ]
   },
   "devDependencies": {
-    "@capacitor/cli": "2.4.2"
+    "@capacitor/cli": "2.4.2",
+    "@types/mark.js": "^8.11.5"
   },
   "description": "An Ionic project"
 }
