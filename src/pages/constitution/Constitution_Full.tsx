@@ -20,6 +20,8 @@ import { RouteComponentProps } from 'react-router-dom';
 import { arrowBack } from 'ionicons/icons';
 import { constitutionBody } from '../../data/constitution';
 import { TOCList } from "../../components/constitutionTOC";
+import data from "../../assets/data/data.json";
+import decorateAkn from '../../components/decorateAkn';
 
 function previous() {
   window.history.back();
@@ -30,10 +32,12 @@ interface Props extends RouteComponentProps<{ id: string; }> { }
 class Constitution_Full extends React.Component<Props> {
   private readonly rootRef: React.RefObject<HTMLDivElement>;
   private readonly constitution: Element | null;
+  private readonly topics: any [];
   
   constructor(props: any) {
     super(props);
     this.rootRef = React.createRef();
+    this.topics = data.topics;
 
     // parse the constitution HTML once
     this.constitution = constitutionBody;
@@ -76,6 +80,7 @@ class Constitution_Full extends React.Component<Props> {
       console.log('rendering constitution');
       // @ts-ignore
       this.rootRef.current.appendChild(this.constitution.cloneNode(true));
+      decorateAkn(this.rootRef.current, this.topics);
     }
   }
 

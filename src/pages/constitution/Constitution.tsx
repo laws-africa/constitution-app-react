@@ -19,8 +19,7 @@ import { arrowBack } from 'ionicons/icons';
 import { constitutionRoot } from '../../data/constitution';
 import { findTopicsByProvisionId } from '../../data/search';
 import { TopicItem } from '../../components/topic';
-import Portal from '../../components/Portal';
-import ReactDOM from "react-dom";
+import decorateAkn from '../../components/decorateAkn';
 
 function previous() {
   window.history.back();
@@ -62,38 +61,8 @@ class Constitution extends React.Component<Props, State> {
         // remove current elements
         while (this.rootRef.current.hasChildNodes()) this.rootRef.current.childNodes[0].remove();
         this.rootRef.current.appendChild(provision.cloneNode(true));
-        this.decorateAkn(this.rootRef.current);
+        decorateAkn(this.rootRef.current, this.state.topics);
       }
-    }
-  }
-
-  /**
-   * Insert decorations into an AKN document container.
-   */
-  decorateAkn(node: HTMLDivElement) {
-    // insert section guide decorations
-    for (const topic of this.state.topics) {
-      // assume only one topic for each reference
-      for (const element_id of topic.references) {
-        const ref = node.querySelector(`[id="${element_id}"]`);
-
-        if (ref) {
-          const heading = ref.firstElementChild;
-          const div = document.createElement('div');
-          div.className = 'decoration';
-          // @ts-ignore
-          heading.parentNode.insertBefore(div, heading.nextSibling);
-
-          const widget = <Portal element={div}>
-            <IonList>
-              <TopicItem key={topic.id} topic={topic} />
-            </IonList>
-          </Portal>;
-
-          ReactDOM.render(widget, div);
-        }
-      }
-
     }
   }
 
