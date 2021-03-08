@@ -134,7 +134,7 @@ const HeaderSearch = () => {
       <div style={style}>
         <IonInput onIonChange={onChange} value={needle} placeholder='Enter Search' clearInput />
         {
-          (marks && marks.length > 0) && <span>{ markIndex + 1 }/{ marks.length }</span>
+          (needle && marks && marks.length > 0) && <span>{ markIndex + 1 }/{ marks.length }</span>
         }
         <IonButtons slot="end">
           <IonButton color="medium" onClick={jumpToPrevious}>
