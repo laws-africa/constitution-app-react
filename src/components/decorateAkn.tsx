@@ -18,7 +18,7 @@ export default function decorateAkn (node: HTMLDivElement, topics: any[]) {
         if (ref) {
           const heading = ref.firstElementChild;
           const div = document.createElement('div');
-          div.className = 'decoration';
+          div.className = 'decoration ion-margin-bottom';
           // @ts-ignore
           heading.parentNode.insertBefore(div, heading.nextSibling);
 
