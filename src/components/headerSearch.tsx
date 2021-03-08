@@ -6,9 +6,8 @@ import { arrowDown, arrowUp } from 'ionicons/icons';
 const HeaderSearch = () => {
   const [needle, setNeedle] = useState<string>('');
   const [marks, setMarks] = useState<NodeListOf<HTMLElement>>(document.querySelectorAll('mark'));
-  const [markIndex, setMarkIndex] =  useState<number>(0);
+  const [currentIndex, setCurrentIndex] =  useState<number>(0);
   const doc = document.querySelector('.akoma-ntoso') as HTMLElement;
-  // let currentIndex = 0;
   let mark: any;
 
   const style = {
@@ -26,7 +25,7 @@ const HeaderSearch = () => {
 
   const jumpTo = () => {
     if (marks.length > 0) {
-      const currentMark = marks[markIndex];
+      const currentMark = marks[currentIndex];
       marks.forEach(mark => mark.classList.remove('current'));
       if (currentMark) {
         currentMark.classList.add('current');
@@ -40,12 +39,12 @@ const HeaderSearch = () => {
     
   const jumpToPrevious = () => {
     if (marks.length > 0) {
-      setMarkIndex(markIndex - 1);
-      if (markIndex < 0) {
-        setMarkIndex(marks.length - 1);
+      setCurrentIndex(currentIndex - 1);
+      if (currentIndex < 0) {
+        setCurrentIndex(marks.length - 1);
       }
-      if (markIndex > marks.length - 1) {
-        setMarkIndex(0);
+      if (currentIndex > marks.length - 1) {
+        setCurrentIndex(0);
       }
       jumpTo();
     }
@@ -53,46 +52,20 @@ const HeaderSearch = () => {
 
   const jumpToNext = () => {
     if (marks.length > 0) {
-      setMarkIndex(markIndex + 1);
-      if (markIndex < 0) {
-        setMarkIndex(marks.length - 1);
+      setCurrentIndex(currentIndex + 1);
+      if (currentIndex < 0) {
+        setCurrentIndex(marks.length - 1);
       }
-      if (markIndex > marks.length - 1) {
-        setMarkIndex(0);
+      if (currentIndex > marks.length - 1) {
+        setCurrentIndex(0);
       }
       jumpTo();
     }
   }
-
-  // const jumpToPrevious = () => {
-  //   if (marks.length > 0) {
-  //     currentIndex += -1;
-  //     if (currentIndex < 0) {
-  //       currentIndex = marks.length - 1;
-  //     }
-  //     if (currentIndex > marks.length - 1) {
-  //       currentIndex = 0;
-  //     }
-  //     jumpTo();
-  //   }
-  // }
-    
-  // const jumpToNext = () => {
-  //   if (marks.length > 0) {
-  //     currentIndex += 1;
-  //    if (currentIndex < 0) {
-  //       currentIndex = marks.length - 1;
-  //     }
-  //     if (currentIndex > marks.length - 1) {
-  //       currentIndex = 0;
-  //     }
-  //     jumpTo();
-  //   }
-  // }
     
   const search = () => {
     // currentIndex = 0;
-    setMarkIndex(0)
+    setCurrentIndex(0)
 
     if (needle && needle !== '') {
       if (!mark) {
@@ -134,7 +107,7 @@ const HeaderSearch = () => {
       <div style={style}>
         <IonInput onIonChange={onChange} value={needle} placeholder='Enter Search' clearInput />
         {
-          (needle && marks && marks.length > 0) && <span>{ markIndex + 1 }/{ marks.length }</span>
+          (needle && marks && marks.length > 0) && <span>{ currentIndex + 1 }/{ marks.length }</span>
         }
         <IonButtons slot="end">
           <IonButton color="medium" onClick={jumpToPrevious}>
