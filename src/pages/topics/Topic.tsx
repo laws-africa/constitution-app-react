@@ -21,7 +21,7 @@ import './Topics.css';
 import parse from 'html-react-parser';
 import { constitutionRoot, getTOCEntry } from '../../data/constitution';
 import { CaseItem } from "../../components/case";
-import HeaderSearch from '../../components/headerSearch';
+import HeaderSearch from '../../components/headerSearch/headerSearch';
 
 interface Props extends RouteComponentProps<{ id: string; }> { }
 
@@ -38,6 +38,7 @@ const Topic: React.FC<Props> = ({ match }) => {
   const [references, setReferences] = useState([]);
   const rootRef = useRef<HTMLDivElement>(null);
   const [onSearch, setOnSearch] = useState(false);
+  const doc = document.querySelector('.main-topic-content');
 
   useIonViewWillEnter(() => {
     // @ts-ignore
@@ -96,10 +97,10 @@ const Topic: React.FC<Props> = ({ match }) => {
           </IonButtons>
         </IonToolbar>
         {
-          onSearch && <HeaderSearch />
+          onSearch && <HeaderSearch doc={doc} />
         }
       </IonHeader>
-      <IonContent>
+      <IonContent className="main-topic-content">
         <div className="ion-padding">
           <h4 className="subheading">Guide to</h4>
           <h3>{topic.title}</h3>

@@ -14,7 +14,7 @@ import './Constitution.css';
 import { RouteComponentProps } from 'react-router-dom';
 import { arrowBack, search, close } from 'ionicons/icons';
 import { constitutionRoot } from '../../data/constitution';
-import HeaderSearch from '../../components/headerSearch';
+import HeaderSearch from '../../components/headerSearch/headerSearch';
 
 function previous() {
   window.history.back();
@@ -70,7 +70,7 @@ class Constitution extends React.Component<Props, MyState> {
             </IonButtons>
           </IonToolbar>
           {
-            this.state.search && <HeaderSearch />
+            this.state.search && <HeaderSearch doc={this.rootRef} />
           }
         </IonHeader>
         <IonContent>

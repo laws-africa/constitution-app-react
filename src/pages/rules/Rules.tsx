@@ -14,7 +14,7 @@ import './Rules.css';
 import { RouteComponentProps } from 'react-router-dom';
 import { arrowBack, close, search } from 'ionicons/icons';
 import { rulesRoot } from '../../data/rules';
-import HeaderSearch from '../../components/headerSearch';
+import HeaderSearch from '../../components/headerSearch/headerSearch';
 
 function previous() {
   window.history.back();
@@ -70,7 +70,7 @@ class Rules extends React.Component<Props, MyState> {
             </IonButtons>
           </IonToolbar>
           {
-            this.state.search && <HeaderSearch />
+            this.state.search && <HeaderSearch doc={this.rootRef.current} />
           }
         </IonHeader>
         <IonContent>

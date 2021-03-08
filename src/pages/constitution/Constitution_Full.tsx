@@ -20,7 +20,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { arrowBack, close, search } from 'ionicons/icons';
 import { constitutionBody } from '../../data/constitution';
 import { TOCList } from "../../components/constitutionTOC";
-import HeaderSearch from '../../components/headerSearch';
+import HeaderSearch from '../../components/headerSearch/headerSearch';
 
 function previous() {
   window.history.back();
@@ -32,7 +32,7 @@ type MyState = {
   search: Boolean;
 };
 
-class Constitution_Full extends React.Component<Props, MyState> {
+class Constitution_Full extends React.PureComponent<Props, MyState> {
   private readonly rootRef: React.RefObject<HTMLDivElement>;
   private readonly constitution: Element | null;
   
@@ -87,10 +87,10 @@ class Constitution_Full extends React.Component<Props, MyState> {
     }
   }
 
-  // shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
-  //   // the view state never actually changes
-  //   return false;
-  // }
+  shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<MyState>, nextContext: any): boolean {
+    // the view state never actually changes
+    return this.state.search !== nextState.search;
+  }
 
   render() {
     return (
@@ -111,7 +111,7 @@ class Constitution_Full extends React.Component<Props, MyState> {
             </IonButtons>
           </IonToolbar>
           {
-            this.state.search && <HeaderSearch />
+            this.state.search && <HeaderSearch doc={this.rootRef.current} />
           }
         </IonHeader>
         <IonMenu side="end" menuId="first" contentId="constitution">

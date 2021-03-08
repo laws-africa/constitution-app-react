@@ -20,7 +20,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { arrowBack, close, search } from 'ionicons/icons';
 import { rulesBody } from '../../data/rules';
 import { TOCList } from "../../components/rulesTOC";
-import HeaderSearch from '../../components/headerSearch';
+import HeaderSearch from '../../components/headerSearch/headerSearch';
 
 function previous() {
   window.history.back();
@@ -87,10 +87,10 @@ class Rules_Full extends React.Component<Props, MyState> {
     }
   }
 
-  // shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
-  //   // the view state never actually changes
-  //   return false;
-  // }
+  shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<MyState>, nextContext: any): boolean {
+    // the view state never actually changes
+    return this.state.search !== nextState.search;
+  }
 
   render() {
     return (
@@ -111,7 +111,7 @@ class Rules_Full extends React.Component<Props, MyState> {
             </IonButtons>
           </IonToolbar>
           {
-            this.state.search && <HeaderSearch />
+            this.state.search && <HeaderSearch doc={this.rootRef.current} />
           }
         </IonHeader>
         <IonMenu side="end" menuId="first" contentId="rules">
