@@ -19,7 +19,7 @@ import parse from 'html-react-parser';
 import { RouteComponentProps } from "react-router-dom";
 import { arrowBack, close, search } from 'ionicons/icons';
 import { TopicItem } from '../../components/topic';
-import HeaderSearch from '../../components/headerSearch';
+import HeaderSearch from '../../components/headerSearch/headerSearch';
 
 interface Props extends RouteComponentProps<{ id: string; }> { }
 
@@ -29,6 +29,7 @@ const Case: React.FC<Props> = ({ match }) => {
   });
   const [topics, setTopics] = useState([]);
   const [onSearch, setOnSearch] = useState(false);
+  const doc = document.querySelector('.main-case-content') as HTMLElement;
 
   useIonViewWillEnter(() => {
     const thisCase = data.cases.find(c => c.id === match.params.id);
@@ -71,10 +72,10 @@ const Case: React.FC<Props> = ({ match }) => {
           </IonButtons>
         </IonToolbar>
         {
-          onSearch && <HeaderSearch />
+          onSearch && <HeaderSearch doc={doc} />
         }
       </IonHeader>
-      <IonContent>
+      <IonContent className="main-case-content">
         <div className="ion-padding">
           <h3>{ thisCase.title }</h3>
           <div className="case-content">{ parse(thisCase.snippet) }</div>
