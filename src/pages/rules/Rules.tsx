@@ -12,8 +12,9 @@ import {
 } from '@ionic/react';
 import './Rules.css';
 import { RouteComponentProps } from 'react-router-dom';
-import { arrowBack } from 'ionicons/icons';
+import { arrowBack, close, search } from 'ionicons/icons';
 import { rulesRoot } from '../../data/rules';
+import HeaderSearch from '../../components/headerSearch/headerSearch';
 
 function previous() {
   window.history.back();
@@ -21,13 +22,20 @@ function previous() {
 
 interface Props extends RouteComponentProps<{ id: string; }> { }
 
-class Rules extends React.Component<Props> {
+type MyState = {
+  search: Boolean;
+};
+
+class Rules extends React.Component<Props, MyState> {
   private readonly rootRef: React.RefObject<HTMLDivElement>;
   private readonly rules: Document;
 
   constructor(props: any) {
     super(props);
     this.rootRef = React.createRef();
+    this.state = {
+      search: false
+    };
 
     // parse the rules HTML once
     this.rules = rulesRoot;
@@ -42,6 +50,7 @@ class Rules extends React.Component<Props> {
         this.rootRef.current.appendChild(provision.cloneNode(true));
       }
     }
+    this.setState({search: false});
   }
 
   render() {
@@ -55,7 +64,15 @@ class Rules extends React.Component<Props> {
               </IonButton>
             </IonButtons>
             <IonTitle>Rules</IonTitle>
+            <IonButtons slot="end">
+              <IonButton onClick={() => this.setState({search: !this.state.search})}>
+                <IonIcon icon={this.state.search ? close : search}></IonIcon>
+              </IonButton>
+            </IonButtons>
           </IonToolbar>
+          {
+            this.state.search && <HeaderSearch doc={this.rootRef.current} />
+          }
         </IonHeader>
         <IonContent>
           <div className="ion-padding">
