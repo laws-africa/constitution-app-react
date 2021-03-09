@@ -145,7 +145,7 @@ const Home: React.FC = () => {
             <IonCol size="6">
               <img
                 alt=""
-                src="http://www.staff.uct.ac.za/sites/default/files/image_tool/images/431/services/comms_marketing/branding/logo_downloads/UCThoriz_logo1_CMYK.jpg"
+                src="../../assets/uct-logo.jpg"
                 onError={(e) => {
                   e.currentTarget.src = "../../assets/shapes.svg"
                 }}
