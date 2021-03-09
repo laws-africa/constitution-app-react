@@ -12,7 +12,7 @@ const HeaderSearch: React.FC<Props> = ({doc}) => {
   const [needle, setNeedle] = useState<string>('');
   const [marks, setMarks] = useState<NodeListOf<HTMLElement>>(document.querySelectorAll('mark'));
   const [currentIndex, setCurrentIndex] =  useState<number>(0);
-  let mark: any;
+  const [mark, setMark] = useState<Mark | null>(new Mark(doc));
 
   useEffect(() => {
     search()
@@ -33,25 +33,21 @@ const HeaderSearch: React.FC<Props> = ({doc}) => {
     }
   }
 
-  const jumpThrough = () => {
-    if (marks.length > 0) {
-      if (currentIndex < 0) {
-        setCurrentIndex(marks.length - 1);
-      }else if (currentIndex > marks.length - 1) {
-        setCurrentIndex(0);
-      }
-      jumpTo();
-    }
+  function updateCurrentIndex(indx: number) {
+    if (indx < 0) indx = marks.length - 1;
+    if (indx > marks.length - 1) indx = 0;
+    setCurrentIndex(indx);
   }
+
   const jumpToNext = () => {
-    setCurrentIndex(currentIndex + 1);
+    updateCurrentIndex(currentIndex + 1);
   }
   const jumpToPrevious = () => {
-    setCurrentIndex(currentIndex - 1);
+    updateCurrentIndex(currentIndex - 1);
   }
     
   useEffect(() => {
-    jumpThrough()
+    jumpTo()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIndex])
 
@@ -61,23 +57,23 @@ const HeaderSearch: React.FC<Props> = ({doc}) => {
     if (needle && needle !== '') {
       if (!mark) {
         if (doc) {
-          mark = new Mark(doc);
+          setMark(new Mark(doc));
         }
       }
       // unmark existing marks
-      mark.unmark({
+      mark?.unmark({
         done: () => markResults()
       });
     } else {
       if (mark) {
         mark.unmark();
-        mark = null;
+        setMark(null);
       }
     }
   }
     
   const markResults = () => {
-    mark.mark(needle, {
+    mark?.mark(needle, {
       separateWordSearch: true,
       done: () => {
         // stash the marks for later navigation
