@@ -50,6 +50,7 @@ class Rules extends React.Component<Props, MyState> {
         this.rootRef.current.appendChild(provision.cloneNode(true));
       }
     }
+    this.setState({search: false});
   }
 
   render() {

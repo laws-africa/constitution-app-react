@@ -77,6 +77,7 @@ class Rules_Full extends React.Component<Props, MyState> {
     if (this.props.match.params.id) {
       this.scroll(this.props.match.params.id);
     }
+    this.setState({search: false});
   }
 
   componentDidMount(): void {

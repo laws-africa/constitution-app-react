@@ -32,7 +32,7 @@ type MyState = {
   search: Boolean;
 };
 
-class Constitution_Full extends React.PureComponent<Props, MyState> {
+class Constitution_Full extends React.Component<Props, MyState> {
   private readonly rootRef: React.RefObject<HTMLDivElement>;
   private readonly constitution: Element | null;
   
@@ -77,6 +77,7 @@ class Constitution_Full extends React.PureComponent<Props, MyState> {
     if (this.props.match.params.id) {
       this.scroll(this.props.match.params.id);
     }
+    this.setState({search: false});
   }
 
   componentDidMount(): void {

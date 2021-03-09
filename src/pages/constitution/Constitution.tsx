@@ -50,6 +50,7 @@ class Constitution extends React.Component<Props, MyState> {
         this.rootRef.current.appendChild(provision.cloneNode(true));
       }
     }
+    this.setState({search: false});
   }
 
   render() {
@@ -70,7 +71,7 @@ class Constitution extends React.Component<Props, MyState> {
             </IonButtons>
           </IonToolbar>
           {
-            this.state.search && <HeaderSearch doc={this.rootRef} />
+            this.state.search && <HeaderSearch doc={this.rootRef.current} />
           }
         </IonHeader>
         <IonContent>

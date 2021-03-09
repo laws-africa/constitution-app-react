@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {
   IonContent,
   IonHeader,
@@ -29,7 +29,7 @@ const Case: React.FC<Props> = ({ match }) => {
   });
   const [topics, setTopics] = useState([]);
   const [onSearch, setOnSearch] = useState(false);
-  const doc = document.querySelector('.main-case-content') as HTMLElement;
+  const rootRef = useRef<HTMLDivElement>(null);
 
   useIonViewWillEnter(() => {
     const thisCase = data.cases.find(c => c.id === match.params.id);
@@ -47,6 +47,7 @@ const Case: React.FC<Props> = ({ match }) => {
 
     // @ts-ignore
     setTopics(topics);
+    setOnSearch(false)
   });
 
   const previous = () => {
@@ -72,11 +73,11 @@ const Case: React.FC<Props> = ({ match }) => {
           </IonButtons>
         </IonToolbar>
         {
-          onSearch && <HeaderSearch doc={doc} />
+          onSearch && <HeaderSearch doc={rootRef.current} />
         }
       </IonHeader>
       <IonContent className="main-case-content">
-        <div className="ion-padding">
+        <div ref={rootRef} className="ion-padding">
           <h3>{ thisCase.title }</h3>
           <div className="case-content">{ parse(thisCase.snippet) }</div>
 
