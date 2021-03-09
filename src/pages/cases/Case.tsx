@@ -76,7 +76,7 @@ const Case: React.FC<Props> = ({ match }) => {
           onSearch && <HeaderSearch doc={rootRef.current} />
         }
       </IonHeader>
-      <IonContent className="main-case-content">
+      <IonContent>
         <div ref={rootRef} className="ion-padding">
           <h3>{ thisCase.title }</h3>
           <div className="case-content">{ parse(thisCase.snippet) }</div>

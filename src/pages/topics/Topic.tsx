@@ -101,7 +101,7 @@ const Topic: React.FC<Props> = ({ match }) => {
           onSearch && <HeaderSearch doc={contentRef.current} />
         }
       </IonHeader>
-      <IonContent className="main-topic-content">
+      <IonContent>
         <div className="ion-padding">
           <h4 className="subheading">Guide to</h4>
           <h3>{topic.title}</h3>
