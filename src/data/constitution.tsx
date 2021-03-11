@@ -36,7 +36,7 @@ export function getTOCEntry(id: string) {
 }
 
 function flattenTOC (arr: any[]) {
-    let result: any[] = [];
+    let result: string[] = [];
 
     arr.forEach(el => {
         if (el.id) result.push(el.id);
