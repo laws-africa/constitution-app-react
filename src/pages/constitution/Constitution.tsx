@@ -12,8 +12,8 @@ import {
 } from '@ionic/react';
 import './Constitution.css';
 import { RouteComponentProps } from 'react-router-dom';
-import { arrowBack, search, close } from 'ionicons/icons';
-import { constitutionRoot } from '../../data/constitution';
+import { arrowBack, search, close, arrowForward } from 'ionicons/icons';
+import { constitutionRoot, flatTOC } from '../../data/constitution';
 import HeaderSearch from '../../components/headerSearch/headerSearch';
 
 function previous() {
@@ -29,6 +29,7 @@ type MyState = {
 class Constitution extends React.Component<Props, MyState> {
   private readonly rootRef: React.RefObject<HTMLDivElement>;
   private readonly constitution: Document;
+  currentIndex: number;
 
   constructor(props: any) {
     super(props);
@@ -36,6 +37,7 @@ class Constitution extends React.Component<Props, MyState> {
     this.state = {
       search: false
     };
+    this.currentIndex = 0
 
     // parse the constitution HTML once
     this.constitution = constitutionRoot;
@@ -48,6 +50,7 @@ class Constitution extends React.Component<Props, MyState> {
         // remove current elements
         while (this.rootRef.current.hasChildNodes()) this.rootRef.current.childNodes[0].remove();
         this.rootRef.current.appendChild(provision.cloneNode(true));
+        this.currentIndex = flatTOC.indexOf(this.props.match.params.id)
       }
     }
     this.setState({search: false});
@@ -78,6 +81,16 @@ class Constitution extends React.Component<Props, MyState> {
           <div className="ion-padding">
             <div className="akoma-ntoso" ref={this.rootRef}></div>
           </div>
+          <IonButtons className="ion-padding ion-justify-content-between">
+            <IonButton routerLink={'/constitution/provision/' + flatTOC[this.currentIndex - 1]}  mode="ios" className="con-buttons" size="large" fill="solid" shape="round" color="medium">
+              <IonIcon slot="start" icon={arrowBack}></IonIcon>
+              Previous
+            </IonButton>
+            <IonButton routerLink={'/constitution/provision/' + flatTOC[this.currentIndex + 1]} mode="ios" className="con-buttons" size="large" fill="solid" shape="round" color="primary">
+              Next
+              <IonIcon slot="end" icon={arrowForward}></IonIcon>
+            </IonButton>
+          </IonButtons>
         </IonContent>
       </IonPage>
     );
