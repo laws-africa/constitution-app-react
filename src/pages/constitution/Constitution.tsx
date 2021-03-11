@@ -82,11 +82,29 @@ class Constitution extends React.Component<Props, MyState> {
             <div className="akoma-ntoso" ref={this.rootRef}></div>
           </div>
           <IonButtons className="ion-padding ion-justify-content-between">
-            <IonButton routerLink={'/constitution/provision/' + flatTOC[this.currentIndex - 1]}  mode="ios" className="con-buttons" size="large" fill="solid" shape="round" color="medium">
+            <IonButton 
+              routerLink={'/constitution/provision/' + flatTOC[this.currentIndex - 1]}  
+              mode="ios" 
+              className="con-buttons" 
+              size="large" 
+              fill="solid" 
+              shape="round" 
+              color="medium"
+              disabled={flatTOC[0] === this.props.match.params.id}
+            >
               <IonIcon slot="start" icon={arrowBack}></IonIcon>
               Previous
             </IonButton>
-            <IonButton routerLink={'/constitution/provision/' + flatTOC[this.currentIndex + 1]} mode="ios" className="con-buttons" size="large" fill="solid" shape="round" color="primary">
+            <IonButton 
+              routerLink={'/constitution/provision/' + flatTOC[this.currentIndex + 1]} 
+              mode="ios" 
+              className="con-buttons" 
+              size="large" 
+              fill="solid" 
+              shape="round" 
+              color="primary"
+              disabled={flatTOC.slice(-1)[0] === this.props.match.params.id}
+            >
               Next
               <IonIcon slot="end" icon={arrowForward}></IonIcon>
             </IonButton>
