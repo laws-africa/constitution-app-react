@@ -15,6 +15,7 @@ import data from "../../assets/data/data.json";
 import { getAndClearRedirected } from '../../redirect';
 import { TopicItem } from '../../components/topic';
 import { Link, Redirect } from "react-router-dom";
+import { handleSupportersLink } from '../../utils';
 
 const Home: React.FC = () => {
   const guides = data.topics;
@@ -24,10 +25,6 @@ const Home: React.FC = () => {
   if (path.length) {
     return <Redirect to={path}/>
   }
-
-  const handleSupportersLink = (url: string) => {
-    window.open(url, '_blank');
-  };
 
   return (
     <IonPage>

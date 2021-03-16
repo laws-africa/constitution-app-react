@@ -20,12 +20,13 @@ import { RouteComponentProps } from "react-router-dom";
 import { arrowBack, close, search } from 'ionicons/icons';
 import { TopicItem } from '../../components/topic';
 import HeaderSearch from '../../components/headerSearch/headerSearch';
+import { handleSupportersLink } from '../../utils';
 
 interface Props extends RouteComponentProps<{ id: string; }> { }
 
 const Case: React.FC<Props> = ({ match }) => {
   const [thisCase, setCase] = useState({
-    title: '', snippet: '', facts_and_issues: '', right_and_principle: '', interpretation: '',
+    title: '', snippet: '', facts_and_issues: '', right_and_principle: '', interpretation: '', href: '',
   });
   const [topics, setTopics] = useState([]);
   const [onSearch, setOnSearch] = useState(false);
@@ -113,6 +114,10 @@ const Case: React.FC<Props> = ({ match }) => {
             ))}
           </IonList>
         )}
+        <IonButton
+          expand="block"
+          onClick={() => handleSupportersLink(thisCase.href)}
+        >Read this case on SAFLII</IonButton>
       </IonContent>
     </IonPage>
   );
