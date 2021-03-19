@@ -6,7 +6,7 @@ http://ionicframework.com/docs/theming/ */
   /** core details **/
   --ion-background-color: #f4f4f4;
   --ion-background-color-rgb: 244, 244, 244;
-
+  --ion-font-family: "Noto Serif", "Helvetica Neue", "Roboto", sans-serif;
 
   /** primary **/
   --ion-color-primary: #b8001c;

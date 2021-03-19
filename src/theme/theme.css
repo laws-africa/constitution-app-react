@@ -1,3 +1,31 @@
+@font-face {
+  font-family: "Noto Serif";
+  src: url("../assets/Noto_Serif/NotoSerif-Regular.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Noto Serif";
+  src: url("../assets/Noto_Serif/NotoSerif-Italic.ttf") format("opentype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Noto Serif";
+  src: url("../assets/Noto_Serif/NotoSerif-Bold.ttf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Noto Serif";
+  src: url("../assets/Noto_Serif/NotoSerif-BoldItalic.ttf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+}
+
 ion-button.shadow {
   --box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.31);
 }
