@@ -44,6 +44,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import './theme/theme.css';
 import './theme/global.css';
 
 const App: React.FC = () => (
@@ -69,7 +70,7 @@ const App: React.FC = () => (
           <Route path="/search/:segment" component={Search} exact={true} />
           <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
         </IonRouterOutlet>
-        <IonTabBar slot="bottom">
+        <IonTabBar slot="bottom" color="light">
           <IonTabButton tab="home" href="/home">
             <IonIcon icon={home} />
             <IonLabel>Home</IonLabel>

@@ -1,0 +1,7 @@
+ion-button.shadow {
+  --box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.31);
+}
+
+ion-tab-bar.ion-color-light ion-tab-button.tab-selected {
+  --ion-color-contrast: var(--ion-color-primary);
+}
