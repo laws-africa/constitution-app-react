@@ -1,6 +1,6 @@
 ion-segment-button {
-  --background-checked: #3880ff;
+  --background-checked: var(--ion-color-primary);
   --color-checked : #fff;
-  --indicator-color: #3880ff;
+  --indicator-color: var(--ion-color-primary);
   --indicator-transition: 0s;
 }
