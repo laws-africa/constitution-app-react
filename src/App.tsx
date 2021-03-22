@@ -70,7 +70,7 @@ const App: React.FC = () => (
           <Route path="/search/:segment" component={Search} exact={true} />
           <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
         </IonRouterOutlet>
-        <IonTabBar slot="bottom" color="light">
+        <IonTabBar class="tab-bar" slot="bottom" color="light">
           <IonTabButton tab="home" href="/home">
             <IonIcon icon={home} />
             <IonLabel>Home</IonLabel>
