@@ -5,7 +5,6 @@ import {
   IonGrid,
   IonRow,
   IonCol,
-  IonButton,
   IonList,
   IonIcon,
 } from '@ionic/react';
@@ -16,6 +15,7 @@ import { getAndClearRedirected } from '../../redirect';
 import { TopicItem } from '../../components/topic';
 import { Link, Redirect } from "react-router-dom";
 import { handleSupportersLink } from '../../utils';
+import { ActionButton } from '../../components/actionButton';
 
 const Home: React.FC = () => {
   const guides = data.topics;
@@ -30,7 +30,8 @@ const Home: React.FC = () => {
     <IonPage>
       <IonContent className="ion-padding">
         <h2>South Africa's Constitution</h2>
-        <IonGrid className="ion-no-padding ion-padding-bottom">
+        <hr className="divider" />
+        {/* <IonGrid className="ion-no-padding ion-padding-bottom">
           <IonRow>
             <IonCol size="1">
               <IonIcon size="small" icon={document} />
@@ -42,14 +43,14 @@ const Home: React.FC = () => {
               <Link className="ion-float-right link-plain" to="/search/constitution">Search</Link>
             </IonCol>
           </IonRow>
-        </IonGrid>
+        </IonGrid> */}
 
         <div className="ion-padding-bottom">Browse the Constitution for the provisions that you need.</div>
-        <IonButton routerLink="/constitution" expand="block">Browse Sections</IonButton>
+        <ActionButton icon={document} text="Explore the Constitution" routerLink="/constitution" />
 
         <hr className="divider" />
 
-        <IonGrid className="ion-no-padding ion-padding-vertical">
+        <IonGrid className="ion-no-padding ion-padding-bottom">
           <IonRow>
             <IonCol size="1">
               <IonIcon size="small" icon={people} />
@@ -66,16 +67,16 @@ const Home: React.FC = () => {
         <div className="ion-padding-bottom">
           Understand the provisions of the Constitution and their implications for parliamentary matters.
         </div>
-        <IonList>
+        <IonList className="ion-margin-bottom">
           {guides.slice(0,3).map((guide) => (
             <TopicItem topic={guide} />
           ))}
         </IonList>
-        <IonButton routerLink="/guides" expand="block">Browse All Guides</IonButton>
+        <ActionButton routerLink="/guides" icon={people} text="Browse All Guides" />
 
         <hr className="divider" />
 
-        <IonGrid className="ion-no-padding ion-padding-vertical">
+        <IonGrid className="ion-no-padding ion-padding-bottom">
           <IonRow>
             <IonCol size="1">
               <IonIcon size="small" icon={documents} />
@@ -93,7 +94,7 @@ const Home: React.FC = () => {
           See how the courts have interpreted the Constitution by reading the leading cases on constitutional
           provisions.
         </div>
-        <IonButton routerLink="/search/cases" expand="block">Search Cases</IonButton>
+        <ActionButton routerLink="/search/cases" text="Search Cases" icon={documents} />
 
         <hr className="divider" />
 
@@ -112,7 +113,7 @@ const Home: React.FC = () => {
         </IonGrid>
 
         <div className="ion-padding-bottom">Browse the Rules of the National Assembly.</div>
-        <IonButton routerLink="/rules" expand="block">Browse Rules</IonButton>
+        <ActionButton routerLink="/rules" text="Browse Rules" icon={pencilOutline} />
 
         <hr className="divider" />
 
@@ -153,7 +154,7 @@ const Home: React.FC = () => {
           </IonRow>
         </IonGrid>
 
-        <IonButton routerLink="/help" expand="block">About This App</IonButton>
+        <ActionButton routerLink="/help" text="About This App" />
       </IonContent>
     </IonPage>
   );
