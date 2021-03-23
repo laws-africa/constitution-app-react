@@ -85,7 +85,7 @@ const App: React.FC = () => (
           </IonTabButton>
           <IonTabButton tab="rules" href="/rules">
             <IonIcon icon={pencilOutline} />
-            <IonLabel>Rules</IonLabel>
+            <IonLabel>NA Rules</IonLabel>
           </IonTabButton>
           <IonTabButton tab="search" href="/search">
             <IonIcon icon={search} />
