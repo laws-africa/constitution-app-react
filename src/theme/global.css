@@ -21,3 +21,39 @@ mark.current {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 5px;
 }
+
+.action-button {
+    --border-radius: 5px;
+    font-size: large;
+    height: 60px;
+    background-color: #fff;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.action-button > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    color: #262626;
+}
+
+hr.divider {
+    border-top: 1px solid var(--ion-color-medium-tint);
+    margin: 20px auto;
+}
+
+.tab-title {
+    display: flex;
+    align-items: center;
+}
+
+.contents-label {
+    color: var(--ion-color-medium-tint);
+    --ion-font-family: "Noto Serif",
+    "Roboto",
+    sans-serif;
+    font-family: 'Noto Serif';
+    font-size: large;
+}
+
