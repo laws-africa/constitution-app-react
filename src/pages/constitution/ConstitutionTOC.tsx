@@ -7,12 +7,13 @@ import {
   IonPage,
   withIonLifeCycle,
   IonIcon,
-  IonButton
+  IonButton,
+  IonCol
 } from '@ionic/react';
-import {document } from 'ionicons/icons';
 import './Constitution.css';
 import { TOCList } from '../../components/constitutionTOC';
 import { ActionButton } from '../../components/actionButton';
+import { svgs } from '../../assets/svgs';
 
 class ConstitutionTOC extends React.Component {
   render() {
@@ -20,14 +21,15 @@ class ConstitutionTOC extends React.Component {
       <IonPage>
         <IonContent>
           <div className="ion-padding">
-            <section className="tab-title ion-justify-content-between">
-              <h2><IonIcon slot="start" class="ion-margin-end" icon={document}></IonIcon>Constitution of the Republic of South Africa</h2>
+            <section className="tab-title">
+              <IonCol size="1" class="ion-margin-end ion-no-padding"><IonIcon size="large" icon={svgs.CONSTITUTION}></IonIcon></IonCol>
+              <h2>Constitution of the Republic of South Africa</h2>
               <IonButton className="ion-no-padding" fill="clear" routerLink={"/search/constitution"}>Search</IonButton>
             </section>
 
             <hr className="divider" />
 
-            <ActionButton routerLink="/constitution/full" icon={document} text="Read the Full Constitution"  />
+            <ActionButton routerLink="/constitution/full" icon={svgs.CONSTITUTION} text="Read the Full Constitution"  />
           </div>
 
           <IonList>
