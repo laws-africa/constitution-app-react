@@ -22,21 +22,23 @@ class ConstitutionTOC extends React.Component {
         <IonContent>
           <div className="ion-padding">
             <section className="tab-title">
-              <IonCol size="1" class="ion-margin-end ion-no-padding"><IonIcon size="large" icon={svgs.CONSTITUTION}></IonIcon></IonCol>
+              <IonCol size="1" class="ion-margin-end ion-no-padding">
+                <IonIcon size="large" icon={svgs.CONSTITUTION}></IonIcon>
+              </IonCol>
               <h2>Constitution of the Republic of South Africa</h2>
               <IonButton className="ion-no-padding" fill="clear" routerLink={"/search/constitution"}>Search</IonButton>
             </section>
 
-            <hr className="divider" />
+            <hr className="header-divider" />
 
             <ActionButton routerLink="/constitution/full" icon={svgs.CONSTITUTION} text="Read the Full Constitution"  />
           </div>
 
           <IonList>
             <IonListHeader>
-              <IonLabel class="contents-label">Table of Contents</IonLabel>
+              <IonLabel class="contents-label ion-no-margin">Table of Contents</IonLabel>
             </IonListHeader>
-            <div className="ion-padding-start"><hr className="divider" /></div>
+            <div className="ion-padding-start"><hr className="header-divider" /></div>
             <TOCList/>
           </IonList>
         </IonContent>
