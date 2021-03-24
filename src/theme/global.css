@@ -24,10 +24,12 @@ mark.current {
 
 .action-button {
     --border-radius: 5px;
-    font-size: 16px;
     background-color: #fff;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
-    padding: 10px;
+    height: 52px;
+    padding: 15px 22px 14px 17px;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.31);
+    line-height: 18px;
 }
 
 .action-button > div {
@@ -35,24 +37,66 @@ mark.current {
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    color: #262626;
+    font-size: 16px;
 }
 
-hr.divider {
-    border-top: 1px solid var(--ion-color-medium-tint);
-    margin: 20px auto;
+hr.divider, .header-divider {
+    opacity: 0.25;
+    border-top: solid 1px #979797;
+    margin: 35px auto;
+}
+
+.chapter {
+    font-size: 17px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.35;
+    letter-spacing: normal;
+}
+
+.header-divider {
+    margin: 15px auto;
 }
 
 .tab-title {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
 }
 
+.tab-title h2 {
+    font-size: 25px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.2;
+    letter-spacing: -0.15px;
+    color: #262626;
+    margin-top: 10px;
+}
+
+.tab-title ion-button {
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.13;
+    letter-spacing: normal;
+    text-align: right;
+    color: var(--ion-color-primary);
+}
+
+.tab-title .ion-margin-end {
+    margin-top: 0.93em
+}
+
 .contents-label {
-    color: var(--ion-color-medium-tint);
-    --ion-font-family: "Noto Serif", "Roboto", sans-serif;
-    font-family: 'Noto Serif';
-    font-size: large;
+    font-family: NotoSerif;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.88;
+    letter-spacing: -0.09px;
+    color: #747474;
 }
 
