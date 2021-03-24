@@ -34,8 +34,9 @@ ion-tab-bar.ion-color-light ion-tab-button.tab-selected {
   --ion-color-contrast: var(--ion-color-primary);
 }
 
-h1, h2, h3, h4, h5, ion-button, .chapter {
+h1, h2, h3, h4, h5, ion-button, .chapter, .action-button {
   --ion-font-family: "Noto Serif", "Roboto", sans-serif;
   font-family: 'Noto Serif';
   font-weight: bold;
+  color: #262626;
 }
