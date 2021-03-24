@@ -30,7 +30,7 @@ const Home: React.FC = () => {
     <IonPage>
       <IonContent className="ion-padding">
         <h2>South Africa's Constitution</h2>
-        <hr className="divider" />
+        <hr className="header-divider" />
 
         <div className="ion-padding-bottom">Browse the Constitution for the provisions that you need.</div>
         <ActionButton icon={svgs.CONSTITUTION} text="Explore the Constitution" routerLink="/constitution" />
