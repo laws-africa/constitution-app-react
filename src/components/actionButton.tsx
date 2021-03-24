@@ -10,11 +10,11 @@ interface ActionButtonProps {
 
 export const ActionButton: React.FC<ActionButtonProps> = ({ routerLink, icon, text }) => {
   return (
-    <IonCard button routerLink={routerLink} mode="ios" className="action-button shadow ion-padding ion-no-margin chapter">
+    <IonCard button routerLink={routerLink} className="action-button shadow ion-no-margin chapter">
       <div>
-        {icon && (<IonIcon slot="start" icon={icon} />)}
+        {icon && (<IonIcon size="large" slot="start" icon={icon} />)}
         {text}
-        <IonIcon mode="ios" color="medium" slot="end" icon={arrowForward} />
+        <IonIcon size="large" color="medium" slot="end" icon={arrowForward} />
       </div>
     </IonCard>
   );
