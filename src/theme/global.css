@@ -24,10 +24,10 @@ mark.current {
 
 .action-button {
     --border-radius: 5px;
-    font-size: large;
-    height: 60px;
+    font-size: 16px;
     background-color: #fff;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+    padding: 10px;
 }
 
 .action-button > div {
@@ -46,13 +46,12 @@ hr.divider {
 .tab-title {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .contents-label {
     color: var(--ion-color-medium-tint);
-    --ion-font-family: "Noto Serif",
-    "Roboto",
-    sans-serif;
+    --ion-font-family: "Noto Serif", "Roboto", sans-serif;
     font-family: 'Noto Serif';
     font-size: large;
 }
