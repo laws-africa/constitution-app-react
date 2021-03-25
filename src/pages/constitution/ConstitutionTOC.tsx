@@ -22,8 +22,8 @@ class ConstitutionTOC extends React.Component {
         <IonContent>
           <div className="ion-padding">
             <section className="tab-title">
-              <IonCol size="1" class="ion-margin-end ion-no-padding">
-                <IonIcon size="large" icon={svgs.CONSTITUTION}></IonIcon>
+              <IonCol size="1" class="icon ion-no-padding">
+                <IonIcon size="small" icon={svgs.CONSTITUTION}></IonIcon>
               </IonCol>
               <h2>Constitution of the Republic of South Africa</h2>
               <IonButton className="ion-no-padding" fill="clear" routerLink={"/search/constitution"}>Search</IonButton>
