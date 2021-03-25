@@ -40,7 +40,7 @@ mark.current {
     font-size: 16px;
 }
 
-hr.divider, .header-divider {
+hr.divider, .header-divider, .list-divider {
     opacity: 0.25;
     border-top: solid 1px #979797;
     margin: 35px auto;
@@ -55,7 +55,11 @@ hr.divider, .header-divider {
 }
 
 .header-divider {
-    margin: 15px auto;
+    margin: 10px auto;
+}
+
+.list-divider {
+    margin-bottom: 0;
 }
 
 .tab-title {
@@ -72,6 +76,8 @@ hr.divider, .header-divider {
     letter-spacing: -0.15px;
     color: #262626;
     margin-top: 10px;
+    width: 80%;
+    margin-bottom: 0;
 }
 
 .tab-title ion-button {
@@ -83,14 +89,15 @@ hr.divider, .header-divider {
     letter-spacing: normal;
     text-align: right;
     color: var(--ion-color-primary);
+    margin-bottom: 0;
 }
 
-.tab-title .ion-margin-end {
-    margin-top: 0.93em
+.tab-title .icon {
+    margin-top: 1.03em
 }
 
 .contents-label {
-    font-family: NotoSerif;
+    font-family: 'Noto Serif';
     font-size: 16px;
     font-weight: normal;
     font-stretch: normal;
@@ -100,3 +107,35 @@ hr.divider, .header-divider {
     color: #747474;
 }
 
+.topic-item {
+    background-color: #ffffff;
+    padding: 10px 16px 16px 14px;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.31);
+    background-color: #ffffff;
+}
+
+.topic-item > div {
+    display: flex;
+    align-items: center;
+}
+
+.topic-item h3 {
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.31;
+    letter-spacing: normal;
+    margin-bottom: 7px;
+}
+
+.topic-item p {
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    color: #262626;
+}
