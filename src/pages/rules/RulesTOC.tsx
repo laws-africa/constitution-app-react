@@ -40,7 +40,7 @@ class RulesTOC extends React.Component {
             <ActionButton
               routerLink="/rules/full"
               icon={svgs.RULES}
-              text="The full Rules"
+              text="The Full Rules"
             />
           </div>
           <IonList>
