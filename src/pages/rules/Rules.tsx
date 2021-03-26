@@ -63,7 +63,7 @@ class Rules extends React.Component<Props, MyState> {
                 <IonIcon icon={arrowBack}></IonIcon>
               </IonButton>
             </IonButtons>
-            <IonTitle>Rules of the Constitution</IonTitle>
+            <IonTitle>Rules of the National Assembly</IonTitle>
             <IonButtons slot="end">
               <IonButton
                 onClick={() => this.setState({ search: !this.state.search })}
