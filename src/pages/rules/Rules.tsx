@@ -63,16 +63,16 @@ class Rules extends React.Component<Props, MyState> {
                 <IonIcon icon={arrowBack}></IonIcon>
               </IonButton>
             </IonButtons>
-            <IonTitle>Rules</IonTitle>
+            <IonTitle>Rules of the Constitution</IonTitle>
             <IonButtons slot="end">
-              <IonButton onClick={() => this.setState({search: !this.state.search})}>
+              <IonButton
+                onClick={() => this.setState({ search: !this.state.search })}
+              >
                 <IonIcon icon={this.state.search ? close : search}></IonIcon>
               </IonButton>
             </IonButtons>
           </IonToolbar>
-          {
-            this.state.search && <HeaderSearch doc={this.rootRef.current} />
-          }
+          {this.state.search && <HeaderSearch doc={this.rootRef.current} />}
         </IonHeader>
         <IonContent>
           <div className="ion-padding">
