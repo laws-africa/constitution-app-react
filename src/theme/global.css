@@ -25,7 +25,6 @@ mark.current {
 .action-button {
     --border-radius: 5px;
     background-color: #fff;
-    height: 52px;
     padding: 15px 22px 14px 17px;
     border-radius: 5px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.31);
@@ -55,7 +54,7 @@ hr.divider, .header-divider, .list-divider {
 }
 
 .header-divider {
-    margin: 10px auto;
+    margin-top: 10px;
 }
 
 .list-divider {
