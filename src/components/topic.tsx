@@ -14,7 +14,7 @@ export const TopicItem: React.FC<TopicItemProps> = ({ topic }) => {
       routerLink={"/guides/" + topic.id}
     >
       <div>
-        <IonCol>
+        <IonCol size="1">
           <IonIcon
             size="large"
             icon={"../../assets/images/" + topic.id + ".svg"}
@@ -23,7 +23,7 @@ export const TopicItem: React.FC<TopicItemProps> = ({ topic }) => {
             }}
           ></IonIcon>
         </IonCol>
-        <IonCardContent>
+        <IonCardContent className="ion-margin-start">
           <h3 className="ion-text-wrap">{topic.title}</h3>
           <p className="ion-text-wrap">{parse(topic.snippet)}</p>
         </IonCardContent>
