@@ -36,7 +36,7 @@ const Topics: React.FC = () => {
           <p>Guides to the sections the Constitution.</p>
           <hr className="list-divider" />
         </div>
-        <IonList>
+        <IonList className="ion-padding">
           {data.topics.map((topic) => (
             <TopicItem topic={topic} />
           ))}
