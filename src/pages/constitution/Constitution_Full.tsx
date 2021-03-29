@@ -13,7 +13,8 @@ import {
   IonToolbar,
   IonIcon,
   IonButton,
-  withIonLifeCycle
+  withIonLifeCycle,
+  IonRow
 } from '@ionic/react';
 import './Constitution.css';
 import { RouteComponentProps } from 'react-router-dom';
@@ -21,6 +22,7 @@ import { arrowBack, close, search } from 'ionicons/icons';
 import { constitutionBody } from '../../data/constitution';
 import { TOCList } from "../../components/constitutionTOC";
 import HeaderSearch from '../../components/headerSearch/headerSearch';
+import { svgs } from '../../assets/svgs';
 
 function previous() {
   window.history.back();
@@ -127,6 +129,7 @@ class Constitution_Full extends React.Component<Props, MyState> {
         <IonRouterOutlet id="constitution"></IonRouterOutlet>
         <IonContent>
           <div className="ion-padding">
+            <IonRow class="ion-justify-content-center top-icon"><IonIcon size="small" icon={svgs.CONSTITUTION}></IonIcon></IonRow>
             <div className="akoma-ntoso" ref={this.rootRef}></div>
           </div>
         </IonContent>

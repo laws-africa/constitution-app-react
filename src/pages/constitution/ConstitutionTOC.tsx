@@ -1,31 +1,44 @@
 import React from 'react';
 import {
   IonContent,
-  IonItem,
   IonList,
   IonListHeader,
   IonLabel,
   IonPage,
-  withIonLifeCycle
+  withIonLifeCycle,
+  IonIcon,
+  IonButton,
+  IonCol
 } from '@ionic/react';
 import './Constitution.css';
 import { TOCList } from '../../components/constitutionTOC';
+import { ActionButton } from '../../components/actionButton';
+import { svgs } from '../../assets/svgs';
 
 class ConstitutionTOC extends React.Component {
   render() {
     return (
       <IonPage>
         <IonContent>
-          <IonListHeader>
-            <IonLabel>Constitution of the Republic of South Africa</IonLabel>
-          </IonListHeader>
-          <IonList>
-            <IonItem routerLink={"/constitution/full"}>Read the full Constitution</IonItem>
-          </IonList>
+          <div className="ion-padding">
+            <section className="tab-title">
+              <IonCol size="1" class="icon ion-no-padding">
+                <IonIcon size="small" icon={svgs.CONSTITUTION}></IonIcon>
+              </IonCol>
+              <h2>Constitution of the Republic of South Africa</h2>
+              <IonButton className="ion-no-padding" fill="clear" routerLink={"/search/constitution"}>Search</IonButton>
+            </section>
+
+            <hr className="header-divider" />
+
+            <ActionButton routerLink="/constitution/full" icon={svgs.CONSTITUTION} text="Read the Full Constitution"  />
+          </div>
+
           <IonList>
             <IonListHeader>
-              <IonLabel>Table of Contents</IonLabel>
+              <IonLabel class="contents-label ion-no-margin">Table of Contents</IonLabel>
             </IonListHeader>
+            <div className="ion-padding-start"><hr className="header-divider" /></div>
             <TOCList/>
           </IonList>
         </IonContent>
