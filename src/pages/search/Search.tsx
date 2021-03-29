@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   IonContent,
-  IonHeader,
   IonPage,
-  IonToolbar,
   IonSearchbar,
   IonList,
   IonSegment,
-  IonTitle,
   IonSegmentButton,
-} from '@ionic/react';
-import './Search.css';
-import { TopicItem } from '../../components/topic';
-import { CaseItem } from "../../components/case";
-import { TOCItem } from "../../components/constitutionTOC";
+  IonCol,
+  IonIcon,
+} from "@ionic/react";
+import "./Search.css";
+import { TopicItem } from "../../components/topic";
 import { RuleTOCItem } from "../../components/rulesTOC";
 import { RouteComponentProps } from "react-router-dom";
 import { searchContent } from "../../data/search";
+import { svgs } from "../../assets/svgs";
+import { SearchConstitution } from "../../components/searchConstitution";
+import { SearchCases } from "../../components/searchCases";
 
-interface Props extends RouteComponentProps<{ segment: string; }> { }
+interface Props extends RouteComponentProps<{ segment: string }> {}
 
 const Search: React.FC<Props> = ({ match }) => {
   const [isSearching, setIsSearching] = useState(false);
@@ -27,7 +27,7 @@ const Search: React.FC<Props> = ({ match }) => {
 
   useEffect(() => {
     if (match.params.segment) {
-      setCurrentSegment(match.params.segment)
+      setCurrentSegment(match.params.segment);
     }
   }, [match.params.segment]);
 
@@ -37,74 +37,76 @@ const Search: React.FC<Props> = ({ match }) => {
       setSearchTerm(event.target.value);
     } else {
       setIsSearching(false);
-      setSearchTerm("")
+      setSearchTerm("");
     }
   };
 
   const renderSearchResults = () => {
     const results = searchContent(searchTerm, currentSegment);
 
-    return <>
-      <IonList>
-        {currentSegment === "constitution" && renderProvisions(results)}
-        {currentSegment === "rules" && renderRuleProvisions(results)}
-        {currentSegment === "guides" && renderTopics(results)}
-        {currentSegment === "cases" && renderCases(results)}
-      </IonList>
-      <IonContent class="ion-text-center ion-margin-top ion-padding-top">
-        {results.length <= 0 && (
-          <p>Nothing matches your search.</p>
-        )}
-      </IonContent>
-    </>
+    return (
+      <>
+        <IonList className="ion-no-padding">
+          {currentSegment === "constitution" && renderProvisions(results)}
+          {currentSegment === "rules" && renderRuleProvisions(results)}
+          {currentSegment === "guides" && renderTopics(results)}
+          {currentSegment === "cases" && renderCases(results)}
+        </IonList>
+        <IonContent class="ion-text-center ion-margin-top ion-padding-top">
+          {results.length <= 0 && <p>Nothing matches your search.</p>}
+        </IonContent>
+      </>
+    );
   };
 
   const renderProvisions = (results: any) => {
     return results.map((result: any) => {
-        return <TOCItem item={result.item}/>
+      return <SearchConstitution provision={result.item} />;
     });
   };
 
   const renderRuleProvisions = (results: any) => {
-    return results.map((result: any) => (
-      <RuleTOCItem item={result.item}/>
-    ))
+    return results.map((result: any) => <RuleTOCItem item={result.item} />);
   };
 
   const renderCases = (results: any) => {
-    return results.map((result: any) => (
-      <CaseItem kase={result.item}/>
-    ))
+    return results.map((result: any) => <SearchCases caseItem={result.item} />);
   };
 
   const renderTopics = (results: any) => {
-    return results.map((result: any) => (
-      <TopicItem topic={result.item}/>
-    ))
+    return results.map((result: any) => <TopicItem topic={result.item} />);
   };
 
   return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Search</IonTitle>
-        </IonToolbar>
-        <IonSearchbar placeholder="Find guides, cases or sections..."  onIonChange={(e) => search(e)} />
-          <IonSegment onIonChange={(e) => setCurrentSegment(e.detail.value || "guides")} value={currentSegment}>
-            <IonSegmentButton value="constitution">Constitution</IonSegmentButton>
-            <IonSegmentButton value="guides">Guides</IonSegmentButton>
-            <IonSegmentButton value="rules">Rules</IonSegmentButton>
-            <IonSegmentButton value="cases">Cases</IonSegmentButton>
-          </IonSegment>
-      </IonHeader>
+    <IonPage className="ion-padding">
       <IonContent>
-        {isSearching && (
-          renderSearchResults()
-        )}
-        {!isSearching && (
-          <>
-          </>
-        )}
+        <section className="search-title">
+          <IonCol size="1" class="icon ion-no-padding">
+            <IonIcon size="small" icon={svgs.SEARCH}></IonIcon>
+          </IonCol>
+          <h2>Search</h2>
+        </section>
+
+        <hr className="header-divider" />
+        <IonSearchbar
+          className="ion-no-margin ion-no-padding search-bar"
+          placeholder="Find guides, cases or sections..."
+          onIonChange={(e) => search(e)}
+        />
+        <IonSegment
+          onIonChange={(e) => setCurrentSegment(e.detail.value || "guides")}
+          value={currentSegment}
+          mode="md"
+          scrollable
+        >
+          <IonSegmentButton value="constitution">Constitution</IonSegmentButton>
+          <IonSegmentButton value="guides">Guides</IonSegmentButton>
+          <IonSegmentButton value="rules">Rules</IonSegmentButton>
+          <IonSegmentButton value="cases">Cases</IonSegmentButton>
+        </IonSegment>
+        <hr />
+        {isSearching && renderSearchResults()}
+        {!isSearching && <></>}
       </IonContent>
     </IonPage>
   );
