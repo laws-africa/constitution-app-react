@@ -54,7 +54,7 @@ const Home: React.FC = () => {
         <div className="ion-padding-bottom">
           Understand the provisions of the Constitution and their implications for parliamentary matters.
         </div>
-        <IonList className="ion-margin-bottom">
+        <IonList className="ion-margin-bottom ion-padding">
           {guides.slice(0,3).map((guide) => (
             <TopicItem topic={guide} />
           ))}
