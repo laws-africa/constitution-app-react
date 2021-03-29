@@ -39,9 +39,13 @@ mark.current {
     font-size: 16px;
 }
 
-hr.divider, .header-divider, .list-divider {
+hr {
     opacity: 0.25;
     border-top: solid 1px #979797;
+    margin: 0;
+}
+
+hr.divider, .header-divider, .list-divider {
     margin: 35px auto;
 }
 
@@ -106,12 +110,11 @@ hr.divider, .header-divider, .list-divider {
     color: #747474;
 }
 
-.topic-item {
+.topic-item, .case-item {
     background-color: #ffffff;
     padding: 10px 16px 16px 14px;
     border-radius: 2px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.31);
-    background-color: #ffffff;
 }
 
 .topic-item > div {
@@ -119,7 +122,7 @@ hr.divider, .header-divider, .list-divider {
     align-items: center;
 }
 
-.topic-item h3 {
+.topic-item h3, .case-item h3 {
     font-size: 16px;
     font-weight: bold;
     font-stretch: normal;
@@ -129,7 +132,7 @@ hr.divider, .header-divider, .list-divider {
     margin-bottom: 7px;
 }
 
-.topic-item p {
+.topic-item p, .case-item p {
     font-size: 14px;
     font-weight: 300;
     font-stretch: normal;
