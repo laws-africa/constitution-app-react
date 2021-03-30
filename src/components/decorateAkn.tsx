@@ -1,8 +1,7 @@
-import { IonList } from "@ionic/react";
+import { IonIcon, IonItem, IonLabel, IonList } from "@ionic/react";
 import React from "react";
 import ReactDOM from "react-dom";
 import Portal from "./Portal";
-import { TopicItem } from "./topic";
 
 /**
  * Insert decorations into an AKN document container.
@@ -22,11 +21,25 @@ export default function decorateAkn (node: HTMLDivElement, topics: any[]) {
           // @ts-ignore
           heading.parentNode.insertBefore(div, heading.nextSibling);
 
-          const widget = <Portal element={div}>
-            <IonList>
-              <TopicItem key={topic.id} topic={topic} />
-            </IonList>
-          </Portal>;
+          const widget = (
+            <Portal element={div}>
+              <IonList>
+                <IonItem
+                  key={"topic-" + topic.id}
+                  routerLink={"/guides/" + topic.id}
+                  class="ion-no-padding"
+                  detail
+                >
+                  <IonIcon
+                    slot="start"
+                    size="small"
+                    icon={"../../assets/images/" + topic.id + ".svg"}
+                  ></IonIcon>
+                  <IonLabel>Read Section Guide</IonLabel>
+                </IonItem>
+              </IonList>
+            </Portal>
+          );
 
           ReactDOM.render(widget, div);
         }
