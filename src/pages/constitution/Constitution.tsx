@@ -8,7 +8,8 @@ import {
   IonToolbar,
   IonIcon,
   IonButton,
-  withIonLifeCycle
+  withIonLifeCycle,
+  IonCard
 } from '@ionic/react';
 import './Constitution.css';
 import { RouteComponentProps } from 'react-router-dom';
@@ -68,46 +69,48 @@ class Constitution extends React.Component<Props, MyState> {
             </IonButtons>
             <IonTitle>Constitution</IonTitle>
             <IonButtons slot="end">
-              <IonButton onClick={() => this.setState({search: !this.state.search})}>
+              <IonButton
+                onClick={() => this.setState({ search: !this.state.search })}
+              >
                 <IonIcon icon={this.state.search ? close : search}></IonIcon>
               </IonButton>
             </IonButtons>
           </IonToolbar>
-          {
-            this.state.search && <HeaderSearch doc={this.rootRef.current} />
-          }
+          {this.state.search && <HeaderSearch doc={this.rootRef.current} />}
         </IonHeader>
         <IonContent>
           <div className="ion-padding">
             <div className="akoma-ntoso" ref={this.rootRef}></div>
           </div>
+          <div className="ion-padding">
+            <hr />
+          </div>
           <IonButtons className="ion-padding ion-justify-content-between">
-            <IonButton 
-              routerLink={'/constitution/provision/' + flatTOC[this.currentIndex - 1]}  
-              mode="ios" 
-              className="con-buttons" 
-              size="large" 
-              fill="solid" 
-              shape="round" 
-              color="medium"
+            <IonCard
+              routerLink={
+                "/constitution/provision/" + flatTOC[this.currentIndex - 1]
+              }
+              className="con-buttons previous ion-no-margin"
+              button
               disabled={flatTOC[0] === this.props.match.params.id}
             >
-              <IonIcon slot="start" icon={arrowBack}></IonIcon>
-              Previous
-            </IonButton>
-            <IonButton 
-              routerLink={'/constitution/provision/' + flatTOC[this.currentIndex + 1]} 
-              mode="ios" 
-              className="con-buttons" 
-              size="large" 
-              fill="solid" 
-              shape="round" 
-              color="primary"
+              <div>
+                <IonIcon slot="start" icon={arrowBack}></IonIcon>
+                Previous
+              </div>
+            </IonCard>
+            <IonCard
+              routerLink={
+                "/constitution/provision/" + flatTOC[this.currentIndex + 1]
+              }
+              className="con-buttons ion-no-margin"
               disabled={flatTOC.slice(-1)[0] === this.props.match.params.id}
             >
-              Next
-              <IonIcon slot="end" icon={arrowForward}></IonIcon>
-            </IonButton>
+              <div>
+                Next
+                <IonIcon slot="end" icon={arrowForward}></IonIcon>
+              </div>
+            </IonCard>
           </IonButtons>
         </IonContent>
       </IonPage>
