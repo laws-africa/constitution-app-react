@@ -1,11 +1,14 @@
 import { IonCard, IonCardContent, IonCol, IonIcon } from "@ionic/react";
 import React from "react";
+import { searchTopics } from "../data/search";
 
 interface SearchConstitutionProps {
   provision: any;
 }
 
-export const SearchConstitution: React.FC<SearchConstitutionProps> = ({ provision }) => {
+export const SearchConstitution: React.FC<SearchConstitutionProps> = ({
+  provision,
+}) => {
   return (
     <IonCard
       class="topic-item ion-no-margin ion-margin-vertical"
@@ -17,7 +20,9 @@ export const SearchConstitution: React.FC<SearchConstitutionProps> = ({ provisio
           <IonIcon
             size="large"
             icon={
-              "../../assets/images/Co-operative_Government_and_Intergovernmental_Relations.svg"
+              searchTopics(provision.id)
+                ? "../../assets/images/" + searchTopics(provision.id) + ".svg"
+                : "../../assets/shapes.svg"
             }
             onError={(e) => {
               e.currentTarget.src = "../../assets/shapes.svg";
