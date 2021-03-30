@@ -17,9 +17,10 @@ import {
 } from '@ionic/react';
 import './Rules.css';
 import { RouteComponentProps } from 'react-router-dom';
-import { arrowBack } from 'ionicons/icons';
+import { arrowBack, close, search } from 'ionicons/icons';
 import { rulesBody } from '../../data/rules';
 import { TOCList } from "../../components/rulesTOC";
+import HeaderSearch from '../../components/headerSearch/headerSearch';
 
 function previous() {
   window.history.back();
@@ -27,13 +28,20 @@ function previous() {
 
 interface Props extends RouteComponentProps<{ id: string; }> { }
 
-class Rules_Full extends React.Component<Props> {
+type MyState = {
+  search: Boolean;
+};
+
+class Rules_Full extends React.Component<Props, MyState> {
   private readonly rootRef: React.RefObject<HTMLDivElement>;
   private readonly rules: Element | null;
   
   constructor(props: any) {
     super(props);
     this.rootRef = React.createRef();
+    this.state = {
+      search: false
+    };
 
     // parse the rules HTML once
     this.rules = rulesBody;
@@ -69,6 +77,7 @@ class Rules_Full extends React.Component<Props> {
     if (this.props.match.params.id) {
       this.scroll(this.props.match.params.id);
     }
+    this.setState({search: false});
   }
 
   componentDidMount(): void {
@@ -79,9 +88,9 @@ class Rules_Full extends React.Component<Props> {
     }
   }
 
-  shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
+  shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<MyState>, nextContext: any): boolean {
     // the view state never actually changes
-    return false;
+    return this.state.search !== nextState.search;
   }
 
   render() {
@@ -96,9 +105,15 @@ class Rules_Full extends React.Component<Props> {
             </IonButtons>
             <IonTitle>Rules</IonTitle>
             <IonButtons slot="end">
+              <IonButton onClick={() => this.setState({search: !this.state.search})}>
+                <IonIcon icon={this.state.search ? close : search}></IonIcon>
+              </IonButton>
               <IonMenuButton></IonMenuButton>
             </IonButtons>
           </IonToolbar>
+          {
+            this.state.search && <HeaderSearch doc={this.rootRef.current} />
+          }
         </IonHeader>
         <IonMenu side="end" menuId="first" contentId="rules">
           <IonContent>

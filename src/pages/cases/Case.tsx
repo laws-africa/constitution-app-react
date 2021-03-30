@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {
   IonContent,
   IonHeader,
@@ -17,16 +17,20 @@ import data from "../../assets/data/data.json";
 import './Cases.css';
 import parse from 'html-react-parser';
 import { RouteComponentProps } from "react-router-dom";
-import { arrowBack } from 'ionicons/icons';
+import { arrowBack, close, search } from 'ionicons/icons';
 import { TopicItem } from '../../components/topic';
+import HeaderSearch from '../../components/headerSearch/headerSearch';
+import { handleSupportersLink } from '../../utils';
 
 interface Props extends RouteComponentProps<{ id: string; }> { }
 
 const Case: React.FC<Props> = ({ match }) => {
   const [thisCase, setCase] = useState({
-    title: '', snippet: '', facts_and_issues: '', right_and_principle: '', interpretation: '',
+    title: '', snippet: '', facts_and_issues: '', right_and_principle: '', interpretation: '', href: '',
   });
   const [topics, setTopics] = useState([]);
+  const [onSearch, setOnSearch] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   useIonViewWillEnter(() => {
     const thisCase = data.cases.find(c => c.id === match.params.id);
@@ -44,6 +48,7 @@ const Case: React.FC<Props> = ({ match }) => {
 
     // @ts-ignore
     setTopics(topics);
+    setOnSearch(false)
   });
 
   const previous = () => {
@@ -61,11 +66,19 @@ const Case: React.FC<Props> = ({ match }) => {
           </IonButtons>
           <IonTitle class="ion-title">
             {thisCase.title}
-            </IonTitle>
+          </IonTitle>
+          <IonButtons slot="end">
+            <IonButton onClick={() => setOnSearch(!onSearch)}>
+              <IonIcon icon={onSearch ? close : search}></IonIcon>
+            </IonButton>
+          </IonButtons>
         </IonToolbar>
+        {
+          onSearch && <HeaderSearch doc={rootRef.current} />
+        }
       </IonHeader>
       <IonContent>
-        <div className="ion-padding">
+        <div ref={rootRef} className="ion-padding">
           <h3>{ thisCase.title }</h3>
           <div className="case-content">{ parse(thisCase.snippet) }</div>
 
@@ -101,6 +114,10 @@ const Case: React.FC<Props> = ({ match }) => {
             ))}
           </IonList>
         )}
+        <IonButton
+          expand="block"
+          onClick={() => handleSupportersLink(thisCase.href)}
+        >Read this case on SAFLII</IonButton>
       </IonContent>
     </IonPage>
   );

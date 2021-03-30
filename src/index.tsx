@@ -4,6 +4,14 @@ import App from './App';
 import { setRedirect } from "./redirect";
 import * as serviceWorker from './serviceWorker';
 
+import { setupConfig } from '@ionic/react';
+
+// force ios, which our styling requires
+setupConfig({
+  rippleEffect: false,
+  mode: 'ios'
+});
+
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // when the app first loads, check if we have been redirected from a 404.html

@@ -1,0 +1,42 @@
+@font-face {
+  font-family: "Noto Serif";
+  src: url("../assets/Noto_Serif/NotoSerif-Regular.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Noto Serif";
+  src: url("../assets/Noto_Serif/NotoSerif-Italic.ttf") format("opentype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Noto Serif";
+  src: url("../assets/Noto_Serif/NotoSerif-Bold.ttf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Noto Serif";
+  src: url("../assets/Noto_Serif/NotoSerif-BoldItalic.ttf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+ion-button.shadow {
+  --box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.31);
+}
+
+ion-tab-bar.ion-color-light ion-tab-button.tab-selected {
+  --ion-color-contrast: var(--ion-color-primary);
+}
+
+h1, h2, h3, h4, h5, ion-button, .chapter, .action-button {
+  --ion-font-family: "Noto Serif", "Roboto", sans-serif;
+  font-family: 'Noto Serif';
+  font-weight: bold;
+  color: #262626;
+}

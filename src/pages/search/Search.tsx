@@ -23,7 +23,7 @@ interface Props extends RouteComponentProps<{ segment: string; }> { }
 const Search: React.FC<Props> = ({ match }) => {
   const [isSearching, setIsSearching] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [currentSegment, setCurrentSegment] = useState("constitution");
+  const [currentSegment, setCurrentSegment] = useState("guides");
 
   useEffect(() => {
     if (match.params.segment) {
@@ -90,7 +90,7 @@ const Search: React.FC<Props> = ({ match }) => {
           <IonTitle>Search</IonTitle>
         </IonToolbar>
         <IonSearchbar placeholder="Find guides, cases or sections..."  onIonChange={(e) => search(e)} />
-          <IonSegment onIonChange={(e) => setCurrentSegment(e.detail.value || "constitution")} value={currentSegment}>
+          <IonSegment onIonChange={(e) => setCurrentSegment(e.detail.value || "guides")} value={currentSegment}>
             <IonSegmentButton value="constitution">Constitution</IonSegmentButton>
             <IonSegmentButton value="guides">Guides</IonSegmentButton>
             <IonSegmentButton value="rules">Rules</IonSegmentButton>

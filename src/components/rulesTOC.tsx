@@ -34,14 +34,18 @@ export const RuleTOCItem: React.FC<RuleTOCItemProps> = ({ item, onClick }) => {
 
   return (
     <div>
-      <IonItem {...props}>{item.title}</IonItem>
+      <IonItem class={item.type === 'chapter' ? "chapter" : ""} {...props}>
+        {item.title}
+      </IonItem>
       {kids.length > 0 && (
         <div className="ion-padding-start">
           {kids.map((child: any) => {
-            return (<RuleTOCItem key={child.id} item={child} onClick={onClick} />);
+            return (
+              <RuleTOCItem key={child.id} item={child} onClick={onClick} />
+            );
           })}
         </div>
       )}
     </div>
-  )
+  );
 };

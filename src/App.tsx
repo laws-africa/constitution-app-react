@@ -10,7 +10,6 @@ import {
   IonTabs
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { people, home, document, search, pencilOutline } from 'ionicons/icons';
 import Topics from './pages/topics/Topics';
 import Topic from './pages/topics/Topic';
 import Constitution from './pages/constitution/Constitution';
@@ -24,6 +23,7 @@ import Cases from './pages/cases/Cases';
 import Case from './pages/cases/Case';
 import Help from './pages/help/Help';
 import Search from './pages/search/Search';
+import { svgs } from './assets/svgs';
 
 
 /* Core CSS required for Ionic components to work properly */
@@ -44,6 +44,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import './theme/theme.css';
 import './theme/global.css';
 
 const App: React.FC = () => (
@@ -69,25 +70,25 @@ const App: React.FC = () => (
           <Route path="/search/:segment" component={Search} exact={true} />
           <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
         </IonRouterOutlet>
-        <IonTabBar slot="bottom">
+        <IonTabBar class="tab-bar" slot="bottom" color="light">
           <IonTabButton tab="home" href="/home">
-            <IonIcon icon={home} />
+            <IonIcon icon={svgs.HOME} />
             <IonLabel>Home</IonLabel>
           </IonTabButton>
           <IonTabButton tab="guides" href="/guides">
-            <IonIcon icon={people} />
+            <IonIcon icon={svgs.GUIDES} />
             <IonLabel>Guides</IonLabel>
           </IonTabButton>
           <IonTabButton tab="constitution" href="/constitution">
-            <IonIcon icon={document} />
+            <IonIcon icon={svgs.CONSTITUTION} />
             <IonLabel>Constitution</IonLabel>
           </IonTabButton>
           <IonTabButton tab="rules" href="/rules">
-            <IonIcon icon={pencilOutline} />
-            <IonLabel>Rules</IonLabel>
+            <IonIcon icon={svgs.RULES} />
+            <IonLabel>NA Rules</IonLabel>
           </IonTabButton>
           <IonTabButton tab="search" href="/search">
-            <IonIcon icon={search} />
+            <IonIcon icon={svgs.SEARCH} />
             <IonLabel>Search</IonLabel>
           </IonTabButton>
         </IonTabBar>

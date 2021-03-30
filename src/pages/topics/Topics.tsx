@@ -1,37 +1,45 @@
-import React from 'react';
+import React from "react";
 import {
   IonContent,
-  IonHeader,
   IonPage,
-  IonTitle,
-  IonToolbar,
-  IonText,
   IonList,
-} from '@ionic/react';
+  IonButton,
+  IonCol,
+  IonIcon,
+} from "@ionic/react";
 import data from "../../assets/data/data.json";
-import './Topics.css';
-import { TopicItem } from '../../components/topic';
+import "./Topics.css";
+import { TopicItem } from "../../components/topic";
+import { svgs } from "../../assets/svgs";
 
 const Topics: React.FC = () => {
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle class="ion-title">
-            Guides
-          </IonTitle>
-        </IonToolbar>
-      </IonHeader>
-        <IonContent>
-          <IonText>
-            <div className="ion-padding">
-              Guides to the sections the Constitution.
-            </div>
-          </IonText>
-          <IonList>
-            {data.topics.map((topic) => (
-              <TopicItem topic={topic} />
-            ))}
+      <IonContent>
+        <div className="ion-padding">
+          <section className="tab-title">
+            <IonCol size="1" class="icon ion-no-padding">
+              <IonIcon size="small" icon={svgs.GUIDES}></IonIcon>
+            </IonCol>
+            <h2>Guides</h2>
+            <IonButton
+              className="ion-no-padding"
+              fill="clear"
+              routerLink={"/search/guides"}
+            >
+              Search
+            </IonButton>
+          </section>
+
+          <hr className="header-divider" />
+
+          <p>Guides to the sections the Constitution.</p>
+          <hr className="list-divider" />
+        </div>
+        <IonList>
+          {data.topics.map((topic) => (
+            <TopicItem topic={topic} />
+          ))}
         </IonList>
       </IonContent>
     </IonPage>

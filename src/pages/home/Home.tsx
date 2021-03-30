@@ -5,16 +5,17 @@ import {
   IonGrid,
   IonRow,
   IonCol,
-  IonButton,
   IonList,
   IonIcon,
 } from '@ionic/react';
-import { people, document, documents, pencilOutline } from 'ionicons/icons';
 import './Home.css';
 import data from "../../assets/data/data.json";
 import { getAndClearRedirected } from '../../redirect';
 import { TopicItem } from '../../components/topic';
 import { Link, Redirect } from "react-router-dom";
+import { handleSupportersLink } from '../../utils';
+import { ActionButton } from '../../components/actionButton';
+import { svgs } from '../../assets/svgs';
 
 const Home: React.FC = () => {
   const guides = data.topics;
@@ -25,37 +26,21 @@ const Home: React.FC = () => {
     return <Redirect to={path}/>
   }
 
-  const handleSupportersLink = (url: string) => {
-    window.open(url, '_blank');
-  };
-
   return (
     <IonPage>
       <IonContent className="ion-padding">
         <h2>South Africa's Constitution</h2>
-        <IonGrid className="ion-no-padding ion-padding-bottom">
-          <IonRow>
-            <IonCol size="1">
-              <IonIcon size="small" icon={document} />
-            </IonCol>
-            <IonCol>
-              <h5 className="section-heading">The Constitution</h5>
-            </IonCol>
-            <IonCol size="1">
-              <Link className="ion-float-right link-plain" to="/search/constitution">Search</Link>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
+        <hr className="header-divider" />
 
         <div className="ion-padding-bottom">Browse the Constitution for the provisions that you need.</div>
-        <IonButton routerLink="/constitution" expand="block">Browse Sections</IonButton>
+        <ActionButton icon={svgs.CONSTITUTION} text="Explore the Constitution" routerLink="/constitution" />
 
         <hr className="divider" />
 
-        <IonGrid className="ion-no-padding ion-padding-vertical">
+        <IonGrid className="ion-no-padding ion-padding-bottom">
           <IonRow>
             <IonCol size="1">
-              <IonIcon size="small" icon={people} />
+              <IonIcon size="small" icon={svgs.GUIDES} />
             </IonCol>
             <IonCol>
               <h5 className="section-heading">Guides</h5>
@@ -69,19 +54,19 @@ const Home: React.FC = () => {
         <div className="ion-padding-bottom">
           Understand the provisions of the Constitution and their implications for parliamentary matters.
         </div>
-        <IonList>
+        <IonList className="ion-margin-bottom">
           {guides.slice(0,3).map((guide) => (
             <TopicItem topic={guide} />
           ))}
         </IonList>
-        <IonButton routerLink="/guides" expand="block">Browse All Guides</IonButton>
+        <ActionButton routerLink="/guides" icon={svgs.GUIDES} text="Browse All Guides" />
 
         <hr className="divider" />
 
-        <IonGrid className="ion-no-padding ion-padding-vertical">
+        <IonGrid className="ion-no-padding ion-padding-bottom">
           <IonRow>
             <IonCol size="1">
-              <IonIcon size="small" icon={documents} />
+              <IonIcon size="small" icon={svgs.CASES} />
             </IonCol>
             <IonCol>
               <h5 className="section-heading">Cases</h5>
@@ -96,14 +81,14 @@ const Home: React.FC = () => {
           See how the courts have interpreted the Constitution by reading the leading cases on constitutional
           provisions.
         </div>
-        <IonButton routerLink="/search/cases" expand="block">Search Cases</IonButton>
+        <ActionButton routerLink="/search/cases" text="Search Cases" icon={svgs.CASES} />
 
         <hr className="divider" />
 
         <IonGrid className="ion-no-padding ion-padding-bottom">
           <IonRow>
             <IonCol size="1">
-              <IonIcon size="small" icon={pencilOutline} />
+              <IonIcon size="small" icon={svgs.RULES} />
             </IonCol>
             <IonCol>
               <h5 className="section-heading">Rules of the National Assembly</h5>
@@ -115,7 +100,7 @@ const Home: React.FC = () => {
         </IonGrid>
 
         <div className="ion-padding-bottom">Browse the Rules of the National Assembly.</div>
-        <IonButton routerLink="/rules" expand="block">Browse Rules</IonButton>
+        <ActionButton routerLink="/rules" text="Browse Rules" icon={svgs.RULES} />
 
         <hr className="divider" />
 
@@ -145,7 +130,7 @@ const Home: React.FC = () => {
             <IonCol size="6">
               <img
                 alt=""
-                src="http://www.staff.uct.ac.za/sites/default/files/image_tool/images/431/services/comms_marketing/branding/logo_downloads/UCThoriz_logo1_CMYK.jpg"
+                src="../../assets/uct-logo.jpg"
                 onError={(e) => {
                   e.currentTarget.src = "../../assets/shapes.svg"
                 }}
@@ -156,7 +141,7 @@ const Home: React.FC = () => {
           </IonRow>
         </IonGrid>
 
-        <IonButton routerLink="/help" expand="block">About This App</IonButton>
+        <ActionButton routerLink="/help" text="About This App" />
       </IonContent>
     </IonPage>
   );

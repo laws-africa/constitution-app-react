@@ -34,14 +34,16 @@ export const TOCItem: React.FC<TOCItemProps> = ({ item, onClick }) => {
 
   return (
     <div>
-      <IonItem {...props}>{item.title}</IonItem>
+      <IonItem class={item.type === "chapter" ? "chapter" : ""} {...props}>
+        {item.title}
+      </IonItem>
       {kids.length > 0 && (
         <div className="ion-padding-start">
           {kids.map((child: any) => {
-            return (<TOCItem key={child.id} item={child} onClick={onClick} />);
+            return <TOCItem key={child.id} item={child} onClick={onClick} />;
           })}
         </div>
       )}
     </div>
-  )
+  );
 };
