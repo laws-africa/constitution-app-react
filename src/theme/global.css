@@ -122,7 +122,6 @@ hr.divider,
 
 .topic-item > div {
   display: flex;
-  align-items: center;
 }
 
 .topic-item h3,
