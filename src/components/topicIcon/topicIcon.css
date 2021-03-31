@@ -1,0 +1,41 @@
+.topic-icon {
+  width: 65px;
+  height: 94px;
+  padding: 0 4px 0 3px;
+  border-radius: 1.8px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+  background-color: linear-gradient(348deg, #e7e7e7 94%, #ffffff 2%);
+}
+.topic-icon > div {
+  height: 100%;
+  padding-left: 4px;
+  border-left: 1px solid #ffffff;
+  border-right: 3px solid #b8001c;
+}
+
+.guide {
+  font-family: "Noto Serif";
+  font-size: 6px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.9;
+  letter-spacing: normal;
+  color: #b8001c;
+}
+
+.topic_title {
+  font-family: "Noto Serif";
+  font-size: 7.2px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.07;
+  letter-spacing: normal;
+  color: #190003;
+}
+
+.main_icon {
+  position: absolute;
+  bottom: 3px;
+}
