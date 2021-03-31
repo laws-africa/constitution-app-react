@@ -124,6 +124,10 @@ hr.divider,
   display: flex;
 }
 
+.card-div {
+  align-items: center;
+}
+
 .topic-item h3,
 .case-item h3 {
   font-size: 16px;
