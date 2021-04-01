@@ -12,7 +12,8 @@
   letter-spacing: normal;
   --border-radius: 5px;
   padding: 17px 22px 12px 18px;
-  font-family: NotoSerif;
+  font-family: 'Noto Serif';
+  color: #262626;
 }
 
 .con-buttons > div {

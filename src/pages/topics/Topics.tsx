@@ -33,7 +33,7 @@ const Topics: React.FC = () => {
 
           <hr className="header-divider" />
 
-          <p>Guides to the sections the Constitution.</p>
+          <p>Guides to the sections of the Constitution.</p>
           <hr className="list-divider" />
         </div>
         <IonList className="ion-padding">

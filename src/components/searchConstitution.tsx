@@ -16,7 +16,7 @@ export const SearchConstitution: React.FC<SearchConstitutionProps> = ({
       key={provision.id}
       routerLink={"/constitution/provision/" + provision.id}
     >
-      <div>
+      <div className="card-div">
         <IonCol size="1">
           <IonIcon
             size="large"

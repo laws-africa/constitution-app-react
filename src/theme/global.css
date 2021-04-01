@@ -122,6 +122,9 @@ hr.divider,
 
 .topic-item > div {
   display: flex;
+}
+
+.card-div {
   align-items: center;
 }
 

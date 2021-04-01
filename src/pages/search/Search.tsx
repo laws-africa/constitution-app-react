@@ -8,6 +8,7 @@ import {
   IonSegmentButton,
   IonCol,
   IonIcon,
+  IonHeader,
 } from "@ionic/react";
 import "./Search.css";
 import { TopicItem } from "../../components/topic";
@@ -79,7 +80,7 @@ const Search: React.FC<Props> = ({ match }) => {
 
   return (
     <IonPage className="ion-padding">
-      <IonContent>
+      <IonHeader>
         <section className="search-title">
           <IonCol size="1" class="icon ion-no-padding">
             <IonIcon size="small" icon={svgs.SEARCH}></IonIcon>
@@ -105,6 +106,9 @@ const Search: React.FC<Props> = ({ match }) => {
           <IonSegmentButton value="cases">Cases</IonSegmentButton>
         </IonSegment>
         <hr />
+      </IonHeader>
+      
+      <IonContent>
         {isSearching && renderSearchResults()}
         {!isSearching && <></>}
       </IonContent>
