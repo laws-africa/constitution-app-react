@@ -1,4 +1,5 @@
 import * as Rules from '../assets/data/rules.json';
+import { flattenTOC } from "../utils";
 
 export const rulesData: any = (Rules as any).default;
 // wrap the entire content in a div so the body has a single child
@@ -34,3 +35,5 @@ export function getTOCEntry(id: string) {
     search(tableOfContents);
     return match;
 }
+
+export const flatRulesTOC = flattenTOC(tableOfContents)
