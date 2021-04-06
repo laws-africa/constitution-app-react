@@ -90,7 +90,7 @@ class Constitution extends React.Component<Props, MyState> {
               routerLink={
                 "/constitution/provision/" + flatTOC[this.currentIndex - 1]
               }
-              className="con-buttons previous ion-no-margin"
+              className="con-buttons ion-no-margin"
               button
               disabled={flatTOC[0] === this.props.match.params.id}
             >
