@@ -136,6 +136,12 @@ function indexTopics(topics: any[]) {
   };
 }
 
+export function findTopicsByProvisionId(id: string) {
+  const result = data.topics.filter(topic => topic.references.includes(id))
+
+  return result;
+}
+
 const searchableProvisions = indexAkn(constitutionRoot);
 const searchableRuleProvisions = indexAkn(rulesRoot);
 const searchableCases = indexCases(data.cases);

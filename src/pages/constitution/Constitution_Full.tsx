@@ -21,6 +21,8 @@ import { RouteComponentProps } from 'react-router-dom';
 import { arrowBack, close, search } from 'ionicons/icons';
 import { constitutionBody } from '../../data/constitution';
 import { TOCList } from "../../components/constitutionTOC";
+import data from "../../assets/data/data.json";
+import decorateAkn from '../../components/decorateAkn';
 import HeaderSearch from '../../components/headerSearch/headerSearch';
 import { svgs } from '../../assets/svgs';
 
@@ -37,10 +39,12 @@ type MyState = {
 class Constitution_Full extends React.Component<Props, MyState> {
   private readonly rootRef: React.RefObject<HTMLDivElement>;
   private readonly constitution: Element | null;
+  private readonly topics: any [];
   
   constructor(props: any) {
     super(props);
     this.rootRef = React.createRef();
+    this.topics = data.topics;
     this.state = {
       search: false
     };
@@ -87,6 +91,7 @@ class Constitution_Full extends React.Component<Props, MyState> {
       console.log('rendering constitution');
       // @ts-ignore
       this.rootRef.current.appendChild(this.constitution.cloneNode(true));
+      decorateAkn(this.rootRef.current, this.topics);
     }
   }
 
