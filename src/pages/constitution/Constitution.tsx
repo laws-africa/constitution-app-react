@@ -56,10 +56,6 @@ class Constitution extends React.Component<Props, MyState> {
     this.setState({ topics: [...results] });
   }
 
-  componentDidMount() {
-    this.getTopics();
-  }
-
   ionViewWillEnter() {
     if (this.props.match.params.id && this.rootRef.current) {
       let provision = this.constitution.getElementById(
@@ -75,6 +71,7 @@ class Constitution extends React.Component<Props, MyState> {
       }
     }
     this.setState({ search: false });
+    this.getTopics();
   }
 
   render() {
