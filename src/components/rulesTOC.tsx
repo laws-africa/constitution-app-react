@@ -1,13 +1,13 @@
 import React from "react";
 import { IonItem } from "@ionic/react";
-import { tableOfContents } from "../data/rules";
+import { toc } from "../data/rules";
 
 interface TOCListProps {
   onClick?: any;
 }
 
 // only render provisions with ids
-const provisions = tableOfContents.filter((c: any) => c.id);
+const provisions = toc.items.filter((c: any) => c.id);
 
 export const TOCList: React.FC<TOCListProps> = ({ onClick }) => {
   return (
