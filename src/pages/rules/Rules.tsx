@@ -16,6 +16,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { arrowBack, arrowForward, close, search } from 'ionicons/icons';
 import { rulesRoot, toc } from '../../data/rules';
 import HeaderSearch from '../../components/headerSearch/headerSearch';
+import {handleInDocumentLinks} from "../../utils";
 
 function previous() {
   window.history.back();
@@ -52,6 +53,7 @@ class Rules extends React.Component<Props, MyState> {
         while (this.rootRef.current.hasChildNodes())
           this.rootRef.current.childNodes[0].remove();
         this.rootRef.current.appendChild(provision.cloneNode(true));
+        handleInDocumentLinks(this.rootRef.current, this.rules, this.props.history, '/rules/provision/');
         this.currentIndex = toc.flattened.indexOf(this.props.match.params.id);
       }
     }

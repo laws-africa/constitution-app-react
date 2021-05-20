@@ -21,6 +21,7 @@ import { findTopicsByProvisionId } from "../../data/search";
 import decorateAkn from "../../components/decorateAkn";
 import { TopicItem } from "../../components/topic";
 import { svgs } from "../../assets/svgs";
+import { handleInDocumentLinks } from "../../utils";
 
 function previous() {
   window.history.back();
@@ -67,7 +68,8 @@ class Constitution extends React.Component<Props, MyState> {
           this.rootRef.current.childNodes[0].remove();
         this.rootRef.current.appendChild(provision.cloneNode(true));
         decorateAkn(this.rootRef.current, this.state.topics);
-        this.currentIndex = flatTOC.indexOf(this.props.match.params.id);
+        handleInDocumentLinks(this.rootRef.current, this.constitution, this.props.history, '/constitution/provision/');
+        this.currentIndex = toc.flattened.indexOf(this.props.match.params.id);
       }
     }
     this.setState({ search: false });
