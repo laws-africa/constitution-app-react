@@ -15,7 +15,7 @@ import {
 import "./Constitution.css";
 import { RouteComponentProps } from "react-router-dom";
 import { arrowBack, search, close, arrowForward } from "ionicons/icons";
-import { constitutionRoot, flatTOC } from "../../data/constitution";
+import { constitutionRoot, toc } from "../../data/constitution";
 import HeaderSearch from "../../components/headerSearch/headerSearch";
 import { findTopicsByProvisionId } from "../../data/search";
 import decorateAkn from "../../components/decorateAkn";
@@ -118,11 +118,11 @@ class Constitution extends React.Component<Props, MyState> {
           <IonButtons className="ion-padding ion-justify-content-between">
             <IonCard
               routerLink={
-                "/constitution/provision/" + flatTOC[this.currentIndex - 1]
+                "/constitution/provision/" + toc.flattened[this.currentIndex - 1]
               }
               className="con-buttons ion-no-margin"
               button
-              disabled={flatTOC[0] === this.props.match.params.id}
+              disabled={toc.flattened[0] === this.props.match.params.id}
             >
               <div>
                 <IonIcon slot="start" icon={arrowBack}></IonIcon>
@@ -131,10 +131,10 @@ class Constitution extends React.Component<Props, MyState> {
             </IonCard>
             <IonCard
               routerLink={
-                "/constitution/provision/" + flatTOC[this.currentIndex + 1]
+                "/constitution/provision/" + toc.flattened[this.currentIndex + 1]
               }
               className="con-buttons ion-no-margin"
-              disabled={flatTOC.slice(-1)[0] === this.props.match.params.id}
+              disabled={toc.flattened.slice(-1)[0] === this.props.match.params.id}
             >
               <div>
                 Next

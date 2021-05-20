@@ -14,7 +14,7 @@ import {
 import './Rules.css';
 import { RouteComponentProps } from 'react-router-dom';
 import { arrowBack, arrowForward, close, search } from 'ionicons/icons';
-import { rulesRoot, flatRulesTOC } from '../../data/rules';
+import { rulesRoot, toc } from '../../data/rules';
 import HeaderSearch from '../../components/headerSearch/headerSearch';
 
 function previous() {
@@ -52,7 +52,7 @@ class Rules extends React.Component<Props, MyState> {
         while (this.rootRef.current.hasChildNodes())
           this.rootRef.current.childNodes[0].remove();
         this.rootRef.current.appendChild(provision.cloneNode(true));
-        this.currentIndex = flatRulesTOC.indexOf(this.props.match.params.id);
+        this.currentIndex = toc.flattened.indexOf(this.props.match.params.id);
       }
     }
     this.setState({ search: false });
@@ -89,11 +89,11 @@ class Rules extends React.Component<Props, MyState> {
           <IonButtons className="ion-padding ion-justify-content-between">
             <IonCard
               routerLink={
-                "/rules/provision/" + flatRulesTOC[this.currentIndex - 1]
+                "/rules/provision/" + toc.flattened[this.currentIndex - 1]
               }
               className="con-buttons ion-no-margin"
               button
-              disabled={flatRulesTOC[0] === this.props.match.params.id}
+              disabled={toc.flattened[0] === this.props.match.params.id}
             >
               <div>
                 <IonIcon slot="start" icon={arrowBack}></IonIcon>
@@ -102,10 +102,10 @@ class Rules extends React.Component<Props, MyState> {
             </IonCard>
             <IonCard
               routerLink={
-                "/rules/provision/" + flatRulesTOC[this.currentIndex + 1]
+                "/rules/provision/" + toc.flattened[this.currentIndex + 1]
               }
               className="con-buttons ion-no-margin"
-              disabled={flatRulesTOC.slice(-1)[0] === this.props.match.params.id}
+              disabled={toc.flattened.slice(-1)[0] === this.props.match.params.id}
             >
               <div>
                 Next
