@@ -1,6 +1,6 @@
 {
-  "short_name": "Constitution",
-  "name": "Constitution",
+  "short_name": "Constitution Compass",
+  "name": "Constitution Compass",
   "icons": [
     {
       "src": "assets/icon/favicon.png",
@@ -14,7 +14,7 @@
       "purpose": "maskable"
     }
   ],
-  "start_url": ".",
+  "start_url": "/home",
   "display": "standalone",
   "theme_color": "#ffffff",
   "background_color": "#ffffff"

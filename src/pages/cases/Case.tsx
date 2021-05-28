@@ -113,13 +113,14 @@ const Case: React.FC<Props> = ({ match }) => {
             </IonToolbar>
             <IonList className="ion-padding">
               {topics.map((topic: any, index: any) => (
-                <TopicItem topic={topic} />
-              ))}
+                <TopicItem key={topic.id} topic={topic} />
+                ))}
             </IonList>
           </div>
         )}
         <IonButton
           expand="block"
+          color="white"
           onClick={() => handleSupportersLink(thisCase.href)}
         >
           Read this case on SAFLII

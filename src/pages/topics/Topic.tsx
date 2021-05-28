@@ -6,14 +6,13 @@ import {
   IonTitle,
   IonToolbar,
   IonList,
-  IonItem,
   IonButtons,
   IonButton,
   IonIcon,
-  useIonViewWillEnter,
+  useIonViewWillEnter, IonCard,
 } from "@ionic/react";
 import { RouteComponentProps } from "react-router";
-import { arrowBack, search, close } from "ionicons/icons";
+import {arrowBack, search, close, arrowForward} from "ionicons/icons";
 import data from "../../assets/data/data.json";
 import "./Topics.css";
 import parse from "html-react-parser";
@@ -141,18 +140,21 @@ const Topic: React.FC<Props> = ({ match }) => {
         </div>
 
         {references.length > 0 && (
-          <IonList className="ion-padding-bottom">
+          <IonButtons className="ion-padding-bottom ion-justify-content-center">
             {references.map((ref: any) => (
-              <IonItem
-                key={ref.id}
-                routerLink={"/constitution/provision/" + ref.id}
-                color="primary"
-                lines="none"
-              >
+            <IonCard
+              key={ref.id}
+              className="con-buttons"
+              routerLink={"/constitution/provision/" + ref.id}
+              button
+            >
+              <div>
                 Section {ref.title}
-              </IonItem>
+                <IonIcon slot="end" icon={arrowForward}></IonIcon>
+              </div>
+            </IonCard>
             ))}
-          </IonList>
+          </IonButtons>
         )}
 
         {cases.length > 0 && (

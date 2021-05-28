@@ -12,8 +12,6 @@ setupConfig({
   mode: 'ios'
 });
 
-ReactDOM.render(<App />, document.getElementById('root'));
-
 // when the app first loads, check if we have been redirected from a 404.html
 // and the Home view will try to redirect to that (if it's valid), when it first
 // renders.
@@ -22,6 +20,8 @@ const path = params.get('404') || '';
 if (path.length) {
   setRedirect(path);
 }
+
+ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

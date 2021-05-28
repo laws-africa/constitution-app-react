@@ -22,6 +22,7 @@
     "ionicons": "^5.0.0",
     "lunr": "^2.3.9",
     "mark.js": "^8.11.1",
+    "node-sass": "^4.0.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-router": "^5.1.2",
