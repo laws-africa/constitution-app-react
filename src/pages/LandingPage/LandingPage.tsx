@@ -131,7 +131,7 @@ const LandingPage = () => {
                         Note: It must be Safari, you cannot use Google Chrome or Firefox.
                       </div>
                     </li>
-                    <li>Go to <a href="https://bit.ly/saconapp" target="_blank">bit.ly/saconapp</a></li>
+                    <li>Go to <a href="https://bit.ly/saconapp" target="_blank" rel="noopener noreferrer">bit.ly/saconapp</a></li>
                     <li>Tap the share icon at the bottom of the screen</li>
                     <li>Scroll down and tap “Add to Home Screen” then tap “Add”</li>
                     <li>To open the app, find it on your home screen</li>
@@ -143,7 +143,7 @@ const LandingPage = () => {
 
                   <ol>
                     <li>Open your phone's browser</li>
-                    <li>Go to <a href="https://bit.ly/saconapp" target="_blank">bit.ly/saconapp</a></li>
+                    <li>Go to <a href="https://bit.ly/saconapp" target="_blank" rel="noopener noreferrer">bit.ly/saconapp</a></li>
                     <li>Tap the share icon at the bottom of the screen</li>
                     <li>Scroll down and tap “Add to Home Screen” then tap “Add”</li>
                     <li>To open the app, find it on your home screen</li>
