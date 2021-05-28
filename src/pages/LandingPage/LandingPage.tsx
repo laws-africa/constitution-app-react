@@ -13,11 +13,11 @@ import {
 import React from "react";
 import { svgs } from "../../assets/svgs";
 import { handleSupportersLink } from "../../utils";
-import "./LandingPage.css";
+import "./LandingPage.scss";
 
 const LandingPage = () => {
   return (
-    <IonPage>
+    <IonPage className="landing-page">
       <IonContent>
         <IonRow class="ion-justify-content-between ion-margin-horizontal ion-padding-vertical header ion-align-items-center">
           <section className="tab-title">
