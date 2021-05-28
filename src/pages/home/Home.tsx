@@ -59,7 +59,7 @@ const Home: React.FC = () => {
         </div>
         <IonList className="ion-margin-bottom ion-padding">
           {guides.slice(0,3).map((guide) => (
-            <TopicItem topic={guide} />
+            <TopicItem topic={guide} key={guide.id}/>
           ))}
         </IonList>
         <ActionButton routerLink="/guides" icon={svgs.GUIDES} text="Browse All Guides" />

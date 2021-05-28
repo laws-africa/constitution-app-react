@@ -38,7 +38,7 @@ const Topics: React.FC = () => {
         </div>
         <IonList className="ion-padding">
           {data.topics.map((topic) => (
-            <TopicItem topic={topic} />
+            <TopicItem topic={topic} key={topic.id} />
           ))}
         </IonList>
       </IonContent>

@@ -75,7 +75,7 @@ const Search: React.FC<Props> = ({ match }) => {
   };
 
   const renderTopics = (results: any) => {
-    return results.map((result: any) => <TopicItem topic={result.item} />);
+    return results.map((result: any) => <TopicItem topic={result.item} key={result.item.id} />);
   };
 
   return (
