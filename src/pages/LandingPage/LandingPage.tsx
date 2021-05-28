@@ -35,68 +35,56 @@ const LandingPage = () => {
               Constitution <br /> Guide
             </h3>
           </section>
+
           <IonRow class="ion-align-items-center right-links ion-justify-content-between">
             <a href="#features">Features</a>{" "}
             <a href="#installation">How to install</a>
-            <IonButton color="light">Install Now</IonButton>
+            <IonButton color="light" href="#installation">Install Now</IonButton>
           </IonRow>
-          <IonCol size="2" class="menu-icon ion-no-margin ion-no-padding">
-            <IonIcon
-              icon={"../../assets/menu-icon.svg"}
-              onError={(e) => {
-                e.currentTarget.src = "../../assets/shapes.svg";
-              }}
-              class="ion-no-padding ion-no-margin"
-            />
-          </IonCol>
         </IonRow>
+
         <div className="ion-text-center main-content">
           <h1>Short version of the purpose of this app. </h1>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
           </p>
-          <IonButton color="light">Install Now</IonButton>
+          <IonButton color="light" href="#installation">Install Now</IonButton>
 
           <a href="/home" className="ion-padding-top">Use the web version</a>
         </div>
+
         <div id="features" className="features-content">
-          <h2>Introducing the features of this product</h2>
+          <h2>Your guide to the constitution</h2>
+
           <IonGrid>
             <IonRow>
-              <IonCol>
+              <IonCol size-lg="6">
                 <Features
                   iconName={svgs.CONSTITUTION}
                   text="Filium morte multavit si sine causa quae fuerit causa mox videro interea epicurus in sanguinem suum tam egregios viros consectetur"
                   title="Browse the Constitution"
                 />
-              </IonCol>
-              <IonCol>
+
                 <Features
                   iconName={svgs.GUIDES}
                   text="Filium morte multavit si sine causa quae fuerit causa mox videro interea epicurus in sanguinem suum tam egregios viros consectetur"
                   title="Guides to the Constitution"
                 />
-              </IonCol>
-            </IonRow>
-            <IonRow>
-              <IonCol>
+
                 <Features
                   iconName={svgs.CASES}
                   text="Filium morte multavit si sine causa quae fuerit causa mox videro interea epicurus in sanguinem suum tam egregios viros consectetur"
                   title="Get Cases in Context "
                 />
               </IonCol>
-              <IonCol>
+              <IonCol size-lg="6">
                 <Features
                   iconName={svgs.RULES}
                   text="Filium morte multavit si sine causa quae fuerit causa mox videro interea epicurus in sanguinem suum tam egregios viros consectetur"
                   title="Rules of the National Assembly"
                 />
-              </IonCol>
-            </IonRow>
-            <IonRow>
-              <IonCol>
+
                 <Features
                   iconName={svgs.SEARCH}
                   text="Filium morte multavit si sine causa quae fuerit causa mox videro interea epicurus in sanguinem suum tam egregios viros consectetur"
@@ -106,13 +94,16 @@ const LandingPage = () => {
             </IonRow>
           </IonGrid>
         </div>
+
         <div id="installation" className="installation">
           <h2>How to install the app on your phone</h2>
           <IonSegment mode="md" value="ios">
             <IonSegmentButton value="ios">iOS</IonSegmentButton>
             <IonSegmentButton value="android">Android</IonSegmentButton>
           </IonSegment>
+
           <hr />
+
           <IonRow class="ion-justify-content-between">
             <figure></figure>
             <div className="installation-steps">
@@ -120,10 +111,10 @@ const LandingPage = () => {
               <ol>
                 <li>
                   Open your Safari browser{" "}
-                  <span>
+                  <div className="light">
                     Note: It must be Safari, you cannot use Google Chrome or
                     Firefox.
-                  </span>
+                  </div>
                 </li>
                 <li>Go to bit.ly/saconapp or constitution.laws.africa</li>
                 <li>Tap the share icon at the bottom of the screen</li>
@@ -157,9 +148,12 @@ const LandingPage = () => {
             </IonCol>
           </IonRow>
           <IonRow class="ion-justify-content-between ion-padding-vertical last-content ion-align-items-center">
-            <span>&copy; 2021 UCT Legal Division.</span>
+
+            <span>&copy; 2021 AfricanLII.org</span>
+
             <IonGrid class="ion-align-items-center">
               <span>Developed By:</span>
+
               <IonRow>
                 <IonCol size="6">
                   <img
@@ -228,8 +222,8 @@ interface FeaturesProps {
 
 const Features: React.FC<FeaturesProps> = ({ iconName, title, text }) => {
   return (
-    <div className="feature-row">
-      <IonCol class="feature_col">
+    <div className="feature">
+      <IonCol class="feature-col">
         <IonIcon
           size="large"
           class="feature_icon"
