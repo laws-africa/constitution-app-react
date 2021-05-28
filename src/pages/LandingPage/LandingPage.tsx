@@ -14,8 +14,16 @@ import React from "react";
 import { svgs } from "../../assets/svgs";
 import { handleSupportersLink } from "../../utils";
 import "./LandingPage.scss";
+import { getAndClearRedirected } from "../../redirect";
+import { Redirect } from "react-router-dom";
 
 const LandingPage = () => {
+  // redirect to a url from the 404.html page?
+  const path = getAndClearRedirected();
+  if (path.length) {
+    return <Redirect to={path}/>
+  }
+
   return (
     <IonPage className="landing-page">
       <IonContent>
