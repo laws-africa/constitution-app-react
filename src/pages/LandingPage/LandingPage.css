@@ -1,0 +1,334 @@
+.header {
+  border-bottom: 1px solid #262626;
+  margin: 0 36px;
+}
+
+ion-segment {
+  justify-content: flex-start;
+}
+
+ion-segment-button {
+  flex: 0.1 0.1 auto;
+}
+
+.home-icon {
+  font-size: 50px;
+  padding: 0;
+  margin: 0;
+  margin-top: 0.2em;
+}
+
+h3 {
+  margin: 7px 0 0;
+  font-family: "Noto Serif";
+  font-size: 22px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.28;
+  letter-spacing: normal;
+  color: #262626;
+}
+
+.right-links {
+  width: 30%;
+}
+.footer-links {
+  align-items: flex-end;
+}
+
+.footer-links,
+.footer-links > a {
+  display: flex;
+  flex-direction: column;
+  font-family: "Noto Serif";
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.86;
+  letter-spacing: -0.16px;
+  text-align: right;
+}
+
+.footer-links span {
+  color: #ba1631;
+}
+
+a {
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.75;
+  letter-spacing: normal;
+  text-align: right;
+  color: #262626;
+  text-decoration: none;
+}
+
+ion-button {
+  font-family: "Noto Serif";
+  font-size: 14.9px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.13;
+  letter-spacing: normal;
+  text-align: center;
+  color: #262626;
+  width: 175px;
+  height: 52px;
+  border-radius: 6.5px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.31);
+}
+
+.main-content {
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 80px auto;
+}
+
+.main-content p {
+  font-family: "Noto Serif";
+  font-size: 20px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-align: center;
+  color: #262626;
+}
+
+h1 {
+  font-family: "Noto Serif";
+  font-size: 64px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.13;
+  letter-spacing: -0.38px;
+  text-align: center;
+  color: #262626;
+}
+
+.features-content {
+  padding: 776.5px 36px 143px;
+  background-color: #f6dee2;
+}
+
+h2 {
+  font-family: "Noto Serif";
+  font-size: 64px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: -0.38px;
+  color: #262626;
+  max-width: 865px;
+}
+
+.feature-row {
+  display: flex;
+  max-width: 600px;
+}
+
+.feature_col {
+  height: 107px;
+  width: 107px;
+  background-color: #ffffff;
+  margin-top: 2em;
+  margin-right: 35px;
+  padding: 39px 33px 34px 37px;
+  border-radius: 24px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.31);
+  background-image: linear-gradient(to bottom, #ffffff, #f3f0f0);
+  flex-basis: initial;
+}
+
+h6 {
+  font-family: "Noto Serif";
+  font-size: 28px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.57;
+  letter-spacing: -0.16px;
+  color: #262626;
+  margin-bottom: 0;
+}
+
+.feature-details > p {
+  max-width: 458px;
+  font-size: 20px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.4;
+  letter-spacing: normal;
+  color: #262626;
+  margin-top: 0;
+}
+
+.installation,
+.last-content {
+  padding: 0 36px;
+  margin-top: 15px;
+}
+
+.installation figure {
+  height: 100%;
+}
+
+.installation-steps {
+  width: 50%;
+}
+
+ol {
+  font-family: "Noto Serif";
+  font-size: 22px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.57;
+  letter-spacing: -0.16px;
+  color: #262626;
+  margin: 0;
+}
+
+li span {
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 1.4;
+  letter-spacing: normal;
+  display: block;
+}
+
+ion-footer {
+  background-color: #ffffff;
+  margin-top: 80px;
+  padding-top: 80px;
+}
+
+ion-footer ion-col {
+  max-height: 68px;
+  justify-content: center;
+}
+
+ion-footer img {
+  height: 100%;
+}
+
+ion-footer ion-grid {
+  margin: 0;
+  margin-left: 20px;
+  padding: 0;
+  max-width: 55%;
+}
+
+.menu-icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .menu-icon {
+    display: flex;
+  }
+
+  .menu-icon ion-icon {
+    width: 4rem;
+    height: 2rem;
+  }
+
+  .features-content {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .right-links {
+    display: none;
+  }
+
+  .header {
+    margin: 0 16px;
+  }
+
+  .main-content {
+    max-width: 90%;
+  }
+
+  h1 {
+    font-size: 48px;
+  }
+
+  ion-button {
+    width: 100%;
+    font-size: 20.9px;
+    height: 68px;
+  }
+
+  h2 {
+    font-size: 40px;
+  }
+
+  h3 {
+    font-size: 29px;
+  }
+
+  ion-row ion-col {
+    flex-basis: initial;
+  }
+
+  .feature-row {
+    flex-direction: column;
+  }
+
+  .installation-steps {
+    width: 100%;
+  }
+
+  .footer-links {
+    align-items: flex-start;
+    font-size: 32px;
+    margin-top: 80px;
+  }
+
+  .footer-links a {
+    font-size: 32px;
+  }
+
+  ion-footer ion-col {
+    max-height: fit-content;
+    justify-content: center;
+  }
+
+  .last-content {
+    flex-direction: column-reverse;
+  }
+
+  ion-footer ion-grid {
+    margin-left: 0px;
+    max-width: 100%;
+  }
+
+  .last-content ion-row {
+    justify-content: flex-start !important;
+  }
+
+  .installation .last-content {
+    padding: 0 16px;
+  }
+
+  ion-footer img {
+    height: auto;
+  }
+  
+  .last-content> span {
+    margin-top: 30px;
+  }
+}
