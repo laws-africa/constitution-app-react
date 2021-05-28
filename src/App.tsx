@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import {
   IonApp,
   IonIcon,
@@ -51,65 +51,71 @@ import LandingPage from './pages/LandingPage/LandingPage';
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route path="/guides" component={Topics} exact={true} />
-          <Route path="/guides/:id" component={Topic} exact={true} />
-          <Route
-            path="/constitution"
-            component={ConstitutionTOC}
-            exact={true}
-          />
-          <Route
-            path="/constitution/full"
-            component={Constitution_Full}
-            exact={true}
-          />
-          <Route
-            path="/constitution/full/:id+"
-            component={Constitution_Full}
-            exact={true}
-          />
-          <Route
-            path="/constitution/provision/:id+"
-            component={Constitution}
-            exact={true}
-          />
-          <Route path="/rules" component={RulesTOC} exact={true} />
-          <Route path="/rules/full" component={Rules_Full} exact={true} />
-          <Route path="/rules/full/:id+" component={Rules_Full} exact={true} />
-          <Route path="/rules/provision/:id+" component={Rules} exact={true} />
-          <Route path="/home" component={Home} exact={true} />
-          <Route path="/cases" component={Cases} exact={true} />
-          <Route path="/cases/:id" component={Case} exact={true} />
-          <Route path="/help" component={Help} exact={true} />
-          <Route path="/search" component={Search} exact={true} />
-          <Route path="/search/:segment" component={Search} exact={true} />
-          <Route path="/" component={LandingPage} exact={true} />
-        </IonRouterOutlet>
-        <IonTabBar class="tab-bar" slot="bottom" color="light">
-          <IonTabButton tab="home" href="/home">
-            <IonIcon icon={svgs.HOME} />
-            <IonLabel>Home</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="guides" href="/guides">
-            <IonIcon icon={svgs.GUIDES} />
-            <IonLabel>Guides</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="constitution" href="/constitution">
-            <IonIcon icon={svgs.CONSTITUTION} />
-            <IonLabel>Constitution</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="rules" href="/rules">
-            <IonIcon icon={svgs.RULES} />
-            <IonLabel>NA Rules</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="search" href="/search">
-            <IonIcon icon={svgs.SEARCH} />
-            <IonLabel>Search</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
+      <Switch>
+        <Route exact path="/">
+          <LandingPage />
+        </Route>
+        <Route>
+          <IonTabs>
+            <IonRouterOutlet>
+              <Route path="/guides" component={Topics} exact={true} />
+              <Route path="/guides/:id" component={Topic} exact={true} />
+              <Route
+                path="/constitution"
+                component={ConstitutionTOC}
+                exact={true}
+              />
+              <Route
+                path="/constitution/full"
+                component={Constitution_Full}
+                exact={true}
+              />
+              <Route
+                path="/constitution/full/:id+"
+                component={Constitution_Full}
+                exact={true}
+              />
+              <Route
+                path="/constitution/provision/:id+"
+                component={Constitution}
+                exact={true}
+              />
+              <Route path="/rules" component={RulesTOC} exact={true} />
+              <Route path="/rules/full" component={Rules_Full} exact={true} />
+              <Route path="/rules/full/:id+" component={Rules_Full} exact={true} />
+              <Route path="/rules/provision/:id+" component={Rules} exact={true} />
+              <Route path="/home" component={Home} exact={true} />
+              <Route path="/cases" component={Cases} exact={true} />
+              <Route path="/cases/:id" component={Case} exact={true} />
+              <Route path="/help" component={Help} exact={true} />
+              <Route path="/search" component={Search} exact={true} />
+              <Route path="/search/:segment" component={Search} exact={true} />
+            </IonRouterOutlet>
+            <IonTabBar class="tab-bar" slot="bottom" color="light">
+              <IonTabButton tab="home" href="/home">
+                <IonIcon icon={svgs.HOME} />
+                <IonLabel>Home</IonLabel>
+              </IonTabButton>
+              <IonTabButton tab="guides" href="/guides">
+                <IonIcon icon={svgs.GUIDES} />
+                <IonLabel>Guides</IonLabel>
+              </IonTabButton>
+              <IonTabButton tab="constitution" href="/constitution">
+                <IonIcon icon={svgs.CONSTITUTION} />
+                <IonLabel>Constitution</IonLabel>
+              </IonTabButton>
+              <IonTabButton tab="rules" href="/rules">
+                <IonIcon icon={svgs.RULES} />
+                <IonLabel>NA Rules</IonLabel>
+              </IonTabButton>
+              <IonTabButton tab="search" href="/search">
+                <IonIcon icon={svgs.SEARCH} />
+                <IonLabel>Search</IonLabel>
+              </IonTabButton>
+            </IonTabBar>
+          </IonTabs>
+        </Route>
+      </Switch>
     </IonReactRouter>
   </IonApp>
 );

@@ -29,7 +29,7 @@ const LandingPage = () => {
                 onError={(e) => {
                   e.currentTarget.src = "../../assets/shapes.svg";
                 }}
-              ></IonIcon>
+              />
             </IonCol>
             <h3>
               Constitution <br /> Guide
@@ -47,7 +47,7 @@ const LandingPage = () => {
                 e.currentTarget.src = "../../assets/shapes.svg";
               }}
               class="ion-no-padding ion-no-margin"
-            ></IonIcon>
+            />
           </IonCol>
         </IonRow>
         <div className="ion-text-center main-content">
@@ -57,6 +57,8 @@ const LandingPage = () => {
             eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
           </p>
           <IonButton color="light">Install Now</IonButton>
+
+          <a href="/home" className="ion-padding-top">Use the web version</a>
         </div>
         <div id="features" className="features-content">
           <h2>Introducing the features of this product</h2>
@@ -142,7 +144,7 @@ const LandingPage = () => {
                   onError={(e) => {
                     e.currentTarget.src = "../../assets/shapes.svg";
                   }}
-                ></IonIcon>
+                />
               </IonCol>
               <h3>
                 Constitution <br /> Guide
@@ -235,7 +237,7 @@ const Features: React.FC<FeaturesProps> = ({ iconName, title, text }) => {
           onError={(e) => {
             e.currentTarget.src = "../../assets/shapes.svg";
           }}
-        ></IonIcon>
+        />
       </IonCol>
       <section className="feature-details">
         <h6>{title}</h6>
