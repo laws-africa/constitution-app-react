@@ -30,20 +30,9 @@ const LandingPage = () => {
     <IonPage className="landing-page">
       <IonContent>
         <IonRow class="ion-justify-content-between ion-margin-horizontal ion-padding-vertical header ion-align-items-center">
-          <section className="tab-title">
-            <IonCol size="2" class="home-icon ion-no-padding">
-              <IonIcon
-                icon={
-                  "../../assets/images/sec_2__Supremacy_of_the_Constitution.svg"
-                }
-                onError={(e) => {
-                  e.currentTarget.src = "../../assets/shapes.svg";
-                }}
-              />
-            </IonCol>
-            <h3>
-              Constitution <br /> Compass
-            </h3>
+          <section className="app-title">
+            <IonIcon icon={ "/assets/icon/logo.svg" } />
+            <h2>Constitution <br/> Compass 🇿🇦</h2>
           </section>
 
           <IonRow class="ion-align-items-center right-links ion-justify-content-between">
@@ -53,10 +42,11 @@ const LandingPage = () => {
         </IonRow>
 
         <div className="ion-text-center main-content">
-          <h1>Short version of the purpose of this app. </h1>
+          <h1>The Constitution app for Members of Parliament.</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
+            The Constitution Compass gives you full digital access to the Constitution,
+            Rules of the National Assembly at your fingertips. Continuously updated and curated for Members
+            of the South African Parliament.
           </p>
           <IonButton color="light" href="#installation">Install Now</IonButton>
 
@@ -69,40 +59,40 @@ const LandingPage = () => {
         </div>
 
         <div id="features" className="features-content">
-          <h2>Your guide to the constitution</h2>
+          <h2>Constitution Compass</h2>
 
           <IonGrid>
             <IonRow>
               <IonCol size-lg="6">
                 <Features
                   iconName={svgs.CONSTITUTION}
-                  text="Filium morte multavit si sine causa quae fuerit causa mox videro interea epicurus in sanguinem suum tam egregios viros consectetur"
                   title="Browse the Constitution"
+                  text="Browse, search and read the South African Constitution. Updated and consolidated."
                 />
 
                 <Features
                   iconName={svgs.GUIDES}
-                  text="Filium morte multavit si sine causa quae fuerit causa mox videro interea epicurus in sanguinem suum tam egregios viros consectetur"
                   title="Guides to the Constitution"
+                  text="A quick guide into the purpose and meaning of each Chapter of the Constitution and each section of the Bill of Rights."
                 />
 
                 <Features
                   iconName={svgs.CASES}
-                  text="Filium morte multavit si sine causa quae fuerit causa mox videro interea epicurus in sanguinem suum tam egregios viros consectetur"
                   title="Get Cases in Context "
+                  text="Read the Constitutional Court’s authoritative interpretation of the Bill of Rights."
                 />
               </IonCol>
               <IonCol size-lg="6">
                 <Features
                   iconName={svgs.RULES}
-                  text="Filium morte multavit si sine causa quae fuerit causa mox videro interea epicurus in sanguinem suum tam egregios viros consectetur"
                   title="Rules of the National Assembly"
+                  text="Browse quickly to the rule mentioned in debates. Search for rules on the fly. Tired of clunky PDFs? This is a consolidated and updated version of the Rules of the National Assembly."
                 />
 
                 <Features
                   iconName={svgs.SEARCH}
-                  text="Filium morte multavit si sine causa quae fuerit causa mox videro interea epicurus in sanguinem suum tam egregios viros consectetur"
                   title="Find what you’re looking for"
+                  text="Use the precise search function to search across the Constitution, Rules, Guides or Cases to find the information that you need."
                 />
               </IonCol>
             </IonRow>

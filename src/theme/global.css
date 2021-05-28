@@ -6,6 +6,20 @@
   }
 }
 
+.app-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.app-title h2 {
+  margin: 0px;
+}
+
+.app-title ion-icon {
+  font-size: 50px;
+}
+
 .related-list {
   background-color: var(--ion-color-light);
   border-top: 1px solid var(--ion-color-light-shade);

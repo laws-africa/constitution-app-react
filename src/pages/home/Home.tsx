@@ -29,7 +29,10 @@ const Home: React.FC = () => {
   return (
     <IonPage>
       <IonContent className="ion-padding">
-        <h2>South Africa's Constitution</h2>
+        <div className="app-title">
+          <IonIcon icon={ "/assets/icon/logo.svg" } />
+          <h2>Constitution <br/> Compass 🇿🇦</h2>
+        </div>
         <hr className="header-divider" />
 
         <div className="ion-padding-bottom">Browse the Constitution for the provisions that you need.</div>
