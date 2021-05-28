@@ -10,7 +10,7 @@ import {
   IonFooter,
   IonGrid,
 } from "@ionic/react";
-import React from "react";
+import React, { useState } from "react";
 import { svgs } from "../../assets/svgs";
 import { handleSupportersLink } from "../../utils";
 import "./LandingPage.scss";
@@ -18,6 +18,8 @@ import { getAndClearRedirected } from "../../redirect";
 import { Redirect } from "react-router-dom";
 
 const LandingPage = () => {
+  const [tab, setTab] = useState('ios');
+
   // redirect to a url from the 404.html page?
   const path = getAndClearRedirected();
   if (path.length) {
@@ -46,7 +48,6 @@ const LandingPage = () => {
 
           <IonRow class="ion-align-items-center right-links ion-justify-content-between">
             <a href="#features">Features</a>{" "}
-            <a href="#installation">How to install</a>
             <IonButton color="light" href="#installation">Install Now</IonButton>
           </IonRow>
         </IonRow>
@@ -105,7 +106,8 @@ const LandingPage = () => {
 
         <div id="installation" className="installation">
           <h2>How to install the app on your phone</h2>
-          <IonSegment mode="md" value="ios">
+
+          <IonSegment mode="md" value={tab} onIonChange={(e) => setTab(e.detail.value || "ios")}>
             <IonSegmentButton value="ios">iOS</IonSegmentButton>
             <IonSegmentButton value="android">Android</IonSegmentButton>
           </IonSegment>
@@ -113,23 +115,42 @@ const LandingPage = () => {
           <hr />
 
           <IonRow class="ion-justify-content-between">
-            <figure></figure>
-            <div className="installation-steps">
-              <h6>Add to your iPhone</h6>
-              <ol>
-                <li>
-                  Open your Safari browser{" "}
-                  <div className="light">
-                    Note: It must be Safari, you cannot use Google Chrome or
-                    Firefox.
-                  </div>
-                </li>
-                <li>Go to bit.ly/saconapp or constitution.laws.africa</li>
-                <li>Tap the share icon at the bottom of the screen</li>
-                <li>Scroll down and tap “Add to Home Screen” then tap “Add”</li>
-                <li>To open the app, find it on your home screen </li>
-              </ol>
-            </div>
+            <IonCol size-md="6">
+              <figure></figure>
+            </IonCol>
+
+            <IonCol size-md="6">
+              <div className="installation-steps">
+                {tab === 'ios' && <>
+                  <h6>Install on your iPhone or iPad</h6>
+
+                  <ol>
+                    <li>
+                      Open your Safari browser
+                      <div className="light">
+                        Note: It must be Safari, you cannot use Google Chrome or Firefox.
+                      </div>
+                    </li>
+                    <li>Go to <a href="https://bit.ly/saconapp" target="_blank">bit.ly/saconapp</a></li>
+                    <li>Tap the share icon at the bottom of the screen</li>
+                    <li>Scroll down and tap “Add to Home Screen” then tap “Add”</li>
+                    <li>To open the app, find it on your home screen</li>
+                  </ol>
+                </>}
+
+                {tab === 'android' && <>
+                  <h6>Install on your Android</h6>
+
+                  <ol>
+                    <li>Open your phone's browser</li>
+                    <li>Go to <a href="https://bit.ly/saconapp" target="_blank">bit.ly/saconapp</a></li>
+                    <li>Tap the share icon at the bottom of the screen</li>
+                    <li>Scroll down and tap “Add to Home Screen” then tap “Add”</li>
+                    <li>To open the app, find it on your home screen</li>
+                  </ol>
+                </>}
+              </div>
+            </IonCol>
           </IonRow>
         </div>
         <IonFooter>
@@ -150,9 +171,8 @@ const LandingPage = () => {
               </h3>
             </section>
             <IonCol class="footer-links">
-              <a href="#features">Features</a>{" "}
-              <a href="#installation">How to install</a>
-              <span>Install Now</span>
+              <a href="#features">Features</a>
+              <a href="#installation">Install now</a>
             </IonCol>
           </IonRow>
           <IonRow class="ion-justify-content-between ion-padding-vertical last-content ion-align-items-center">

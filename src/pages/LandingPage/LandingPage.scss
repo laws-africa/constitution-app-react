@@ -20,6 +20,8 @@
   }
 
   .right-links {
+    font-size: 16px;
+
     a, ion-button {
       margin-right: 2em;
     }
@@ -48,11 +50,9 @@
   }
 
   a {
-    font-size: 16px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
-    line-height: 1.75;
     letter-spacing: normal;
     text-decoration: none;
   }
@@ -185,12 +185,16 @@
     margin-top: 15px;
   }
 
-  .installation figure {
-    height: 100%;
-  }
+  .installation {
+    figure {
+      height: 100%;
+    }
 
-  .installation-steps {
-    width: 50%;
+    .installation-steps {
+      h6 {
+        margin-bottom: 1em;
+      }
+    }
   }
 
   ol {
@@ -289,10 +293,6 @@
     .feature-row {
       flex-direction: column;
       margin-bottom: 30px;
-    }
-
-    .installation-steps {
-      width: 100%;
     }
 
     .footer-links {
