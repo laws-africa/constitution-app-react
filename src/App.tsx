@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import {
   IonApp,
   IonIcon,
@@ -46,6 +46,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import './theme/theme.css';
 import './theme/global.css';
+import LandingPage from './pages/LandingPage/LandingPage';
 
 const App: React.FC = () => (
   <IonApp>
@@ -54,10 +55,26 @@ const App: React.FC = () => (
         <IonRouterOutlet>
           <Route path="/guides" component={Topics} exact={true} />
           <Route path="/guides/:id" component={Topic} exact={true} />
-          <Route path="/constitution" component={ConstitutionTOC} exact={true} />
-          <Route path="/constitution/full" component={Constitution_Full} exact={true} />
-          <Route path="/constitution/full/:id+" component={Constitution_Full} exact={true} />
-          <Route path="/constitution/provision/:id+" component={Constitution} exact={true} />
+          <Route
+            path="/constitution"
+            component={ConstitutionTOC}
+            exact={true}
+          />
+          <Route
+            path="/constitution/full"
+            component={Constitution_Full}
+            exact={true}
+          />
+          <Route
+            path="/constitution/full/:id+"
+            component={Constitution_Full}
+            exact={true}
+          />
+          <Route
+            path="/constitution/provision/:id+"
+            component={Constitution}
+            exact={true}
+          />
           <Route path="/rules" component={RulesTOC} exact={true} />
           <Route path="/rules/full" component={Rules_Full} exact={true} />
           <Route path="/rules/full/:id+" component={Rules_Full} exact={true} />
@@ -68,7 +85,7 @@ const App: React.FC = () => (
           <Route path="/help" component={Help} exact={true} />
           <Route path="/search" component={Search} exact={true} />
           <Route path="/search/:segment" component={Search} exact={true} />
-          <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
+          <Route path="/" component={LandingPage} exact={true} />
         </IonRouterOutlet>
         <IonTabBar class="tab-bar" slot="bottom" color="light">
           <IonTabButton tab="home" href="/home">
