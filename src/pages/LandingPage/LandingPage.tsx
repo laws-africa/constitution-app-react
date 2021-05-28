@@ -54,8 +54,8 @@ const LandingPage = () => {
         </div>
 
         <div className="images">
-          <img src="/assets/phone.png" className="img-phone" />
-          <img src="/assets/tablet.png" className="img-tablet" />
+          <img src="/assets/phone.png" className="img-phone" alt="iphone screenshot" />
+          <img src="/assets/tablet.png" className="img-tablet" alt="tablet screenshot" />
         </div>
 
         <div id="features" className="features-content">
