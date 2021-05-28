@@ -1,3 +1,11 @@
+@media (min-width: 1024px) {
+  .ion-page {
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 .related-list {
   background-color: var(--ion-color-light);
   border-top: 1px solid var(--ion-color-light-shade);

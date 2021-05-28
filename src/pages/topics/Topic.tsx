@@ -17,7 +17,7 @@ import { arrowBack, search, close } from "ionicons/icons";
 import data from "../../assets/data/data.json";
 import "./Topics.css";
 import parse from "html-react-parser";
-import { constitutionRoot, getTOCEntry } from "../../data/constitution";
+import { constitutionRoot, toc } from "../../data/constitution";
 import HeaderSearch from "../../components/headerSearch/headerSearch";
 import { SearchCases } from "../../components/searchCases";
 import { svgs } from "../../assets/svgs";
@@ -50,7 +50,7 @@ const Topic: React.FC<Props> = ({ match }) => {
 
     if (topic) {
       for (const reference of topic.references) {
-        const match = getTOCEntry(reference);
+        const match = toc.itemsById.get(reference);
         if (match) references.push(match);
       }
       for (const caseId of topic.cases) {

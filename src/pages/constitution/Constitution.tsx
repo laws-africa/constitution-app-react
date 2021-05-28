@@ -15,12 +15,13 @@ import {
 import "./Constitution.css";
 import { RouteComponentProps } from "react-router-dom";
 import { arrowBack, search, close, arrowForward } from "ionicons/icons";
-import { constitutionRoot, flatTOC } from "../../data/constitution";
+import { constitutionRoot, toc } from "../../data/constitution";
 import HeaderSearch from "../../components/headerSearch/headerSearch";
 import { findTopicsByProvisionId } from "../../data/search";
 import decorateAkn from "../../components/decorateAkn";
 import { TopicItem } from "../../components/topic";
 import { svgs } from "../../assets/svgs";
+import { handleInDocumentLinks } from "../../utils";
 
 function previous() {
   window.history.back();
@@ -67,7 +68,8 @@ class Constitution extends React.Component<Props, MyState> {
           this.rootRef.current.childNodes[0].remove();
         this.rootRef.current.appendChild(provision.cloneNode(true));
         decorateAkn(this.rootRef.current, this.state.topics);
-        this.currentIndex = flatTOC.indexOf(this.props.match.params.id);
+        handleInDocumentLinks(this.rootRef.current, this.constitution, this.props.history, '/constitution/provision/');
+        this.currentIndex = toc.flattened.indexOf(this.props.match.params.id);
       }
     }
     this.setState({ search: false });
@@ -118,11 +120,11 @@ class Constitution extends React.Component<Props, MyState> {
           <IonButtons className="ion-padding ion-justify-content-between">
             <IonCard
               routerLink={
-                "/constitution/provision/" + flatTOC[this.currentIndex - 1]
+                "/constitution/provision/" + toc.flattened[this.currentIndex - 1]
               }
               className="con-buttons ion-no-margin"
               button
-              disabled={flatTOC[0] === this.props.match.params.id}
+              disabled={toc.flattened[0] === this.props.match.params.id}
             >
               <div>
                 <IonIcon slot="start" icon={arrowBack}></IonIcon>
@@ -131,10 +133,10 @@ class Constitution extends React.Component<Props, MyState> {
             </IonCard>
             <IonCard
               routerLink={
-                "/constitution/provision/" + flatTOC[this.currentIndex + 1]
+                "/constitution/provision/" + toc.flattened[this.currentIndex + 1]
               }
               className="con-buttons ion-no-margin"
-              disabled={flatTOC.slice(-1)[0] === this.props.match.params.id}
+              disabled={toc.flattened.slice(-1)[0] === this.props.match.params.id}
             >
               <div>
                 Next
