@@ -42,7 +42,7 @@ const LandingPage = () => {
               />
             </IonCol>
             <h3>
-              Constitution <br /> Guide
+              Constitution <br /> Compass
             </h3>
           </section>
 
