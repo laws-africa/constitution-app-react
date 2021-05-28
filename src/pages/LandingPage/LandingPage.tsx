@@ -63,6 +63,11 @@ const LandingPage = () => {
           <a href="/home" className="ion-padding-top">Use the web version</a>
         </div>
 
+        <div className="images">
+          <img src="/assets/phone.png" className="img-phone" />
+          <img src="/assets/tablet.png" className="img-tablet" />
+        </div>
+
         <div id="features" className="features-content">
           <h2>Your guide to the constitution</h2>
 

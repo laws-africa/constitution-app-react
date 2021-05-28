@@ -239,7 +239,34 @@
     max-width: 55%;
   }
 
+  .images {
+    text-align: center;
+
+    .img-phone,
+    .img-tablet {
+      padding: 10px 20px;
+    }
+
+    .img-phone {
+      display: none;
+    }
+
+    .img-tablet {
+      max-width: 80%;
+    }
+  }
+
   @media screen and (max-width: 600px) {
+    .images {
+      .img-phone {
+        display: block;
+      }
+
+      .img-tablet {
+        display: none;
+      }
+    }
+
     .features-content {
       padding-left: 16px;
       padding-right: 16px;
