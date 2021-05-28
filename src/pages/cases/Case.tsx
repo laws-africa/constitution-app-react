@@ -120,6 +120,7 @@ const Case: React.FC<Props> = ({ match }) => {
         )}
         <IonButton
           expand="block"
+          color="white"
           onClick={() => handleSupportersLink(thisCase.href)}
         >
           Read this case on SAFLII
