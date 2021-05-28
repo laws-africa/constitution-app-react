@@ -16,7 +16,7 @@ jobs:
     - name: Install dependencies
       run: |
         npm install -g @ionic/cli
-        npm ci
+        yarn
 
     - name: Build
       run: ionic build --prod --engine=web
