@@ -42,11 +42,11 @@ const LandingPage = () => {
         </IonRow>
 
         <div className="ion-text-center main-content">
+          <h1>Constitution Compass</h1>
           <h1>The Constitution app for Members of Parliament.</h1>
           <p>
-            The Constitution Compass gives you full digital access to the Constitution,
-            Rules of the National Assembly at your fingertips. Continuously updated and curated for Members
-            of the South African Parliament.
+            Browse, search and understand the South African Constitution and how it applies to everyone. Continuously
+            updated and curated Constitution and Rules of the National Assembly.
           </p>
           <IonButton color="light" href="#installation">Install Now</IonButton>
 
@@ -67,32 +67,32 @@ const LandingPage = () => {
                 <Features
                   iconName={svgs.CONSTITUTION}
                   title="Browse the Constitution"
-                  text="Browse, search and read the South African Constitution. Updated and consolidated."
+                  text="Browse, search and read the latest version of the South African Constitution: updated and consolidated."
                 />
 
                 <Features
                   iconName={svgs.GUIDES}
                   title="Guides to the Constitution"
-                  text="A quick guide into the purpose and meaning of each Chapter of the Constitution and each section of the Bill of Rights."
+                  text="Quick guides to the purpose and meaning of each section of the Bill of Rights and some of the most used chapters of the Constitution."
                 />
 
                 <Features
-                  iconName={svgs.CASES}
-                  title="Get Cases in Context "
-                  text="Read the Constitutional Court’s authoritative interpretation of the Bill of Rights."
+                  iconName={svgs.RULES}
+                  title="Get Cases in Context"
+                  text="Accessible guides to the South African Constitutional Court’s authoritative interpretation of the Constitution."
                 />
               </IonCol>
               <IonCol size-lg="6">
                 <Features
-                  iconName={svgs.RULES}
+                  iconName={svgs.CASES}
                   title="Rules of the National Assembly"
-                  text="Browse quickly to the rule mentioned in debates. Search for rules on the fly. Tired of clunky PDFs? This is a consolidated and updated version of the Rules of the National Assembly."
+                  text="Quickly browse through the consolidated and updated version of the Rules of the National Assembly."
                 />
 
                 <Features
                   iconName={svgs.SEARCH}
-                  title="Find what you’re looking for"
-                  text="Use the precise search function to search across the Constitution, Rules, Guides or Cases to find the information that you need."
+                  title="Find what you are looking for"
+                  text="Search across the Constitution, Rules, Guides or Cases to find the information that you need."
                 />
               </IonCol>
             </IonRow>
@@ -222,7 +222,7 @@ const LandingPage = () => {
                       e.currentTarget.src = "../../assets/shapes.svg";
                     }}
                     onClick={() =>
-                      handleSupportersLink("https://www.uct.ac.za/")
+                      handleSupportersLink("https://laws.africa/")
                     }
                   />
                 </IonCol>
