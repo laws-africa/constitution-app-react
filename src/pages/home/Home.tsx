@@ -30,7 +30,7 @@ const Home: React.FC = () => {
     <IonPage>
       <IonContent className="ion-padding">
         <div className="app-title">
-          <IonIcon icon={ "/assets/icon/logo.svg" } />
+          <IonIcon icon={ "/assets/logo.svg" } />
           <h2>Constitution <br/> Compass 🇿🇦</h2>
         </div>
         <hr className="header-divider" />

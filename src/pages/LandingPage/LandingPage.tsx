@@ -31,7 +31,7 @@ const LandingPage = () => {
       <IonContent>
         <IonRow class="ion-justify-content-between ion-margin-horizontal ion-padding-vertical header ion-align-items-center">
           <section className="app-title">
-            <IonIcon icon={ "/assets/icon/logo.svg" } />
+            <IonIcon icon={ "/assets/logo.svg" } />
             <h2>Constitution <br/> Compass 🇿🇦</h2>
           </section>
 
@@ -148,79 +148,56 @@ const LandingPage = () => {
             </IonCol>
           </IonRow>
         </div>
+
         <IonFooter>
           <IonRow class="ion-justify-content-between ion-padding-vertical header ion-align-items-center">
-            <section className="tab-title">
-              <IonCol size="2" class="home-icon ion-no-padding">
-                <IonIcon
-                  icon={
-                    "../../assets/images/sec_2__Supremacy_of_the_Constitution.svg"
-                  }
-                  onError={(e) => {
-                    e.currentTarget.src = "../../assets/shapes.svg";
-                  }}
-                />
-              </IonCol>
-              <h3>
-                Constitution <br /> Guide
-              </h3>
+            <section className="app-title">
+              <IonIcon icon={ "/assets/logo.svg" } />
+              <h2>Constitution <br/> Compass 🇿🇦</h2>
             </section>
+
             <IonCol class="footer-links">
               <a href="#features">Features</a>
               <a href="#installation">Install now</a>
             </IonCol>
           </IonRow>
-          <IonRow class="ion-justify-content-between ion-padding-vertical last-content ion-align-items-center">
 
-            <span>&copy; 2021 AfricanLII.org</span>
+          <div className="last-content">
+            <span>Developed by:</span>
 
-            <IonGrid class="ion-align-items-center">
-              <span>Developed By:</span>
-
-              <IonRow>
-                <IonCol size="6">
+            <IonGrid>
+              <IonRow class="ion-align-items-center">
+                <IonCol size-md="3">
                   <img
                     alt=""
                     src="../../assets/African Lii logo.svg"
-                    onError={(e) => {
-                      e.currentTarget.src = "../../assets/shapes.svg";
-                    }}
                     onClick={() =>
                       handleSupportersLink("https://africanlii.org/")
                     }
                   />
                 </IonCol>
-                <IonCol size="6">
+                <IonCol size-md="3">
                   <img
                     alt=""
                     src="../../assets/03_KAS_Logo_Min_RGB_Blau.jpg"
-                    onError={(e) => {
-                      e.currentTarget.src = "../../assets/shapes.svg";
-                    }}
                     onClick={() =>
                       handleSupportersLink("https://www.kas.de/en/home")
                     }
                   />
                 </IonCol>
-                <IonCol size="6">
+                <IonCol size-md="3">
                   <img
                     alt=""
-                    src="../../assets/uc-tlogo@2x.jpg"
-                    onError={(e) => {
-                      e.currentTarget.src = "../../assets/shapes.svg";
-                    }}
+                    src="../../assets/uct-logo.jpg"
                     onClick={() =>
                       handleSupportersLink("https://www.uct.ac.za/")
                     }
                   />
                 </IonCol>
-                <IonCol size="6">
+                <IonCol size-md="3">
                   <img
                     alt=""
                     src="../../assets/Laws.Africa.jpg"
-                    onError={(e) => {
-                      e.currentTarget.src = "../../assets/shapes.svg";
-                    }}
                     onClick={() =>
                       handleSupportersLink("https://laws.africa/")
                     }
@@ -228,7 +205,9 @@ const LandingPage = () => {
                 </IonCol>
               </IonRow>
             </IonGrid>
-          </IonRow>
+
+            <div className="ion-padding-vertical">&copy; 2021 AfricanLII.org</div>
+          </div>
         </IonFooter>
       </IonContent>
     </IonPage>
@@ -251,9 +230,6 @@ const Features: React.FC<FeaturesProps> = ({ iconName, title, text }) => {
           size="large"
           class="feature_icon"
           icon={iconName}
-          onError={(e) => {
-            e.currentTarget.src = "../../assets/shapes.svg";
-          }}
         />
       </IonCol>
       <section className="feature-details">

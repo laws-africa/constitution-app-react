@@ -222,25 +222,12 @@
   }
 
   ion-footer {
-    background-color: #ffffff;
     margin-top: 80px;
     padding-top: 80px;
   }
 
-  ion-footer ion-col {
-    max-height: 68px;
-    justify-content: center;
-  }
-
   ion-footer img {
-    height: 100%;
-  }
-
-  ion-footer ion-grid {
-    margin: 0;
-    margin-left: 20px;
-    padding: 0;
-    max-width: 55%;
+    max-height: 100px;
   }
 
   .images {
@@ -336,26 +323,8 @@
       font-size: 32px;
     }
 
-    ion-footer ion-col {
-      max-height: fit-content;
-      justify-content: center;
-    }
-
-    .last-content {
-      flex-direction: column-reverse;
-    }
-
-    ion-footer ion-grid {
-      margin-left: 0px;
-      max-width: 100%;
-    }
-
     .last-content ion-row {
       justify-content: flex-start !important;
-    }
-
-    .installation .last-content {
-      padding: 0 16px;
     }
 
     ion-footer img {
