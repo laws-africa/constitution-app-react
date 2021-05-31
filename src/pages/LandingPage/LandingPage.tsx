@@ -159,6 +159,7 @@ const LandingPage = () => {
             <IonCol class="footer-links">
               <a href="#features">Features</a>
               <a href="#installation">Install now</a>
+              <a href="mailto:info@africanlii.org">info@africanlii.org</a>
             </IonCol>
           </IonRow>
 
