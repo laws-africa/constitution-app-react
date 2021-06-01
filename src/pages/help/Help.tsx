@@ -16,10 +16,11 @@ const Tab1: React.FC = () => {
 
         <hr className="header-divider" />
         <p>
-          The Constitution App is developed by the Democratic Governance and
-          Rights Unit of the Faculty of Law, University of Cape Town in
-          collaboration with AfricanLII and Laws.Africa, with funding support
-          from the Konrad Adenauer Stiftung. The aim of the project is to equip
+          The Constitution App is developed by the <a href="http://www.dgru.uct.ac.za/" target="_blank">Democratic Governance and Rights Unit</a> of
+          the Faculty of Law, University of Cape Town in collaboration
+          with <a href="https://africanlii.org" target="_blank">AfricanLII</a> and <a href="https://laws.africa" target="_blank">Laws.Africa</a>,
+          with funding support from the <a href="https://www.kas.de/en/web/suedafrika/home" target="_blank">Konrad-Adenauer-Stiftung</a>.
+          The aim of the project is to equip
           South African parliamentarians with accurate and authoritative
           information on South African constitutional law.
         </p>
@@ -33,14 +34,13 @@ const Tab1: React.FC = () => {
         </p>
         <h3>Contact</h3>
         <p>
-          Feel free to forward constructive feedback and suggestions to
-          info@africanlii.org.
+          Feel free to forward constructive feedback and suggestions to <a href="mailto:info@africanlii.org">info@africanlii.org</a>.
         </p>
         <h3>Copyright</h3>
         <p>
           The contents of this app is licensed under Attribution-NonCommercial
           4.0 International (CC BY-NC 4.0) Creative Commons license. View the
-          license here: https://creativecommons.org/licenses/by-nc/4.0/
+          license at <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">https://creativecommons.org/licenses/by-nc/4.0/</a>.
         </p>
       </IonContent>
     </IonPage>

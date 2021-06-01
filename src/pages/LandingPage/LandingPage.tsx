@@ -182,7 +182,7 @@ const LandingPage = () => {
                     alt=""
                     src="../../assets/03_KAS_Logo_Min_RGB_Blau.jpg"
                     onClick={() =>
-                      handleSupportersLink("https://www.kas.de/en/home")
+                      handleSupportersLink("https://www.kas.de/en/web/suedafrika/home")
                     }
                   />
                 </IonCol>
