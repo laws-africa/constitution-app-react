@@ -43,10 +43,10 @@ const LandingPage = () => {
 
         <div className="ion-text-center main-content">
           <h1>Constitution Compass</h1>
-          <h1>The Constitution app for Members of Parliament.</h1>
+          <h2>The Constitution App for Members of Parliament.</h2>
           <p>
             Browse, search and understand the South African Constitution and how it applies to everyone. Continuously
-            updated and curated Constitution and Rules of the National Assembly.
+            updated and curated Constitution and <span className="ion-text-nowrap">Rules of the National Assembly</span>.
           </p>
           <IonButton color="light" href="#installation">Install Now</IonButton>
 
