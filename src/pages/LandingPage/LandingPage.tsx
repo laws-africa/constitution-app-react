@@ -31,8 +31,8 @@ const LandingPage = () => {
       <IonContent>
         <IonRow class="ion-justify-content-between ion-margin-horizontal ion-padding-vertical header ion-align-items-center">
           <section className="app-title">
-            <IonIcon icon={ "/assets/logo.svg" } />
-            <h2>Constitution <br/> Compass 🇿🇦</h2>
+            <img src="/assets/logo.png" alt="logo" className="logo" />
+            <h2>Constitution <br/> Compass <img src="/assets/flag.png" className="flag" alt="South African Flag"/></h2>
           </section>
 
           <IonRow class="ion-align-items-center right-links ion-justify-content-between">
@@ -152,8 +152,8 @@ const LandingPage = () => {
         <IonFooter>
           <IonRow class="ion-justify-content-between ion-padding-vertical header ion-align-items-center">
             <section className="app-title">
-              <IonIcon icon={ "/assets/logo.svg" } />
-              <h2>Constitution <br/> Compass 🇿🇦</h2>
+              <img src="/assets/logo.png" alt="logo" className="logo" />
+              <h2>Constitution <br/> Compass <img src="/assets/flag.png" className="flag" alt="South African Flag"/></h2>
             </section>
 
             <IonCol class="footer-links">

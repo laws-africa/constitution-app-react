@@ -6,6 +6,10 @@
   }
 }
 
+.flag {
+  height: 0.75em;
+}
+
 .app-title {
   display: flex;
   flex-direction: row;
@@ -16,8 +20,10 @@
   margin: 0px;
 }
 
-.app-title ion-icon {
+.app-title .logo {
   font-size: 50px;
+  width: 50px;
+  height: 50px;
 }
 
 .related-list {
