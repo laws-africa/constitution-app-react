@@ -59,8 +59,6 @@ const LandingPage = () => {
         </div>
 
         <div id="features" className="features-content">
-          <h2>Constitution Compass</h2>
-
           <IonGrid>
             <IonRow>
               <IonCol size-lg="6">
