@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import {
   IonApp,
-  IonIcon,
   IonLabel,
   IonRouterOutlet,
   IonTabBar,
@@ -93,23 +92,23 @@ const App: React.FC = () => (
             </IonRouterOutlet>
             <IonTabBar class="tab-bar" slot="bottom" color="light">
               <IonTabButton tab="home" href="/home">
-                <IonIcon icon={svgs.HOME} />
+                <img src={svgs.HOME} alt="Home" />
                 <IonLabel>Home</IonLabel>
               </IonTabButton>
               <IonTabButton tab="guides" href="/guides">
-                <IonIcon icon={svgs.GUIDES} />
+                <img src={svgs.GUIDES} alt="Guides" />
                 <IonLabel>Guides</IonLabel>
               </IonTabButton>
               <IonTabButton tab="constitution" href="/constitution">
-                <IonIcon icon={svgs.CONSTITUTION} />
+                <img src={svgs.CONSTITUTION}  alt="Constitution" />
                 <IonLabel>Constitution</IonLabel>
               </IonTabButton>
               <IonTabButton tab="rules" href="/rules">
-                <IonIcon icon={svgs.RULES} />
+                <img src={svgs.RULES} alt="Rules" />
                 <IonLabel>NA Rules</IonLabel>
               </IonTabButton>
               <IonTabButton tab="search" href="/search">
-                <IonIcon icon={svgs.SEARCH} />
+                <img src={svgs.SEARCH} alt="Search" />
                 <IonLabel>Search</IonLabel>
               </IonTabButton>
             </IonTabBar>
