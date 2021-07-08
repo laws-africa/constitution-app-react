@@ -18,8 +18,8 @@ import { RouteComponentProps } from "react-router-dom";
 import { arrowBack, close, search } from 'ionicons/icons';
 import { TopicItem } from '../../components/topic';
 import HeaderSearch from '../../components/headerSearch/headerSearch';
-import { handleSupportersLink } from '../../utils';
 import { svgs } from '../../assets/svgs';
+import ActionCard from "../../components/Action/ActionCard";
 
 interface Props extends RouteComponentProps<{ id: string; }> { }
 
@@ -118,13 +118,15 @@ const Case: React.FC<Props> = ({ match }) => {
             </IonList>
           </div>
         )}
-        <IonButton
-          expand="block"
-          color="white"
-          onClick={() => handleSupportersLink(thisCase.href)}
+        <a href={thisCase.href}
+           target="_blank"
+           rel="noopener noreferrer"
+           className="no-text-decoration"
         >
-          Read this case on SAFLII
-        </IonButton>
+          <ActionCard actionText="Read this case on SAFLII" />
+        </a>
+
+        <br />
       </IonContent>
     </IonPage>
   );
