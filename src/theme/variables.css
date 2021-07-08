@@ -8,11 +8,11 @@ http://ionicframework.com/docs/theming/ */
   --ion-background-color-rgb: 244, 244, 244;
 
   /** primary **/
-  --ion-color-primary: #b8001c;
-  --ion-color-primary-rgb: 184,0,28;
+  --ion-color-primary: #004682FF;
+  --ion-color-primary-rgb:  rgb(0, 70, 130);
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255,255,255;
-  --ion-color-primary-shade: #a20019;
+  --ion-color-primary-shade: rgb(0, 70, 130);
   --ion-color-primary-tint: #bf1a33;
 
   /** secondary **/
