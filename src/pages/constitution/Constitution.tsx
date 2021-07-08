@@ -104,7 +104,7 @@ class Constitution extends React.Component<Props, MyState> {
           {this.state.topics.length > 0 && (
             <div>
               <IonToolbar class="related-guides" color="primary">
-                <IonIcon size="large" slot="start" icon={svgs.GUIDES}></IonIcon>
+                <IonIcon size="large" slot="start" icon={svgs.GUIDES_WHITE}></IonIcon>
                 <span>Related Guides</span>
               </IonToolbar>
               <IonList className="ion-padding">
