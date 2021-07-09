@@ -13,7 +13,6 @@ import data from "../../assets/data/data.json";
 import { getAndClearRedirected } from '../../redirect';
 import { TopicItem } from '../../components/topic';
 import { Link, Redirect } from "react-router-dom";
-import { handleSupportersLink } from '../../utils';
 import { ActionButton } from '../../components/actionButton';
 import { svgs } from '../../assets/svgs';
 
@@ -75,7 +74,7 @@ const Home: React.FC = () => {
               <h5 className="section-heading">Cases</h5>
             </IonCol>
             <IonCol size="1" className="ion-text-nowrap">
-              <Link className="ion-float-right link-plain" to="/cases/">Browse All</Link>
+              <Link className="ion-float-right link-plain" to="/search/cases">Search</Link>
             </IonCol>
           </IonRow>
         </IonGrid>
@@ -84,7 +83,7 @@ const Home: React.FC = () => {
           See how the courts have interpreted the Constitution by reading the leading cases on constitutional
           provisions.
         </div>
-        <ActionButton routerLink="/search/cases" text="Search Cases" icon={svgs.CASES} />
+        <ActionButton routerLink="/cases" text="Browse Cases" icon={svgs.CASES} />
 
         <hr className="divider" />
 
@@ -108,42 +107,54 @@ const Home: React.FC = () => {
         <hr className="divider" />
 
         <p>This app is brought to you by:</p>
+
         <IonGrid>
           <IonRow>
-            <IonCol size="6">
-              <img
-                alt=""
-                src="../../assets/African Lii logo.svg"
-                onError={(e) => {
-                  e.currentTarget.src = "../../assets/shapes.svg"
-                }}
-                onClick={() => handleSupportersLink('https://africanlii.org/')}
-              />
+            <IonCol sizeXs="12" sizeMd="6">
+              <a href="https://africanlii.org/"
+                 target="_blank"
+                 rel="noopener noreferrer"
+              >
+                <img
+                    alt="African Lii Logo"
+                    src="/assets/African Lii logo.svg"
+                />
+              </a>
             </IonCol>
-            <IonCol size="6">
-              <img
-                alt=""
-                src="../../assets/03_KAS_Logo_Min_RGB_Blau.jpg"
-                onError={(e) => {
-                  e.currentTarget.src = "../../assets/shapes.svg"
-                }}
-                onClick={() => handleSupportersLink('https://www.kas.de/en/home')}
-              />
+            <IonCol sizeXs="12" sizeMd="6">
+              <a href="https://www.kas.de/en/home"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                <img
+                    alt="KAS Logo"
+                    src="/assets/03_KAS_Logo_Min_RGB_Blau.jpg"
+                />
+              </a>
             </IonCol>
-            <IonCol size="6">
-              <img
-                alt=""
-                src="../../assets/uct-logo.jpg"
-                onError={(e) => {
-                  e.currentTarget.src = "../../assets/shapes.svg"
-                }}
-                onClick={() => handleSupportersLink('https://www.uct.ac.za/')}
-               />
+            <IonCol sizeXs="12" sizeMd="6">
+              <a href="https://www.uct.ac.za/"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                <img
+                    alt="UCT Logo"
+                    src="/assets/uct-logo.png"
+                />
+              </a>
+            </IonCol>
 
+            <IonCol sizeXs="12" sizeMd="6">
+              <a href="https://laws.africa/"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                <img
+                    alt="Laws Africa Logo"
+                    src="/assets/laws-africa-logo.png"
+                />
+              </a>
             </IonCol>
           </IonRow>
         </IonGrid>
-
+        <br />
         <ActionButton routerLink="/help" text="About This App" />
       </IonContent>
     </IonPage>

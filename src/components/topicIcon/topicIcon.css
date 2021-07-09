@@ -10,7 +10,7 @@
   height: 100%;
   padding-left: 4px;
   border-left: 1px solid #ffffff;
-  border-right: 3px solid #b8001c;
+  border-right: 3px solid #004682FF;
 }
 
 .guide {
@@ -21,7 +21,7 @@
   font-style: normal;
   line-height: 1.9;
   letter-spacing: normal;
-  color: #b8001c;
+  color: #004682FF;
 }
 
 .topic_title {
