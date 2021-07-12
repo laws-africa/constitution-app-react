@@ -1,9 +1,11 @@
 import React from 'react';
 import ActionCard, {actionCardDefaultProps, ActionCardProps} from "./ActionCard";
 import {Link} from "react-router-dom";
+import {arrowForward} from "ionicons/icons";
 
 const defaultProps = {
     ...actionCardDefaultProps,
+    rightIcon: arrowForward,
     routerLink: "",
 }
 
