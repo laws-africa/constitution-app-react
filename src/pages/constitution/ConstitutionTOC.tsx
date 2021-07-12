@@ -12,8 +12,8 @@ import {
 } from '@ionic/react';
 import './Constitution.css';
 import { TOCList } from '../../components/constitutionTOC';
-import { ActionButton } from '../../components/actionButton';
 import { svgs } from '../../assets/svgs';
+import ActionRouteLink from "../../components/Action/ActionRouteLink";
 
 class ConstitutionTOC extends React.Component {
   render() {
@@ -31,7 +31,10 @@ class ConstitutionTOC extends React.Component {
 
             <hr className="header-divider" />
 
-            <ActionButton routerLink="/constitution/full" icon={svgs.CONSTITUTION} text="Read the Full Constitution"  />
+            <ActionRouteLink
+                routerLink="/constitution/full"
+                leftIcon={svgs.CONSTITUTION}
+                actionText="Read the Full Constitution"  />
           </div>
 
           <IonList>
