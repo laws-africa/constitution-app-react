@@ -19,7 +19,7 @@ import { arrowBack, close, search } from 'ionicons/icons';
 import { TopicItem } from '../../components/topic';
 import HeaderSearch from '../../components/headerSearch/headerSearch';
 import { svgs } from '../../assets/svgs';
-import ActionCard from "../../components/Action/ActionCard";
+import ActionAnchorLink from "../../components/Action/ActionAnchorLink";
 
 interface Props extends RouteComponentProps<{ id: string; }> { }
 
@@ -118,14 +118,13 @@ const Case: React.FC<Props> = ({ match }) => {
             </IonList>
           </div>
         )}
-        <a href={thisCase.href}
-           target="_blank"
-           rel="noopener noreferrer"
-           className="no-text-decoration"
-        >
-          <ActionCard actionText="Read this case on SAFLII" />
-        </a>
-
+        <ActionAnchorLink
+            href={thisCase.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="no-text-decoration"
+            actionText="Read this case on SAFLII"
+        />
         <br />
       </IonContent>
     </IonPage>
