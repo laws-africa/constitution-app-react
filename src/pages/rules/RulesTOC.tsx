@@ -13,7 +13,7 @@ import {
 import './Rules.css';
 import { TOCList } from '../../components/rulesTOC';
 import { svgs } from '../../assets/svgs';
-import { ActionButton } from '../../components/actionButton';
+import ActionRouteLink from "../../components/Action/ActionRouteLink";
 
 class RulesTOC extends React.Component {
   render() {
@@ -37,10 +37,10 @@ class RulesTOC extends React.Component {
 
             <hr className="header-divider" />
 
-            <ActionButton
+            <ActionRouteLink
               routerLink="/rules/full"
-              icon={svgs.RULES}
-              text="The Full Rules"
+              leftIcon={svgs.RULES}
+              actionText="The Full Rules"
             />
           </div>
           <IonList>

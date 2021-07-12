@@ -10,6 +10,10 @@
   height: 0.75em;
 }
 
+.no-text-decoration {
+  text-decoration: none;
+}
+
 .app-title {
   display: flex;
   flex-direction: row;
@@ -50,16 +54,14 @@ mark.current {
   border-radius: 5px;
 }
 
-.action-button {
+/* Classes to replace action-button */
+.action-card {
   --border-radius: 5px;
   background-color: #fff;
   padding: 15px 22px 14px 17px;
   border-radius: 5px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.31);
   line-height: 18px;
-}
-
-.action-button > div {
   display: flex;
   justify-content: space-between;
   align-items: center;

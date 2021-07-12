@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, { useRef, useState } from "react";
 import {
   IonContent,
   IonHeader,
@@ -9,30 +9,35 @@ import {
   IonIcon,
   IonButtons,
   IonButton,
-  useIonViewWillEnter
-} from '@ionic/react';
+  useIonViewWillEnter,
+} from "@ionic/react";
 import data from "../../assets/data/data.json";
-import './Cases.css';
-import parse from 'html-react-parser';
+import "./Cases.css";
+import parse from "html-react-parser";
 import { RouteComponentProps } from "react-router-dom";
-import { arrowBack, close, search } from 'ionicons/icons';
-import { TopicItem } from '../../components/topic';
-import HeaderSearch from '../../components/headerSearch/headerSearch';
-import { handleSupportersLink } from '../../utils';
-import { svgs } from '../../assets/svgs';
+import { arrowBack, close, search } from "ionicons/icons";
+import { TopicItem } from "../../components/topic";
+import HeaderSearch from "../../components/headerSearch/headerSearch";
+import { svgs } from "../../assets/svgs";
+import ActionAnchorLink from "../../components/Action/ActionAnchorLink";
 
-interface Props extends RouteComponentProps<{ id: string; }> { }
+interface Props extends RouteComponentProps<{ id: string }> {}
 
 const Case: React.FC<Props> = ({ match }) => {
   const [thisCase, setCase] = useState({
-    title: '', snippet: '', facts_and_issues: '', right_and_principle: '', interpretation: '', href: '',
+    title: "",
+    snippet: "",
+    facts_and_issues: "",
+    right_and_principle: "",
+    interpretation: "",
+    href: "",
   });
   const [topics, setTopics] = useState([]);
   const [onSearch, setOnSearch] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
   useIonViewWillEnter(() => {
-    const thisCase = data.cases.find(c => c.id === match.params.id);
+    const thisCase = data.cases.find((c) => c.id === match.params.id);
     // @ts-ignore
     setCase(thisCase);
 
@@ -47,7 +52,7 @@ const Case: React.FC<Props> = ({ match }) => {
 
     // @ts-ignore
     setTopics(topics);
-    setOnSearch(false)
+    setOnSearch(false);
   });
 
   const previous = () => {
@@ -105,26 +110,33 @@ const Case: React.FC<Props> = ({ match }) => {
           )}
         </div>
 
+        <ActionAnchorLink
+          href={thisCase.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="no-text-decoration"
+          actionText="Read this case on SAFLII"
+        />
+
+        <br />
+
         {topics.length > 0 && (
           <div>
             <IonToolbar class="related-guides" color="primary">
-              <IonIcon size="large" slot="start" icon={svgs.GUIDES_WHITE}></IonIcon>
+              <IonIcon
+                size="large"
+                slot="start"
+                icon={svgs.GUIDES_WHITE}
+              ></IonIcon>
               <span>Related Guides</span>
             </IonToolbar>
             <IonList className="ion-padding">
               {topics.map((topic: any, index: any) => (
                 <TopicItem key={topic.id} topic={topic} />
-                ))}
+              ))}
             </IonList>
           </div>
         )}
-        <IonButton
-          expand="block"
-          color="white"
-          onClick={() => handleSupportersLink(thisCase.href)}
-        >
-          Read this case on SAFLII
-        </IonButton>
       </IonContent>
     </IonPage>
   );

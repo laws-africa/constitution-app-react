@@ -13,8 +13,8 @@ import data from "../../assets/data/data.json";
 import { getAndClearRedirected } from '../../redirect';
 import { TopicItem } from '../../components/topic';
 import { Link, Redirect } from "react-router-dom";
-import { ActionButton } from '../../components/actionButton';
 import { svgs } from '../../assets/svgs';
+import ActionRouteLink from "../../components/Action/ActionRouteLink";
 
 const Home: React.FC = () => {
   const guides = data.topics;
@@ -35,7 +35,11 @@ const Home: React.FC = () => {
         <hr className="header-divider" />
 
         <div className="ion-padding-bottom">Browse the Constitution for the provisions that you need.</div>
-        <ActionButton icon={svgs.CONSTITUTION} text="Explore the Constitution" routerLink="/constitution" />
+        <ActionRouteLink
+            leftIcon={svgs.CONSTITUTION}
+            actionText="Explore the Constitution"
+            routerLink="/constitution"
+        />
 
         <hr className="divider" />
 
@@ -61,7 +65,11 @@ const Home: React.FC = () => {
             <TopicItem topic={guide} key={guide.id}/>
           ))}
         </IonList>
-        <ActionButton routerLink="/guides" icon={svgs.GUIDES} text="Browse All Guides" />
+        <ActionRouteLink
+            routerLink="/guides"
+            leftIcon={svgs.GUIDES}
+            actionText="Browse All Guides"
+        />
 
         <hr className="divider" />
 
@@ -83,7 +91,11 @@ const Home: React.FC = () => {
           See how the courts have interpreted the Constitution by reading the leading cases on constitutional
           provisions.
         </div>
-        <ActionButton routerLink="/cases" text="Browse Cases" icon={svgs.CASES} />
+        <ActionRouteLink
+            routerLink="/cases"
+            actionText="Browse Cases"
+            leftIcon={svgs.CASES}
+        />
 
         <hr className="divider" />
 
@@ -102,7 +114,11 @@ const Home: React.FC = () => {
         </IonGrid>
 
         <div className="ion-padding-bottom">Browse the Rules of the National Assembly.</div>
-        <ActionButton routerLink="/rules" text="Browse Rules" icon={svgs.RULES} />
+        <ActionRouteLink
+            routerLink="/rules"
+            actionText="Browse Rules"
+            leftIcon={svgs.RULES}
+        />
 
         <hr className="divider" />
 
@@ -155,7 +171,9 @@ const Home: React.FC = () => {
           </IonRow>
         </IonGrid>
         <br />
-        <ActionButton routerLink="/help" text="About This App" />
+        <ActionRouteLink
+            routerLink="/help"
+            actionText="About This App" />
       </IonContent>
     </IonPage>
   );
