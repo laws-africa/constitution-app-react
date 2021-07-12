@@ -1,11 +1,10 @@
 import React from 'react';
 import {IonIcon} from "@ionic/react";
-import { arrowForward } from "ionicons/icons";
 
 export const actionCardDefaultProps = {
     leftIcon: "",
     actionText: "",
-    rightIcon: arrowForward,
+    rightIcon: "",
 }
 
 export type ActionCardProps = {
@@ -14,7 +13,7 @@ export type ActionCardProps = {
     rightIcon?: string
 } & typeof actionCardDefaultProps;
 
-const ActionCard= ({ leftIcon, actionText, rightIcon }: ActionCardProps) => {
+const ActionCard = ({ leftIcon, actionText, rightIcon }: ActionCardProps) => {
     return (
         <span className="action-card shadow ion-no-margin">
             {leftIcon ? <IonIcon src={leftIcon}  /> : null }
