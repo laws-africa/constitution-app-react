@@ -9,10 +9,11 @@ import {
   IonButtons,
   IonButton,
   IonIcon,
-  useIonViewWillEnter, IonCard,
+  useIonViewWillEnter,
+  IonCard,
 } from "@ionic/react";
 import { RouteComponentProps } from "react-router";
-import {arrowBack, search, close, arrowForward} from "ionicons/icons";
+import { arrowBack, search, close, arrowForward } from "ionicons/icons";
 import data from "../../assets/data/data.json";
 import "./Topics.css";
 import parse from "html-react-parser";
@@ -142,17 +143,17 @@ const Topic: React.FC<Props> = ({ match }) => {
         {references.length > 0 && (
           <IonButtons className="ion-padding-bottom ion-justify-content-center">
             {references.map((ref: any) => (
-            <IonCard
-              key={ref.id}
-              className="con-buttons"
-              routerLink={"/constitution/provision/" + ref.id}
-              button
-            >
-              <div>
-                Section {ref.title}
-                <IonIcon slot="end" icon={arrowForward}></IonIcon>
-              </div>
-            </IonCard>
+              <IonCard
+                key={ref.id}
+                className="con-buttons"
+                routerLink={"/constitution/provision/" + ref.id}
+                button
+              >
+                <div>
+                  Section {ref.title}
+                  <IonIcon slot="end" icon={arrowForward}></IonIcon>
+                </div>
+              </IonCard>
             ))}
           </IonButtons>
         )}
@@ -160,7 +161,11 @@ const Topic: React.FC<Props> = ({ match }) => {
         {cases.length > 0 && (
           <div>
             <IonToolbar class="related-guides" color="primary">
-              <IonIcon size="large" slot="start" icon={svgs.CASES}></IonIcon>
+              <IonIcon
+                size="large"
+                slot="start"
+                icon={svgs.CASES_WHITE}
+              ></IonIcon>
               <span>Related Cases</span>
             </IonToolbar>
             <IonList className="ion-padding">
