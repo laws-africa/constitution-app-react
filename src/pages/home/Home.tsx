@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   IonContent,
   IonPage,
@@ -7,14 +7,15 @@ import {
   IonCol,
   IonList,
   IonIcon,
-} from '@ionic/react';
-import './Home.css';
+} from "@ionic/react";
+import "./Home.css";
 import data from "../../assets/data/data.json";
-import { getAndClearRedirected } from '../../redirect';
-import { TopicItem } from '../../components/topic';
+import { getAndClearRedirected } from "../../redirect";
+import { TopicItem } from "../../components/topic";
 import { Link, Redirect } from "react-router-dom";
-import { svgs } from '../../assets/svgs';
+import { svgs } from "../../assets/svgs";
 import ActionRouteLink from "../../components/Action/ActionRouteLink";
+import ActionAnchorLink from "../../components/Action/ActionAnchorLink";
 
 const Home: React.FC = () => {
   const guides = data.topics;
@@ -22,7 +23,7 @@ const Home: React.FC = () => {
   // redirect to a url from the 404.html page?
   const path = getAndClearRedirected();
   if (path.length) {
-    return <Redirect to={path}/>
+    return <Redirect to={path} />;
   }
 
   return (
@@ -30,15 +31,24 @@ const Home: React.FC = () => {
       <IonContent className="ion-padding">
         <div className="app-title">
           <img src="/assets/logo.png" alt="logo" className="logo" />
-          <h2>Constitution <br/> Compass <img src="/assets/flag.png" className="flag" alt="South African Flag"/></h2>
+          <h2>
+            Constitution <br /> Compass{" "}
+            <img
+              src="/assets/flag.png"
+              className="flag"
+              alt="South African Flag"
+            />
+          </h2>
         </div>
         <hr className="header-divider" />
 
-        <div className="ion-padding-bottom">Browse the Constitution for the provisions that you need.</div>
+        <div className="ion-padding-bottom">
+          Browse the Constitution for the provisions that you need.
+        </div>
         <ActionRouteLink
-            leftIcon={svgs.CONSTITUTION}
-            actionText="Explore the Constitution"
-            routerLink="/constitution"
+          leftIcon={svgs.CONSTITUTION}
+          actionText="Explore the Constitution"
+          routerLink="/constitution"
         />
 
         <hr className="divider" />
@@ -52,23 +62,26 @@ const Home: React.FC = () => {
               <h5 className="section-heading">Guides</h5>
             </IonCol>
             <IonCol size="1">
-              <Link className="ion-float-right link-plain" to="/search/guides">Search</Link>
+              <Link className="ion-float-right link-plain" to="/search/guides">
+                Search
+              </Link>
             </IonCol>
           </IonRow>
         </IonGrid>
 
         <div className="ion-padding-bottom">
-          Understand the provisions of the Constitution and their implications for parliamentary matters.
+          Understand the provisions of the Constitution and their implications
+          for parliamentary matters.
         </div>
         <IonList className="ion-margin-bottom ion-padding">
-          {guides.slice(0,3).map((guide) => (
-            <TopicItem topic={guide} key={guide.id}/>
+          {guides.slice(0, 3).map((guide) => (
+            <TopicItem topic={guide} key={guide.id} />
           ))}
         </IonList>
         <ActionRouteLink
-            routerLink="/guides"
-            leftIcon={svgs.GUIDES}
-            actionText="Browse All Guides"
+          routerLink="/guides"
+          leftIcon={svgs.GUIDES}
+          actionText="Browse All Guides"
         />
 
         <hr className="divider" />
@@ -82,19 +95,21 @@ const Home: React.FC = () => {
               <h5 className="section-heading">Cases</h5>
             </IonCol>
             <IonCol size="1" className="ion-text-nowrap">
-              <Link className="ion-float-right link-plain" to="/search/cases">Search</Link>
+              <Link className="ion-float-right link-plain" to="/search/cases">
+                Search
+              </Link>
             </IonCol>
           </IonRow>
         </IonGrid>
 
         <div className="ion-padding-bottom">
-          See how the courts have interpreted the Constitution by reading the leading cases on constitutional
-          provisions.
+          See how the courts have interpreted the Constitution by reading the
+          leading cases on constitutional provisions.
         </div>
         <ActionRouteLink
-            routerLink="/cases"
-            actionText="Browse Cases"
-            leftIcon={svgs.CASES}
+          routerLink="/cases"
+          actionText="Browse Cases"
+          leftIcon={svgs.CASES}
         />
 
         <hr className="divider" />
@@ -105,19 +120,25 @@ const Home: React.FC = () => {
               <IonIcon size="small" icon={svgs.RULES} />
             </IonCol>
             <IonCol>
-              <h5 className="section-heading">Rules of the National Assembly</h5>
+              <h5 className="section-heading">
+                Rules of the National Assembly
+              </h5>
             </IonCol>
             <IonCol size="1">
-              <Link className="ion-float-right link-plain" to="/search/rules">Search</Link>
+              <Link className="ion-float-right link-plain" to="/search/rules">
+                Search
+              </Link>
             </IonCol>
           </IonRow>
         </IonGrid>
 
-        <div className="ion-padding-bottom">Browse the Rules of the National Assembly.</div>
+        <div className="ion-padding-bottom">
+          Browse the Rules of the National Assembly.
+        </div>
         <ActionRouteLink
-            routerLink="/rules"
-            actionText="Browse Rules"
-            leftIcon={svgs.RULES}
+          routerLink="/rules"
+          actionText="Browse Rules"
+          leftIcon={svgs.RULES}
         />
 
         <hr className="divider" />
@@ -127,53 +148,60 @@ const Home: React.FC = () => {
         <IonGrid>
           <IonRow>
             <IonCol sizeXs="12" sizeMd="6">
-              <a href="https://africanlii.org/"
-                 target="_blank"
-                 rel="noopener noreferrer"
+              <a
+                href="https://africanlii.org/"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <img
-                    alt="African Lii Logo"
-                    src="/assets/African Lii logo.svg"
+                  alt="African Lii Logo"
+                  src="/assets/African Lii logo.svg"
                 />
               </a>
             </IonCol>
             <IonCol sizeXs="12" sizeMd="6">
-              <a href="https://www.kas.de/en/home"
-                 target="_blank"
-                 rel="noopener noreferrer">
+              <a
+                href="https://www.kas.de/en/home"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img
-                    alt="KAS Logo"
-                    src="/assets/03_KAS_Logo_Min_RGB_Blau.jpg"
+                  alt="KAS Logo"
+                  src="/assets/03_KAS_Logo_Min_RGB_Blau.jpg"
                 />
               </a>
             </IonCol>
             <IonCol sizeXs="12" sizeMd="6">
-              <a href="https://www.uct.ac.za/"
-                 target="_blank"
-                 rel="noopener noreferrer">
-                <img
-                    alt="UCT Logo"
-                    src="/assets/uct-logo.png"
-                />
+              <a
+                href="https://www.uct.ac.za/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img alt="UCT Logo" src="/assets/uct-logo.png" />
               </a>
             </IonCol>
 
             <IonCol sizeXs="12" sizeMd="6">
-              <a href="https://laws.africa/"
-                 target="_blank"
-                 rel="noopener noreferrer">
+              <a
+                href="https://laws.africa/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img
-                    alt="Laws Africa Logo"
-                    src="/assets/laws-africa-logo.png"
+                  alt="Laws Africa Logo"
+                  src="/assets/laws-africa-logo.png"
                 />
               </a>
             </IonCol>
           </IonRow>
         </IonGrid>
         <br />
-        <ActionRouteLink
-            routerLink="/help"
-            actionText="About This App" />
+        <ActionRouteLink routerLink="/help" actionText="About This App" />
+        <br />
+        <ActionAnchorLink
+          href="mailto:info@africanlii.org"
+          actionText="Send feedback"
+        />
       </IonContent>
     </IonPage>
   );
