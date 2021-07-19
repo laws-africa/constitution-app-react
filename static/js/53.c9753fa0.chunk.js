@@ -1,0 +1,2 @@
+(this["webpackJsonpconstitution-app-react"]=this["webpackJsonpconstitution-app-react"]||[]).push([[53],{181:function(t,n,o){"use strict";o.r(n),o.d(n,"startStatusTap",(function(){return i}));var e=o(10),i=function(){var t=window;t.addEventListener("statusTap",(function(){Object(e.j)((function(){var n=t.innerWidth,o=t.innerHeight,i=document.elementFromPoint(n/2,o/2);if(i){var c=i.closest("ion-content");c&&c.componentOnReady().then((function(){Object(e.g)((function(){return c.scrollToTop(300)}))}))}}))}))}}}]);
+//# sourceMappingURL=53.c9753fa0.chunk.js.map
