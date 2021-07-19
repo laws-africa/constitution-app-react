@@ -200,3 +200,8 @@ hr.divider,
   letter-spacing: normal;
   color: #ffffff;
 }
+
+
+.full-width {
+  width: 100%;
+}
