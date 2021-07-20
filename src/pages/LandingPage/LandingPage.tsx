@@ -216,11 +216,9 @@ const LandingPage = () => {
                         </a>
                       </li>
                       <li>
-                        Click on bottom floating banner with text: "Add
-                        Constitution Compass to Home screen" and prompts for
-                        install application with appear. If the banner is not
-                        visible click on the Toolbar icon on top right corner of
-                        the browser and select menu item, "Install App"
+                        Tap on the "Add Constitution Compass to Home screen" banner and follow the prompts.
+                        <br/><br/>
+                        If the banner is not visible, tap on the Toolbar icon in top right corner, then tap "Install App".
                       </li>
                       <li>To open the app, find it on your home screen</li>
                     </ol>
