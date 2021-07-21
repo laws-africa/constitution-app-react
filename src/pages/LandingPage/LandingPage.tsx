@@ -223,7 +223,7 @@ const LandingPage = () => {
                   </div>
                   <img
                     src="/assets/installation/android/step-1.jpg"
-                    alt="android-install-image"
+                    alt="android-install-step-1"
                   />
                 </IonCol>
                 <IonCol size-md="6">
@@ -233,7 +233,7 @@ const LandingPage = () => {
                   </div>
                   <img
                     src="/assets/installation/android/step-2.jpg"
-                    alt="android-install-image"
+                    alt="android-install-step-2"
                   />
                 </IonCol>
               </IonRow>
@@ -245,7 +245,7 @@ const LandingPage = () => {
                   </div>
                   <img
                     src="/assets/installation/android/step-3.jpg"
-                    alt="android-install-image"
+                    alt="android-install-step-3"
                   />
                 </IonCol>
               </IonRow>
