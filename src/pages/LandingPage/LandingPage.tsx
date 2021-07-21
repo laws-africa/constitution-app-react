@@ -134,7 +134,6 @@ const LandingPage = () => {
 
         <div id="installation" className="installation">
           <h2>How to install the app on your phone</h2>
-
           <IonSegment
             mode="md"
             value={tab}
@@ -146,87 +145,112 @@ const LandingPage = () => {
 
           <hr />
 
-          <IonRow class="ion-justify-content-between">
-            <IonCol size-md="5">
-              <figure>
-                {tab === "ios" ? (
-                  <img className="full-width" src="ios" alt="ios" />
-                ) : null}
-                {tab === "android" ? (
+          {tab === "ios" ? (
+            <div>
+              <h6>Install on your iPhone or iPad</h6>
+              <br />
+              <IonRow>
+                <IonCol size-md="6">
+                  <div>
+                    {!isSafari ? (
+                      <div>
+                        <div className="installation-instruction">
+                          Open your Safari browser
+                          <div className="light">
+                            Note: It must be Safari, you cannot use Google
+                            Chrome or Firefox.
+                          </div>
+                        </div>
+                        <div className="installation-instruction">
+                          Go to{" "}
+                          <a
+                            href="https://bit.ly/concompass"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            bit.ly/concompass
+                          </a>
+                        </div>
+                      </div>
+                    ) : null}
+                    <div className="installation-instruction">
+                      Tap the share icon at the bottom of the screen
+                    </div>
+                  </div>
                   <img
-                    src="/assets/android-installation.gif"
-                    alt="android-installation"
-                    className="full-width"
+                    src="/assets/installation/ios/step-1.jpg"
+                    alt="ios-install-step-1"
                   />
-                ) : null}
-              </figure>
-            </IonCol>
+                </IonCol>
+                <IonCol size-md="6">
+                  <div className="installation-instruction">
+                    Scroll down and tap “Add to Home Screen” then tap “Add”
+                  </div>
+                  <div className="installation-instruction">
+                    To open the app, find it on your home screen
+                  </div>
+                  <img
+                    src="/assets/installation/ios/step-2.jpg"
+                    alt="ios-install-step-2"
+                  />
+                </IonCol>
+              </IonRow>
+            </div>
+          ) : null}
 
-            <IonCol size-md="7">
-              <div className="installation-steps">
-                {tab === "ios" && (
-                  <>
-                    <h6>Install on your iPhone or iPad</h6>
-
-                    <ol>
-                      {!isSafari ? (
-                        <>
-                          <li>
-                            Open your Safari browser
-                            <div className="light">
-                              Note: It must be Safari, you cannot use Google
-                              Chrome or Firefox.
-                            </div>
-                          </li>
-                          <li>
-                            Go to{" "}
-                            <a
-                              href="https://bit.ly/concompass"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              bit.ly/concompass
-                            </a>
-                          </li>
-                        </>
-                      ) : null}
-                      <li>Tap the share icon at the bottom of the screen</li>
-                      <li>
-                        Scroll down and tap “Add to Home Screen” then tap “Add”
-                      </li>
-                      <li>To open the app, find it on your home screen</li>
-                    </ol>
-                  </>
-                )}
-
-                {tab === "android" && (
-                  <>
-                    <h6>Install on your Android</h6>
-
-                    <ol>
-                      <li>Open your phone's browser</li>
-                      <li>
-                        Go to{" "}
-                        <a
-                          href="https://bit.ly/concompass"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          bit.ly/concompass
-                        </a>
-                      </li>
-                      <li>
-                        Tap on the "Add Constitution Compass to Home screen" banner and follow the prompts.
-                        <br/><br/>
-                        If the banner is not visible, tap on the Toolbar icon in top right corner, then tap "Install App".
-                      </li>
-                      <li>To open the app, find it on your home screen</li>
-                    </ol>
-                  </>
-                )}
-              </div>
-            </IonCol>
-          </IonRow>
+          {tab === "android" ? (
+            <div>
+              <h6>Install on your Android</h6>
+              <br />
+              <IonRow>
+                <IonCol size-md="6">
+                  <div className="installation-instruction">
+                    Open your phone's browser
+                  </div>
+                  <div className="installation-instruction">
+                    Go to{" "}
+                    <a
+                      href="https://bit.ly/concompass"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      bit.ly/concompass
+                    </a>
+                  </div>
+                  <div className="installation-instruction">
+                    Tap on the "Add Constitution Compass to Home screen" banner
+                    and follow the prompts.
+                  </div>
+                  <img
+                    src="/assets/installation/android/step-1.jpg"
+                    alt="android-install-image"
+                  />
+                </IonCol>
+                <IonCol size-md="6">
+                  <div className="installation-instruction">
+                    If the banner is not visible, tap on the Toolbar icon in top
+                    right corner, then tap "Install App".
+                  </div>
+                  <img
+                    src="/assets/installation/android/step-2.jpg"
+                    alt="android-install-image"
+                  />
+                </IonCol>
+              </IonRow>
+              <br />
+              <IonRow>
+                <IonCol size-md="6">
+                  <div className="installation-instruction">
+                    To open the app, find it on your home screen
+                  </div>
+                  <img
+                    src="/assets/installation/android/step-3.jpg"
+                    alt="android-install-image"
+                  />
+                </IonCol>
+              </IonRow>
+            </div>
+          ) : null}
         </div>
 
         <IonFooter>
