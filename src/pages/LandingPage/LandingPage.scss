@@ -336,9 +336,14 @@
     }
   }
 
-  .installation-instruction {
-    font-size: 17px;
-    font-weight: bold;
-    margin-bottom: 10px;
+
+  .image-instruction {
+    box-shadow: 5px 5px 20px rgba(211, 211, 211, 0.39);
+  }
+
+  .instruction-row {
+    @media only screen and (max-width: 600px) {
+      flex-direction: column-reverse;
+    }
   }
 }
