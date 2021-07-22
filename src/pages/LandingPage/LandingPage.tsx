@@ -149,19 +149,26 @@ const LandingPage = () => {
             <div>
               <h6>Install on your iPhone or iPad</h6>
               <br />
-              <IonRow>
+              <IonRow className="instruction-row">
                 <IonCol size-md="6">
-                  <div>
+                  <img
+                    className="image-instruction"
+                    src="/assets/installation/ios/step-1.jpg"
+                    alt="ios-install-step-1"
+                  />
+                </IonCol>
+                <IonCol size-md="6">
+                  <ol>
                     {!isSafari ? (
-                      <div>
-                        <div className="installation-instruction">
+                      <React.Fragment>
+                        <li>
                           Open your Safari browser
                           <div className="light">
                             Note: It must be Safari, you cannot use Google
                             Chrome or Firefox.
                           </div>
-                        </div>
-                        <div className="installation-instruction">
+                        </li>
+                        <li>
                           Go to{" "}
                           <a
                             href="https://bit.ly/concompass"
@@ -170,29 +177,36 @@ const LandingPage = () => {
                           >
                             bit.ly/concompass
                           </a>
-                        </div>
-                      </div>
+                        </li>
+                      </React.Fragment>
                     ) : null}
-                    <div className="installation-instruction">
-                      Tap the share icon at the bottom of the screen
-                    </div>
-                  </div>
-                  <img
-                    src="/assets/installation/ios/step-1.jpg"
-                    alt="ios-install-step-1"
-                  />
+                    <li>Tap the share icon at the bottom of the screen</li>
+                  </ol>
                 </IonCol>
+              </IonRow>
+              <hr className="hr-divider" />
+              <IonRow className="instruction-row">
                 <IonCol size-md="6">
-                  <div className="installation-instruction">
-                    Scroll down and tap “Add to Home Screen” then tap “Add”
-                  </div>
-                  <div className="installation-instruction">
-                    To open the app, find it on your home screen
-                  </div>
                   <img
+                    className="image-instruction"
                     src="/assets/installation/ios/step-2.jpg"
                     alt="ios-install-step-2"
                   />
+                  <br />
+                  <br />
+                  <img
+                    className="image-instruction"
+                    src="/assets/installation/ios/step-3.jpg"
+                    alt="ios-install-step-3"
+                  />
+                </IonCol>
+                <IonCol size-md="6">
+                  <ol start={4}>
+                    <li>
+                      Scroll down and tap “Add to Home Screen” then tap “Add”
+                    </li>
+                    <li>To open the app, find it on your home screen</li>
+                  </ol>
                 </IonCol>
               </IonRow>
             </div>
@@ -202,51 +216,67 @@ const LandingPage = () => {
             <div>
               <h6>Install on your Android</h6>
               <br />
-              <IonRow>
+              <IonRow className="instruction-row">
                 <IonCol size-md="6">
-                  <div className="installation-instruction">
-                    Open your phone's browser
-                  </div>
-                  <div className="installation-instruction">
-                    Go to{" "}
-                    <a
-                      href="https://bit.ly/concompass"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      bit.ly/concompass
-                    </a>
-                  </div>
-                  <div className="installation-instruction">
-                    Tap on the "Add Constitution Compass to Home screen" banner
-                    and follow the prompts.
-                  </div>
                   <img
+                    className="image-instruction"
                     src="/assets/installation/android/step-1.jpg"
                     alt="android-install-step-1"
                   />
                 </IonCol>
                 <IonCol size-md="6">
-                  <div className="installation-instruction">
-                    If the banner is not visible, tap on the Toolbar icon in top
-                    right corner, then tap "Install App".
-                  </div>
+                  <ol>
+                    <li>Open your phone's browser</li>
+                    <li>
+                      Go to{" "}
+                      <a
+                        href="https://bit.ly/concompass"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        bit.ly/concompass
+                      </a>
+                    </li>
+                    <li>
+                      Tap on the "Add Constitution Compass to Home screen"
+                      banner and follow the prompts.
+                    </li>
+                  </ol>
+                </IonCol>
+              </IonRow>
+
+              <hr className="hr-divider" />
+
+              <IonRow className="instruction-row">
+                <IonCol size-md="6">
                   <img
+                    className="image-instruction"
                     src="/assets/installation/android/step-2.jpg"
                     alt="android-install-step-2"
                   />
                 </IonCol>
-              </IonRow>
-              <br />
-              <IonRow>
                 <IonCol size-md="6">
-                  <div className="installation-instruction">
-                    To open the app, find it on your home screen
-                  </div>
+                  <ol start={4}>
+                    <li>
+                      If the banner is not visible, tap on the Toolbar icon in
+                      top right corner, then tap "Install App".
+                    </li>
+                  </ol>
+                </IonCol>
+              </IonRow>
+              <hr className="hr-divider" />
+              <IonRow className="instruction-row">
+                <IonCol size-md="6">
                   <img
+                    className="image-instruction"
                     src="/assets/installation/android/step-3.jpg"
                     alt="android-install-step-3"
                   />
+                </IonCol>
+                <IonCol size-md="6">
+                  <ol start={5}>
+                    <li>To open the app, find it on your home screen</li>
+                  </ol>
                 </IonCol>
               </IonRow>
             </div>
