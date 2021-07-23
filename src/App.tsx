@@ -48,12 +48,10 @@ import LandingPage from "./pages/LandingPage/LandingPage";
 import GaPageTracker from "./components/GAPageTracker";
 
 const App: React.FC = () => {
-  const trackingCode = process.env.REACT_APP_GA_TRACKING_CODE;
-  console.log(trackingCode);
   return (
     <IonApp>
       <IonReactRouter>
-        {trackingCode ? <GaPageTracker trackingCode={trackingCode} /> : null}
+        <GaPageTracker trackingCode="UA-129824129-5" />
         <Switch>
           <Route exact path="/">
             <LandingPage />

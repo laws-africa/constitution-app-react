@@ -18,7 +18,6 @@ const GaPageTracker = ({ trackingCode }: GAPageTackerType) => {
 
   React.useEffect(() => {
     if (gaInitialized) {
-      console.log(location.pathname);
       ReactGA.pageview(location.pathname + location.search);
     }
   }, [location, gaInitialized]);
