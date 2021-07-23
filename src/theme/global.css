@@ -200,3 +200,14 @@ hr.divider,
   letter-spacing: normal;
   color: #ffffff;
 }
+
+
+.full-width {
+  width: 100%;
+}
+
+
+.hr-divider {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
