@@ -21,9 +21,18 @@ if (path.length) {
   setRedirect(path);
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+let app: any = null;
+// @ts-ignore
+ReactDOM.render(<App ref={x => { app = x; }} />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.register();
+serviceWorker.register({
+  onUpdate (registration) {
+    // new data is available
+    if (app) {
+      app.setState( {updatesAvailable: true} );
+    }
+  }
+});
