@@ -16,9 +16,12 @@ import { handleSupportersLink } from "../../utils";
 import "./LandingPage.scss";
 import { getAndClearRedirected } from "../../redirect";
 import { Redirect } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "../../components/LanguageSwitcher";
 
 const LandingPage = () => {
   const [tab, setTab] = useState("ios");
+  const { t } = useTranslation();
 
   const isSafari = (() => {
     const hasSafariAgent = navigator.userAgent.indexOf("Safari") > -1;
@@ -37,12 +40,13 @@ const LandingPage = () => {
 
   return (
     <IonPage className="landing-page">
+      <LanguageSwitcher />
       <IonContent>
         <IonRow class="ion-justify-content-between ion-margin-horizontal ion-padding-vertical header ion-align-items-center">
           <section className="app-title">
             <img src="/assets/logo.png" alt="logo" className="logo" />
             <h2>
-              Constitution <br /> Compass{" "}
+              {/*<span dangerouslySetInnerHTML={t("landing_page.app_title")} />*/}
               <img
                 src="/assets/flag.png"
                 className="flag"
@@ -54,14 +58,14 @@ const LandingPage = () => {
           <IonRow class="ion-align-items-center right-links ion-justify-content-between">
             <a href="#features">Features</a>{" "}
             <IonButton color="light" href="#installation">
-              Install Now
+              {t("landing_page.install_now")}
             </IonButton>
           </IonRow>
         </IonRow>
 
         <div className="ion-text-center main-content">
-          <h1>Constitution Compass</h1>
-          <h2>The Constitution App for Members of Parliament.</h2>
+          <h1>{t("landing_page.main_content.h1")}</h1>
+          <h2>{t("landing_page.main_content.h2")}</h2>
           <p>
             Browse, search and understand the South African Constitution and how
             it applies to everyone. Continuously updated and curated
@@ -72,11 +76,11 @@ const LandingPage = () => {
             .
           </p>
           <IonButton color="light" href="#installation">
-            Install Now
+            {t("landing_page.install_now")}
           </IonButton>
 
           <a href="/home" className="ion-padding-top">
-            Use the web version
+            {t("landing_page.use_web_version")}
           </a>
         </div>
 
@@ -99,33 +103,33 @@ const LandingPage = () => {
               <IonCol size-lg="6">
                 <Features
                   iconName={svgs.CONSTITUTION}
-                  title="Browse the Constitution"
-                  text="Browse, search and read the latest version of the South African Constitution: updated and consolidated."
+                  title={t("landing_page.features_content.constitution_title")}
+                  text={t("landing_page.features_content.constitution_text")}
                 />
 
                 <Features
                   iconName={svgs.GUIDES}
-                  title="Guides to the Constitution"
-                  text="Quick guides to the purpose and meaning of each section of the Bill of Rights and some of the most used chapters of the Constitution."
+                  title={t("landing_page.features_content.guides_title")}
+                  text={t("landing_page.features_content.guides_text")}
                 />
 
                 <Features
                   iconName={svgs.RULES}
-                  title="Get Cases in Context"
-                  text="Accessible guides to the South African Constitutional Court’s authoritative interpretation of the Constitution."
+                  title={t("landing_page.features_content.rules_title")}
+                  text={t("landing_page.features_content.rules_text")}
                 />
               </IonCol>
               <IonCol size-lg="6">
                 <Features
                   iconName={svgs.CASES}
-                  title="Rules of the National Assembly"
-                  text="Quickly browse through the consolidated and updated version of the Rules of the National Assembly."
+                  title={t("landing_page.features_content.cases_title")}
+                  text={t("landing_page.features_content.case_text")}
                 />
 
                 <Features
                   iconName={svgs.SEARCH}
-                  title="Find what you are looking for"
-                  text="Search across the Constitution, Rules, Guides or Cases to find the information that you need."
+                  title={t("landing_page.features_content.search_title")}
+                  text={t("landing_page.features_content.search_text")}
                 />
               </IonCol>
             </IonRow>
@@ -133,14 +137,19 @@ const LandingPage = () => {
         </div>
 
         <div id="installation" className="installation">
-          <h2>How to install the app on your phone</h2>
+          <h2>{t("landing_page.installation.add_home_screen_text")}</h2>
           <IonSegment
             mode="md"
             value={tab}
             onIonChange={(e) => setTab(e.detail.value || "ios")}
           >
-            <IonSegmentButton value="ios">iOS</IonSegmentButton>
-            <IonSegmentButton value="android">Android</IonSegmentButton>
+            <IonSegmentButton value="ios">
+              {t("landing_page.installation.ios_segment_button_text")}
+            </IonSegmentButton>
+            <IonSegmentButton value="android">
+              {t("landing_page.installation.android_segment_button_text")}
+              Android
+            </IonSegmentButton>
           </IonSegment>
 
           <hr />
