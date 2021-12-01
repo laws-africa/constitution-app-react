@@ -1,0 +1,31 @@
+{
+  "landing_page": {
+    "app_title": "Isalathindlela SoMgaqosiseko",
+    "install_now": "Fakela ngoku",
+    "h2": "Isalathindlela <br /> Isalathindlela{' '}",
+    "main_content": {
+      "h1": "Isalathindlela SoMgaqosiseko",
+      "h2": "I-Ephu YoMgaqosiseko Eyenzelwe Amalungu EPalamente.",
+      "p": "Funda-funda nje, khangela okuthile kuwo, kanjalo wuqonde uMgaqosiseko WaseMzantsi Afrika, uqonde nendlela othetha ngayo naye wonke umntu.",
+      "p_span": "Rules of the National Assembly"
+    },
+    "use_web_version": "Sebenzisa uhlobo olukumnatha wonxibelelwano",
+    "features_content": {
+      "constitution_title": "Wufunda-funde nje uMgaqosiseko",
+      "constitution_text": "Funda-funda nje; khangela; okanye ufunde uguqulelo loMgaqosiseko lwakutsha nje: olufakelwe izinto ezintsha, lwaza lwaqiniswa",
+      "guides_title": "Izikhokelo NgoMgaqosiseko",
+      "guides_text": "Izikhokelo ezikhawuleza zikuqondise injongo nentsingiselo yecandelo ngalinye leXhwebhu  Lamalungelo, kwaneyezahluko ezithile zoMgaqosiseko ezisetyenziswa kakhulu.",
+      "rules_title": "Fumana Amatyala Ngokweemeko Angqamene Nazo",
+      "rules_text": "Izikhokelo ezifikelelekayo ezicacisa malunga nokutolikwa ngegunya koMgaqosiseko okwenziwa yiNkundla YoMgaqosiseko YaseMzantsi Afrika.",
+      "cases_title": "IMigaqo YeNdlu YeNdibano YeSizwe",
+      "case_text": "Yifunda-funde uyigqibe ngokukhawuleza yonke inguqulelo Yemigaqo YeNdlu YeNdibano YeSizwe, inguqulelo efakelwe izinto ezintsha, yaqiniswa.",
+      "search_title": "Fumana apha into oyifunayo",
+      "search_text": "Khangela kuwo wonke uMgaqosiseko, okanye kuyo yonke Imigaqo, okanye kuzo zonke Izikhokelo, okanye kuwo onke Amatyala ukuze ufumane ezo nkcukacha zolwazi uzifunayo."
+    },
+    "installation": {
+      "add_home_screen_text": "Bhala Kwisikrini Sasekuqaleni",
+      "ios_segment_button_text": "KwiAndroid",
+      "android_segment_button_text": "Kwi-IOS"
+    }
+  }
+}

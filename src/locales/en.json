@@ -1,0 +1,31 @@
+{
+  "landing_page": {
+    "app_title": "Constitution Compass",
+    "install_now": "Install Now",
+    "h2": "Constitution <br /> Compass{' '}",
+    "main_content": {
+      "h1": "Constitution Compass",
+      "h2": "The Constitution App for Members of Parliament.",
+      "p": "Browse, search and understand the South African Constitution and how it applies to everyone. Continuously updated and curated Constitution and",
+      "p_span": "Rules of the National Assembly"
+    },
+    "use_web_version": "Use the web version",
+    "features_content": {
+      "constitution_title": "Browse the Constitution",
+      "constitution_text": "Browse, search and read the latest version of the South African Constitution: updated and consolidated.",
+      "guides_title": "Guides to the Constitution",
+      "guides_text": "Quick guides to the purpose and meaning of each section of the Bill of Rights and some of the most used chapters of the Constitution.",
+      "rules_title": "Get Cases in Context",
+      "rules_text": "Accessible guides to the South African Constitutional Court’s authoritative interpretation of the Constitution.",
+      "cases_title": "Rules of the National Assembly",
+      "case_text": "Quickly browse through the consolidated and updated version of the Rules of the National Assembly.",
+      "search_title": "Find what you are looking for",
+      "search_text": "Search across the Constitution, Rules, Guides or Cases to find the information that you need."
+    },
+    "installation": {
+      "add_home_screen_text": "How to install the app on your phone",
+      "ios_segment_button_text": "Android",
+      "android_segment_button_text": "iOS"
+    }
+  }
+}
