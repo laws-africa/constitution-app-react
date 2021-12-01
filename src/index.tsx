@@ -5,6 +5,7 @@ import { setRedirect } from "./redirect";
 import * as serviceWorker from './serviceWorker';
 
 import { setupConfig } from '@ionic/react';
+import "./services/i18n";
 
 // force ios, which our styling requires
 setupConfig({
