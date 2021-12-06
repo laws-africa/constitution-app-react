@@ -5,7 +5,6 @@ import {
   IonListHeader,
   IonLabel,
   IonPage,
-  withIonLifeCycle,
   IonButton,
   IonCol,
   IonIcon
@@ -14,10 +13,11 @@ import './Rules.css';
 import { TOCList } from '../../components/rulesTOC';
 import { svgs } from '../../assets/svgs';
 import ActionRouteLink from "../../components/Action/ActionRouteLink";
+import { useTranslation } from "react-i18next";
 
-class RulesTOC extends React.Component {
-  render() {
-    return (
+const RulesTOC = () => {
+  const { t } = useTranslation('toc_rules')
+  return (
       <IonPage>
         <IonContent>
           <div className="ion-padding">
@@ -25,28 +25,28 @@ class RulesTOC extends React.Component {
               <IonCol size="1" class="icon ion-no-padding">
                 <IonIcon size="small" icon={svgs.RULES}></IonIcon>
               </IonCol>
-              <h2>Rules of the National Assembly</h2>
+              <h2>{t('page_title', 'Rules of the National Assembly')}</h2>
               <IonButton
-                className="ion-no-padding"
-                fill="clear"
-                routerLink={"/search/rules"}
+                  className="ion-no-padding"
+                  fill="clear"
+                  routerLink={"/search/rules"}
               >
-                Search
+                {t('search_button_text', 'Search')}
               </IonButton>
             </section>
 
             <hr className="header-divider" />
 
             <ActionRouteLink
-              routerLink="/rules/full"
-              leftIcon={svgs.RULES}
-              actionText="The Full Rules"
+                routerLink="/rules/full"
+                leftIcon={svgs.RULES}
+                actionText={t('rules_full_link_text', 'The Full Rules')}
             />
           </div>
           <IonList>
             <IonListHeader>
               <IonLabel class="contents-label ion-no-margin">
-                Table of Contents
+                { t('toc_title', 'Table of Contents') }
               </IonLabel>
             </IonListHeader>
             <div className="ion-padding-start">
@@ -56,8 +56,7 @@ class RulesTOC extends React.Component {
           </IonList>
         </IonContent>
       </IonPage>
-    );
-  }
+  )
 }
 
-export default withIonLifeCycle(RulesTOC);
+export default RulesTOC;
