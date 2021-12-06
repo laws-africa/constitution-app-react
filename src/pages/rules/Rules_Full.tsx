@@ -21,12 +21,15 @@ import { arrowBack, close, search } from 'ionicons/icons';
 import { rulesBody } from '../../data/rules';
 import { TOCList } from "../../components/rulesTOC";
 import HeaderSearch from '../../components/headerSearch/headerSearch';
+import { withTranslation } from "react-i18next";
 
 function previous() {
   window.history.back();
 }
 
-interface Props extends RouteComponentProps<{ id: string; }> { }
+interface Props extends RouteComponentProps<{ id: string; }> {
+  t(key:string, text:string): any,
+}
 
 type MyState = {
   search: Boolean;
@@ -35,7 +38,7 @@ type MyState = {
 class Rules_Full extends React.Component<Props, MyState> {
   private readonly rootRef: React.RefObject<HTMLDivElement>;
   private readonly rules: Element | null;
-  
+
   constructor(props: any) {
     super(props);
     this.rootRef = React.createRef();
@@ -103,7 +106,7 @@ class Rules_Full extends React.Component<Props, MyState> {
                 <IonIcon icon={arrowBack}></IonIcon>
               </IonButton>
             </IonButtons>
-            <IonTitle>Rules</IonTitle>
+            <IonTitle>{this.props.t('page_title', 'Rules')}</IonTitle>
             <IonButtons slot="end">
               <IonButton onClick={() => this.setState({search: !this.state.search})}>
                 <IonIcon icon={this.state.search ? close : search}></IonIcon>
@@ -135,4 +138,4 @@ class Rules_Full extends React.Component<Props, MyState> {
   }
 }
 
-export default withIonLifeCycle(Rules_Full);
+export default withTranslation('rules_full')(withIonLifeCycle(Rules_Full));
