@@ -16,9 +16,11 @@ import { Link, Redirect } from "react-router-dom";
 import { svgs } from "../../assets/svgs";
 import ActionRouteLink from "../../components/Action/ActionRouteLink";
 import ActionAnchorLink from "../../components/Action/ActionAnchorLink";
+import {useTranslation} from "react-i18next";
 
 const Home: React.FC = () => {
   const guides = data.topics;
+  const { t } = useTranslation('home')
 
   // redirect to a url from the 404.html page?
   const path = getAndClearRedirected();
@@ -43,11 +45,11 @@ const Home: React.FC = () => {
         <hr className="header-divider" />
 
         <div className="ion-padding-bottom">
-          Browse the Constitution for the provisions that you need.
+          {t('browser_constitution_text', "Browse the Constitution for the provisions that you need.")}
         </div>
         <ActionRouteLink
           leftIcon={svgs.CONSTITUTION}
-          actionText="Explore the Constitution"
+          actionText={t('explore_constitution_link_text', 'Explore the Constitution')}
           routerLink="/constitution"
         />
 
@@ -59,19 +61,19 @@ const Home: React.FC = () => {
               <IonIcon size="small" icon={svgs.GUIDES} />
             </IonCol>
             <IonCol>
-              <h5 className="section-heading">Guides</h5>
+              <h5 className="section-heading">{t('guides_heading', 'Guides')}</h5>
             </IonCol>
             <IonCol size="1">
               <Link className="ion-float-right link-plain" to="/search/guides">
-                Search
+                {t('search_guides_link_text', 'Search')}
               </Link>
             </IonCol>
           </IonRow>
         </IonGrid>
 
         <div className="ion-padding-bottom">
-          Understand the provisions of the Constitution and their implications
-          for parliamentary matters.
+          {t('understand_provisions_text', `Understand the provisions of the Constitution and their implications
+          for parliamentary matters.`)}
         </div>
         <IonList className="ion-margin-bottom ion-padding">
           {guides.slice(0, 3).map((guide) => (
@@ -81,7 +83,7 @@ const Home: React.FC = () => {
         <ActionRouteLink
           routerLink="/guides"
           leftIcon={svgs.GUIDES}
-          actionText="Browse All Guides"
+          actionText={t('browse_all_guides_text', 'Browse All Guides')}
         />
 
         <hr className="divider" />
@@ -92,23 +94,23 @@ const Home: React.FC = () => {
               <IonIcon size="small" icon={svgs.CASES} />
             </IonCol>
             <IonCol>
-              <h5 className="section-heading">Cases</h5>
+              <h5 className="section-heading">{t('cases_heading', 'Cases')}</h5>
             </IonCol>
             <IonCol size="1" className="ion-text-nowrap">
               <Link className="ion-float-right link-plain" to="/search/cases">
-                Search
+                {t('search_cases_link_title', 'Search')}
               </Link>
             </IonCol>
           </IonRow>
         </IonGrid>
 
         <div className="ion-padding-bottom">
-          See how the courts have interpreted the Constitution by reading the
-          leading cases on constitutional provisions.
+          {t('courts_interpreted_text', `See how the courts have interpreted the Constitution by reading the
+          leading cases on constitutional provisions.`)}
         </div>
         <ActionRouteLink
           routerLink="/cases"
-          actionText="Browse Cases"
+          actionText={t('browse_cases_text', 'Browse Cases')}
           leftIcon={svgs.CASES}
         />
 
@@ -121,29 +123,29 @@ const Home: React.FC = () => {
             </IonCol>
             <IonCol>
               <h5 className="section-heading">
-                Rules of the National Assembly
+                {t('rules_of_national_assembly_heading', 'Rules of the National Assembly')}
               </h5>
             </IonCol>
             <IonCol size="1">
               <Link className="ion-float-right link-plain" to="/search/rules">
-                Search
+                {t('search_link_label', 'Search')}
               </Link>
             </IonCol>
           </IonRow>
         </IonGrid>
 
         <div className="ion-padding-bottom">
-          Browse the Rules of the National Assembly.
+          {t('browse_rules_of_assembly_text', "Browse the Rules of the National Assembly.")}
         </div>
         <ActionRouteLink
           routerLink="/rules"
-          actionText="Browse Rules"
+          actionText={t('browse_rules_label', "Browse Rules")}
           leftIcon={svgs.RULES}
         />
 
         <hr className="divider" />
 
-        <p>This app is brought to you by:</p>
+        <p>{t('sponsors_of_app_text', "This app is brought to you by")}:</p>
 
         <IonGrid>
           <IonRow>
@@ -196,11 +198,11 @@ const Home: React.FC = () => {
           </IonRow>
         </IonGrid>
         <br />
-        <ActionRouteLink routerLink="/help" actionText="About This App" />
+        <ActionRouteLink routerLink="/help" actionText={t('about_app_link_label', 'About This App')} />
         <br />
         <ActionAnchorLink
           href="mailto:info@africanlii.org"
-          actionText="Send feedback"
+          actionText={t('send_feedback_link_label', "Send feedback")}
         />
       </IonContent>
     </IonPage>
