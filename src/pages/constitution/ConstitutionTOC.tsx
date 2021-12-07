@@ -14,7 +14,7 @@ import './Constitution.css';
 import { TOCList } from '../../components/constitutionTOC';
 import { svgs } from '../../assets/svgs';
 import ActionRouteLink from "../../components/Action/ActionRouteLink";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const ConstitutionTOC = () => {
   const { t } = useTranslation(['global', 'constitution']);
