@@ -78,11 +78,11 @@ const LandingPage = () => {
             </p>
           `))}
             <IonButton color="light" href="#installation">
-              {t('install_now_button_text', "Install Now")}
+              {t('install_now_button_text', 'Install Now')}
             </IonButton>
 
             <a href="/home" className="ion-padding-top">
-              {t('use_the_web_version', "Use the web version")}
+              {t('use_the_web_version', 'Use the web version')}
             </a>
           </div>
 
@@ -113,26 +113,26 @@ const LandingPage = () => {
                   <Features
                       iconName={svgs.GUIDES}
                       title={t('guides_feature_title', 'Guides to the Constitution')}
-                      text={t('guides_feature_text', "Quick guides to the purpose and meaning of each section of the Bill of Rights and some of the most used chapters of the Constitution.")}
+                      text={t('guides_feature_text', 'Quick guides to the purpose and meaning of each section of the Bill of Rights and some of the most used chapters of the Constitution.')}
                   />
 
                   <Features
                       iconName={svgs.RULES}
-                      title={t('rules_feature_title', "Get Cases in Context")}
-                      text={t('rules_feature_text', "Accessible guides to the South African Constitutional Court’s authoritative interpretation of the Constitution.")}
+                      title={t('rules_feature_title', 'Get Cases in Context')}
+                      text={t('rules_feature_text', 'Accessible guides to the South African Constitutional Court’s authoritative interpretation of the Constitution.')}
                   />
                 </IonCol>
                 <IonCol size-lg="6">
                   <Features
                       iconName={svgs.CASES}
-                      title={t('cases_feature_title', "Rules of the National Assembly")}
-                      text={t('cases_feature_text', "Quickly browse through the consolidated and updated version of the Rules of the National Assembly.")}
+                      title={t('cases_feature_title', 'Rules of the National Assembly')}
+                      text={t('cases_feature_text', 'Quickly browse through the consolidated and updated version of the Rules of the National Assembly.')}
                   />
 
                   <Features
                       iconName={svgs.SEARCH}
-                      title={t('search_feature_title', "Find what you are looking for")}
-                      text={t('search_feature_text', "Search across the Constitution, Rules, Guides or Cases to find the information that you need.")}
+                      title={t('search_feature_title', 'Find what you are looking for')}
+                      text={t('search_feature_text', 'Search across the Constitution, Rules, Guides or Cases to find the information that you need.')}
                   />
                 </IonCol>
               </IonRow>
@@ -154,7 +154,7 @@ const LandingPage = () => {
 
             {tab === "ios" ? (
                 <div>
-                  <h6>{t('install_on_ios_heading', "Install on your iPhone or iPad")}</h6>
+                  <h6>{t('install_on_ios_heading', 'Install on your iPhone or iPad')}</h6>
                   <br/>
                   <IonRow className="instruction-row">
                     <IonCol size-md="6">
@@ -189,7 +189,7 @@ const LandingPage = () => {
                               `))}
                             </React.Fragment>
                         ) : null}
-                        <li>{t('tap_share_icon_text',  "Tap the share icon at the bottom of the screen")}</li>
+                        <li>{t('tap_share_icon_text',  'Tap the share icon at the bottom of the screen')}</li>
                       </ol>
                     </IonCol>
                   </IonRow>
