@@ -47,7 +47,6 @@ import "./theme/theme.css";
 import "./theme/global.css";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import GaPageTracker from "./components/GAPageTracker";
-import LanguageSwitcher from "./components/LanguageSwitcher";
 import { Translation } from "react-i18next";
 
 interface AppState {
@@ -66,7 +65,6 @@ class App extends React.Component<null, AppState> {
   render() {
     return (
       <IonApp>
-        <LanguageSwitcher />
         <IonToast
           isOpen={this.state.updatesAvailable}
           message="New update available!"
