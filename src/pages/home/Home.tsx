@@ -17,6 +17,7 @@ import { svgs } from "../../assets/svgs";
 import ActionRouteLink from "../../components/Action/ActionRouteLink";
 import ActionAnchorLink from "../../components/Action/ActionAnchorLink";
 import {useTranslation} from "react-i18next";
+import LanguageSwitcher from "../../components/LanguageSwitcher";
 
 const Home: React.FC = () => {
   const guides = data.topics;
@@ -43,6 +44,8 @@ const Home: React.FC = () => {
           </h2>
         </div>
         <hr className="header-divider" />
+
+        <LanguageSwitcher />
 
         <div className="ion-padding-bottom">
           {t('browser_constitution_text', 'Browse the Constitution for the provisions that you need.')}
