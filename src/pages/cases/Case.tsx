@@ -20,6 +20,7 @@ import { TopicItem } from "../../components/topic";
 import HeaderSearch from "../../components/headerSearch/headerSearch";
 import { svgs } from "../../assets/svgs";
 import ActionAnchorLink from "../../components/Action/ActionAnchorLink";
+import {useTranslation} from "react-i18next";
 
 interface Props extends RouteComponentProps<{ id: string }> {}
 
@@ -59,6 +60,8 @@ const Case: React.FC<Props> = ({ match }) => {
     window.history.back();
   };
 
+  const { t } = useTranslation('case')
+
   return (
     <IonPage>
       <IonHeader>
@@ -84,7 +87,7 @@ const Case: React.FC<Props> = ({ match }) => {
 
           {thisCase.facts_and_issues.length > 0 && (
             <>
-              <h4>What was the case about?</h4>
+              <h4>{t('about_case_question_text','What was the case about?')}</h4>
               <div className="case-content">
                 {parse(thisCase.facts_and_issues)}
               </div>
@@ -93,7 +96,7 @@ const Case: React.FC<Props> = ({ match }) => {
 
           {thisCase.right_and_principle.length > 0 && (
             <>
-              <h4>What did the Court say about the right or principle?</h4>
+              <h4>{t('court_response_question', 'What did the Court say about the right or principle?')}</h4>
               <div className="case-content">
                 {parse(thisCase.right_and_principle)}
               </div>
@@ -115,7 +118,7 @@ const Case: React.FC<Props> = ({ match }) => {
           target="_blank"
           rel="noopener noreferrer"
           className="no-text-decoration"
-          actionText="Read this case on SAFLII"
+          actionText={t('read_about_saflii_label', 'Read this case on SAFLII')}
         />
 
         <br />
@@ -131,7 +134,7 @@ const Case: React.FC<Props> = ({ match }) => {
               <span>Related Guides</span>
             </IonToolbar>
             <IonList className="ion-padding">
-              {topics.map((topic: any, index: any) => (
+              {topics.map((topic: any) => (
                 <TopicItem key={topic.id} topic={topic} />
               ))}
             </IonList>
