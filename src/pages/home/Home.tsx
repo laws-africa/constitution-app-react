@@ -45,7 +45,7 @@ const Home: React.FC = () => {
         <hr className="header-divider" />
 
         <div className="ion-padding-bottom">
-          {t('browser_constitution_text', "Browse the Constitution for the provisions that you need.")}
+          {t('browser_constitution_text', 'Browse the Constitution for the provisions that you need.')}
         </div>
         <ActionRouteLink
           leftIcon={svgs.CONSTITUTION}
@@ -135,17 +135,17 @@ const Home: React.FC = () => {
         </IonGrid>
 
         <div className="ion-padding-bottom">
-          {t('browse_rules_of_assembly_text', "Browse the Rules of the National Assembly.")}
+          {t('browse_rules_of_assembly_text', 'Browse the Rules of the National Assembly.')}
         </div>
         <ActionRouteLink
           routerLink="/rules"
-          actionText={t('browse_rules_label', "Browse Rules")}
+          actionText={t('browse_rules_label', 'Browse Rules')}
           leftIcon={svgs.RULES}
         />
 
         <hr className="divider" />
 
-        <p>{t('sponsors_of_app_text', "This app is brought to you by")}:</p>
+        <p>{t('sponsors_of_app_text', 'This app is brought to you by')}:</p>
 
         <IonGrid>
           <IonRow>
@@ -202,7 +202,7 @@ const Home: React.FC = () => {
         <br />
         <ActionAnchorLink
           href="mailto:info@africanlii.org"
-          actionText={t('send_feedback_link_label', "Send feedback")}
+          actionText={t('send_feedback_link_label', 'Send feedback')}
         />
       </IonContent>
     </IonPage>
