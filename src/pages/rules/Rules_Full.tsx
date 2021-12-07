@@ -22,14 +22,13 @@ import { rulesBody, toc } from '../../data/rules';
 import TOCList from "../../components/TOCList";
 import HeaderSearch from '../../components/headerSearch/headerSearch';
 import { withTranslation } from "react-i18next";
+import {iTFunc} from "../../common-types";
 
 function previous() {
   window.history.back();
 }
 
-interface Props extends RouteComponentProps<{ id: string; }> {
-  t(key:string, text:string): any,
-}
+interface Props extends iTFunc, RouteComponentProps<{ id: string; }> {}
 
 type MyState = {
   search: Boolean;
@@ -106,7 +105,7 @@ class Rules_Full extends React.Component<Props, MyState> {
                 <IonIcon icon={arrowBack}></IonIcon>
               </IonButton>
             </IonButtons>
-            <IonTitle>{this.props.t('page_title', 'Rules')}</IonTitle>
+            <IonTitle>{this.props.t('rules_title', 'Rules')}</IonTitle>
             <IonButtons slot="end">
               <IonButton onClick={() => this.setState({search: !this.state.search})}>
                 <IonIcon icon={this.state.search ? close : search}></IonIcon>
@@ -141,4 +140,4 @@ class Rules_Full extends React.Component<Props, MyState> {
   }
 }
 
-export default withTranslation('rules_full')(withIonLifeCycle(Rules_Full));
+export default withTranslation('rules')(withIonLifeCycle(Rules_Full));
