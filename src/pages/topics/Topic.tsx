@@ -39,8 +39,8 @@ const Topic: React.FC<Props> = ({ match }) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const [onSearch, setOnSearch] = useState(false);
-  const { t } = useTranslation('topic')
-  
+  const { t } = useTranslation('topic');
+
   useIonViewWillEnter(() => {
     // @ts-ignore
     const topic: any = data.topics.find((t) => t.id === match.params.id);
