@@ -1,5 +1,6 @@
 {
-  "next_button_text": "Next",
-  "page_title": "Rules of the National Assembly",
-  "prev_button_text": "Previous"
+  "rules_full_link_label": "The Full Rules",
+  "rules_na_title": "Rules of the National Assembly",
+  "rules_title": "Rules",
+  "search_button_text": "Search"
 }
