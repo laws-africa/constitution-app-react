@@ -9,8 +9,6 @@ const loadJSONFile = (url = "" ) => {
   }
 }
 
-const global_zu = loadJSONFile("zu/global.json");
-
 const enData = {
   case: loadJSONFile("en/case.json"),
   constitution: loadJSONFile("en/constitution.json"),
