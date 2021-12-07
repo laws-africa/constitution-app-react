@@ -1,41 +1,61 @@
 import i18next from "i18next";
 import {initReactI18next} from "react-i18next";
 
-const enResources = {
-  help: require('../locales/en/help.json'),
-  landing: require('../locales/en/landing.json'),
+const loadJSONFile = (url = "" ) => {
+  try {
+   return require(`../locales/${url}`);
+  } catch (e) {
+    return null;
+  }
 }
 
-// const xhResources = {
-//   help: require('../locales/xh/help.json'),
-//   landing: require('../locales/xh/landing.json'),
-// }
+const global_zu = loadJSONFile("zu/global.json");
 
-const resources = {};
-
-if(Object.keys(enResources).some(ns => enResources[ns])) {
-  resources.en  = {};
-  Object.keys(enResources).forEach(ns => {
-    if(enResources[ns]) {
-      resources.en[ns] = enResources[ns]
-    }
-  })
+const enData = {
+  case: loadJSONFile("en/case.json"),
+  constitution: loadJSONFile("en/constitution.json"),
+  global: loadJSONFile("en/global.json"),
+  help: loadJSONFile("en/help.json"),
+  home: loadJSONFile("en/home.json"),
+  landing: loadJSONFile("en/help.json"),
+  rules: loadJSONFile("en/rules.json"),
+  search: loadJSONFile("en/search.json"),
+  topic: loadJSONFile("en/topic.json"),
 }
 
-// if(Object.keys(xhResources).some(ns => xhResources[ns])) {
-//   resources.xh  = {};
-//   Object.keys(xhResources).forEach(ns => {
-//     if(xhResources[ns]) {
-//       resources.xh[ns] = xhResources[ns]
-//     }
-//   })
-// }
+const enResources = {};
+Object.keys(enData).forEach(ns => {
+  if(enData[ns]) {
+    enResources[ns] = enData[ns];
+  }
+})
 
+const zuData = {
+  case: loadJSONFile("en/case.json"),
+  constitution: loadJSONFile("zu/constitution.json"),
+  global: loadJSONFile("zu/global.json"),
+  help: loadJSONFile("zu/help.json"),
+  home: loadJSONFile("zu/home.json"),
+  landing: loadJSONFile("zu/help.json"),
+  rules: loadJSONFile("zu/rules.json"),
+  search: loadJSONFile("zu/search.json"),
+  topic: loadJSONFile("zu/topic.json")
+}
+
+const zuResources = {};
+Object.keys(zuData).forEach(ns => {
+  if(zuData[ns]) {
+    zuResources[ns] = zuData[ns];
+  }
+})
 
 i18next
     .use(initReactI18next)
     .init({
-      resources,
+      resources: {
+        en: enResources,
+        zu: zuResources
+      },
       lng: "en",
       interpolation: {
         escapeValue: false,
@@ -43,7 +63,7 @@ i18next
       debug: true,
       fallbackLng: "en",
       keySeparator: ".",
-      supportedLngs: ["en", "xh"],
+      supportedLngs: ["en", "zu"],
       saveMissing: true,
     });
 
