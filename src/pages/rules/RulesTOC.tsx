@@ -16,7 +16,7 @@ import ActionRouteLink from "../../components/Action/ActionRouteLink";
 import { useTranslation } from "react-i18next";
 
 const RulesTOC = () => {
-  const { t } = useTranslation('toc_rules')
+  const { t } = useTranslation(['rules', 'global'])
   return (
       <IonPage>
         <IonContent>
@@ -25,7 +25,10 @@ const RulesTOC = () => {
               <IonCol size="1" class="icon ion-no-padding">
                 <IonIcon size="small" icon={svgs.RULES}></IonIcon>
               </IonCol>
-              <h2>{t('page_title', 'Rules of the National Assembly')}</h2>
+              <h2>{t('rules_na_title', {
+                defaultValue: 'Rules of the National Assembly',
+                ns: 'rules'
+              })}</h2>
               <IonButton
                   className="ion-no-padding"
                   fill="clear"
@@ -40,13 +43,19 @@ const RulesTOC = () => {
             <ActionRouteLink
                 routerLink="/rules/full"
                 leftIcon={svgs.RULES}
-                actionText={t('rules_full_link_text', 'The Full Rules')}
+                actionText={t('rules_full_link_label', {
+                  defaultValue: 'The Full Rules',
+                  ns: 'rules'
+                })}
             />
           </div>
           <IonList>
             <IonListHeader>
               <IonLabel class="contents-label ion-no-margin">
-                { t('toc_title', 'Table of Contents') }
+                { t('toc_title', {
+                  ns: 'global',
+                  defaultValue: 'Table of Contents'
+                }) }
               </IonLabel>
             </IonListHeader>
             <div className="ion-padding-start">
