@@ -25,12 +25,14 @@ import data from "../../assets/data/data.json";
 import decorateAkn from '../../components/decorateAkn';
 import HeaderSearch from '../../components/headerSearch/headerSearch';
 import { svgs } from '../../assets/svgs';
+import { withTranslation } from "react-i18next";
+import {iTFunc} from "../../common-types";
 
 function previous() {
   window.history.back();
 }
 
-interface Props extends RouteComponentProps<{ id: string; }> { }
+interface Props extends iTFunc, RouteComponentProps<{ id: string; }> { }
 
 type MyState = {
   search: Boolean;
@@ -110,7 +112,7 @@ class Constitution_Full extends React.Component<Props, MyState> {
                 <IonIcon icon={arrowBack}></IonIcon>
               </IonButton>
             </IonButtons>
-            <IonTitle>Constitution</IonTitle>
+            <IonTitle>{this.props.t('constitution_title', 'Constitution')}</IonTitle>
             <IonButtons slot="end">
               <IonButton onClick={() => this.setState({search: !this.state.search})}>
                 <IonIcon icon={this.state.search ? close : search}></IonIcon>
@@ -146,4 +148,4 @@ class Constitution_Full extends React.Component<Props, MyState> {
   }
 }
 
-export default withIonLifeCycle(Constitution_Full);
+export default withTranslation('constitution')(withIonLifeCycle(Constitution_Full));
