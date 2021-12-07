@@ -15,7 +15,7 @@ const Tab1: React.FC = () => {
           <IonCol size="1" class="icon ion-no-padding">
             <IonIcon size="small" icon={svgs.HELP}></IonIcon>
           </IonCol>
-          <h2>{t('about_heading', "About")}</h2>
+          <h2>{t('about_heading', 'About')}</h2>
         </section>
 
         <hr className="header-divider" />
