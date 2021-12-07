@@ -22,12 +22,14 @@ import decorateAkn from "../../components/decorateAkn";
 import { TopicItem } from "../../components/topic";
 import { svgs } from "../../assets/svgs";
 import { handleInDocumentLinks } from "../../utils";
+import { withTranslation } from "react-i18next";
+import { iTFunc } from "../../common-types";
 
 function previous() {
   window.history.back();
 }
 
-interface Props extends RouteComponentProps<{ id: string }> {}
+interface Props extends RouteComponentProps<{ id: string }>, iTFunc {}
 
 type MyState = {
   search: Boolean;
@@ -86,7 +88,10 @@ class Constitution extends React.Component<Props, MyState> {
                 <IonIcon icon={arrowBack}></IonIcon>
               </IonButton>
             </IonButtons>
-            <IonTitle>Constitution</IonTitle>
+            <IonTitle>{this.props.t('constitution_title', {
+              defaultValue: 'Constitution',
+              ns: 'constitution'
+            })}</IonTitle>
             <IonButtons slot="end">
               <IonButton
                 onClick={() => this.setState({ search: !this.state.search })}
@@ -105,7 +110,10 @@ class Constitution extends React.Component<Props, MyState> {
             <div>
               <IonToolbar class="related-guides" color="primary">
                 <IonIcon size="large" slot="start" icon={svgs.GUIDES_WHITE}></IonIcon>
-                <span>Related Guides</span>
+                <span>{this.props.t('related_guides_label', {
+                  ns: 'global',
+                  defaultValue: 'Related Guides'
+                })}</span>
               </IonToolbar>
               <IonList className="ion-padding">
                 {this.state.topics.map((topic: any, index: any) => (
@@ -126,7 +134,7 @@ class Constitution extends React.Component<Props, MyState> {
             >
               <div>
                 <IonIcon slot="start" icon={arrowBack}></IonIcon>
-                Previous
+                {this.props.t('prev_button_label', { ns: 'global', defaultValue: 'Previous' })}
               </div>
             </IonCard>
             <IonCard
@@ -137,7 +145,7 @@ class Constitution extends React.Component<Props, MyState> {
               disabled={toc.flattened.slice(-1)[0] === this.props.match.params.id}
             >
               <div>
-                Next
+                {this.props.t('next_button_label', { ns: 'global', defaultValue:  'Next' })}
                 <IonIcon slot="end" icon={arrowForward}></IonIcon>
               </div>
             </IonCard>
@@ -148,4 +156,4 @@ class Constitution extends React.Component<Props, MyState> {
   }
 }
 
-export default withIonLifeCycle(Constitution);
+export default withTranslation(['constitution','global'])(withIonLifeCycle(Constitution));
