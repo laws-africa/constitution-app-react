@@ -93,7 +93,7 @@ const Tab1: React.FC = () => {
         <div>
           <ActionAnchorLink
             href="mailto:info@africanlii.org"
-            actionText={parse(t('send_feedback_button_title', 'Send feedback'))}
+            actionText={t('send_feedback_button_title', 'Send feedback')}
           />
         </div>
       </IonContent>
