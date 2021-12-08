@@ -1,1 +1,3 @@
-files: []
+files:
+  - source: /src/locales/en/*.json
+    translation: '%file_name%.%file_extension%'
