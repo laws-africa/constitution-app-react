@@ -29,7 +29,7 @@ Object.keys(enData).forEach(ns => {
 })
 
 const zuData = {
-  case: loadJSONFile("en/case.json"),
+  case: loadJSONFile("zu/case.json"),
   constitution: loadJSONFile("zu/constitution.json"),
   global: loadJSONFile("zu/global.json"),
   help: loadJSONFile("zu/help.json"),
