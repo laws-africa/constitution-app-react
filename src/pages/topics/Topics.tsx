@@ -36,11 +36,11 @@ const Topics: React.FC = () => {
           <p>Guides to the sections of the Constitution.</p>
           <hr className="list-divider" />
         </div>
-        <IonList className="ion-padding">
-          {data.topics.map((topic) => (
-            <TopicItem topic={topic} key={topic.id} />
-          ))}
-        </IonList>
+        {/*<IonList className="ion-padding">*/}
+        {/*  {data.topics.map((topic) => (*/}
+        {/*    <TopicItem topic={topic} key={topic.id} />*/}
+        {/*  ))}*/}
+        {/*</IonList>*/}
       </IonContent>
     </IonPage>
   );

@@ -2,12 +2,14 @@ export class TableOfContents {
   public items: any[];
   public itemsById: Map<string, any>;
   public flattened: string[];
+  public flattenedDeep: any[];
 
   constructor(items: any[]) {
     this.items = items;
     this.itemsById = new Map();
     this.indexItems(items, null);
     this.flattened = flattenTOC(items);
+    this.flattenedDeep = flattenedDeep(items);
   }
 
   /** Mapping from toc element id to toc entry
@@ -54,3 +56,16 @@ function flattenTOC(arr: any[]) {
   return result;
 }
 
+// @ts-ignore
+function flattenedDeep(array: any[]) {
+  let children: string | any[] = [];
+  return array.map(item => {
+    if (item.children && item.children.length) {
+      item.isParent = true;
+      // @ts-ignore
+      children = [...children, ...item.children];
+    }
+    return item;
+    // @ts-ignore
+  }).concat(children.length ? flattenedDeep(children) : children);
+}
