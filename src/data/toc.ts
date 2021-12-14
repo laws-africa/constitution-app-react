@@ -55,17 +55,3 @@ function flattenTOC(arr: any[]) {
 
   return result;
 }
-
-// @ts-ignore
-function flattenedDeep(array: any[]) {
-  let children: string | any[] = [];
-  return array.map(item => {
-    if (item.children && item.children.length) {
-      item.isParent = true;
-      // @ts-ignore
-      children = [...children, ...item.children];
-    }
-    return item;
-    // @ts-ignore
-  }).concat(children.length ? flattenedDeep(children) : children);
-}
