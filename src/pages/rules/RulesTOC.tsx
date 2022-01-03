@@ -11,9 +11,12 @@ import {
   IonIcon
 } from '@ionic/react';
 import './Rules.css';
-import { TOCList } from '../../components/rulesTOC';
 import { svgs } from '../../assets/svgs';
 import ActionRouteLink from "../../components/Action/ActionRouteLink";
+import TOCList from '../../components/TOCList';
+import { toc } from "../../data/rules";
+
+const items = toc.flattenedDeep.filter((c: any) => c.id);
 
 class RulesTOC extends React.Component {
   render() {
@@ -52,7 +55,12 @@ class RulesTOC extends React.Component {
             <div className="ion-padding-start">
               <hr className="header-divider" />
             </div>
-            <TOCList />
+            <TOCList
+                items={items}
+                clickItemData={{
+                  baseRoute: '/rules/provision'
+                }}
+            />
           </IonList>
         </IonContent>
       </IonPage>

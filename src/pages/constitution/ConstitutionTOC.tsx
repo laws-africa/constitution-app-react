@@ -11,9 +11,12 @@ import {
   IonCol
 } from '@ionic/react';
 import './Constitution.css';
-import { TOCList } from '../../components/constitutionTOC';
 import { svgs } from '../../assets/svgs';
 import ActionRouteLink from "../../components/Action/ActionRouteLink";
+import { toc } from "../../data/constitution";
+import TOCList from "../../components/TOCList"
+
+const items = toc.flattenedDeep.filter((c: any) => c.id);
 
 class ConstitutionTOC extends React.Component {
   render() {
@@ -42,7 +45,9 @@ class ConstitutionTOC extends React.Component {
               <IonLabel class="contents-label ion-no-margin">Table of Contents</IonLabel>
             </IonListHeader>
             <div className="ion-padding-start"><hr className="header-divider" /></div>
-            <TOCList/>
+            <TOCList items={items}
+                     clickItemData={{ baseRoute: '/constitution/provision' }}
+            />
           </IonList>
         </IonContent>
       </IonPage>
