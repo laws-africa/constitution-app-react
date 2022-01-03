@@ -2,12 +2,15 @@ export class TableOfContents {
   public items: any[];
   public itemsById: Map<string, any>;
   public flattened: string[];
+  public flattenedDeep: any[];
 
   constructor(items: any[]) {
     this.items = items;
     this.itemsById = new Map();
     this.indexItems(items, null);
     this.flattened = flattenTOC(items);
+    //TODO: find suitable name
+    this.flattenedDeep = flattenTOCDeep(items);
   }
 
   /** Mapping from toc element id to toc entry
@@ -53,4 +56,22 @@ function flattenTOC(arr: any[]) {
 
   return result;
 }
+
+// @ts-ignore
+function flattenTOCDeep(array: any[]) {
+  let flatten: { depth: number; children: any[]; }[] = [];
+  const recurseFn = (item: { depth: number; children: any[]; }, depth = 0) => {
+   item.depth = depth;
+   flatten.push(item);
+   if(item.children && item.children.length) {
+     item.children.forEach((item: any) => recurseFn(item, depth + 1))
+   }
+  }
+  array.forEach((item: { depth: number; children: any[]; }) => recurseFn(item))
+  return flatten;
+
+}
+
+
+
 
