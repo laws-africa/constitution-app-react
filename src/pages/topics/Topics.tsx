@@ -37,9 +37,9 @@ const Topics: React.FC = () => {
           <hr className="list-divider" />
         </div>
         <IonList className="ion-padding">
-          {data.topics.map((topic) => (
-            <TopicItem topic={topic} key={topic.id} />
-          ))}
+          {/*{data.topics.map((topic) => (*/}
+          {/*  <TopicItem topic={topic} key={topic.id} />*/}
+          {/*))}*/}
         </IonList>
       </IonContent>
     </IonPage>
