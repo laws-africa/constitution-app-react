@@ -1,44 +1,22 @@
 import React from "react";
-import TOCItem from "./TOCItem";
-import { IonSkeletonText } from "@ionic/react";
+import { IonItem } from "@ionic/react";
 
-const Row = ({ index, setSize, rowData, windowWidth, style, isScrolling, clickItemData } ) => {
-  const rowRef = React.useRef(null);
-  React.useEffect(() => {
-    if(rowRef && rowRef.current) {
-      // @ts-ignore
-      setSize(String(index), rowRef.current.getBoundingClientRect().height);
+const Row = ({ data, clickItemData }) => {
+  const props = {
+    ...clickItemData.overrideClickEvt ? {
+      onClick: () => clickItemData.overrideClickEvt(data)
+    } : {
+      routerLink: `${clickItemData.baseRoute}/${data.id}`
     }
-  }, [setSize, index, windowWidth]);
-
-  const renderContent = () => {
-    // if(isScrolling) {
-    //   return (
-    //       <div style={{
-    //         marginBottom: "5px"
-    //       }}>
-    //         <IonSkeletonText animated />
-    //       </div>
-    //   )
-    // }
-    return (
-        <TOCItem
-            item={rowData}
-            clickItemData={clickItemData}
-        />
-    )
-  }
-
+  };
   return (
       <div
-          // @ts-ignore
-          ref={rowRef}
-          style={style}
-          key={index}
-      >
-        {renderContent()}
+          // ref={root}
+          style={{ marginLeft: `${16 * data.depth}px` }}>
+        <IonItem class={data.type === "chapter" ? "chapter" : ""} {...props}>
+          {data.title}
+        </IonItem>
       </div>
-  )
+  );
 };
-
-export default Row;
+export default React.memo(Row);
