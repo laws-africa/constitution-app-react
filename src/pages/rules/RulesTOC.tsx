@@ -46,7 +46,11 @@ class RulesTOC extends React.Component {
               actionText="The Full Rules"
             />
           </div>
-          <IonList>
+          <IonList style={{
+            flex: '1 1 auto',
+            display: 'flex',
+            flexDirection: 'column'
+          }}>
             <IonListHeader>
               <IonLabel class="contents-label ion-no-margin">
                 Table of Contents
