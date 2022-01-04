@@ -12,6 +12,8 @@ import "./Topics.css";
 import { TopicItem } from "../../components/topic";
 import { svgs } from "../../assets/svgs";
 
+import {Virtuoso} from "react-virtuoso";
+
 const Topics: React.FC = () => {
   return (
     <IonPage>
@@ -36,10 +38,20 @@ const Topics: React.FC = () => {
           <p>Guides to the sections of the Constitution.</p>
           <hr className="list-divider" />
         </div>
-        <IonList className="ion-padding">
-          {/*{data.topics.map((topic) => (*/}
-          {/*  <TopicItem topic={topic} key={topic.id} />*/}
-          {/*))}*/}
+        <IonList style={{
+          flex: '1 1 auto',
+          display: 'flex',
+          flexDirection: 'column'
+        }} className="ion-padding">
+          <Virtuoso
+              style={{ height: '100%' }}
+              totalCount={data.topics.length}
+              itemContent={(index) => {
+                return (
+                    <TopicItem topic={data.topics[index]} key={data.topics[index].id} />
+                );
+              }}
+          />
         </IonList>
       </IonContent>
     </IonPage>
