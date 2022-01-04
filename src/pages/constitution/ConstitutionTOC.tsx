@@ -40,13 +40,18 @@ class ConstitutionTOC extends React.Component {
                 actionText="Read the Full Constitution"  />
           </div>
 
-          <IonList>
+          <IonList style={{
+            flex: '1 1 auto',
+            display: 'flex',
+            flexDirection: 'column'
+          }}>
             <IonListHeader>
               <IonLabel class="contents-label ion-no-margin">Table of Contents</IonLabel>
             </IonListHeader>
             <div className="ion-padding-start"><hr className="header-divider" /></div>
-            <TOCList items={items}
-                     clickItemData={{ baseRoute: '/constitution/provision' }}
+            <TOCList
+                items={items}
+                clickItemData={{ baseRoute: '/constitution/provision' }}
             />
           </IonList>
         </IonContent>
