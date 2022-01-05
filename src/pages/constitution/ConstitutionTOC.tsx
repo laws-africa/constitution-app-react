@@ -16,8 +16,6 @@ import ActionRouteLink from "../../components/Action/ActionRouteLink";
 import { toc } from "../../data/constitution";
 import TOCList from "../../components/TOCList"
 
-const items = toc.flattened.filter((c: any) => c.id);
-
 class ConstitutionTOC extends React.Component {
   render() {
     return (
@@ -46,8 +44,8 @@ class ConstitutionTOC extends React.Component {
             </IonListHeader>
             <div className="ion-padding-start"><hr className="header-divider" /></div>
             <TOCList
-                items={items}
-                baseRoute="/constitution/provision"
+                items={toc.flattened}
+                prependRoute="/constitution/provision"
             />
           </IonList>
         </IonContent>
