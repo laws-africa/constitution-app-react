@@ -12,12 +12,12 @@ import {
 } from "@ionic/react";
 import "./Search.css";
 import { TopicItem } from "../../components/topic";
-import { RuleTOCItem } from "../../components/rulesTOC";
 import { RouteComponentProps } from "react-router-dom";
 import { searchContent } from "../../data/search";
 import { svgs } from "../../assets/svgs";
 import { SearchConstitution } from "../../components/searchConstitution";
 import { SearchCases } from "../../components/searchCases";
+import Row from "../../components/TOCList/Row";
 
 interface Props extends RouteComponentProps<{ segment: string }> {}
 
@@ -67,7 +67,11 @@ const Search: React.FC<Props> = ({ match }) => {
   };
 
   const renderRuleProvisions = (results: any) => {
-    return results.map((result: any) => <RuleTOCItem item={result.item} />);
+    return results.map((result: any) => (
+        <Row data={result.item}
+             baseRoute="/rules/provision"
+        />
+    ));
   };
 
   const renderCases = (results: any) => {
@@ -107,7 +111,7 @@ const Search: React.FC<Props> = ({ match }) => {
         </IonSegment>
         <hr />
       </IonHeader>
-      
+
       <IonContent>
         {isSearching && renderSearchResults()}
         {!isSearching && <></>}
