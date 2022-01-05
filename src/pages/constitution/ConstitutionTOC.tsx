@@ -22,7 +22,7 @@ class ConstitutionTOC extends React.Component {
   render() {
     return (
       <IonPage>
-        <IonContent>
+        <IonContent class="virtual-list-container">
           <div className="ion-padding">
             <section className="tab-title">
               <IonCol size="1" class="icon ion-no-padding">
@@ -40,18 +40,14 @@ class ConstitutionTOC extends React.Component {
                 actionText="Read the Full Constitution"  />
           </div>
 
-          <IonList style={{
-            flex: '1 1 auto',
-            display: 'flex',
-            flexDirection: 'column'
-          }}>
+          <IonList>
             <IonListHeader>
               <IonLabel class="contents-label ion-no-margin">Table of Contents</IonLabel>
             </IonListHeader>
             <div className="ion-padding-start"><hr className="header-divider" /></div>
             <TOCList
                 items={items}
-                clickItemData={{ baseRoute: '/constitution/provision' }}
+                baseRoute="/constitution/provision"
             />
           </IonList>
         </IonContent>
