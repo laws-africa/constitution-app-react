@@ -13,11 +13,13 @@ import { TopicItem } from "../../components/topic";
 import { svgs } from "../../assets/svgs";
 
 import {Virtuoso} from "react-virtuoso";
+import {useWindowSize} from "../../custom-hooks/useWindowResize";
 
 const Topics: React.FC = () => {
+  const [windowWidth] = useWindowSize();
   return (
     <IonPage>
-      <IonContent>
+      <IonContent className="virtual-list-container">
         <div className="ion-padding">
           <section className="tab-title">
             <IonCol size="1" class="icon ion-no-padding">
@@ -38,20 +40,18 @@ const Topics: React.FC = () => {
           <p>Guides to the sections of the Constitution.</p>
           <hr className="list-divider" />
         </div>
-        <IonList style={{
-          flex: '1 1 auto',
-          display: 'flex',
-          flexDirection: 'column'
-        }} className="ion-padding">
-          <Virtuoso
-              style={{ height: '100%' }}
-              totalCount={data.topics.length}
-              itemContent={(index) => {
-                return (
-                    <TopicItem topic={data.topics[index]} key={data.topics[index].id} />
-                );
-              }}
-          />
+        <IonList className="ion-padding">
+          {windowWidth <= 425 ? (
+              <Virtuoso
+                  style={{ height: '100%' }}
+                  totalCount={data.topics.length}
+                  itemContent={(index) => {
+                    return (
+                        <TopicItem topic={data.topics[index]} key={data.topics[index].id} />
+                    );
+                  }}
+              />
+          ) : data.topics.map(item => <TopicItem topic={item} key={item.id} /> )}
         </IonList>
       </IonContent>
     </IonPage>
