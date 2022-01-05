@@ -213,6 +213,10 @@ hr.divider,
 }
 
 @media (max-width: 425px) {
+  .full-height-mobile {
+    height: 100%;
+  }
+
   .virtual-list-container.ion-content::part(scroll) {
     display: flex;
     flex-direction: column;
