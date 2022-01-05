@@ -16,8 +16,6 @@ import ActionRouteLink from "../../components/Action/ActionRouteLink";
 import TOCList from '../../components/TOCList';
 import { toc } from "../../data/rules";
 
-const items = toc.flattened.filter((c: any) => c.id);
-
 class RulesTOC extends React.Component {
   render() {
     return (
@@ -56,8 +54,8 @@ class RulesTOC extends React.Component {
               <hr className="header-divider" />
             </div>
             <TOCList
-                items={items}
-                baseRoute="/rules/provision"
+                items={toc.flattened}
+                prependRoute="/rules/provision"
             />
           </IonList>
         </IonContent>
