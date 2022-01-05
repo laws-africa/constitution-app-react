@@ -1,25 +1,25 @@
 import React from "react";
 import { IonItem } from "@ionic/react";
-import { iTOCItem } from "./index";
+import { ITOCItem } from "./index";
 
-interface iRow {
-  data: iTOCItem,
-  baseRoute?: string,
+interface IRow {
+  data: ITOCItem,
+  prependRoute?: string,
   overrideClickEvt?: ((itemData: any) => any) | undefined,
 }
 
-const defaultProps: iRow = {
+const defaultProps: IRow = {
   data: {},
-  baseRoute: "",
+  prependRoute: "",
   overrideClickEvt: undefined
 }
 
-const Row = ({ data, baseRoute, overrideClickEvt }: iRow) => {
+const Row = ({ data, prependRoute, overrideClickEvt }: IRow) => {
   const props = {
     ...overrideClickEvt ? {
       onClick: () => overrideClickEvt(data)
     } : {
-      routerLink: `${baseRoute}/${data.id}`
+      routerLink: `${prependRoute}/${data.id}`
     }
   };
   return (
