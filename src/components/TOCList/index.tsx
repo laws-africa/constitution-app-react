@@ -3,24 +3,24 @@ import {Virtuoso} from 'react-virtuoso'
 import Row from "./Row";
 import {useWindowSize} from "../../custom-hooks/useWindowResize";
 
-export interface iTOCItem {
+export interface ITOCItem {
   [key: string]: any; // type for unknown keys.
   title?: string;
 }
 
 interface ITOCList {
-  items: iTOCItem[],
-  baseRoute?: string,
-  overrideClickEvt?: ((itemData: iTOCItem) => any) | undefined,
+  items: ITOCItem[],
+  prependRoute?: string,
+  overrideClickEvt?: ((itemData: ITOCItem) => any) | undefined,
 }
 
 const defaultProps: ITOCList = {
   items: [],
-  baseRoute: '',
+  prependRoute: '',
   overrideClickEvt: undefined,
 }
 
-const VirtualizedList = ({ items, overrideClickEvt, baseRoute }: ITOCList) => {
+const VirtualizedList = ({ items, overrideClickEvt, prependRoute }: ITOCList) => {
   const list = React.useMemo(() => items, [items]);
   return <Virtuoso
       style={{ height: '100%' }}
@@ -49,7 +49,7 @@ const VirtualizedList = ({ items, overrideClickEvt, baseRoute }: ITOCList) => {
         return (
             <Row data={list[index]}
                  overrideClickEvt={overrideClickEvt}
-                 baseRoute={baseRoute}
+                 prependRoute={prependRoute}
             />
         );
       }}
@@ -65,7 +65,7 @@ const VirtualizedList = ({ items, overrideClickEvt, baseRoute }: ITOCList) => {
 VirtualizedList.defaultProps = defaultProps;
 
 
-const TOCList = ({ items, overrideClickEvt, baseRoute }: ITOCList) => {
+const TOCList = ({ items, overrideClickEvt, prependRoute }: ITOCList) => {
   const [windowWidth] = useWindowSize();
 
 
@@ -74,7 +74,7 @@ const TOCList = ({ items, overrideClickEvt, baseRoute }: ITOCList) => {
       return (
           <VirtualizedList
               overrideClickEvt={overrideClickEvt}
-              baseRoute={baseRoute}
+              prependRoute={prependRoute}
               items={items}
           />
       )
@@ -83,7 +83,7 @@ const TOCList = ({ items, overrideClickEvt, baseRoute }: ITOCList) => {
         <div key={item.id}>
           <Row data={item}
                overrideClickEvt={overrideClickEvt}
-               baseRoute={baseRoute}
+               prependRoute={prependRoute}
           />
         </div>
     ))
