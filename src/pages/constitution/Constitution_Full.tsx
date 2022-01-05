@@ -26,8 +26,6 @@ import decorateAkn from '../../components/decorateAkn';
 import HeaderSearch from '../../components/headerSearch/headerSearch';
 import { svgs } from '../../assets/svgs';
 
-const items = toc.flattened.filter((c: any) => c.id);
-
 function previous() {
   window.history.back();
 }
@@ -126,12 +124,10 @@ class Constitution_Full extends React.Component<Props, MyState> {
         </IonHeader>
         <IonMenu side="end" menuId="first" contentId="constitution">
           <IonContent>
-            <IonList style={{
-              height: "100%"
-            }}>
+            <IonList className="full-height-mobile">
               <IonMenuToggle auto-hide="true">
                 <TOCList
-                    items={items}
+                    items={toc.flattened}
                     overrideClickEvt={(data: any) => this.scroll(data)}
                 />
               </IonMenuToggle>

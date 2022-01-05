@@ -22,10 +22,6 @@ import { rulesBody, toc } from '../../data/rules';
 import TOCList from "../../components/TOCList";
 import HeaderSearch from '../../components/headerSearch/headerSearch';
 
-
-// only render provisions with ids
-const items = toc.flattened.filter((c: any) => c.id);
-
 function previous() {
   window.history.back();
 }
@@ -121,12 +117,10 @@ class Rules_Full extends React.Component<Props, MyState> {
         </IonHeader>
         <IonMenu side="end" menuId="first" contentId="rules">
           <IonContent>
-            <IonList style={{
-              height: "100%"
-            }}>
+            <IonList className="full-height-mobile">
               <IonMenuToggle auto-hide="true">
                 <TOCList
-                    items={items}
+                    items={toc.flattened}
                     overrideClickEvt={(data: any) => this.scroll(data)}
                 />
               </IonMenuToggle>
