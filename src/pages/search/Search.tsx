@@ -69,7 +69,7 @@ const Search: React.FC<Props> = ({ match }) => {
   const renderRuleProvisions = (results: any) => {
     return results.map((result: any) => (
         <Row data={result.item}
-             baseRoute="/rules/provision"
+             prependRoute="/rules/provision"
         />
     ));
   };
