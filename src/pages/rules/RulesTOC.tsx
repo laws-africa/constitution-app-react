@@ -22,7 +22,7 @@ class RulesTOC extends React.Component {
   render() {
     return (
       <IonPage>
-        <IonContent>
+        <IonContent className="virtual-list-container">
           <div className="ion-padding">
             <section className="tab-title">
               <IonCol size="1" class="icon ion-no-padding">
@@ -46,11 +46,7 @@ class RulesTOC extends React.Component {
               actionText="The Full Rules"
             />
           </div>
-          <IonList style={{
-            flex: '1 1 auto',
-            display: 'flex',
-            flexDirection: 'column'
-          }}>
+          <IonList>
             <IonListHeader>
               <IonLabel class="contents-label ion-no-margin">
                 Table of Contents
@@ -61,9 +57,7 @@ class RulesTOC extends React.Component {
             </div>
             <TOCList
                 items={items}
-                clickItemData={{
-                  baseRoute: '/rules/provision'
-                }}
+                baseRoute="/rules/provision"
             />
           </IonList>
         </IonContent>
