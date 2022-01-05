@@ -19,12 +19,14 @@ import {
 import './Constitution.css';
 import { RouteComponentProps } from 'react-router-dom';
 import { arrowBack, close, search } from 'ionicons/icons';
-import { constitutionBody } from '../../data/constitution';
-import { TOCList } from "../../components/constitutionTOC";
+import {constitutionBody, toc} from '../../data/constitution';
+import TOCList from "../../components/TOCList";
 import data from "../../assets/data/data.json";
 import decorateAkn from '../../components/decorateAkn';
 import HeaderSearch from '../../components/headerSearch/headerSearch';
 import { svgs } from '../../assets/svgs';
+
+const items = toc.flattenedDeep.filter((c: any) => c.id);
 
 function previous() {
   window.history.back();
@@ -40,7 +42,7 @@ class Constitution_Full extends React.Component<Props, MyState> {
   private readonly rootRef: React.RefObject<HTMLDivElement>;
   private readonly constitution: Element | null;
   private readonly topics: any [];
-  
+
   constructor(props: any) {
     super(props);
     this.rootRef = React.createRef();
@@ -124,9 +126,14 @@ class Constitution_Full extends React.Component<Props, MyState> {
         </IonHeader>
         <IonMenu side="end" menuId="first" contentId="constitution">
           <IonContent>
-            <IonList>
+            <IonList style={{
+              height: "100%"
+            }}>
               <IonMenuToggle auto-hide="true">
-                <TOCList onClick={this.scroll} />
+                <TOCList
+                    items={items}
+                    overrideClickEvt={(data: any) => this.scroll(data)}
+                />
               </IonMenuToggle>
             </IonList>
           </IonContent>
