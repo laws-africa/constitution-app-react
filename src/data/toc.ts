@@ -1,16 +1,13 @@
 export class TableOfContents {
   public items: any[];
   public itemsById: Map<string, any>;
-  public flattened: string[];
-  public flattenedDeep: any[];
+  public flattened: any[];
 
   constructor(items: any[]) {
     this.items = items;
     this.itemsById = new Map();
     this.indexItems(items, null);
     this.flattened = flattenTOC(items);
-    //TODO: find suitable name
-    this.flattenedDeep = flattenTOCDeep(items);
   }
 
   /** Mapping from toc element id to toc entry
@@ -44,32 +41,20 @@ export class TableOfContents {
   }
 }
 
-function flattenTOC(arr: any[]) {
+function flattenTOC(arr: any[], depth: number = 0) {
   let result: string[] = [];
 
   arr.forEach(el => {
-    if (el.id) result.push(el.id);
+    if (el.id) {
+      el.depth = depth;
+      result.push(el);
+    }
     if (el.children && el.children.length > 0) {
-      result = result.concat(flattenTOC(el.children));
-    };
+      result = result.concat(flattenTOC(el.children, depth + 1));
+    }
   });
 
   return result;
-}
-
-// @ts-ignore
-function flattenTOCDeep(array: any[]) {
-  let flatten: { depth: number; children: any[]; }[] = [];
-  const recurseFn = (item: { depth: number; children: any[]; }, depth = 0) => {
-   item.depth = depth;
-   flatten.push(item);
-   if(item.children && item.children.length) {
-     item.children.forEach((item: any) => recurseFn(item, depth + 1))
-   }
-  }
-  array.forEach((item: { depth: number; children: any[]; }) => recurseFn(item))
-  return flatten;
-
 }
 
 

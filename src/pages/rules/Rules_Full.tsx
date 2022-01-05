@@ -24,7 +24,7 @@ import HeaderSearch from '../../components/headerSearch/headerSearch';
 
 
 // only render provisions with ids
-const items = toc.flattenedDeep.filter((c: any) => c.id);
+const items = toc.flattened.filter((c: any) => c.id);
 
 function previous() {
   window.history.back();

@@ -16,7 +16,7 @@ import ActionRouteLink from "../../components/Action/ActionRouteLink";
 import { toc } from "../../data/constitution";
 import TOCList from "../../components/TOCList"
 
-const items = toc.flattenedDeep.filter((c: any) => c.id);
+const items = toc.flattened.filter((c: any) => c.id);
 
 class ConstitutionTOC extends React.Component {
   render() {

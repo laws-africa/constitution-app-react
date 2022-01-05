@@ -69,7 +69,7 @@ class Constitution extends React.Component<Props, MyState> {
         this.rootRef.current.appendChild(provision.cloneNode(true));
         decorateAkn(this.rootRef.current, this.state.topics);
         handleInDocumentLinks(this.rootRef.current, this.constitution, this.props.history, '/constitution/provision/');
-        this.currentIndex = toc.flattened.indexOf(this.props.match.params.id);
+        this.currentIndex = toc.flattened.map(item => item.id).indexOf(this.props.match.params.id);
       }
     }
     this.setState({ search: false });
@@ -119,9 +119,7 @@ class Constitution extends React.Component<Props, MyState> {
           </div>
           <IonButtons className="ion-padding ion-justify-content-between">
             <IonCard
-              routerLink={
-                "/constitution/provision/" + toc.flattened[this.currentIndex - 1]
-              }
+                routerLink={`/constitution/provision/${toc.flattened[this.currentIndex > 0 ? this.currentIndex - 1 : 0].id}`}
               className="con-buttons ion-no-margin"
               button
               disabled={toc.flattened[0] === this.props.match.params.id}
@@ -133,7 +131,7 @@ class Constitution extends React.Component<Props, MyState> {
             </IonCard>
             <IonCard
               routerLink={
-                "/constitution/provision/" + toc.flattened[this.currentIndex + 1]
+                "/constitution/provision/" + toc.flattened[this.currentIndex + 1].id
               }
               className="con-buttons ion-no-margin"
               disabled={toc.flattened.slice(-1)[0] === this.props.match.params.id}
