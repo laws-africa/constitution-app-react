@@ -18,9 +18,13 @@ import {
 import './Rules.css';
 import { RouteComponentProps } from 'react-router-dom';
 import { arrowBack, close, search } from 'ionicons/icons';
-import { rulesBody } from '../../data/rules';
-import { TOCList } from "../../components/rulesTOC";
+import { rulesBody, toc } from '../../data/rules';
+import TOCList from "../../components/TOCList";
 import HeaderSearch from '../../components/headerSearch/headerSearch';
+
+
+// only render provisions with ids
+const items = toc.flattenedDeep.filter((c: any) => c.id);
 
 function previous() {
   window.history.back();
@@ -35,7 +39,7 @@ type MyState = {
 class Rules_Full extends React.Component<Props, MyState> {
   private readonly rootRef: React.RefObject<HTMLDivElement>;
   private readonly rules: Element | null;
-  
+
   constructor(props: any) {
     super(props);
     this.rootRef = React.createRef();
@@ -117,9 +121,14 @@ class Rules_Full extends React.Component<Props, MyState> {
         </IonHeader>
         <IonMenu side="end" menuId="first" contentId="rules">
           <IonContent>
-            <IonList>
+            <IonList style={{
+              height: "100%"
+            }}>
               <IonMenuToggle auto-hide="true">
-                <TOCList onClick={this.scroll} />
+                <TOCList
+                    items={items}
+                    overrideClickEvt={(data: any) => this.scroll(data)}
+                />
               </IonMenuToggle>
             </IonList>
           </IonContent>
