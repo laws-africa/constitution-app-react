@@ -54,7 +54,7 @@ class Rules extends React.Component<Props, MyState> {
           this.rootRef.current.childNodes[0].remove();
         this.rootRef.current.appendChild(provision.cloneNode(true));
         handleInDocumentLinks(this.rootRef.current, this.rules, this.props.history, '/rules/provision/');
-        this.currentIndex = toc.flattened.indexOf(this.props.match.params.id);
+        this.currentIndex = toc.flattened.map(item => item.id).indexOf(this.props.match.params.id);
       }
     }
     this.setState({ search: false });
@@ -91,11 +91,11 @@ class Rules extends React.Component<Props, MyState> {
           <IonButtons className="ion-padding ion-justify-content-between">
             <IonCard
               routerLink={
-                "/rules/provision/" + toc.flattened[this.currentIndex - 1]
+                "/rules/provision/" + toc.flattened[this.currentIndex > 0 ? this.currentIndex - 1 : 0].id
               }
               className="con-buttons ion-no-margin"
               button
-              disabled={toc.flattened[0] === this.props.match.params.id}
+              disabled={toc.flattened[0].id === this.props.match.params.id}
             >
               <div>
                 <IonIcon slot="start" icon={arrowBack}></IonIcon>
@@ -104,10 +104,10 @@ class Rules extends React.Component<Props, MyState> {
             </IonCard>
             <IonCard
               routerLink={
-                "/rules/provision/" + toc.flattened[this.currentIndex + 1]
+                "/rules/provision/" + toc.flattened[this.currentIndex + 1].id
               }
               className="con-buttons ion-no-margin"
-              disabled={toc.flattened.slice(-1)[0] === this.props.match.params.id}
+              disabled={toc.flattened.slice(-1)[0].id === this.props.match.params.id}
             >
               <div>
                 Next

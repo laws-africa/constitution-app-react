@@ -1,7 +1,7 @@
 export class TableOfContents {
   public items: any[];
   public itemsById: Map<string, any>;
-  public flattened: string[];
+  public flattened: any[];
 
   constructor(items: any[]) {
     this.items = items;
@@ -41,16 +41,22 @@ export class TableOfContents {
   }
 }
 
-function flattenTOC(arr: any[]) {
+function flattenTOC(arr: any[], depth: number = 0) {
   let result: string[] = [];
 
   arr.forEach(el => {
-    if (el.id) result.push(el.id);
+    if (el.id) {
+      el.depth = depth;
+      result.push(el);
+    }
     if (el.children && el.children.length > 0) {
-      result = result.concat(flattenTOC(el.children));
-    };
+      result = result.concat(flattenTOC(el.children, depth + 1));
+    }
   });
 
   return result;
 }
+
+
+
 

@@ -211,3 +211,22 @@ hr.divider,
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+@media (max-width: 425px) {
+  .full-height-mobile {
+    height: 100%;
+  }
+
+  .virtual-list-container.ion-content::part(scroll) {
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  .virtual-list-container ion-list {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+}
