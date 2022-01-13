@@ -14,6 +14,7 @@ import { svgs } from '../../assets/svgs';
 import ActionRouteLink from "../../components/Action/ActionRouteLink";
 import TOCList from '../../components/TOCList';
 import { toc } from "../../data/rules";
+import { useTranslation } from "react-i18next";
 
 const RulesTOC = () => {
   const { t } = useTranslation(['rules', 'global'])
