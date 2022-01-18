@@ -5,7 +5,6 @@ import {
   IonListHeader,
   IonLabel,
   IonPage,
-  withIonLifeCycle,
   IonIcon,
   IonButton,
   IonCol
@@ -59,4 +58,4 @@ const ConstitutionTOC = () => {
       </IonPage>
   )
 }
-export default withIonLifeCycle(ConstitutionTOC);
+export default ConstitutionTOC;
