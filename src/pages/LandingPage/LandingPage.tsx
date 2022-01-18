@@ -15,7 +15,7 @@ import {svgs} from "../../assets/svgs";
 import {handleSupportersLink} from "../../utils";
 import "./LandingPage.scss";
 import {getAndClearRedirected} from "../../redirect";
-import {Redirect} from "react-router-dom";
+import {Redirect, Link} from "react-router-dom";
 import parse from 'html-react-parser';
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "../../components/LanguageSwitcher";
@@ -85,9 +85,9 @@ const LandingPage = () => {
               {t('install_now_button_text', 'Install Now')}
             </IonButton>
 
-            <a href="/home" className="ion-padding-top">
+            <Link to="/home" className="ion-padding-top">
               {t('use_the_web_version', 'Use the web version')}
-            </a>
+            </Link>
           </div>
 
           <div className="images">
