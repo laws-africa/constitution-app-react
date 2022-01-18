@@ -18,6 +18,7 @@ import {getAndClearRedirected} from "../../redirect";
 import {Redirect} from "react-router-dom";
 import parse from 'html-react-parser';
 import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "../../components/LanguageSwitcher";
 
 const LandingPage = () => {
   const [tab, setTab] = useState("ios");
@@ -55,11 +56,14 @@ const LandingPage = () => {
               </h2>
             </section>
 
-            <IonRow class="ion-align-items-center right-links ion-justify-content-between">
-              <a href="#features">Features</a>&nbsp;
-              <IonButton color="light" href="#installation">
-                {t('install_button_title', 'Install Now')}
-              </IonButton>
+            <IonRow class="ion-align-items-center ion-justify-content-between">
+              <div className="right-links">
+                <a href="#features">Features</a>&nbsp;
+                <IonButton color="light" href="#installation">
+                  {t('install_button_title', 'Install Now')}
+                </IonButton>
+              </div>
+              <LanguageSwitcher />
             </IonRow>
           </IonRow>
 
