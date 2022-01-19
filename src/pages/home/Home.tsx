@@ -44,9 +44,18 @@ const Home: React.FC = () => {
               />
             </h2>
           </div>
-          <LanguageSwitcher />
         </div>
         <hr className="header-divider" />
+
+        <div className="ion-padding-bottom">
+          Choose your preferred language
+        </div>
+
+        <div style={{
+          marginBottom: "3rem"
+        }}>
+          <LanguageSwitcher />
+        </div>
 
         <div className="ion-padding-bottom">
           {t('browser_constitution_text', 'Browse the Constitution for the provisions that you need.')}
