@@ -218,15 +218,10 @@ hr.divider,
   margin-top: 20px;
   margin-bottom: 20px;
 }
-
 .language-switcher {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.language-switcher ion-select {
-  padding-left: 10px;
+  --padding-start: 0;
+  --border-style: none;
+  --background: #D7D7D7;
 }
 
 @media (max-width: 425px) {
