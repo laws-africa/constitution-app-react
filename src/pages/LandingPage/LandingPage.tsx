@@ -43,7 +43,7 @@ const LandingPage = () => {
       <IonPage className="landing-page">
          <IonContent>
           <IonRow
-              class="ion-justify-content-between ion-margin-horizontal ion-padding-vertical header ion-align-items-center">
+              class="ion-justify-content-between ion-align-items-center ion-margin-horizontal ion-padding-vertical header ion-align-items-center">
             <section className="app-title">
               <img src="/assets/logo.png" alt="logo" className="logo"/>
               <h2>
