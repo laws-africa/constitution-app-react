@@ -54,7 +54,7 @@ i18next
         en: enResources,
         zu: zuResources
       },
-      lng: "en",
+      lng: localStorage.getItem('locale') || "en",
       interpolation: {
         escapeValue: false,
       },
