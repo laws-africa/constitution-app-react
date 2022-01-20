@@ -48,7 +48,7 @@ const Home: React.FC = () => {
         <hr className="header-divider" />
 
         <div className="ion-padding-bottom">
-          Choose your preferred language:
+          {t('choose_language_preference', 'Choose your preferred language:')}
         </div>
 
         <div style={{
