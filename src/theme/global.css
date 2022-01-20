@@ -218,10 +218,22 @@ hr.divider,
   margin-top: 20px;
   margin-bottom: 20px;
 }
-.language-switcher {
+.language-switcher ion-item {
   --padding-start: 0;
   --border-style: none;
-  --background: #D7D7D7;
+  --background: white;
+  background-color: white;
+  margin: 5px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.31);
+  border-radius: 5px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.language-switcher ion-item img {
+  margin-left: 10px;
+  width: 28px;
+  height: 28px;
 }
 
 @media (max-width: 425px) {
