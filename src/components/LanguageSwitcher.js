@@ -10,17 +10,15 @@ function LanguageSwitcher() {
     const languageNames = new Intl.DisplayNames([i18n.language], {type: 'language'});
     return languageNames.of(language);
   }
+  const handleLangChange = async (e) => {
+    await i18n.changeLanguage(e.target.value);
+    localStorage.setItem('locale', e.target.value);
+  }
+
   return (
-      <IonList>
-        <IonItem
-            className="language-switcher">
-          <img src={svgs.LANGUAGE} alt="language-switcher"
-               style={{
-                 marginLeft: "10px",
-                 width: "28px",
-                 height: "28px",
-               }}
-          />
+      <IonList className="language-switcher">
+        <IonItem>
+          <img src={svgs.LANGUAGE} alt="language-switcher" />
           <IonLabel style={{
             display: 'none'
           }}>Choose Language</IonLabel>
@@ -31,9 +29,7 @@ function LanguageSwitcher() {
               }}
               placeholder="Select a language"
               value={i18n.language}
-              onIonChange={(e) =>
-                  i18n.changeLanguage(e.target.value)
-              }
+              onIonChange={handleLangChange}
           >
             {supportedLngs.map((option, index) => (
                 <IonSelectOption key={index} value={option}>
