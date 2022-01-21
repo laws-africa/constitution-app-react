@@ -7,6 +7,7 @@ import CASES from "./icons/Cases.svg";
 import CASES_WHITE from "./icons/Cases_White.svg";
 import CONSTITUTION from "./icons/Constitution.svg";
 import HELP from "./icons/Help.svg";
+import LANGUAGE from './icons/Language.svg';
 
 export const svgs = {
   GUIDES,
@@ -18,4 +19,5 @@ export const svgs = {
   CASES,
   CASES_WHITE,
   CONSTITUTION,
+  LANGUAGE,
 };

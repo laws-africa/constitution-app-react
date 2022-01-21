@@ -15,9 +15,10 @@ import {svgs} from "../../assets/svgs";
 import {handleSupportersLink} from "../../utils";
 import "./LandingPage.scss";
 import {getAndClearRedirected} from "../../redirect";
-import {Redirect} from "react-router-dom";
+import {Redirect, Link} from "react-router-dom";
 import parse from 'html-react-parser';
 import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "../../components/LanguageSwitcher";
 
 const LandingPage = () => {
   const [tab, setTab] = useState("ios");
@@ -42,7 +43,7 @@ const LandingPage = () => {
       <IonPage className="landing-page">
          <IonContent>
           <IonRow
-              class="ion-justify-content-between ion-margin-horizontal ion-padding-vertical header ion-align-items-center">
+              class="ion-justify-content-between ion-align-items-center ion-margin-horizontal ion-padding-vertical header ion-align-items-center">
             <section className="app-title">
               <img src="/assets/logo.png" alt="logo" className="logo"/>
               <h2>
@@ -55,11 +56,14 @@ const LandingPage = () => {
               </h2>
             </section>
 
-            <IonRow class="ion-align-items-center right-links ion-justify-content-between">
-              <a href="#features">Features</a>&nbsp;
-              <IonButton color="light" href="#installation">
-                {t('install_button_title', 'Install Now')}
-              </IonButton>
+            <IonRow class="ion-align-items-center ion-justify-content-between">
+              <div className="right-links">
+                <a href="#features">Features</a>&nbsp;
+                <IonButton color="light" href="#installation">
+                  {t('install_button_title', 'Install Now')}
+                </IonButton>
+              </div>
+              <LanguageSwitcher />
             </IonRow>
           </IonRow>
 
@@ -81,9 +85,9 @@ const LandingPage = () => {
               {t('install_now_button_text', 'Install Now')}
             </IonButton>
 
-            <a href="/home" className="ion-padding-top">
+            <Link to="/home" className="ion-padding-top">
               {t('use_the_web_version', 'Use the web version')}
-            </a>
+            </Link>
           </div>
 
           <div className="images">
