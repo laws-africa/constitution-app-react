@@ -4,7 +4,7 @@ import {svgs} from "../assets/svgs";
 import {IonItem, IonLabel, IonList, IonSelect, IonSelectOption} from "@ionic/react";
 
 function LanguageSwitcher() {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation('language_switcher');
   const supportedLngs = i18n.options.supportedLngs.filter(option => option !==  'cimode');
   const getLngName = (language) => {
     const languageNames = new Intl.DisplayNames([i18n.language], {type: 'language'});
@@ -21,13 +21,15 @@ function LanguageSwitcher() {
           <img src={svgs.LANGUAGE} alt="language-switcher" />
           <IonLabel style={{
             display: 'none'
-          }}>Choose Language</IonLabel>
+          }}>
+            {t('choose_language', 'Choose Language')}
+          </IonLabel>
           <IonSelect
               style={{
                 maxWidth: "100%",
                 flexGrow: 1
               }}
-              placeholder="Select a language"
+              placeholder={t('choose_language', 'Choose Language')}
               value={i18n.language}
               onIonChange={handleLangChange}
           >
