@@ -9,51 +9,34 @@ const loadJSONFile = (url = "" ) => {
   }
 }
 
-const enData = {
-  case: loadJSONFile("en/case.json"),
-  constitution: loadJSONFile("en/constitution.json"),
-  global: loadJSONFile("en/global.json"),
-  help: loadJSONFile("en/help.json"),
-  home: loadJSONFile("en/home.json"),
-  landing: loadJSONFile("en/help.json"),
-  rules: loadJSONFile("en/rules.json"),
-  search: loadJSONFile("en/search.json"),
-  topic: loadJSONFile("en/topic.json"),
-}
+const resources = {};
 
-const enResources = {};
-Object.keys(enData).forEach(ns => {
-  if(enData[ns]) {
-    enResources[ns] = enData[ns];
+['en', 'xh', 'zu'].forEach(key => {
+  const resource = {};
+  const data =  {
+    case: loadJSONFile(`${key}/case.json`),
+    constitution: loadJSONFile(`${key}/constitution.json`),
+    global: loadJSONFile(`${key}/global.json`),
+    help: loadJSONFile(`${key}/help.json`),
+    home: loadJSONFile(`${key}/home.json`),
+    landing: loadJSONFile(`${key}/help.json`),
+    rules: loadJSONFile(`${key}/rules.json`),
+    search: loadJSONFile(`${key}/search.json`),
+    topic: loadJSONFile(`${key}/topic.json`),
+    language_switcher: loadJSONFile(`${key}/language_switcher.json`),
   }
-})
-
-const zuData = {
-  case: loadJSONFile("zu/case.json"),
-  constitution: loadJSONFile("zu/constitution.json"),
-  global: loadJSONFile("zu/global.json"),
-  help: loadJSONFile("zu/help.json"),
-  home: loadJSONFile("zu/home.json"),
-  landing: loadJSONFile("zu/help.json"),
-  rules: loadJSONFile("zu/rules.json"),
-  search: loadJSONFile("zu/search.json"),
-  topic: loadJSONFile("zu/topic.json")
-}
-
-const zuResources = {};
-Object.keys(zuData).forEach(ns => {
-  if(zuData[ns]) {
-    zuResources[ns] = zuData[ns];
-  }
-})
+  Object.keys(data).forEach(ns => {
+    if(data[ns]) {
+      resource[ns] = data[ns];
+    }
+  });
+  resources[key] = resource;
+});
 
 i18next
     .use(initReactI18next)
     .init({
-      resources: {
-        en: enResources,
-        zu: zuResources
-      },
+      resources,
       lng: localStorage.getItem('locale') || "en",
       interpolation: {
         escapeValue: false,
@@ -61,7 +44,7 @@ i18next
       debug: true,
       fallbackLng: "en",
       keySeparator: ".",
-      supportedLngs: ["en", "zu"],
+      supportedLngs: ["en", "zu", "xh"],
       saveMissing: true,
     });
 
