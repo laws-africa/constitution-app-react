@@ -1,10 +1,10 @@
 {
-  "guide_to_text": "Guide to",
-  "interpretation_question_text": "How was it interpreted by the courts?",
-  "legislation_question_text": "Which legislation gives effect to it?",
-  "meaning_question_text": "What does it mean?",
-  "page_title": "Guides",
-  "search_button_label": "Search",
-  "section_description_text": "Guides to the sections of the Constitution.",
-  "what_does_it_say_text": "What does it say?"
+  "guide_to_text": "iziKhokelo kwi",
+  "interpretation_question_text": "Yayitolikwa njani ziinkundla?",
+  "legislation_question_text": "Ngowuphi umthetho osebenzayo kuwo?",
+  "meaning_question_text": "Ingaba ithetha ntoni?",
+  "page_title": "izikhokelo",
+  "search_button_label": "Khangela/Jonga",
+  "section_description_text": "Izikhokelo kumacandelo oMgaqo-siseko.",
+  "what_does_it_say_text": "Ithini yona?"
 }
