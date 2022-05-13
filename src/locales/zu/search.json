@@ -1,9 +1,9 @@
 {
-  "cases_seg_button_label": "Cases",
-  "constitution_seg_button_label": "Constitution",
-  "guides_seg_button_label": "Guides",
-  "no_results_text": "Nothing matches your search.",
-  "rules_seg_button_label": "Rules",
-  "search_title": "Search",
+  "cases_seg_button_label": "Amacala",
+  "constitution_seg_button_label": "UMthethosisekelo",
+  "guides_seg_button_label": "Izinkombandlela",
+  "no_results_text": "Asitholi lutho kulokho okuseshile.",
+  "rules_seg_button_label": "Imithetho",
+  "search_title": "Sesha",
   "searchbar_placeholder": "Find guides, cases or sections..."
 }
