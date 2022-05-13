@@ -1,10 +1,10 @@
 {
-  "guide_to_text": "Guide to",
-  "interpretation_question_text": "How was it interpreted by the courts?",
-  "legislation_question_text": "Which legislation gives effect to it?",
-  "meaning_question_text": "What does it mean?",
-  "page_title": "Guides",
-  "search_button_label": "Search",
-  "section_description_text": "Guides to the sections of the Constitution.",
-  "what_does_it_say_text": "What does it say?"
+  "guide_to_text": "Inkombandlela ye",
+  "interpretation_question_text": "Yahumushwa kanjani yizinkantolo?",
+  "legislation_question_text": "Yimuphi umthetho onikeza lesigaba amandla?",
+  "meaning_question_text": "Kusho ukuthini lokho?",
+  "page_title": "Izinkombandlela",
+  "search_button_label": "Sesha",
+  "section_description_text": "Izinkombandlela zezigaba zoMthethosisekelo.",
+  "what_does_it_say_text": "Sithini lesigaba?"
 }
