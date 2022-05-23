@@ -332,7 +332,7 @@ const LandingPage = () => {
                 <IonCol size-md="3">
                   <img
                     alt=""
-                    src="../../assets/uct-logo.jpg"
+                    src="../../assets/uct-logo.png"
                     onClick={() =>
                       handleSupportersLink("https://www.uct.ac.za/")
                     }
