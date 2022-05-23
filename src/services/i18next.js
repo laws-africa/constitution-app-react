@@ -19,7 +19,7 @@ const resources = {};
     global: loadJSONFile(`${key}/global.json`),
     help: loadJSONFile(`${key}/help.json`),
     home: loadJSONFile(`${key}/home.json`),
-    landing: loadJSONFile(`${key}/help.json`),
+    landing: loadJSONFile(`${key}/landing.json`),
     rules: loadJSONFile(`${key}/rules.json`),
     search: loadJSONFile(`${key}/search.json`),
     topic: loadJSONFile(`${key}/topic.json`),
