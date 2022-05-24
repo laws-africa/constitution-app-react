@@ -1,6 +1,6 @@
 {
   "android": "I-Android",
-  "android_install_step_one": "\nVula isikhangeli sefowuni yakho     \n\niCompass\n\nYongeza iCompass yoMgaqo-siseko kwiscreen sasekhaya  \n\nibhena kwaye ulandele imiyalelo\n                      ",
+  "android_install_step_one": "\n                        <ol>\n                        <li>Vula isikhangeli sefowuni yakho</li>\n                        <li>\n                          ukuhamba&nbsp;\n                          <a\n                              href=\"https://bit.ly/concompass\"\n                              target=\"_blank\"\n                              rel=\"noopener noreferrer\"\n                          >\n                            bit.ly/concompass\n                          </a>\n                        </li>\n                        <li>\n                          Yongeza iCompass yoMgaqo-siseko kwiscreen sasekhaya  \nibhena kwaye ulandele imiyalelo\n                        </li>\n                      </ol>\n                      ",
   "android_install_step_two": "Ukuba ibhena ayibonakali, cofa kwibar yeSixhobo kwi\n\nkwikona ephezulu ngasekunene, emva koko ucofe \"Faka i-App\".",
   "android_install_step_three": "Ukuvula i-App, yifumane kwiscreen sakho sasekhaya",
   "cases_feature_text": "Khawuleza ukhangele kuhlelo oludityanisiweyo noluhlaziyiweyo lweMithetho yeNdlu yoWiso-mthetho.",
@@ -12,7 +12,7 @@
   "guides_feature_text": "Izikhokelo ezikhawulezayo kwinjongo nentsingiselo yecandelo ngalinye loMqulu wamaLungelo kunye nezinye izahluko ezisetyenziswa kakhulu zoMgaqo-siseko.",
   "guides_feature_title": "Izikhokelo zoMgaqo-siseko",
   "how_to_install_app_on_phone": "Uyifaka njani i-App kwifowuni yakho",
-  "if_no_safari_instruction": "\nVula isiphequluli sakho seSafari\n\nQaphela: Kufuneka kube yiSafari, awukwazi ukusebenzisa uGoogle\n\nChrome okanye Firefox.\n\nYiya e\n\nbit.ly/concompass                              ",
+  "if_no_safari_instruction": "\n                                <li>\n                                  Vula isiphequluli sakho seSafari\n                                  <div class=\"light\">\n                                    Qaphela: Kufuneka kube yiSafari, awukwazi ukusebenzisa uGoogle\nChrome okanye Firefox.\n                                  </div>\n                                </li>\n                                <li>\n                                  Yiya e&nbsp;\n                                  <a\n                                      href=\"https://bit.ly/concompass\"\n                                      target=\"_blank\"\n                                      rel=\"noopener noreferrer\"\n                                  >\n                                    bit.ly/concompass\n                                  </a>\n                                </li>\n                              ",
   "install_button_title": "Faka ngoku",
   "install_now_button_text": "Faka ngoku",
   "install_on_ios_heading": "Faka kwi-iPhone okanye kwi-iPad yako",
