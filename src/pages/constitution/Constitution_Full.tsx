@@ -93,7 +93,7 @@ class Constitution_Full extends React.Component<Props, MyState> {
     if (this.rootRef.current && this.rootRef.current.childElementCount === 0) {
       console.log('rendering constitution');
       // @ts-ignore
-      this.rootRef.current.appendChild(this.constitution.cloneNode(true));
+      this.rootRef.current.appendChild(this.constitution.body.cloneNode(true));
       decorateAkn(this.rootRef.current, this.topics);
     }
   }

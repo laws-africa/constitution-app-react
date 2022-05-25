@@ -68,9 +68,8 @@ const Topic: React.FC<Props> = ({ match }) => {
     // @ts-ignore
     setReferences(references);
 
-    if (match.params.id && rootRef.current) {
-      let id = match.params.id.split("_", 2).join("_");
-      let provision = constitution.document.getElementById(id);
+    if (topic.references.length > 0 && rootRef.current) {
+      let provision = constitution.document.getElementById(topic.references[0]);
       if (provision) {
         // remove current elements
         while (rootRef.current.hasChildNodes())
