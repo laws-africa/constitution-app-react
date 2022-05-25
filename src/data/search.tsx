@@ -1,5 +1,5 @@
 import lunr from "lunr";
-import { constitutionRoot } from "./constitution";
+import { getExpression } from "./constitution";
 import { rulesRoot } from "./rules";
 import data from "../assets/data/data.json";
 
@@ -142,7 +142,9 @@ export function findTopicsByProvisionId(id: string) {
   return result;
 }
 
-const searchableProvisions = indexAkn(constitutionRoot);
+// TODO: language for search?
+const constitution = getExpression('eng');
+const searchableProvisions = indexAkn(constitution.document);
 const searchableRuleProvisions = indexAkn(rulesRoot);
 const searchableCases = indexCases(data.cases);
 const searchableTopics = indexTopics(data.topics);

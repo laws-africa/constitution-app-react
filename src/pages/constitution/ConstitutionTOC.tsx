@@ -12,12 +12,14 @@ import {
 import './Constitution.css';
 import { svgs } from '../../assets/svgs';
 import ActionRouteLink from "../../components/Action/ActionRouteLink";
-import { toc } from "../../data/constitution";
+import { getExpression } from "../../data/constitution";
 import TOCList from "../../components/TOCList"
 import { useTranslation } from "react-i18next";
 
 const ConstitutionTOC = () => {
   const { t } = useTranslation(['global', 'constitution']);
+  // TODO: get language
+  const constitution = getExpression('eng');
   return (
       <IonPage>
         <IonContent class="virtual-list-container">
@@ -50,7 +52,7 @@ const ConstitutionTOC = () => {
             </IonListHeader>
             <div className="ion-padding-start"><hr className="header-divider" /></div>
             <TOCList
-                items={toc.flattened}
+                items={constitution.toc.flattened}
                 prependRoute="/constitution/provision"
             />
           </IonList>
