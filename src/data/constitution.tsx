@@ -29,5 +29,5 @@ for (const lang of Object.keys(constitutionData)) {
  */
 export function getExpression(lang: string): Expression {
   // @ts-ignore
-  return expressions.get(lang);
+  return expressions.get(lang) || expressions.get('eng');
 }
