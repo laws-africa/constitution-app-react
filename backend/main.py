@@ -79,10 +79,10 @@ def clean_toc(toc):
 
 
 def main():
-    # cases = read_google_sheets('cases')
-    # topics = read_google_sheets('topics')
-    # write_all_documents(cases, topics)
-    write_work("constitution", "/akn/za/act/1996/constitution")
+    cases = read_google_sheets('cases')
+    topics = read_google_sheets('topics')
+    write_all_documents(cases, topics)
+    # write_work("constitution", "/akn/za/act/1996/constitution")
     # write_work("rules", "/akn/za/act/rules/2016/national-assembly/")
 
 

@@ -23,11 +23,17 @@ for (const lang of Object.keys(constitutionData)) {
   expressions.set(lang, new Expression(constitutionData[lang]));
 }
 
+// the current expression
+let expression: Expression | null = null;
+
 /**
  * Get a particular language version of the constitution.
  * @param lang three letter language code (eg. 'eng', 'xho')
  */
 export function getExpression(lang: string): Expression {
-  // @ts-ignore
-  return expressions.get(lang) || expressions.get('eng');
+  // is the requested expression different from the current one
+  if (!expression || expression.info['language'] !== lang) {
+    expression = new Expression(constitutionData[lang]);
+  }
+  return expression;
 }
