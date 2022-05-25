@@ -19,7 +19,7 @@ import {
 import './Constitution.css';
 import { RouteComponentProps } from 'react-router-dom';
 import { arrowBack, close, search } from 'ionicons/icons';
-import {constitutionBody, toc} from '../../data/constitution';
+import { getExpression, Expression } from '../../data/constitution';
 import TOCList from "../../components/TOCList";
 import data from "../../assets/data/data.json";
 import decorateAkn from '../../components/decorateAkn';
@@ -40,7 +40,7 @@ type MyState = {
 
 class Constitution_Full extends React.Component<Props, MyState> {
   private readonly rootRef: React.RefObject<HTMLDivElement>;
-  private readonly constitution: Element | null;
+  private readonly constitution: Expression;
   private readonly topics: any [];
 
   constructor(props: any) {
@@ -52,11 +52,12 @@ class Constitution_Full extends React.Component<Props, MyState> {
     };
 
     // parse the constitution HTML once
-    this.constitution = constitutionBody;
+    // TODO: language
+    this.constitution = getExpression('eng');
 
     // add event handlers to scroll to provision when internal link is clicked
     if (this.constitution) {
-      const elements = this.constitution.getElementsByTagName('a')
+      const elements = this.constitution.body.getElementsByTagName('a');
       for (let index = 0; index < elements.length; index++) {
         const element = elements[index];
 
@@ -129,7 +130,7 @@ class Constitution_Full extends React.Component<Props, MyState> {
             <IonList className="full-height-mobile">
               <IonMenuToggle auto-hide="true">
                 <TOCList
-                    items={toc.flattened}
+                    items={this.constitution.toc.flattened}
                     overrideClickEvt={(data: any) => this.scroll(data)}
                 />
               </IonMenuToggle>

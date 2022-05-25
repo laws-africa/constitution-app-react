@@ -1,4 +1,4 @@
-import {toc} from "./data/constitution";
+import { getExpression } from "./data/constitution";
 
 export const handleSupportersLink = (url: string) => {
   window.open(url, '_blank');
@@ -9,6 +9,9 @@ export const handleSupportersLink = (url: string) => {
  * find the containing provision and load it.
  */
 export function handleInDocumentLinks(root: HTMLElement, doc: HTMLDocument, history: any, routePrefix: string) {
+  // it doesn't matter what language is used, the TOCs all have the same structure
+  const constitution = getExpression('eng');
+
   root.addEventListener('click', e => {
     // special case: link to the constitution
     // @ts-ignore
@@ -26,7 +29,7 @@ export function handleInDocumentLinks(root: HTMLElement, doc: HTMLDocument, hist
       if (target && !root.querySelector(target)) {
         // find the provision that includes the target element
         const element = doc.getElementById(target.substring(1));
-        const pair = toc.closestTocEntry(element);
+        const pair = constitution.toc.closestTocEntry(element);
 
         if (pair) {
           e.stopImmediatePropagation();
