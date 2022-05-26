@@ -52,8 +52,7 @@ class Constitution_Full extends React.Component<Props, MyState> {
     };
 
     // parse the constitution HTML once
-    // TODO: language
-    this.constitution = getExpression('eng');
+    this.constitution = getExpression(localStorage.getItem('locale') || 'en');
 
     // add event handlers to scroll to provision when internal link is clicked
     if (this.constitution) {

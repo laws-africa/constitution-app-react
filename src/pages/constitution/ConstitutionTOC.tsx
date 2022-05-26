@@ -18,8 +18,7 @@ import { useTranslation } from "react-i18next";
 
 const ConstitutionTOC = () => {
   const { t } = useTranslation(['global', 'constitution']);
-  // TODO: get language
-  const constitution = getExpression('eng');
+  const constitution = getExpression(localStorage.getItem('locale') || 'en');
   return (
       <IonPage>
         <IonContent class="virtual-list-container">

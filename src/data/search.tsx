@@ -142,8 +142,7 @@ export function findTopicsByProvisionId(id: string) {
   return result;
 }
 
-// TODO: language for search?
-const constitution = getExpression('eng');
+const constitution = getExpression(localStorage.getItem('locale') || 'en');
 const searchableProvisions = indexAkn(constitution.document);
 const searchableRuleProvisions = indexAkn(rulesRoot);
 const searchableCases = indexCases(data.cases);

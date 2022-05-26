@@ -42,8 +42,7 @@ const Topic: React.FC<Props> = ({ match }) => {
   const { t } = useTranslation('topic');
 
   useIonViewWillEnter(() => {
-    // TODO: language
-    const constitution = getExpression('eng');
+    const constitution = getExpression(localStorage.getItem('locale') || 'en');
     // @ts-ignore
     const topic: any = data.topics.find((t) => t.id === match.params.id);
     // @ts-ignore
