@@ -37,14 +37,14 @@ i18next
     .use(initReactI18next)
     .init({
       resources,
-      lng: localStorage.getItem('locale') || "en",
+      lng: localStorage.getItem('locale') || 'en',
       interpolation: {
         escapeValue: false,
       },
       debug: true,
-      fallbackLng: "en",
+      fallbackLng: 'en',
       keySeparator: ".",
-      supportedLngs: ["en", "zu", "xh"],
+      supportedLngs: ['en', 'zu', 'xh'],
       saveMissing: true,
     });
 
