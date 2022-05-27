@@ -70,7 +70,7 @@ class Constitution_Full extends React.Component<Props, MyState> {
       this.scroll(this.props.match.params.id);
     }
     this.setState({search: false});
-    this.setState({ constitution: getExpression(localStorage.getItem('locale') || 'en') })
+    this.setState({ constitution: getExpression(localStorage.getItem('locale') || 'en') });
   }
 
   injectAkn() {
