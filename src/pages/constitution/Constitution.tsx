@@ -49,8 +49,7 @@ class Constitution extends React.Component<Props, MyState> {
       search: false,
     };
     this.currentIndex = 0;
-    // TODO: language
-    this.constitution = getExpression('eng');
+    this.constitution = getExpression(localStorage.getItem('locale') || 'en');
   }
 
   getTopics() {
