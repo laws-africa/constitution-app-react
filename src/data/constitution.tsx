@@ -1,7 +1,13 @@
 import * as Constitution from '../assets/data/constitution.json';
 import { TableOfContents } from './toc';
 
-export const constitutionData: any = (Constitution as any).default;
+interface iConstitution {
+  [key: string] : any,
+  en: any
+}
+
+// constitutionData must at least have en as a key
+export const constitutionData: iConstitution = (Constitution as any).default;
 
 export class Expression {
   info: any;
@@ -28,9 +34,11 @@ let expression: Expression | null = null;
 
 /**
  * Get a particular language version of the constitution.
- * @param lang three letter language code (eg. 'eng', 'xho')
+ * @param lang two letter language code (eg. 'en', 'xh', 'zu')
  */
 export function getExpression(lang: string): Expression {
+  // if constitutionData has key use lang otherwise default to english
+  lang = constitutionData[lang] ? lang : 'en';
   // is the requested expression different from the current one
   if (!expression || expression.info['language'] !== lang) {
     expression = new Expression(constitutionData[lang]);

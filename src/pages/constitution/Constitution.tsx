@@ -34,11 +34,11 @@ interface Props extends RouteComponentProps<{ id: string }>, iTFunc {}
 type MyState = {
   search: Boolean;
   topics: any[];
+  constitution: Expression
 };
 
 class Constitution extends React.Component<Props, MyState> {
   private readonly rootRef: React.RefObject<HTMLDivElement>;
-  private readonly constitution: Expression;
   currentIndex: number;
 
   constructor(props: any) {
@@ -47,10 +47,9 @@ class Constitution extends React.Component<Props, MyState> {
     this.state = {
       topics: [],
       search: false,
+      constitution: getExpression(localStorage.getItem('locale') || 'en'),
     };
     this.currentIndex = 0;
-    // TODO: language
-    this.constitution = getExpression('eng');
   }
 
   getTopics() {
@@ -59,8 +58,22 @@ class Constitution extends React.Component<Props, MyState> {
   }
 
   ionViewWillEnter() {
+    this.setState({ search: false });
+    this.setState({ constitution: getExpression(localStorage.getItem('locale') || 'en') })
+    this.getTopics();
+  }
+
+  componentDidMount() {
+    this.injectAkn();
+  }
+
+  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<MyState>, snapshot?: any) {
+    this.injectAkn();
+  }
+  
+  injectAkn() {
     if (this.props.match.params.id && this.rootRef.current) {
-      let provision = this.constitution.document.getElementById(
+      let provision = this.state.constitution.document.getElementById(
         this.props.match.params.id
       );
       if (provision) {
@@ -69,12 +82,10 @@ class Constitution extends React.Component<Props, MyState> {
           this.rootRef.current.childNodes[0].remove();
         this.rootRef.current.appendChild(provision.cloneNode(true));
         decorateAkn(this.rootRef.current, this.state.topics);
-        handleInDocumentLinks(this.rootRef.current, this.constitution.document, this.props.history, '/constitution/provision/');
-        this.currentIndex = this.constitution.toc.flattened.map(item => item.id).indexOf(this.props.match.params.id);
+        handleInDocumentLinks(this.rootRef.current, this.state.constitution.document, this.props.history, '/constitution/provision/');
+        this.currentIndex = this.state.constitution.toc.flattened.map(item => item.id).indexOf(this.props.match.params.id);
       }
     }
-    this.setState({ search: false });
-    this.getTopics();
   }
 
   render() {
@@ -87,10 +98,12 @@ class Constitution extends React.Component<Props, MyState> {
                 <IonIcon icon={arrowBack}></IonIcon>
               </IonButton>
             </IonButtons>
-            <IonTitle>{this.props.t('constitution_title', {
-              defaultValue: 'Constitution',
-              ns: 'constitution'
-            })}</IonTitle>
+            <IonTitle>
+              {this.props.t('constitution_title', {
+                defaultValue: 'Constitution',
+                ns: 'constitution'
+            })}
+            </IonTitle>
             <IonButtons slot="end">
               <IonButton
                 onClick={() => this.setState({ search: !this.state.search })}
@@ -126,10 +139,10 @@ class Constitution extends React.Component<Props, MyState> {
           </div>
           <IonButtons className="ion-padding ion-justify-content-between">
             <IonCard
-                routerLink={`/constitution/provision/${this.constitution.toc.flattened[this.currentIndex > 0 ? this.currentIndex - 1 : 0].id}`}
+                routerLink={`/constitution/provision/${this.state.constitution.toc.flattened[this.currentIndex > 0 ? this.currentIndex - 1 : 0].id}`}
               className="con-buttons ion-no-margin"
               button
-              disabled={this.constitution.toc.flattened[0] === this.props.match.params.id}
+              disabled={this.state.constitution.toc.flattened[0] === this.props.match.params.id}
             >
               <div>
                 <IonIcon slot="start" icon={arrowBack}></IonIcon>
@@ -138,10 +151,10 @@ class Constitution extends React.Component<Props, MyState> {
             </IonCard>
             <IonCard
               routerLink={
-                "/constitution/provision/" + this.constitution.toc.flattened[this.currentIndex + 1].id
+                "/constitution/provision/" + this.state.constitution.toc.flattened[this.currentIndex + 1].id
               }
               className="con-buttons ion-no-margin"
-              disabled={this.constitution.toc.flattened.slice(-1)[0] === this.props.match.params.id}
+              disabled={this.state.constitution.toc.flattened.slice(-1)[0] === this.props.match.params.id}
             >
               <div>
                 {this.props.t('next_button_label', { ns: 'global', defaultValue:  'Next' })}

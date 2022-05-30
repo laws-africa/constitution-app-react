@@ -142,9 +142,6 @@ export function findTopicsByProvisionId(id: string) {
   return result;
 }
 
-// TODO: language for search?
-const constitution = getExpression('eng');
-const searchableProvisions = indexAkn(constitution.document);
 const searchableRuleProvisions = indexAkn(rulesRoot);
 const searchableCases = indexCases(data.cases);
 const searchableTopics = indexTopics(data.topics);
@@ -156,6 +153,9 @@ function searchLunr(needle: string, searchIn: string = "constitution") {
 
   let lunrSearch: any = null;
   let data: IndexedObject[] = [];
+
+  const constitution = getExpression(localStorage.getItem('locale') || 'en');
+  const searchableProvisions = indexAkn(constitution.document);
 
   switch (searchIn) {
     default:
