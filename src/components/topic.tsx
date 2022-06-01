@@ -2,9 +2,10 @@ import { IonCard, IonCardContent, IonCol } from "@ionic/react";
 import parse from "html-react-parser";
 import React from "react";
 import { TopicIcon } from "./topicIcon/topicIcon";
+import { Guide } from "../data/guides";
 
 interface TopicItemProps {
-  topic: any;
+  topic: Guide;
 }
 
 export const TopicItem: React.FC<TopicItemProps> = ({ topic }) => {

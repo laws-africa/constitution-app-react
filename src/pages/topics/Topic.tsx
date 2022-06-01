@@ -14,7 +14,6 @@ import {
 } from "@ionic/react";
 import { RouteComponentProps } from "react-router";
 import { arrowBack, search, close, arrowForward } from "ionicons/icons";
-import data from "../../assets/data/data.json";
 import "./Topics.css";
 import parse from "html-react-parser";
 import { getExpression } from "../../data/constitution";
@@ -22,17 +21,23 @@ import HeaderSearch from "../../components/headerSearch/headerSearch";
 import { SearchCases } from "../../components/searchCases";
 import { svgs } from "../../assets/svgs";
 import {useTranslation} from "react-i18next";
+import { Guide, guides } from "../../data/guides";
+import { cases as allCases } from "../../data/cases";
 
 interface Props extends RouteComponentProps<{ id: string }> {}
 
 const Topic: React.FC<Props> = ({ match }) => {
-  const [topic, setTopic] = useState({
+  const [topic, setTopic] = useState<Guide>({
+    id: "",
     title: "",
+    snippet: "",
     topic_meaning: "",
-    constitutional_prescriptions: "",
     interpretation: "",
     mechanism: "",
     legislation: "",
+    references: [],
+    cases: [],
+    date_updated: "",
   });
   const [cases, setCases] = useState([]);
   const [references, setReferences] = useState([]);
@@ -44,7 +49,7 @@ const Topic: React.FC<Props> = ({ match }) => {
   useIonViewWillEnter(() => {
     const constitution = getExpression(localStorage.getItem('locale') || 'en');
     // @ts-ignore
-    const topic: any = data.topics.find((t) => t.id === match.params.id);
+    const topic: any = guides.find((t) => t.id === match.params.id);
     // @ts-ignore
     setTopic(topic);
 
@@ -57,7 +62,7 @@ const Topic: React.FC<Props> = ({ match }) => {
         if (match) references.push(match);
       }
       for (const caseId of topic.cases) {
-        const linkedCase = data.cases.find((c) => c.id === caseId);
+        const linkedCase = allCases.find((c) => c.id === caseId);
         if (linkedCase) cases.push(linkedCase);
       }
     }
@@ -117,7 +122,7 @@ const Topic: React.FC<Props> = ({ match }) => {
             <h4>{t('meaning_question_text', 'What does it mean?')}</h4>
             <div className="topic-content">{parse(topic.topic_meaning)}</div>
 
-            {topic.interpretation.length > 0 && (
+            {topic.interpretation && topic.interpretation.length > 0 && (
               <>
                 <h4>{t('interpretation_question_text', 'How was it interpreted by the courts?')}</h4>
                 <div className="topic-content">
@@ -126,14 +131,14 @@ const Topic: React.FC<Props> = ({ match }) => {
               </>
             )}
 
-            {topic.mechanism.length > 0 && (
+            {topic.mechanism && topic.mechanism.length > 0 && (
               <>
                 <h4>How does it work?</h4>
                 <div className="topic-content">{parse(topic.mechanism)}</div>
               </>
             )}
 
-            {topic.mechanism.length > 0 && (
+            {topic.legislation && topic.legislation.length > 0 && (
               <>
                 <h4>{t('legislation_question_text', 'Which legislation gives effect to it?')}</h4>
                 <div className="topic-content">{parse(topic.legislation)}</div>

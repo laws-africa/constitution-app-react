@@ -11,7 +11,6 @@ import {
   IonButton,
   useIonViewWillEnter,
 } from "@ionic/react";
-import data from "../../assets/data/data.json";
 import "./Cases.css";
 import parse from "html-react-parser";
 import { RouteComponentProps } from "react-router-dom";
@@ -21,6 +20,8 @@ import HeaderSearch from "../../components/headerSearch/headerSearch";
 import { svgs } from "../../assets/svgs";
 import ActionAnchorLink from "../../components/Action/ActionAnchorLink";
 import {useTranslation} from "react-i18next";
+import {cases} from "../../data/cases";
+import {guides} from "../../data/guides";
 
 interface Props extends RouteComponentProps<{ id: string }> {}
 
@@ -38,7 +39,7 @@ const Case: React.FC<Props> = ({ match }) => {
   const rootRef = useRef<HTMLDivElement>(null);
 
   useIonViewWillEnter(() => {
-    const thisCase = data.cases.find((c) => c.id === match.params.id);
+    const thisCase = cases.find((c) => c.id === match.params.id);
     // @ts-ignore
     setCase(thisCase);
 
@@ -46,7 +47,7 @@ const Case: React.FC<Props> = ({ match }) => {
     if (thisCase) {
       for (const id of thisCase.topics) {
         // @ts-ignore
-        const topic = data.topics.find((topic) => topic.id === id);
+        const topic = guides.find((topic) => topic.id === id);
         if (topic) topics.push(topic);
       }
     }

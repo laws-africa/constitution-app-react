@@ -7,7 +7,6 @@ import {
   IonCol,
   IonIcon,
 } from "@ionic/react";
-import data from "../../assets/data/data.json";
 import "./Topics.css";
 import { TopicItem } from "../../components/topic";
 import { svgs } from "../../assets/svgs";
@@ -15,6 +14,7 @@ import {useTranslation} from "react-i18next";
 
 import {Virtuoso} from "react-virtuoso";
 import {useWindowSize} from "../../custom-hooks/useWindowResize";
+import { guides } from "../../data/guides";
 
 const Topics: React.FC = () => {
   const [windowWidth] = useWindowSize();
@@ -46,14 +46,14 @@ const Topics: React.FC = () => {
           {windowWidth <= 425 ? (
               <Virtuoso
                   style={{ height: '100%' }}
-                  totalCount={data.topics.length}
+                  totalCount={guides.length}
                   itemContent={(index) => {
                     return (
-                        <TopicItem topic={data.topics[index]} key={data.topics[index].id} />
+                        <TopicItem topic={guides[index]} key={guides[index].id} />
                     );
                   }}
               />
-          ) : data.topics.map(item => <TopicItem topic={item} key={item.id} /> )}
+          ) : guides.map(item => <TopicItem topic={item} key={item.id} /> )}
         </IonList>
       </IonContent>
     </IonPage>

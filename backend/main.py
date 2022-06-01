@@ -88,10 +88,13 @@ def read_cases():
     headers = {'Authorization': f'Bearer {DIRECTUS_AUTH_TOKEN}'}
     resp = requests.get('https://hzc1ju79.directus.app/items/cases', headers=headers)
     resp.raise_for_status()
-    return resp.json()['data']
+    cases = resp.json()['data']
+    for case in cases:
+        case['topics'] = []
+    return cases
 
 
-def read_guides():
+def read_guides(cases):
     headers = {'Authorization': f'Bearer {DIRECTUS_AUTH_TOKEN}'}
     params = {
         'fields': '*,references.provisions_id,cases.cases_id',
@@ -105,12 +108,18 @@ def read_guides():
         guide['cases'] = [x['cases_id'] for x in guide['cases']]
         guide['references'] = [x['provisions_id'] for x in guide['references']]
 
+        # back-link guides into cases
+        for case_id in guide['cases']:
+            for case in cases:
+                if case['id'] == case_id:
+                    case['topics'].append(guide['id'])
+
     return guides
 
 
 def main():
     cases = read_cases()
-    guides = read_guides()
+    guides = read_guides(cases)
     write_all_documents(cases, guides)
     # write_work("constitution", "/akn/za/act/1996/constitution")
     # TODO: NB NB NB if this is enabled, the rules-reading code in the app must be able to handle multiple languages
