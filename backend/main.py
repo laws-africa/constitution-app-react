@@ -1,13 +1,10 @@
 import requests
 import os
 import json
+import re
 
 
 JSON_FILENAME = r'data.json'
-GOOGLE_SHEETS_CASES_URL = r'https://docs.google.com/spreadsheets/d/e/2PACX-1vQo8vfq0cVnNmNs8XBXtkQzWdcL-dFDQAmoXhMrfv-L-5SaitTcADF-vI5i6DWYIKZ3eEZbLiu72x42/pub?gid=0&single=true&output=csv'
-NUMBER_OF_CASES = 3
-NUMBER_OF_TOPICS = 3
-GOOGLE_SHEETS_SECTIONS_URL = r'https://docs.google.com/spreadsheets/d/e/2PACX-1vQo8vfq0cVnNmNs8XBXtkQzWdcL-dFDQAmoXhMrfv-L-5SaitTcADF-vI5i6DWYIKZ3eEZbLiu72x42/pub?gid=721746947&single=true&output=csv'
 PRODUCTION_DOCUMENTS_OUTPUT_PATH = r'../src/assets/data/'
 
 
@@ -91,6 +88,7 @@ def read_cases():
     cases = resp.json()['data']
     for case in cases:
         case['topics'] = []
+    cases.sort(key=lambda x: x['title'])
     return cases
 
 
@@ -113,6 +111,15 @@ def read_guides(cases):
             for case in cases:
                 if case['id'] == case_id:
                     case['topics'].append(guide['id'])
+
+    # sort guides by the section of the text they correspond to, based on element ids; those without ids come last
+    def key(guide):
+        # chp_2__sec_11 -> [2, 11]
+        refs = guide['references']
+        if not refs:
+            return [9999, guide['title']]
+        return [int(x) for x in re.findall(r'\d+', refs[0])]
+    guides.sort(key=key)
 
     return guides
 

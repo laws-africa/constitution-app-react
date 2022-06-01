@@ -37,7 +37,6 @@ const Topic: React.FC<Props> = ({ match }) => {
     legislation: "",
     references: [],
     cases: [],
-    date_updated: "",
   });
   const [cases, setCases] = useState([]);
   const [references, setReferences] = useState([]);

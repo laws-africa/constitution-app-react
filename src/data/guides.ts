@@ -10,7 +10,6 @@ export interface Guide {
   legislation: string | null;
   references: string[];
   cases: string[];
-  date_updated: string;
 }
 
 export const guides = (data.topics as Guide[]);
