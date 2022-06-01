@@ -1,7 +1,8 @@
 import lunr from "lunr";
 import { getExpression } from "./constitution";
 import { rulesRoot } from "./rules";
-import data from "../assets/data/data.json";
+import { guides } from "./guides";
+import { cases } from "./cases";
 
 interface IndexedObject {
   item: any;
@@ -137,14 +138,12 @@ function indexTopics(topics: any[]) {
 }
 
 export function findTopicsByProvisionId(id: string) {
-  const result = data.topics.filter(topic => topic.references.includes(id))
-
-  return result;
+  return guides.filter(topic => topic.references.includes(id))
 }
 
 const searchableRuleProvisions = indexAkn(rulesRoot);
-const searchableCases = indexCases(data.cases);
-const searchableTopics = indexTopics(data.topics);
+const searchableCases = indexCases(cases);
+const searchableTopics = indexTopics(guides);
 
 function searchLunr(needle: string, searchIn: string = "constitution") {
   if (needle.length < 2) {
@@ -203,7 +202,7 @@ export function searchContent(needle: string, contentType: string) {
 }
 
 export function searchTopics(id: string) {
-  const targetTopic = data.topics.find((topic) =>
+  const targetTopic = guides.find((topic) =>
     topic.references.includes(id)
   );
   if (targetTopic) return targetTopic.id;

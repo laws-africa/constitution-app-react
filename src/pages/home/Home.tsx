@@ -9,7 +9,6 @@ import {
   IonIcon,
 } from "@ionic/react";
 import "./Home.css";
-import data from "../../assets/data/data.json";
 import { getAndClearRedirected } from "../../redirect";
 import { TopicItem } from "../../components/topic";
 import { Link, Redirect } from "react-router-dom";
@@ -18,9 +17,9 @@ import ActionRouteLink from "../../components/Action/ActionRouteLink";
 import ActionAnchorLink from "../../components/Action/ActionAnchorLink";
 import {useTranslation} from "react-i18next";
 import LanguageSwitcher from "../../components/LanguageSwitcher";
+import { guides } from "../../data/guides";
 
 const Home: React.FC = () => {
-  const guides = data.topics;
   const { t } = useTranslation('home')
 
   // redirect to a url from the 404.html page?

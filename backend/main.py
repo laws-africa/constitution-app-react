@@ -1,20 +1,16 @@
 import requests
 import os
-import pandas as pd
-import datetime
 import json
+import re
 
 
 JSON_FILENAME = r'data.json'
-GOOGLE_SHEETS_CASES_URL = r'https://docs.google.com/spreadsheets/d/e/2PACX-1vQo8vfq0cVnNmNs8XBXtkQzWdcL-dFDQAmoXhMrfv-L-5SaitTcADF-vI5i6DWYIKZ3eEZbLiu72x42/pub?gid=0&single=true&output=csv'
-NUMBER_OF_CASES = 3
-NUMBER_OF_TOPICS = 3
-GOOGLE_SHEETS_SECTIONS_URL = r'https://docs.google.com/spreadsheets/d/e/2PACX-1vQo8vfq0cVnNmNs8XBXtkQzWdcL-dFDQAmoXhMrfv-L-5SaitTcADF-vI5i6DWYIKZ3eEZbLiu72x42/pub?gid=721746947&single=true&output=csv'
 PRODUCTION_DOCUMENTS_OUTPUT_PATH = r'../src/assets/data/'
 
 
 # Get your auth token from https://edit.laws.africa/accounts/profile/api/
 INDIGO_AUTH_TOKEN = os.environ.get('INDIGO_AUTH_TOKEN')
+DIRECTUS_AUTH_TOKEN = os.environ.get('DIRECTUS_AUTH_TOKEN')
 
 LANG_3_TO_2 = {
     'eng': 'en',
@@ -85,90 +81,56 @@ def clean_toc(toc):
     recurse(toc)
 
 
+def read_cases():
+    headers = {'Authorization': f'Bearer {DIRECTUS_AUTH_TOKEN}'}
+    resp = requests.get('https://hzc1ju79.directus.app/items/cases', headers=headers)
+    resp.raise_for_status()
+    cases = resp.json()['data']
+    for case in cases:
+        case['topics'] = []
+    cases.sort(key=lambda x: x['title'])
+    return cases
+
+
+def read_guides(cases):
+    headers = {'Authorization': f'Bearer {DIRECTUS_AUTH_TOKEN}'}
+    params = {
+        'fields': '*,references.provisions_id,cases.cases_id',
+    }
+    resp = requests.get('https://hzc1ju79.directus.app/items/guides', headers=headers, params=params)
+    resp.raise_for_status()
+    guides = resp.json()['data']
+
+    # adjust data shape
+    for guide in guides:
+        guide['cases'] = [x['cases_id'] for x in guide['cases']]
+        guide['references'] = [x['provisions_id'] for x in guide['references']]
+
+        # back-link guides into cases
+        for case_id in guide['cases']:
+            for case in cases:
+                if case['id'] == case_id:
+                    case['topics'].append(guide['id'])
+
+    # sort guides by the section of the text they correspond to, based on element ids; those without ids come last
+    def key(guide):
+        # chp_2__sec_11 -> [2, 11]
+        refs = guide['references']
+        if not refs:
+            return [9999, guide['title']]
+        return [int(x) for x in re.findall(r'\d+', refs[0])]
+    guides.sort(key=key)
+
+    return guides
+
+
 def main():
-    # cases = read_google_sheets('cases')
-    # topics = read_google_sheets('topics')
-    # write_all_documents(cases, topics)
-    write_work("constitution", "/akn/za/act/1996/constitution")
+    cases = read_cases()
+    guides = read_guides(cases)
+    write_all_documents(cases, guides)
+    # write_work("constitution", "/akn/za/act/1996/constitution")
     # TODO: NB NB NB if this is enabled, the rules-reading code in the app must be able to handle multiple languages
     # write_work("rules", "/akn/za/act/rules/2016/national-assembly/")
-
-
-def _excel_date_to_timestamp(date):
-    # TODO iso 8601
-    result = datetime.datetime.strptime(date, "%d/%m/%Y").replace(tzinfo=datetime.timezone.utc).isoformat()
-    return result
-
-
-def process_topic(_dict):
-    if _dict["topic_meaning"] == "":
-        return None
-    _ret = {
-        "id": _dict["id"],
-        "title": _dict["title"].strip(),
-        "featured": bool(_dict["featured"]),
-        "highlighted": bool(_dict["highlighted"]),
-        "references": str(_dict["references"]).split(";\n"),
-        "snippet": _dict["snippet"].strip(),
-        "topic_meaning": _dict["topic_meaning"].strip(),
-        "interpretation": _dict["interpretation"].strip(),
-        "mechanism": _dict["mechanism"].strip(),
-        "legislation": _dict["legislation"].strip(),
-        "cases": [
-            _dict["case_" + str(i+1)] for i in range(NUMBER_OF_CASES)
-            if _dict["case_" + str(i+1)] != ""
-            ],
-        }
-
-    return _ret
-
-
-def process_case(_dict):
-    """This function is the main machinery of the translation between csv and json. 
-    It defines the logic for creating the JSON
-    """
-    result = {
-        "id": _dict["id"],
-        "href": _dict["href"],
-        "title": _dict["title"],
-        "featured": bool(_dict["featured"]),
-        "highlighted": bool(_dict["highlighted"]),
-        "dateOfJudgment": _excel_date_to_timestamp(_dict["dateOfJudgment (DD/MM/YYYY)"]),
-        "courtName": _dict["courtName"],
-        "topics": [
-            _dict["topic_" + str(i+1)] for i in range(NUMBER_OF_TOPICS)
-            if _dict["topic_" + str(i+1)] != ""
-            ],
-        "snippet": _dict["snippet"],
-        "facts_and_issues": _dict["facts_and_issues"],
-        "right_and_principle": _dict["right_and_principle"],
-        "interpretation": _dict["interpretation"],
-        "citedCases": _dict["citedCases"].split(";\n") # TODO: put in a function
-    }
-    return result
-
-
-def read_google_sheets(content_type):
-    df = fetch_csv(content_type)
-
-    for _row in df.iterrows():
-        row = _row[1]
-        _dict = {
-            k: v
-            for k, v in zip(df.columns, row)
-            }
-
-        if content_type == "cases":
-            result = process_case(_dict)
-        elif content_type == "topics":
-            result = process_topic(_dict)
-        else:
-            raise ValueError
-
-        if result is None:
-            continue
-
-        yield result
 
 
 def write_all_documents(cases, topics):
@@ -179,25 +141,6 @@ def write_all_documents(cases, topics):
                 "topics": list(topics)
                 }
             )
-
-
-def fetch_csv(content_type):
-    if content_type == "cases":
-        url = GOOGLE_SHEETS_CASES_URL
-    elif content_type == "topics":
-        url = GOOGLE_SHEETS_SECTIONS_URL
-    else:
-        raise ValueError(
-                "Please choose a valid content type sheet to read.\n"
-                f"{content_type} is not a valid selection. Choose between 'cases' and 'topics'"
-                )
-
-    df = pd.read_csv(
-        url,
-        sep=","
-        )
-    df = df.fillna("")
-    return df 
 
 
 def write_json(filename, content):
