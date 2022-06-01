@@ -21,12 +21,12 @@ import { RouteComponentProps } from 'react-router-dom';
 import { arrowBack, close, search } from 'ionicons/icons';
 import { getExpression, Expression } from '../../data/constitution';
 import TOCList from "../../components/TOCList";
-import data from "../../assets/data/data.json";
 import decorateAkn from '../../components/decorateAkn';
 import HeaderSearch from '../../components/headerSearch/headerSearch';
 import { svgs } from '../../assets/svgs';
 import { withTranslation } from "react-i18next";
 import {iTFunc} from "../../common-types";
+import {guides} from "../../data/guides";
 
 function previous() {
   window.history.back();
@@ -47,7 +47,7 @@ class Constitution_Full extends React.Component<Props, MyState> {
   constructor(props: any) {
     super(props);
     this.rootRef = React.createRef();
-    this.topics = data.topics;
+    this.topics = guides;
     this.state = {
       search: false,
       constitution: getExpression(localStorage.getItem('locale') || 'en')

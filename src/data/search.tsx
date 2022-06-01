@@ -1,10 +1,8 @@
 import lunr from "lunr";
 import { getExpression } from "./constitution";
 import { rulesRoot } from "./rules";
-import data from "../assets/data/data.json";
-import { Guide } from "./guides";
-
-const guides = (data.topics as Guide[]);
+import { guides } from "./guides";
+import { cases } from "./cases";
 
 interface IndexedObject {
   item: any;
@@ -144,8 +142,8 @@ export function findTopicsByProvisionId(id: string) {
 }
 
 const searchableRuleProvisions = indexAkn(rulesRoot);
-const searchableCases = indexCases(data.cases);
-const searchableTopics = indexTopics(data.topics);
+const searchableCases = indexCases(cases);
+const searchableTopics = indexTopics(guides);
 
 function searchLunr(needle: string, searchIn: string = "constitution") {
   if (needle.length < 2) {

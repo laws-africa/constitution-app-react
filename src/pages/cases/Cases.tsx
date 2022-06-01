@@ -8,13 +8,12 @@ import {
   IonText,
   IonList,
 } from '@ionic/react';
-import data from "../../assets/data/data.json";
 import './Cases.css';
 import { CaseItem } from "../../components/case";
 import {useTranslation} from "react-i18next";
+import {cases} from "../../data/cases";
 
 const Cases: React.FC = () => {
-  const cases = data.cases;
   const { t } = useTranslation('case');
 
   return (
