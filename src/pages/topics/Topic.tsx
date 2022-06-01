@@ -17,10 +17,11 @@ import { arrowBack, search, close, arrowForward } from "ionicons/icons";
 import data from "../../assets/data/data.json";
 import "./Topics.css";
 import parse from "html-react-parser";
-import { constitutionRoot, toc } from "../../data/constitution";
+import { getExpression } from "../../data/constitution";
 import HeaderSearch from "../../components/headerSearch/headerSearch";
 import { SearchCases } from "../../components/searchCases";
 import { svgs } from "../../assets/svgs";
+import {useTranslation} from "react-i18next";
 
 interface Props extends RouteComponentProps<{ id: string }> {}
 
@@ -38,8 +39,10 @@ const Topic: React.FC<Props> = ({ match }) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const [onSearch, setOnSearch] = useState(false);
+  const { t } = useTranslation('topic');
 
   useIonViewWillEnter(() => {
+    const constitution = getExpression(localStorage.getItem('locale') || 'en');
     // @ts-ignore
     const topic: any = data.topics.find((t) => t.id === match.params.id);
     // @ts-ignore
@@ -50,7 +53,7 @@ const Topic: React.FC<Props> = ({ match }) => {
 
     if (topic) {
       for (const reference of topic.references) {
-        const match = toc.itemsById.get(reference);
+        const match = constitution.toc.itemsById.get(reference);
         if (match) references.push(match);
       }
       for (const caseId of topic.cases) {
@@ -64,9 +67,8 @@ const Topic: React.FC<Props> = ({ match }) => {
     // @ts-ignore
     setReferences(references);
 
-    if (match.params.id && rootRef.current) {
-      let id = match.params.id.split("_", 2).join("_");
-      let provision = constitutionRoot.getElementById(id);
+    if (topic.references.length > 0 && rootRef.current) {
+      let provision = constitution.document.getElementById(topic.references[0]);
       if (provision) {
         // remove current elements
         while (rootRef.current.hasChildNodes())
@@ -101,9 +103,9 @@ const Topic: React.FC<Props> = ({ match }) => {
       </IonHeader>
       <IonContent>
         <div className="ion-padding topic-heading">
-          <h4 className="subheading">Guide to</h4>
+          <h4 className="subheading">{t('guide_to_text', 'Guide to')}</h4>
           <h3>{topic.title}</h3>
-          <h4 className="ion-margin-top">What does it say?</h4>
+          <h4 className="ion-margin-top">{t('what_does_it_say_text', 'What does it say?')}</h4>
         </div>
 
         <div ref={contentRef}>
@@ -112,12 +114,12 @@ const Topic: React.FC<Props> = ({ match }) => {
           </div>
 
           <div className="ion-padding topic-info">
-            <h4>What does it mean?</h4>
+            <h4>{t('meaning_question_text', 'What does it mean?')}</h4>
             <div className="topic-content">{parse(topic.topic_meaning)}</div>
 
             {topic.interpretation.length > 0 && (
               <>
-                <h4>How was it interpreted by the courts?</h4>
+                <h4>{t('interpretation_question_text', 'How was it interpreted by the courts?')}</h4>
                 <div className="topic-content">
                   {parse(topic.interpretation)}
                 </div>
@@ -133,7 +135,7 @@ const Topic: React.FC<Props> = ({ match }) => {
 
             {topic.mechanism.length > 0 && (
               <>
-                <h4>Which legislation gives effect to it?</h4>
+                <h4>{t('legislation_question_text', 'Which legislation gives effect to it?')}</h4>
                 <div className="topic-content">{parse(topic.legislation)}</div>
               </>
             )}

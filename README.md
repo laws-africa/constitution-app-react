@@ -56,3 +56,9 @@ $ ionic build --prod --engine=web
 
 This generates a `build` folder which contains the entire public website.
 
+# Generate translation json file with i18next-parser
+```
+yarn global add i18next-parser
+i18next 'src/**/*.{js,tsx}'
+```
+

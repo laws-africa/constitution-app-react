@@ -15,28 +15,30 @@ import {
 import "./Constitution.css";
 import { RouteComponentProps } from "react-router-dom";
 import { arrowBack, search, close, arrowForward } from "ionicons/icons";
-import { constitutionRoot, toc } from "../../data/constitution";
+import { getExpression, Expression } from "../../data/constitution";
 import HeaderSearch from "../../components/headerSearch/headerSearch";
 import { findTopicsByProvisionId } from "../../data/search";
 import decorateAkn from "../../components/decorateAkn";
 import { TopicItem } from "../../components/topic";
 import { svgs } from "../../assets/svgs";
 import { handleInDocumentLinks } from "../../utils";
+import { withTranslation } from "react-i18next";
+import { iTFunc } from "../../common-types";
 
 function previous() {
   window.history.back();
 }
 
-interface Props extends RouteComponentProps<{ id: string }> {}
+interface Props extends RouteComponentProps<{ id: string }>, iTFunc {}
 
 type MyState = {
   search: Boolean;
   topics: any[];
+  constitution: Expression
 };
 
 class Constitution extends React.Component<Props, MyState> {
   private readonly rootRef: React.RefObject<HTMLDivElement>;
-  private readonly constitution: Document;
   currentIndex: number;
 
   constructor(props: any) {
@@ -45,11 +47,9 @@ class Constitution extends React.Component<Props, MyState> {
     this.state = {
       topics: [],
       search: false,
+      constitution: getExpression(localStorage.getItem('locale') || 'en'),
     };
     this.currentIndex = 0;
-
-    // parse the constitution HTML once
-    this.constitution = constitutionRoot;
   }
 
   getTopics() {
@@ -58,8 +58,22 @@ class Constitution extends React.Component<Props, MyState> {
   }
 
   ionViewWillEnter() {
+    this.setState({ search: false });
+    this.setState({ constitution: getExpression(localStorage.getItem('locale') || 'en') })
+    this.getTopics();
+  }
+
+  componentDidMount() {
+    this.injectAkn();
+  }
+
+  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<MyState>, snapshot?: any) {
+    this.injectAkn();
+  }
+  
+  injectAkn() {
     if (this.props.match.params.id && this.rootRef.current) {
-      let provision = this.constitution.getElementById(
+      let provision = this.state.constitution.document.getElementById(
         this.props.match.params.id
       );
       if (provision) {
@@ -68,12 +82,10 @@ class Constitution extends React.Component<Props, MyState> {
           this.rootRef.current.childNodes[0].remove();
         this.rootRef.current.appendChild(provision.cloneNode(true));
         decorateAkn(this.rootRef.current, this.state.topics);
-        handleInDocumentLinks(this.rootRef.current, this.constitution, this.props.history, '/constitution/provision/');
-        this.currentIndex = toc.flattened.map(item => item.id).indexOf(this.props.match.params.id);
+        handleInDocumentLinks(this.rootRef.current, this.state.constitution.document, this.props.history, '/constitution/provision/');
+        this.currentIndex = this.state.constitution.toc.flattened.map(item => item.id).indexOf(this.props.match.params.id);
       }
     }
-    this.setState({ search: false });
-    this.getTopics();
   }
 
   render() {
@@ -86,7 +98,12 @@ class Constitution extends React.Component<Props, MyState> {
                 <IonIcon icon={arrowBack}></IonIcon>
               </IonButton>
             </IonButtons>
-            <IonTitle>Constitution</IonTitle>
+            <IonTitle>
+              {this.props.t('constitution_title', {
+                defaultValue: 'Constitution',
+                ns: 'constitution'
+            })}
+            </IonTitle>
             <IonButtons slot="end">
               <IonButton
                 onClick={() => this.setState({ search: !this.state.search })}
@@ -105,7 +122,10 @@ class Constitution extends React.Component<Props, MyState> {
             <div>
               <IonToolbar class="related-guides" color="primary">
                 <IonIcon size="large" slot="start" icon={svgs.GUIDES_WHITE}></IonIcon>
-                <span>Related Guides</span>
+                <span>{this.props.t('related_guides_label', {
+                  ns: 'global',
+                  defaultValue: 'Related Guides'
+                })}</span>
               </IonToolbar>
               <IonList className="ion-padding">
                 {this.state.topics.map((topic: any, index: any) => (
@@ -119,25 +139,25 @@ class Constitution extends React.Component<Props, MyState> {
           </div>
           <IonButtons className="ion-padding ion-justify-content-between">
             <IonCard
-                routerLink={`/constitution/provision/${toc.flattened[this.currentIndex > 0 ? this.currentIndex - 1 : 0].id}`}
+                routerLink={`/constitution/provision/${this.state.constitution.toc.flattened[this.currentIndex > 0 ? this.currentIndex - 1 : 0].id}`}
               className="con-buttons ion-no-margin"
               button
-              disabled={toc.flattened[0] === this.props.match.params.id}
+              disabled={this.state.constitution.toc.flattened[0] === this.props.match.params.id}
             >
               <div>
                 <IonIcon slot="start" icon={arrowBack}></IonIcon>
-                Previous
+                {this.props.t('prev_button_label', { ns: 'global', defaultValue: 'Previous' })}
               </div>
             </IonCard>
             <IonCard
               routerLink={
-                "/constitution/provision/" + toc.flattened[this.currentIndex + 1].id
+                "/constitution/provision/" + this.state.constitution.toc.flattened[this.currentIndex + 1].id
               }
               className="con-buttons ion-no-margin"
-              disabled={toc.flattened.slice(-1)[0] === this.props.match.params.id}
+              disabled={this.state.constitution.toc.flattened.slice(-1)[0] === this.props.match.params.id}
             >
               <div>
-                Next
+                {this.props.t('next_button_label', { ns: 'global', defaultValue:  'Next' })}
                 <IonIcon slot="end" icon={arrowForward}></IonIcon>
               </div>
             </IonCard>
@@ -148,4 +168,4 @@ class Constitution extends React.Component<Props, MyState> {
   }
 }
 
-export default withIonLifeCycle(Constitution);
+export default withTranslation(['constitution','global'])(withIonLifeCycle(Constitution));

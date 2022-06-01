@@ -5,7 +5,6 @@ import {
   IonListHeader,
   IonLabel,
   IonPage,
-  withIonLifeCycle,
   IonButton,
   IonCol,
   IonIcon
@@ -15,10 +14,11 @@ import { svgs } from '../../assets/svgs';
 import ActionRouteLink from "../../components/Action/ActionRouteLink";
 import TOCList from '../../components/TOCList';
 import { toc } from "../../data/rules";
+import { useTranslation } from "react-i18next";
 
-class RulesTOC extends React.Component {
-  render() {
-    return (
+const RulesTOC = () => {
+  const { t } = useTranslation(['rules', 'global'])
+  return (
       <IonPage>
         <IonContent className="virtual-list-container">
           <div className="ion-padding">
@@ -26,28 +26,37 @@ class RulesTOC extends React.Component {
               <IonCol size="1" class="icon ion-no-padding">
                 <IonIcon size="small" icon={svgs.RULES}></IonIcon>
               </IonCol>
-              <h2>Rules of the National Assembly</h2>
+              <h2>{t('rules_na_title', {
+                defaultValue: 'Rules of the National Assembly',
+                ns: 'rules'
+              })}</h2>
               <IonButton
-                className="ion-no-padding"
-                fill="clear"
-                routerLink={"/search/rules"}
+                  className="ion-no-padding"
+                  fill="clear"
+                  routerLink={"/search/rules"}
               >
-                Search
+                {t('search_button_text', 'Search')}
               </IonButton>
             </section>
 
             <hr className="header-divider" />
 
             <ActionRouteLink
-              routerLink="/rules/full"
-              leftIcon={svgs.RULES}
-              actionText="The Full Rules"
+                routerLink="/rules/full"
+                leftIcon={svgs.RULES}
+                actionText={t('rules_full_link_label', {
+                  defaultValue: 'The Full Rules',
+                  ns: 'rules'
+                })}
             />
           </div>
           <IonList>
             <IonListHeader>
               <IonLabel class="contents-label ion-no-margin">
-                Table of Contents
+                { t('toc_title', {
+                  ns: 'global',
+                  defaultValue: 'Table of Contents'
+                }) }
               </IonLabel>
             </IonListHeader>
             <div className="ion-padding-start">
@@ -60,8 +69,7 @@ class RulesTOC extends React.Component {
           </IonList>
         </IonContent>
       </IonPage>
-    );
-  }
+  )
 }
 
-export default withIonLifeCycle(RulesTOC);
+export default RulesTOC;

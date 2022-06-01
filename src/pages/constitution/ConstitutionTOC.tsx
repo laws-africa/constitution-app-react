@@ -5,7 +5,6 @@ import {
   IonListHeader,
   IonLabel,
   IonPage,
-  withIonLifeCycle,
   IonIcon,
   IonButton,
   IonCol
@@ -13,12 +12,14 @@ import {
 import './Constitution.css';
 import { svgs } from '../../assets/svgs';
 import ActionRouteLink from "../../components/Action/ActionRouteLink";
-import { toc } from "../../data/constitution";
+import { getExpression } from "../../data/constitution";
 import TOCList from "../../components/TOCList"
+import { useTranslation } from "react-i18next";
 
-class ConstitutionTOC extends React.Component {
-  render() {
-    return (
+const ConstitutionTOC = () => {
+  const { t } = useTranslation(['global', 'constitution']);
+  const constitution = getExpression(localStorage.getItem('locale') || 'en');
+  return (
       <IonPage>
         <IonContent class="virtual-list-container">
           <div className="ion-padding">
@@ -26,7 +27,10 @@ class ConstitutionTOC extends React.Component {
               <IonCol size="1" class="icon ion-no-padding">
                 <IonIcon size="small" icon={svgs.CONSTITUTION}></IonIcon>
               </IonCol>
-              <h2>Constitution of the Republic of South Africa</h2>
+              <h2>{t('constitution_toc_heading', {
+                ns: 'constitution',
+                defaultValue: 'Constitution of the Republic of South Africa'
+              })}</h2>
               <IonButton className="ion-no-padding" fill="clear" routerLink={"/search/constitution"}>Search</IonButton>
             </section>
 
@@ -35,23 +39,24 @@ class ConstitutionTOC extends React.Component {
             <ActionRouteLink
                 routerLink="/constitution/full"
                 leftIcon={svgs.CONSTITUTION}
-                actionText="Read the Full Constitution"  />
+                actionText={t('read_full_constitution_label','Read the Full Constitution')} />
           </div>
 
           <IonList>
             <IonListHeader>
-              <IonLabel class="contents-label ion-no-margin">Table of Contents</IonLabel>
+              <IonLabel class="contents-label ion-no-margin">{t('toc_title',{
+                defaultValue: 'Table of Contents',
+                ns: 'global'
+              })}</IonLabel>
             </IonListHeader>
             <div className="ion-padding-start"><hr className="header-divider" /></div>
             <TOCList
-                items={toc.flattened}
+                items={constitution.toc.flattened}
                 prependRoute="/constitution/provision"
             />
           </IonList>
         </IonContent>
       </IonPage>
-    );
-  }
+  )
 }
-
-export default withIonLifeCycle(ConstitutionTOC);
+export default ConstitutionTOC;

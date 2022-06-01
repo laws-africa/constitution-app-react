@@ -17,6 +17,7 @@ import { searchContent } from "../../data/search";
 import { svgs } from "../../assets/svgs";
 import { SearchConstitution } from "../../components/searchConstitution";
 import { SearchCases } from "../../components/searchCases";
+import {useTranslation} from "react-i18next";
 import Row from "../../components/TOCList/Row";
 
 interface Props extends RouteComponentProps<{ segment: string }> {}
@@ -25,6 +26,7 @@ const Search: React.FC<Props> = ({ match }) => {
   const [isSearching, setIsSearching] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentSegment, setCurrentSegment] = useState("guides");
+  const { t } = useTranslation('search')
 
   useEffect(() => {
     if (match.params.segment) {
@@ -54,14 +56,14 @@ const Search: React.FC<Props> = ({ match }) => {
           {currentSegment === "cases" && renderCases(results)}
         </IonList>
         <div className="ion-text-center ion-margin-top ion-padding-top">
-          {results.length <= 0 && <p>Nothing matches your search.</p>}
+          {results.length <= 0 && <p>{t('no_results_text', 'Nothing matches your search.')}</p>}
         </div>
       </>
     );
   };
 
   const renderProvisions = (results: any) => {
-    return results.map((result: any) => {
+    return results.map((result: any, index: number) => {
       return <SearchConstitution provision={result.item} />;
     });
   };
@@ -75,7 +77,7 @@ const Search: React.FC<Props> = ({ match }) => {
   };
 
   const renderCases = (results: any) => {
-    return results.map((result: any) => <SearchCases caseItem={result.item} />);
+    return results.map((result: any, index: number) => <SearchCases key={index} caseItem={result.item} />);
   };
 
   const renderTopics = (results: any) => {
@@ -89,13 +91,13 @@ const Search: React.FC<Props> = ({ match }) => {
           <IonCol size="1" class="icon ion-no-padding">
             <IonIcon size="small" icon={svgs.SEARCH}></IonIcon>
           </IonCol>
-          <h2>Search</h2>
+          <h2>{t('search_title', 'Search')}</h2>
         </section>
 
         <hr className="header-divider" />
         <IonSearchbar
           className="ion-no-margin ion-no-padding search-bar"
-          placeholder="Find guides, cases or sections..."
+          placeholder={t('searchbar_placeholder', 'Find guides, cases or sections...')}
           onIonChange={(e) => search(e)}
         />
         <IonSegment
@@ -104,10 +106,18 @@ const Search: React.FC<Props> = ({ match }) => {
           mode="md"
           scrollable
         >
-          <IonSegmentButton value="constitution">Constitution</IonSegmentButton>
-          <IonSegmentButton value="guides">Guides</IonSegmentButton>
-          <IonSegmentButton value="rules">Rules</IonSegmentButton>
-          <IonSegmentButton value="cases">Cases</IonSegmentButton>
+          <IonSegmentButton value="constitution">
+            {t('constitution_seg_button_label', 'Constitution')}
+          </IonSegmentButton>
+          <IonSegmentButton value="guides">
+            {t('guides_seg_button_label', 'Guides')}
+          </IonSegmentButton>
+          <IonSegmentButton value="rules">
+            {t('rules_seg_button_label', 'Rules')}
+          </IonSegmentButton>
+          <IonSegmentButton value="cases">
+            {t('cases_seg_button_label', 'Cases')}
+          </IonSegmentButton>
         </IonSegment>
         <hr />
       </IonHeader>

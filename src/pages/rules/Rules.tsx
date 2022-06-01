@@ -17,12 +17,17 @@ import { arrowBack, arrowForward, close, search } from 'ionicons/icons';
 import { rulesRoot, toc } from '../../data/rules';
 import HeaderSearch from '../../components/headerSearch/headerSearch';
 import {handleInDocumentLinks} from "../../utils";
+import { withTranslation } from "react-i18next";
+import {iTFunc} from "../../common-types";
 
 function previous() {
   window.history.back();
 }
 
-interface Props extends RouteComponentProps<{ id: string; }> { }
+
+interface Props extends iTFunc, RouteComponentProps<{
+  id: string;
+}> {}
 
 type MyState = {
   search: Boolean;
@@ -70,7 +75,7 @@ class Rules extends React.Component<Props, MyState> {
                 <IonIcon icon={arrowBack}></IonIcon>
               </IonButton>
             </IonButtons>
-            <IonTitle>Rules of the National Assembly</IonTitle>
+            <IonTitle>{this.props.t('rules_na_title', 'Rules of the National Assembly')}</IonTitle>
             <IonButtons slot="end">
               <IonButton
                 onClick={() => this.setState({ search: !this.state.search })}
@@ -99,7 +104,10 @@ class Rules extends React.Component<Props, MyState> {
             >
               <div>
                 <IonIcon slot="start" icon={arrowBack}></IonIcon>
-                Previous
+                {this.props.t('prev_button_label', {
+                  defaultValue: 'Previous',
+                  ns: 'global'
+                })}
               </div>
             </IonCard>
             <IonCard
@@ -110,7 +118,10 @@ class Rules extends React.Component<Props, MyState> {
               disabled={toc.flattened.slice(-1)[0].id === this.props.match.params.id}
             >
               <div>
-                Next
+                {this.props.t('next_button_label', {
+                  defaultValue: 'Next',
+                  ns: 'global'
+                })}
                 <IonIcon slot="end" icon={arrowForward}></IonIcon>
               </div>
             </IonCard>
@@ -121,4 +132,4 @@ class Rules extends React.Component<Props, MyState> {
   }
 }
 
-export default withIonLifeCycle(Rules);
+export default withTranslation(['rules', 'global'])(withIonLifeCycle(Rules));

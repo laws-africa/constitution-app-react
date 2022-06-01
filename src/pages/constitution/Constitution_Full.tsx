@@ -19,26 +19,29 @@ import {
 import './Constitution.css';
 import { RouteComponentProps } from 'react-router-dom';
 import { arrowBack, close, search } from 'ionicons/icons';
-import {constitutionBody, toc} from '../../data/constitution';
+import { getExpression, Expression } from '../../data/constitution';
 import TOCList from "../../components/TOCList";
 import data from "../../assets/data/data.json";
 import decorateAkn from '../../components/decorateAkn';
 import HeaderSearch from '../../components/headerSearch/headerSearch';
 import { svgs } from '../../assets/svgs';
+import { withTranslation } from "react-i18next";
+import {iTFunc} from "../../common-types";
 
 function previous() {
   window.history.back();
 }
 
-interface Props extends RouteComponentProps<{ id: string; }> { }
+interface Props extends iTFunc, RouteComponentProps<{ id: string; }> { }
 
 type MyState = {
   search: Boolean;
+  constitution: Expression | null
 };
 
 class Constitution_Full extends React.Component<Props, MyState> {
   private readonly rootRef: React.RefObject<HTMLDivElement>;
-  private readonly constitution: Element | null;
+  // private readonly constitution: Expression;
   private readonly topics: any [];
 
   constructor(props: any) {
@@ -46,26 +49,9 @@ class Constitution_Full extends React.Component<Props, MyState> {
     this.rootRef = React.createRef();
     this.topics = data.topics;
     this.state = {
-      search: false
+      search: false,
+      constitution: getExpression(localStorage.getItem('locale') || 'en')
     };
-
-    // parse the constitution HTML once
-    this.constitution = constitutionBody;
-
-    // add event handlers to scroll to provision when internal link is clicked
-    if (this.constitution) {
-      const elements = this.constitution.getElementsByTagName('a')
-      for (let index = 0; index < elements.length; index++) {
-        const element = elements[index];
-
-        if (element.href.includes("#")) {
-          element.addEventListener('click', (e: any) => {
-            e.preventDefault();
-            this.scroll(e.target.getAttribute('href').slice(1));
-          });
-        }
-      }
-    }
   }
 
   scroll(item: any) {
@@ -84,20 +70,40 @@ class Constitution_Full extends React.Component<Props, MyState> {
       this.scroll(this.props.match.params.id);
     }
     this.setState({search: false});
+    this.setState({ constitution: getExpression(localStorage.getItem('locale') || 'en') });
   }
 
-  componentDidMount(): void {
-    if (this.rootRef.current && this.rootRef.current.childElementCount === 0) {
+  injectAkn() {
+    if (this.rootRef.current) {
       console.log('rendering constitution');
+      this.rootRef.current.innerHTML = "";
       // @ts-ignore
-      this.rootRef.current.appendChild(this.constitution.cloneNode(true));
+      this.rootRef.current.appendChild(this.state.constitution.body.cloneNode(true));
+
+      if (this.state.constitution) {
+      const elements = this.state.constitution.body.getElementsByTagName('a');
+      for (let index = 0; index < elements.length; index++) {
+        const element = elements[index];
+
+        if (element.href.includes("#")) {
+          element.addEventListener('click', (e: any) => {
+            e.preventDefault();
+            this.scroll(e.target.getAttribute('href').slice(1));
+          });
+        }
+      }
+    }
+
       decorateAkn(this.rootRef.current, this.topics);
     }
   }
 
-  shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<MyState>, nextContext: any): boolean {
-    // the view state never actually changes
-    return this.state.search !== nextState.search;
+  componentDidMount() {
+    this.injectAkn();
+  }
+
+  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<MyState>, snapshot?: any) {
+    this.injectAkn();
   }
 
   render() {
@@ -110,7 +116,7 @@ class Constitution_Full extends React.Component<Props, MyState> {
                 <IonIcon icon={arrowBack}></IonIcon>
               </IonButton>
             </IonButtons>
-            <IonTitle>Constitution</IonTitle>
+            <IonTitle>{this.props.t('constitution_title', 'Constitution')}</IonTitle>
             <IonButtons slot="end">
               <IonButton onClick={() => this.setState({search: !this.state.search})}>
                 <IonIcon icon={this.state.search ? close : search}></IonIcon>
@@ -126,10 +132,12 @@ class Constitution_Full extends React.Component<Props, MyState> {
           <IonContent>
             <IonList className="full-height-mobile">
               <IonMenuToggle auto-hide="true">
-                <TOCList
-                    items={toc.flattened}
-                    overrideClickEvt={(data: any) => this.scroll(data)}
-                />
+                {this.state.constitution ?
+                    <TOCList
+                        items={this.state.constitution.toc.flattened}
+                        overrideClickEvt={(data: any) => this.scroll(data)}
+                    />
+                    : null}
               </IonMenuToggle>
             </IonList>
           </IonContent>
@@ -146,4 +154,4 @@ class Constitution_Full extends React.Component<Props, MyState> {
   }
 }
 
-export default withIonLifeCycle(Constitution_Full);
+export default withTranslation('constitution')(withIonLifeCycle(Constitution_Full));
