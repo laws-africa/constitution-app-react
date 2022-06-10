@@ -21,8 +21,9 @@ import HeaderSearch from "../../components/headerSearch/headerSearch";
 import { SearchCases } from "../../components/searchCases";
 import { svgs } from "../../assets/svgs";
 import {useTranslation} from "react-i18next";
-import { Guide, guides } from "../../data/guides";
-import { cases as allCases } from "../../data/cases";
+import { Guide, getGuides } from "../../data/guides";
+import {getCases} from "../../data/cases";
+import {useLanguage} from "../../custom-hooks/useLanguage";
 
 interface Props extends RouteComponentProps<{ id: string }> {}
 
@@ -38,12 +39,15 @@ const Topic: React.FC<Props> = ({ match }) => {
     references: [],
     cases: [],
   });
+
   const [cases, setCases] = useState([]);
   const [references, setReferences] = useState([]);
   const rootRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const [onSearch, setOnSearch] = useState(false);
   const { t } = useTranslation('topic');
+  const lang = useLanguage();
+  const allCases = getCases(lang);
 
   useIonViewWillEnter(() => {
     const constitution = getExpression(localStorage.getItem('locale') || 'en');
@@ -61,7 +65,7 @@ const Topic: React.FC<Props> = ({ match }) => {
         if (match) references.push(match);
       }
       for (const caseId of topic.cases) {
-        const linkedCase = allCases.find((c) => c.id === caseId);
+        const linkedCase = allCases.find((c: any) => c.id === caseId);
         if (linkedCase) cases.push(linkedCase);
       }
     }
@@ -86,6 +90,8 @@ const Topic: React.FC<Props> = ({ match }) => {
   const previous = () => {
     window.history.back();
   };
+
+  const guides = getGuides(lang)
 
   return (
     <IonPage>
