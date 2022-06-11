@@ -1,7 +1,7 @@
 import lunr from "lunr";
-import { getExpression } from "./constitution";
+import {getExpression} from "./constitution";
 import { rulesRoot } from "./rules";
-import { guides } from "./guides";
+import {getGuides} from "./guides";
 import { cases } from "./cases";
 
 interface IndexedObject {
@@ -137,13 +137,13 @@ function indexTopics(topics: any[]) {
   };
 }
 
-export function findTopicsByProvisionId(id: string) {
-  return guides.filter(topic => topic.references.includes(id))
+export function findTopicsByProvisionId(id: string, lang: string) {
+  const guides = getGuides(lang);
+  return guides.filter((topic: { references: string | string[]; }) => topic.references.includes(id))
 }
 
 const searchableRuleProvisions = indexAkn(rulesRoot);
 const searchableCases = indexCases(cases);
-const searchableTopics = indexTopics(guides);
 
 function searchLunr(needle: string, searchIn: string = "constitution") {
   if (needle.length < 2) {
@@ -154,6 +154,7 @@ function searchLunr(needle: string, searchIn: string = "constitution") {
   let data: IndexedObject[] = [];
 
   const constitution = getExpression(localStorage.getItem('locale') || 'en');
+  const searchableTopics = indexTopics(getGuides(localStorage.getItem('locale') || 'en'));
   const searchableProvisions = indexAkn(constitution.document);
 
   switch (searchIn) {
@@ -201,8 +202,10 @@ export function searchContent(needle: string, contentType: string) {
   return searchLunr(needle, contentType);
 }
 
+// This function is used to get IonIcon in searchConstitution.tsx
 export function searchTopics(id: string) {
-  const targetTopic = guides.find((topic) =>
+  const guides = getGuides('en');
+  const targetTopic = guides.find((topic: { references: string | string[]; }) =>
     topic.references.includes(id)
   );
   if (targetTopic) return targetTopic.id;
