@@ -11,10 +11,13 @@ import {
 import './Cases.css';
 import { CaseItem } from "../../components/case";
 import {useTranslation} from "react-i18next";
-import {cases} from "../../data/cases";
+import {getCases} from "../../data/cases";
+import {useLanguage} from "../../custom-hooks/useLanguage";
 
 const Cases: React.FC = () => {
   const { t } = useTranslation('case');
+  const lang = useLanguage();
+  const cases = getCases(lang)
 
   return (
     <IonPage>
@@ -30,7 +33,7 @@ const Cases: React.FC = () => {
           </div>
         </IonText>
         <IonList>
-          {cases.map((kase) => (
+          {cases.map((kase: any) => (
             <CaseItem kase={kase}/>
           ))}
         </IonList>
