@@ -1,8 +1,8 @@
 import lunr from "lunr";
 import { getExpression } from "./constitution";
 import { rulesRoot } from "./rules";
-import { guides } from "./guides";
-import { cases } from "./cases";
+import {getGuides} from "./guides";
+import {getCases} from "./cases";
 
 interface IndexedObject {
   item: any;
@@ -138,12 +138,11 @@ function indexTopics(topics: any[]) {
 }
 
 export function findTopicsByProvisionId(id: string) {
-  return guides.filter(topic => topic.references.includes(id))
+  const guides = getGuides(localStorage.getItem('locale') || 'en')
+  return guides.filter((topic: { references: string | string[]; }) => topic.references.includes(id))
 }
 
 const searchableRuleProvisions = indexAkn(rulesRoot);
-const searchableCases = indexCases(cases);
-const searchableTopics = indexTopics(guides);
 
 function searchLunr(needle: string, searchIn: string = "constitution") {
   if (needle.length < 2) {
@@ -154,6 +153,8 @@ function searchLunr(needle: string, searchIn: string = "constitution") {
   let data: IndexedObject[] = [];
 
   const constitution = getExpression(localStorage.getItem('locale') || 'en');
+  const searchableTopics = indexTopics(getGuides(localStorage.getItem('locale') || 'en'));
+  const searchableCases = indexCases(getCases(localStorage.getItem('locale') || 'en'));
   const searchableProvisions = indexAkn(constitution.document);
 
   switch (searchIn) {
@@ -202,7 +203,8 @@ export function searchContent(needle: string, contentType: string) {
 }
 
 export function searchTopics(id: string) {
-  const targetTopic = guides.find((topic) =>
+  const guides = getGuides(localStorage.getItem('locale') || 'en')
+  const targetTopic = guides.find((topic: { references: string | string[]; }) =>
     topic.references.includes(id)
   );
   if (targetTopic) return targetTopic.id;
