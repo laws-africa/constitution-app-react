@@ -17,78 +17,81 @@ import ActionRouteLink from "../../components/Action/ActionRouteLink";
 import ActionAnchorLink from "../../components/Action/ActionAnchorLink";
 import {useTranslation} from "react-i18next";
 import LanguageSwitcher from "../../components/LanguageSwitcher";
-import { guides } from "../../data/guides";
+import {getGuides, Guide} from "../../data/guides";
+import {useLanguage} from "../../custom-hooks/useLanguage";
 
 const Home: React.FC = () => {
-  const { t } = useTranslation('home')
+  const {t} = useTranslation('home')
+  const lang = useLanguage();
+  const guides = getGuides(lang)
 
   // redirect to a url from the 404.html page?
   const path = getAndClearRedirected();
   if (path.length) {
-    return <Redirect to={path} />;
+    return <Redirect to={path}/>;
   }
 
   return (
-    <IonPage>
-      <IonContent className="ion-padding">
-        <div className="app-title">
-          <div className="app-title__left">
-            <img src="/assets/logo.png" alt="logo" className="logo" />
-            <h2>
-              Constitution <br /> Compass{" "}
-              <img
-                  src="/assets/flag.png"
-                  className="flag"
-                  alt="South African Flag"
-              />
-            </h2>
+      <IonPage>
+        <IonContent className="ion-padding">
+          <div className="app-title">
+            <div className="app-title__left">
+              <img src="/assets/logo.png" alt="logo" className="logo"/>
+              <h2>
+                Constitution <br/> Compass{" "}
+                <img
+                    src="/assets/flag.png"
+                    className="flag"
+                    alt="South African Flag"
+                />
+              </h2>
+            </div>
           </div>
-        </div>
-        <hr className="header-divider" />
+          <hr className="header-divider"/>
 
-        <div className="ion-padding-bottom">
-          {t('choose_language_preference', 'Choose your preferred language:')}
-        </div>
+          <div className="ion-padding-bottom">
+            {t('choose_language_preference', 'Choose your preferred language:')}
+          </div>
 
-        <div style={{
-          marginBottom: "3rem"
-        }}>
-          <LanguageSwitcher />
-        </div>
+          <div style={{
+            marginBottom: "3rem"
+          }}>
+            <LanguageSwitcher/>
+          </div>
 
-        <div className="ion-padding-bottom">
-          {t('browser_constitution_text', 'Browse the Constitution for the provisions that you need.')}
-        </div>
-        <ActionRouteLink
-          leftIcon={svgs.CONSTITUTION}
-          actionText={t('explore_constitution_link_text', 'Explore the Constitution')}
-          routerLink="/constitution"
-        />
+          <div className="ion-padding-bottom">
+            {t('browser_constitution_text', 'Browse the Constitution for the provisions that you need.')}
+          </div>
+          <ActionRouteLink
+              leftIcon={svgs.CONSTITUTION}
+              actionText={t('explore_constitution_link_text', 'Explore the Constitution')}
+              routerLink="/constitution"
+          />
 
-        <hr className="divider" />
+          <hr className="divider"/>
 
-        <IonGrid className="ion-no-padding ion-padding-bottom">
-          <IonRow>
-            <IonCol size="1">
-              <IonIcon size="small" icon={svgs.GUIDES} />
-            </IonCol>
-            <IonCol>
-              <h5 className="section-heading">{t('guides_heading', 'Guides')}</h5>
-            </IonCol>
-            <IonCol size="1">
-              <Link className="ion-float-right link-plain" to="/search/guides">
-                {t('search_guides_link_text', 'Search')}
-              </Link>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
+          <IonGrid className="ion-no-padding ion-padding-bottom">
+            <IonRow>
+              <IonCol size="1">
+                <IonIcon size="small" icon={svgs.GUIDES}/>
+              </IonCol>
+              <IonCol>
+                <h5 className="section-heading">{t('guides_heading', 'Guides')}</h5>
+              </IonCol>
+              <IonCol size="1">
+                <Link className="ion-float-right link-plain" to="/search/guides">
+                  {t('search_guides_link_text', 'Search')}
+                </Link>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
 
-        <div className="ion-padding-bottom">
-          {t('understand_provisions_text', `Understand the provisions of the Constitution and their implications
+          <div className="ion-padding-bottom">
+            {t('understand_provisions_text', `Understand the provisions of the Constitution and their implications
           for parliamentary matters.`)}
-        </div>
-        <IonList className="ion-margin-bottom ion-padding">
-          {guides.slice(0, 3).map((guide) => (
+          </div>
+          <IonList className="ion-margin-bottom ion-padding">
+            {guides.slice(0, 3).map((guide: Guide) => (
             <TopicItem topic={guide} key={guide.id} />
           ))}
         </IonList>
