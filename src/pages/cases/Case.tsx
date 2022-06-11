@@ -21,11 +21,14 @@ import { svgs } from "../../assets/svgs";
 import ActionAnchorLink from "../../components/Action/ActionAnchorLink";
 import {useTranslation} from "react-i18next";
 import {cases} from "../../data/cases";
-import {guides} from "../../data/guides";
+import {getGuides} from "../../data/guides";
+import {useLanguage} from "../../custom-hooks/useLanguage";
 
 interface Props extends RouteComponentProps<{ id: string }> {}
 
 const Case: React.FC<Props> = ({ match }) => {
+  const lang = useLanguage();
+  const guides = getGuides(lang);
   const [thisCase, setCase] = useState({
     title: "",
     snippet: "",
