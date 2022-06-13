@@ -12,4 +12,7 @@ export interface Guide {
   cases: string[];
 }
 
-export const guides = (data.topics as Guide[]);
+export const getGuides = (lang: string) => {
+  // @ts-ignore
+  return data.topics[lang];
+}

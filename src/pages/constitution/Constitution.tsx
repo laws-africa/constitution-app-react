@@ -53,7 +53,7 @@ class Constitution extends React.Component<Props, MyState> {
   }
 
   getTopics() {
-    const results = findTopicsByProvisionId(this.props.match.params.id);
+    const results = findTopicsByProvisionId(this.props.match.params.id, localStorage.getItem('locale') || 'en');
     this.setState({ topics: [...results] });
   }
 
@@ -70,7 +70,7 @@ class Constitution extends React.Component<Props, MyState> {
   componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<MyState>, snapshot?: any) {
     this.injectAkn();
   }
-  
+
   injectAkn() {
     if (this.props.match.params.id && this.rootRef.current) {
       let provision = this.state.constitution.document.getElementById(

@@ -21,12 +21,15 @@ import HeaderSearch from "../../components/headerSearch/headerSearch";
 import { SearchCases } from "../../components/searchCases";
 import { svgs } from "../../assets/svgs";
 import {useTranslation} from "react-i18next";
-import { Guide, guides } from "../../data/guides";
+import { Guide, getGuides } from "../../data/guides";
 import { cases as allCases } from "../../data/cases";
+import {useLanguage} from "../../custom-hooks/useLanguage";
 
 interface Props extends RouteComponentProps<{ id: string }> {}
 
 const Topic: React.FC<Props> = ({ match }) => {
+  const lang = useLanguage();
+  const guides = getGuides(lang)
   const [topic, setTopic] = useState<Guide>({
     id: "",
     title: "",

@@ -26,7 +26,7 @@ import HeaderSearch from '../../components/headerSearch/headerSearch';
 import { svgs } from '../../assets/svgs';
 import { withTranslation } from "react-i18next";
 import {iTFunc} from "../../common-types";
-import {guides} from "../../data/guides";
+import {getGuides, Guide} from "../../data/guides";
 
 function previous() {
   window.history.back();
@@ -36,19 +36,18 @@ interface Props extends iTFunc, RouteComponentProps<{ id: string; }> { }
 
 type MyState = {
   search: Boolean;
-  constitution: Expression | null
+  constitution: Expression | null,
+  topics: Guide[],
 };
 
 class Constitution_Full extends React.Component<Props, MyState> {
   private readonly rootRef: React.RefObject<HTMLDivElement>;
   // private readonly constitution: Expression;
-  private readonly topics: any [];
-
   constructor(props: any) {
     super(props);
     this.rootRef = React.createRef();
-    this.topics = guides;
     this.state = {
+      topics: getGuides(localStorage.getItem('locale') || 'en'),
       search: false,
       constitution: getExpression(localStorage.getItem('locale') || 'en')
     };
@@ -94,7 +93,7 @@ class Constitution_Full extends React.Component<Props, MyState> {
       }
     }
 
-      decorateAkn(this.rootRef.current, this.topics);
+      decorateAkn(this.rootRef.current, this.state.topics);
     }
   }
 

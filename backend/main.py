@@ -1,7 +1,11 @@
+from copy import deepcopy
+
 import requests
 import os
 import json
 import re
+
+from lxml.html.clean import Cleaner
 
 
 JSON_FILENAME = r'data.json'
@@ -17,6 +21,13 @@ LANG_3_TO_2 = {
     'xho': 'xh',
     'zul': 'zu',
 }
+
+cleaner = Cleaner(
+    style=True,
+    remove_tags=['span'],
+    safe_attrs=[],
+    whitelist_tags=[],
+)
 
 
 def write_work(name, frbr_uri):
@@ -87,22 +98,27 @@ def read_cases():
     resp.raise_for_status()
     cases = resp.json()['data']
     for case in cases:
+        clean_fields(case, ['facts_and_issues', 'right_and_principle', 'interpretation', 'snippet'])
         case['topics'] = []
     cases.sort(key=lambda x: x['title'])
     return cases
 
 
 def read_guides(cases):
+    content_fields = ['snippet', 'topic_meaning', 'interpretation', 'mechanism']
     headers = {'Authorization': f'Bearer {DIRECTUS_AUTH_TOKEN}'}
     params = {
-        'fields': '*,references.provisions_id,cases.cases_id',
+        'fields': '*,references.provisions_id,cases.cases_id,translations.*',
     }
     resp = requests.get('https://hzc1ju79.directus.app/items/guides', headers=headers, params=params)
     resp.raise_for_status()
-    guides = resp.json()['data']
+    guides = {
+        'en': resp.json()['data']
+    }
 
     # adjust data shape
-    for guide in guides:
+    for guide in guides['en']:
+        clean_fields(guide, content_fields)
         guide['cases'] = [x['cases_id'] for x in guide['cases']]
         guide['references'] = [x['provisions_id'] for x in guide['references']]
 
@@ -119,9 +135,38 @@ def read_guides(cases):
         if not refs:
             return [9999, guide['title']]
         return [int(x) for x in re.findall(r'\d+', refs[0])]
-    guides.sort(key=key)
+    guides['en'].sort(key=key)
+
+    # overlay translations
+    for guide in guides['en']:
+        # copy, and then overlay translations
+        translations = guide.pop('translations')
+
+        for lang3, lang2 in LANG_3_TO_2.items():
+            if lang2 == 'en':
+                continue
+
+            # always make a copy, in case there is no translation
+            x_guide = deepcopy(guide)
+            guides.setdefault(lang2, []).append(x_guide)
+
+            for translation in translations:
+                if translation['languages_code'] == lang3:
+                    # copy over these fields from the translation description
+                    for field in ['title'] + content_fields:
+                        translated = translation[field]
+                        if translated and translated.strip():
+                            x_guide[field] = translated
+
+            clean_fields(x_guide, content_fields)
 
     return guides
+
+
+def clean_fields(obj, fields):
+    for field in fields:
+        if obj[field]:
+            obj[field] = cleaner.clean_html(obj[field])
 
 
 def main():
@@ -137,8 +182,8 @@ def write_all_documents(cases, topics):
     write_json(
             JSON_FILENAME, 
             {
-                "cases": list(cases),
-                "topics": list(topics)
+                "cases": cases,
+                "topics": topics
                 }
             )
 
