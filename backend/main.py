@@ -5,6 +5,8 @@ import os
 import json
 import re
 
+from lxml.html.clean import Cleaner
+
 
 JSON_FILENAME = r'data.json'
 PRODUCTION_DOCUMENTS_OUTPUT_PATH = r'../src/assets/data/'
@@ -19,6 +21,13 @@ LANG_3_TO_2 = {
     'xho': 'xh',
     'zul': 'zu',
 }
+
+cleaner = Cleaner(
+    style=True,
+    remove_tags=['span'],
+    safe_attrs=[],
+    whitelist_tags=[],
+)
 
 
 def write_work(name, frbr_uri):
@@ -89,12 +98,14 @@ def read_cases():
     resp.raise_for_status()
     cases = resp.json()['data']
     for case in cases:
+        clean_fields(case, ['facts_and_issues', 'right_and_principle', 'interpretation', 'snippet'])
         case['topics'] = []
     cases.sort(key=lambda x: x['title'])
     return cases
 
 
 def read_guides(cases):
+    content_fields = ['snippet', 'topic_meaning', 'interpretation', 'mechanism']
     headers = {'Authorization': f'Bearer {DIRECTUS_AUTH_TOKEN}'}
     params = {
         'fields': '*,references.provisions_id,cases.cases_id,translations.*',
@@ -107,6 +118,7 @@ def read_guides(cases):
 
     # adjust data shape
     for guide in guides['en']:
+        clean_fields(guide, content_fields)
         guide['cases'] = [x['cases_id'] for x in guide['cases']]
         guide['references'] = [x['provisions_id'] for x in guide['references']]
 
@@ -141,12 +153,20 @@ def read_guides(cases):
             for translation in translations:
                 if translation['languages_code'] == lang3:
                     # copy over these fields from the translation description
-                    for field in ['title', 'snippet', 'topic_meaning', 'interpretation', 'mechanism']:
+                    for field in ['title'] + content_fields:
                         translated = translation[field]
                         if translated and translated.strip():
                             x_guide[field] = translated
 
+            clean_fields(x_guide, content_fields)
+
     return guides
+
+
+def clean_fields(obj, fields):
+    for field in fields:
+        if obj[field]:
+            obj[field] = cleaner.clean_html(obj[field])
 
 
 def main():
