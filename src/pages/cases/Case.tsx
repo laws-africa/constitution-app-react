@@ -20,7 +20,7 @@ import HeaderSearch from "../../components/headerSearch/headerSearch";
 import { svgs } from "../../assets/svgs";
 import ActionAnchorLink from "../../components/Action/ActionAnchorLink";
 import {useTranslation} from "react-i18next";
-import {cases} from "../../data/cases";
+import {getCases} from "../../data/cases";
 import {getGuides} from "../../data/guides";
 import {useLanguage} from "../../custom-hooks/useLanguage";
 
@@ -29,6 +29,7 @@ interface Props extends RouteComponentProps<{ id: string }> {}
 const Case: React.FC<Props> = ({ match }) => {
   const lang = useLanguage();
   const guides = getGuides(lang);
+  const cases = getCases(lang);
   const [thisCase, setCase] = useState({
     title: "",
     snippet: "",
@@ -42,7 +43,7 @@ const Case: React.FC<Props> = ({ match }) => {
   const rootRef = useRef<HTMLDivElement>(null);
 
   useIonViewWillEnter(() => {
-    const thisCase = cases.find((c) => c.id === match.params.id);
+    const thisCase = cases.find((c: { id: string; }) => c.id === match.params.id);
     // @ts-ignore
     setCase(thisCase);
 
