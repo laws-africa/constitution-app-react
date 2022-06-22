@@ -11,4 +11,7 @@ export interface Case {
   topics: string[];
 }
 
-export const cases = (data.cases as Case[]);
+export const getCases = (lang: string) => {
+  // @ts-ignore
+  return data.cases[lang];
+}
