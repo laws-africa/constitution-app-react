@@ -65,7 +65,7 @@ const Case: React.FC<Props> = ({ match }) => {
     window.history.back();
   };
 
-  const { t } = useTranslation('case')
+  const { t } = useTranslation(['case', 'global'])
 
   return (
     <IonPage>
@@ -110,7 +110,14 @@ const Case: React.FC<Props> = ({ match }) => {
 
           {thisCase.interpretation.length > 0 && (
             <>
-              <h4>How did the Court find?</h4>
+              <h4>
+                {
+                  t('how_court_find', {
+                    ns: 'case',
+                    defaultValue: 'How did the Court find?'
+                  })
+                }
+              </h4>
               <div className="case-content">
                 {parse(thisCase.interpretation)}
               </div>
@@ -136,7 +143,12 @@ const Case: React.FC<Props> = ({ match }) => {
                 slot="start"
                 icon={svgs.GUIDES_WHITE}
               ></IonIcon>
-              <span>Related Guides</span>
+              <span>
+                {t('related_guides_label', {
+                  ns: 'global',
+                  defaultValue: 'Related Guides'
+                })}
+              </span>
             </IonToolbar>
             <IonList className="ion-padding">
               {topics.map((topic: any) => (
