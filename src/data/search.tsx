@@ -2,7 +2,7 @@ import lunr from "lunr";
 import {getExpression} from "./constitution";
 import { rulesRoot } from "./rules";
 import {getGuides} from "./guides";
-import { cases } from "./cases";
+import { getCases } from "./cases";
 
 interface IndexedObject {
   item: any;
@@ -143,7 +143,6 @@ export function findTopicsByProvisionId(id: string, lang: string) {
 }
 
 const searchableRuleProvisions = indexAkn(rulesRoot);
-const searchableCases = indexCases(cases);
 
 function searchLunr(needle: string, searchIn: string = "constitution") {
   if (needle.length < 2) {
@@ -156,6 +155,7 @@ function searchLunr(needle: string, searchIn: string = "constitution") {
   const constitution = getExpression(localStorage.getItem('locale') || 'en');
   const searchableTopics = indexTopics(getGuides(localStorage.getItem('locale') || 'en'));
   const searchableProvisions = indexAkn(constitution.document);
+  const searchableCases = indexCases(getCases(localStorage.getItem('locale') || 'en'));
 
   switch (searchIn) {
     default:

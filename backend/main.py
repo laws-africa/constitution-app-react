@@ -92,15 +92,51 @@ def clean_toc(toc):
     recurse(toc)
 
 
+def apply_translations(items, content_fields):
+    for item in items['en']:
+        # copy, and then overlay translations
+        translations = item.pop('translations')
+
+        for lang3, lang2 in LANG_3_TO_2.items():
+            if lang2 == 'en':
+                continue
+
+            # always make a copy, in case there is no translation
+            x_item = deepcopy(item)
+            items.setdefault(lang2, []).append(x_item)
+
+            for translation in translations:
+                if translation['languages_code'] == lang3:
+                    # copy over these fields from the translation description
+                    for field in content_fields:
+                        translated = translation[field]
+                        if translated and translated.strip():
+                            x_item[field] = translated
+
+
 def read_cases():
+    content_fields = ['facts_and_issues', 'right_and_principle', 'interpretation', 'snippet']
     headers = {'Authorization': f'Bearer {DIRECTUS_AUTH_TOKEN}'}
-    resp = requests.get('https://hzc1ju79.directus.app/items/cases', headers=headers)
+    params = {
+        'fields': '*,translations.*',
+    }
+    resp = requests.get('https://hzc1ju79.directus.app/items/cases', headers=headers, params=params)
     resp.raise_for_status()
-    cases = resp.json()['data']
-    for case in cases:
-        clean_fields(case, ['facts_and_issues', 'right_and_principle', 'interpretation', 'snippet'])
+    cases = {
+        'en': resp.json()['data']
+    }
+
+    for case in cases['en']:
         case['topics'] = []
-    cases.sort(key=lambda x: x['title'])
+    cases['en'].sort(key=lambda x: x['title'])
+
+    # overlay translations
+    apply_translations(cases, content_fields)
+
+    for xlated_items in cases.values():
+        for item in xlated_items:
+            clean_fields(item, content_fields)
+
     return cases
 
 
@@ -118,15 +154,15 @@ def read_guides(cases):
 
     # adjust data shape
     for guide in guides['en']:
-        clean_fields(guide, content_fields)
         guide['cases'] = [x['cases_id'] for x in guide['cases']]
         guide['references'] = [x['provisions_id'] for x in guide['references']]
 
         # back-link guides into cases
         for case_id in guide['cases']:
-            for case in cases:
-                if case['id'] == case_id:
-                    case['topics'].append(guide['id'])
+            for xlated_cases in cases.values():
+                for case in xlated_cases:
+                    if case['id'] == case_id:
+                        case['topics'].append(guide['id'])
 
     # sort guides by the section of the text they correspond to, based on element ids; those without ids come last
     def key(guide):
@@ -138,27 +174,11 @@ def read_guides(cases):
     guides['en'].sort(key=key)
 
     # overlay translations
-    for guide in guides['en']:
-        # copy, and then overlay translations
-        translations = guide.pop('translations')
+    apply_translations(guides, ['title'] + content_fields)
 
-        for lang3, lang2 in LANG_3_TO_2.items():
-            if lang2 == 'en':
-                continue
-
-            # always make a copy, in case there is no translation
-            x_guide = deepcopy(guide)
-            guides.setdefault(lang2, []).append(x_guide)
-
-            for translation in translations:
-                if translation['languages_code'] == lang3:
-                    # copy over these fields from the translation description
-                    for field in ['title'] + content_fields:
-                        translated = translation[field]
-                        if translated and translated.strip():
-                            x_guide[field] = translated
-
-            clean_fields(x_guide, content_fields)
+    for xlated_items in guides.values():
+        for item in xlated_items:
+            clean_fields(item, content_fields)
 
     return guides
 
@@ -173,7 +193,7 @@ def main():
     cases = read_cases()
     guides = read_guides(cases)
     write_all_documents(cases, guides)
-    write_work("constitution", "/akn/za/act/1996/constitution")
+    # write_work("constitution", "/akn/za/act/1996/constitution")
     # TODO: NB NB NB if this is enabled, the rules-reading code in the app must be able to handle multiple languages
     # write_work("rules", "/akn/za/act/rules/2016/national-assembly/")
 
