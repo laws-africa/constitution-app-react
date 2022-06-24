@@ -193,7 +193,7 @@ def main():
     cases = read_cases()
     guides = read_guides(cases)
     write_all_documents(cases, guides)
-    # write_work("constitution", "/akn/za/act/1996/constitution")
+    write_work("constitution", "/akn/za/act/1996/constitution")
     # TODO: NB NB NB if this is enabled, the rules-reading code in the app must be able to handle multiple languages
     # write_work("rules", "/akn/za/act/rules/2016/national-assembly/")
 
