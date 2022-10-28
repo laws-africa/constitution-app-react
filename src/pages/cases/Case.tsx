@@ -130,7 +130,7 @@ const Case: React.FC<Props> = ({ match }) => {
           target="_blank"
           rel="noopener noreferrer"
           className="no-text-decoration"
-          actionText={t('read_about_saflii_label', 'Read this case on SAFLII')}
+          actionText={t('read_about_lawlibrary_label', 'Read this case on LawLibrary')}
         />
 
         <br />
