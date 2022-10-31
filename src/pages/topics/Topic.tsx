@@ -176,7 +176,7 @@ const Topic: React.FC<Props> = ({ match }) => {
                 slot="start"
                 icon={svgs.CASES_WHITE}
               ></IonIcon>
-              <span>Related Cases</span>
+              <span>{t('related_cases', 'Related Cases')}</span>
             </IonToolbar>
             <IonList className="ion-padding">
               {cases.map((c: any, index) => (
