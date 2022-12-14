@@ -94,7 +94,7 @@ class App extends React.Component<null, AppState> {
                       <IonTabs>
                         <IonRouterOutlet>
                           <Route path="/guides" component={Topics} exact={true}/>
-                          <Route path="/guides/:id" component={Topic} exact={true}/>
+                          <Route path="/guides/:id+" component={Topic} exact={true}/>
                           <Route
                               path="/constitution"
                               component={ConstitutionTOC}
@@ -129,7 +129,7 @@ class App extends React.Component<null, AppState> {
                           />
                           <Route path="/home" component={Home} exact={true}/>
                           <Route path="/cases" component={Cases} exact={true}/>
-                          <Route path="/cases/:id" component={Case} exact={true}/>
+                          <Route path="/cases/:id+" component={Case} exact={true}/>
                           <Route path="/help" component={Help} exact={true}/>
                           <Route path="/search" component={Search} exact={true}/>
                           <Route
