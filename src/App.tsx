@@ -85,7 +85,7 @@ class App extends React.Component<null, AppState> {
           {
             (t) => (
                 <IonReactRouter>
-                  <GaPageTracker trackingCode="UA-129824129-5"/>
+                  <GaPageTracker trackingCode="G-4DSYDBX88H"/>
                   <Switch>
                     <Route exact path="/">
                       <LandingPage/>
