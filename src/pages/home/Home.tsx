@@ -35,17 +35,22 @@ const Home: React.FC = () => {
       <IonPage>
         <IonContent className="ion-padding">
           <div className="app-title">
-            <div className="app-title__left">
-              <img src="/assets/logo.png" alt="logo" className="logo"/>
-              <h2>
-                Constitution <br/> Compass{" "}
-                <img
-                    src="/assets/flag.png"
-                    className="flag"
-                    alt="South African Flag"
-                />
-              </h2>
-            </div>
+            <img src="/assets/logo.png" alt="logo" className="logo"/>
+            <h2>
+              Constitution <br/> Compass{" "}
+              <img
+                  src="/assets/flag.png"
+                  className="flag"
+                  alt="South African Flag"
+              />
+            </h2>
+            <a href="https://lawlibrary.org.za" target="_blank" rel="noopener noreferrer">
+              <img
+                alt="Law Library Logo"
+                src="/assets/lawlibrary-logo.png"
+                className="app-title__right"
+              />
+            </a>
           </div>
           <hr className="header-divider"/>
 
@@ -160,11 +165,23 @@ const Home: React.FC = () => {
 
         <hr className="divider" />
 
-        <p>{t('sponsors_of_app_text', 'This app is brought to you by')}:</p>
+        <p>{t('sponsors_of_app_text', 'Constitution Compass is supported by')}:</p>
 
-        <IonGrid>
+        <IonGrid className="logos">
           <IonRow>
-            <IonCol sizeXs="12" sizeMd="6">
+            <IonCol sizeXs="6" sizeMd="4">
+              <a
+                href="https://lawlibrary.org.za"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  alt="Law Library Logo"
+                  src="/assets/lawlibrary-logo.png"
+                />
+              </a>
+            </IonCol>
+            <IonCol sizeXs="6" sizeMd="4">
               <a
                 href="https://africanlii.org/"
                 target="_blank"
@@ -176,7 +193,7 @@ const Home: React.FC = () => {
                 />
               </a>
             </IonCol>
-            <IonCol sizeXs="12" sizeMd="6">
+            <IonCol sizeXs="6" sizeMd="4">
               <a
                 href="https://www.kas.de/en/home"
                 target="_blank"
@@ -188,7 +205,7 @@ const Home: React.FC = () => {
                 />
               </a>
             </IonCol>
-            <IonCol sizeXs="12" sizeMd="6">
+            <IonCol sizeXs="6" sizeMd="4">
               <a
                 href="https://www.uct.ac.za/"
                 target="_blank"
@@ -198,7 +215,7 @@ const Home: React.FC = () => {
               </a>
             </IonCol>
 
-            <IonCol sizeXs="12" sizeMd="6">
+            <IonCol sizeXs="6" sizeMd="4">
               <a
                 href="https://laws.africa/"
                 target="_blank"
@@ -213,7 +230,7 @@ const Home: React.FC = () => {
           </IonRow>
         </IonGrid>
         <br />
-        <ActionRouteLink routerLink="/help" actionText={t('about_app_link_label', 'About This App')} />
+        <ActionRouteLink routerLink="/help" actionText={t('about_app_link_label', 'About Constitution Compass')} />
         <br />
         <ActionAnchorLink
           href="mailto:info@africanlii.org"

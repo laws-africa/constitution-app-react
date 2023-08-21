@@ -19,22 +19,30 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 }
 
 .app-title__left {
-  display: flex;
   align-items: center;
-  flex-direction: row;
 }
 
 .app-title h2 {
   margin: 0px;
+  flex-grow: 1;
+}
+
+.app-title__right {
+  height: 50px;
 }
 
 .app-title .logo {
   font-size: 50px;
   width: 50px;
   height: 50px;
+}
+
+.logos img {
+  max-height: 100px;
 }
 
 .related-list {
