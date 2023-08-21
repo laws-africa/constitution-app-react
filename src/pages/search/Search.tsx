@@ -6,15 +6,13 @@ import {
   IonList,
   IonSegment,
   IonSegmentButton,
-  IonCol,
-  IonIcon,
   IonHeader,
+  IonToolbar,
 } from "@ionic/react";
 import "./Search.css";
 import { TopicItem } from "../../components/topic";
 import { RouteComponentProps } from "react-router-dom";
 import { searchContent } from "../../data/search";
-import { svgs } from "../../assets/svgs";
 import { SearchConstitution } from "../../components/searchConstitution";
 import { SearchCases } from "../../components/searchCases";
 import {useTranslation} from "react-i18next";
@@ -25,7 +23,7 @@ interface Props extends RouteComponentProps<{ segment: string }> {}
 const Search: React.FC<Props> = ({ match }) => {
   const [isSearching, setIsSearching] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [currentSegment, setCurrentSegment] = useState("guides");
+  const [currentSegment, setCurrentSegment] = useState(match.params.segment || "guides");
   const { t } = useTranslation('search')
 
   useEffect(() => {
@@ -87,19 +85,14 @@ const Search: React.FC<Props> = ({ match }) => {
   return (
     <IonPage className="ion-padding">
       <IonHeader>
-        <section className="search-title">
-          <IonCol size="1" class="icon ion-no-padding">
-            <IonIcon size="small" icon={svgs.SEARCH}></IonIcon>
-          </IonCol>
-          <h2>{t('search_title', 'Search')}</h2>
-        </section>
-
-        <hr className="header-divider" />
-        <IonSearchbar
-          className="ion-no-margin ion-no-padding search-bar"
-          placeholder={t('searchbar_placeholder', 'Find guides, cases or sections...')}
-          onIonChange={(e) => search(e)}
-        />
+        <IonToolbar>
+          <IonSearchbar
+            placeholder={t('searchbar_placeholder', 'Find guides, cases or sections...')}
+            onIonChange={(e) => search(e)}
+          />
+        </IonToolbar>
+      </IonHeader>
+      <IonContent>
         <IonSegment
           onIonChange={(e) => setCurrentSegment(e.detail.value?.toString() || "guides")}
           value={currentSegment}
@@ -120,9 +113,6 @@ const Search: React.FC<Props> = ({ match }) => {
           </IonSegmentButton>
         </IonSegment>
         <hr />
-      </IonHeader>
-
-      <IonContent>
         {isSearching && renderSearchResults()}
         {!isSearching && <></>}
       </IonContent>

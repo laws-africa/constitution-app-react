@@ -1,24 +1,36 @@
 import React from "react";
-import { IonCol, IonContent, IonIcon, IonPage } from "@ionic/react";
+import {
+  IonButton,
+  IonButtons,
+  IonCol,
+  IonContent,
+  IonHeader,
+  IonIcon,
+  IonPage,
+  IonTitle,
+  IonToolbar
+} from "@ionic/react";
 import "./Help.css";
 import { svgs } from "../../assets/svgs";
 import ActionAnchorLink from "../../components/Action/ActionAnchorLink";
 import {useTranslation} from "react-i18next";
 import parse from "html-react-parser";
+import {search} from "ionicons/icons";
 
 const Tab1: React.FC = () => {
   const { t } = useTranslation('help');
   return (
     <IonPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle>
+            <IonTitle>{t('about_heading', 'About')}</IonTitle>
+          </IonTitle>
+        </IonToolbar>
+      </IonHeader>
       <IonContent className="ion-padding">
-        <section className="search-title">
-          <IonCol size="1" className="icon ion-no-padding">
-            <IonIcon size="small" icon={svgs.HELP}></IonIcon>
-          </IonCol>
-          <h2>{t('about_heading', 'About')}</h2>
-        </section>
+        <h2>{t('about_heading', 'About')}</h2>
 
-        <hr className="header-divider" />
         {parse(t('app_description', `
           <p>
             The Constitution App is developed by the

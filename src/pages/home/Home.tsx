@@ -7,6 +7,9 @@ import {
   IonCol,
   IonList,
   IonIcon,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
 } from "@ionic/react";
 import "./Home.css";
 import { getAndClearRedirected } from "../../redirect";
@@ -33,6 +36,11 @@ const Home: React.FC = () => {
 
   return (
       <IonPage>
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle>Constitution Compass</IonTitle>
+          </IonToolbar>
+        </IonHeader>
         <IonContent className="ion-padding">
           <div className="app-title">
             <img src="/assets/logo.png" alt="logo" className="logo"/>

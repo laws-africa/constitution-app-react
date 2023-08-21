@@ -1,13 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "constitution-app-react",
-  "bundledWebRuntime": false,
+  "appId": "africa.laws.concompass",
+  "appName": "Constitution Compass",
   "npmClient": "npm",
-  "webDir": "build",
-  "plugins": {
-    "SplashScreen": {
-      "launchShowDuration": 0
-    }
-  },
-  "cordova": {}
+  "webDir": "build"
 }
