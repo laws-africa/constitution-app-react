@@ -45,7 +45,6 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 import "./theme/theme.css";
 import "./theme/global.css";
-import LandingPage from "./pages/LandingPage/LandingPage";
 import GaPageTracker from "./components/GAPageTracker";
 import { Translation } from "react-i18next";
 
