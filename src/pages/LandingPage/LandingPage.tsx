@@ -43,7 +43,7 @@ const LandingPage = () => {
       <IonPage className="landing-page">
          <IonContent>
           <IonRow
-              class="ion-justify-content-between ion-align-items-center ion-margin-horizontal ion-padding-vertical header ion-align-items-center">
+              className="ion-justify-content-between ion-align-items-center ion-margin-horizontal ion-padding-vertical header ion-align-items-center">
             <section className="app-title">
               <img src="/assets/logo.png" alt="logo" className="logo"/>
               <h2>
@@ -56,7 +56,7 @@ const LandingPage = () => {
               </h2>
             </section>
 
-            <IonRow class="ion-align-items-center ion-justify-content-between">
+            <IonRow className="ion-align-items-center ion-justify-content-between">
               <div className="right-links">
                 <a href="#features">Features</a>&nbsp;
                 <IonButton color="light" href="#installation">
@@ -148,7 +148,7 @@ const LandingPage = () => {
             <IonSegment
                 mode="md"
                 value={tab}
-                onIonChange={(e) => setTab(e.detail.value || "ios")}
+                onIonChange={(e) => setTab(e.detail.value?.toString() || "ios")}
             >
               <IonSegmentButton value="ios">{t('IOS',  'IOS')}</IonSegmentButton>
               <IonSegmentButton value="android">{t('android',  'Android')}</IonSegmentButton>
@@ -303,7 +303,7 @@ const LandingPage = () => {
           </div>
 
           <IonFooter>
-            <IonRow class="ion-justify-content-between ion-padding-vertical header ion-align-items-center">
+            <IonRow className="ion-justify-content-between ion-padding-vertical header ion-align-items-center">
               <section className="app-title">
                 <img src="/assets/logo.png" alt="logo" className="logo"/>
                 <h2>
@@ -316,7 +316,7 @@ const LandingPage = () => {
                 </h2>
               </section>
 
-              <IonCol class="footer-links">
+              <IonCol className="footer-links">
                 <a href="#features">{t('footer_features_title', 'Features')}</a>
                 <a href="#installation">{t('footer_installations_title', 'Install now')}</a>
                 <a href="mailto:info@africanlii.org">info@africanlii.org</a>
@@ -327,7 +327,7 @@ const LandingPage = () => {
               <span>Developed by:</span>
 
               <IonGrid>
-                <IonRow class="ion-align-items-center">
+                <IonRow className="ion-align-items-center">
                   <IonCol size-md="3">
                     <img
                         alt=""
@@ -388,8 +388,8 @@ interface FeaturesProps {
 const Features: React.FC<FeaturesProps> = ({iconName, title, text}) => {
   return (
       <div className="feature">
-        <IonCol class="feature-col">
-          <IonIcon size="large" class="feature_icon" icon={iconName}/>
+        <IonCol className="feature-col">
+          <IonIcon size="large" className="feature_icon" icon={iconName}/>
         </IonCol>
         <section className="feature-details">
           <h6>{title}</h6>

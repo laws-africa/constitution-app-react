@@ -76,7 +76,7 @@ const Case: React.FC<Props> = ({ match }) => {
               <IonIcon icon={arrowBack}></IonIcon>
             </IonButton>
           </IonButtons>
-          <IonTitle class="ion-title">{thisCase.title}</IonTitle>
+          <IonTitle className="ion-title">{thisCase.title}</IonTitle>
           <IonButtons slot="end">
             <IonButton onClick={() => setOnSearch(!onSearch)}>
               <IonIcon icon={onSearch ? close : search}></IonIcon>
@@ -137,7 +137,7 @@ const Case: React.FC<Props> = ({ match }) => {
 
         {topics.length > 0 && (
           <div>
-            <IonToolbar class="related-guides" color="primary">
+            <IonToolbar className="related-guides" color="primary">
               <IonIcon
                 size="large"
                 slot="start"

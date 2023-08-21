@@ -23,7 +23,7 @@ const RulesTOC = () => {
         <IonContent className="virtual-list-container">
           <div className="ion-padding">
             <section className="tab-title">
-              <IonCol size="1" class="icon ion-no-padding">
+              <IonCol size="1" className="icon ion-no-padding">
                 <IonIcon size="small" icon={svgs.RULES}></IonIcon>
               </IonCol>
               <h2>{t('rules_na_title', {

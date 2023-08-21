@@ -9,7 +9,7 @@ interface SearchCasesProps {
 export const SearchCases: React.FC<SearchCasesProps> = ({ caseItem }) => {
   return (
     <IonCard
-      class="case-item ion-no-margin ion-margin-vertical"
+      className="case-item ion-no-margin ion-margin-vertical"
       key={"case-" + caseItem.id}
       routerLink={"/cases/" + caseItem.id}
     >

@@ -24,7 +24,7 @@ const Row = ({ data, prependRoute, overrideClickEvt }: IRow) => {
   };
   return (
       <div style={{ marginLeft: `${16 * data.depth}px` }}>
-        <IonItem class={data.type === "chapter" ? "chapter" : ""} {...props}>
+        <IonItem className={data.type === "chapter" ? "chapter" : ""} {...props}>
           {data.title}
         </IonItem>
       </div>

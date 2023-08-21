@@ -138,7 +138,7 @@ class App extends React.Component<null, AppState> {
                               exact={true}
                           />
                         </IonRouterOutlet>
-                        <IonTabBar class="tab-bar" slot="bottom" color="light">
+                        <IonTabBar className="tab-bar" slot="bottom" color="light">
                           <IonTabButton tab="home" href="/home">
                             <img src={svgs.HOME} alt="Home"/>
                             <IonLabel>{t('home_tab_label', { defaultValue: 'Home', ns: 'global' })}</IonLabel>

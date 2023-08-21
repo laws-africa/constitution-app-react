@@ -11,13 +11,13 @@ export const TopicIcon: React.FC<TopicIconProps> = ({ topic }) => {
     return str.substring(str.indexOf(":") + 1);
   };
   return (
-    <IonCard class="topic-icon ion-no-margin">
+    <IonCard className="topic-icon ion-no-margin">
       <div>
         <span className="guide">A Guide to</span>
         <div className="topic_title">{formatTitle(topic.title)}</div>
         <IonIcon
           size="large"
-          class="main_icon"
+          className="main_icon"
           icon={"../../assets/images/" + topic.id + ".svg"}
           onError={(e) => {
             e.currentTarget.src = "../../assets/shapes.svg";

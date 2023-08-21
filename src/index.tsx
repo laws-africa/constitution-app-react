@@ -4,11 +4,11 @@ import App from './App';
 import { setRedirect } from "./redirect";
 import * as serviceWorker from './serviceWorker';
 
-import { setupConfig } from '@ionic/react';
+import { setupIonicReact } from '@ionic/react';
 import "./services/i18next"
 
 // force ios, which our styling requires
-setupConfig({
+setupIonicReact({
   rippleEffect: false,
   mode: 'ios'
 });

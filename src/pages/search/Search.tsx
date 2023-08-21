@@ -101,7 +101,7 @@ const Search: React.FC<Props> = ({ match }) => {
           onIonChange={(e) => search(e)}
         />
         <IonSegment
-          onIonChange={(e) => setCurrentSegment(e.detail.value || "guides")}
+          onIonChange={(e) => setCurrentSegment(e.detail.value?.toString() || "guides")}
           value={currentSegment}
           mode="md"
           scrollable
