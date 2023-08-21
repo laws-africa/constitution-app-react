@@ -170,7 +170,7 @@ const Topic: React.FC<Props> = ({ match }) => {
 
         {cases.length > 0 && (
           <div>
-            <IonToolbar class="related-guides" color="primary">
+            <IonToolbar className="related-guides" color="primary">
               <IonIcon
                 size="large"
                 slot="start"

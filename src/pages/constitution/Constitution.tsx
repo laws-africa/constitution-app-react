@@ -120,7 +120,7 @@ class Constitution extends React.Component<Props, MyState> {
           </div>
           {this.state.topics.length > 0 && (
             <div>
-              <IonToolbar class="related-guides" color="primary">
+              <IonToolbar className="related-guides" color="primary">
                 <IonIcon size="large" slot="start" icon={svgs.GUIDES_WHITE}></IonIcon>
                 <span>{this.props.t('related_guides_label', {
                   ns: 'global',

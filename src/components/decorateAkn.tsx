@@ -27,7 +27,7 @@ export default function decorateAkn (node: HTMLDivElement, topics: any[]) {
                 <IonItem
                   key={"topic-" + topic.id}
                   routerLink={"/guides/" + topic.id}
-                  class="ion-no-padding"
+                  className="ion-no-padding"
                   detail
                 >
                   <IonIcon

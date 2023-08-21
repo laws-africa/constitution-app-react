@@ -90,7 +90,7 @@ const HeaderSearch: React.FC<Props> = ({doc}) => {
   
   return (
     <div>
-      <IonItemDivider class="ion-no-padding" />
+      <IonItemDivider className="ion-no-padding" />
       <div className="search-tab">
         <IonInput onIonChange={onChange} value={needle} placeholder='Enter Search' clearInput />
         {
@@ -105,7 +105,7 @@ const HeaderSearch: React.FC<Props> = ({doc}) => {
           </IonButton>
         </IonButtons>
       </div>
-      <IonItemDivider class="ion-no-padding" />
+      <IonItemDivider className="ion-no-padding" />
     </div>
   )
 };

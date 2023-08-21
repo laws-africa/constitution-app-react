@@ -21,10 +21,10 @@ const ConstitutionTOC = () => {
   const constitution = getExpression(localStorage.getItem('locale') || 'en');
   return (
       <IonPage>
-        <IonContent class="virtual-list-container">
+        <IonContent className="virtual-list-container">
           <div className="ion-padding">
             <section className="tab-title">
-              <IonCol size="1" class="icon ion-no-padding">
+              <IonCol size="1" className="icon ion-no-padding">
                 <IonIcon size="small" icon={svgs.CONSTITUTION}></IonIcon>
               </IonCol>
               <h2>{t('constitution_toc_heading', {
@@ -44,7 +44,7 @@ const ConstitutionTOC = () => {
 
           <IonList>
             <IonListHeader>
-              <IonLabel class="contents-label ion-no-margin">{t('toc_title',{
+              <IonLabel className="contents-label ion-no-margin">{t('toc_title',{
                 defaultValue: 'Table of Contents',
                 ns: 'global'
               })}</IonLabel>

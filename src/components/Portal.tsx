@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 interface PortalProps { 
   element: HTMLElement;
+  children: React.ReactNode;
 }
 
 class Portal extends React.Component<PortalProps> {

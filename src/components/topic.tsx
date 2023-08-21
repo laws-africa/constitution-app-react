@@ -11,7 +11,7 @@ interface TopicItemProps {
 export const TopicItem: React.FC<TopicItemProps> = ({ topic }) => {
   return (
     <IonCard
-      class="topic-item ion-no-margin ion-margin-vertical"
+      className="topic-item ion-no-margin ion-margin-vertical"
       key={"topic-" + topic.id}
       routerLink={"/guides/" + topic.id}
     >

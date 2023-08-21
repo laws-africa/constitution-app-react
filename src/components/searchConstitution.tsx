@@ -12,7 +12,7 @@ export const SearchConstitution: React.FC<SearchConstitutionProps> = ({
 }) => {
   return (
     <IonCard
-      class="topic-item ion-no-margin ion-margin-vertical"
+      className="topic-item ion-no-margin ion-margin-vertical"
       key={provision.id}
       routerLink={"/constitution/provision/" + provision.id}
     >

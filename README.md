@@ -13,10 +13,10 @@ $ git clone https://github.com/laws-africa/constitution-app-react.git
 $ cd constitution-app-react
 ```
 
-Install dependencies with yarn:
+Install dependencies with npm:
 
 ```
-$ yarn
+$ npm i
 ```
 
 ## Serving the app
@@ -58,7 +58,6 @@ This generates a `build` folder which contains the entire public website.
 
 # Generate translation json file with i18next-parser
 ```
-yarn global add i18next-parser
 i18next 'src/**/*.{js,tsx}'
 ```
 
