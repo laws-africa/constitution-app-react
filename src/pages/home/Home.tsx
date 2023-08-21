@@ -6,6 +6,8 @@ import {
   IonRow,
   IonCol,
   IonList,
+  IonItem,
+  IonLabel,
   IonIcon,
   IonHeader,
   IonToolbar,
@@ -17,7 +19,6 @@ import { TopicItem } from "../../components/topic";
 import { Link, Redirect } from "react-router-dom";
 import { svgs } from "../../assets/svgs";
 import ActionRouteLink from "../../components/Action/ActionRouteLink";
-import ActionAnchorLink from "../../components/Action/ActionAnchorLink";
 import {useTranslation} from "react-i18next";
 import LanguageSwitcher from "../../components/LanguageSwitcher";
 import {getGuides, Guide} from "../../data/guides";
@@ -173,77 +174,82 @@ const Home: React.FC = () => {
 
         <hr className="divider" />
 
-        <p>{t('sponsors_of_app_text', 'Constitution Compass is supported by')}:</p>
+        <IonList inset={true}>
+          <IonItem routerLink="/help">
+            <IonLabel>{t('about_app_link_label', 'About Constitution Compass')}</IonLabel>
+          </IonItem>
+          <IonItem href="mailto:info@africanlii.org">
+            <IonLabel>{t('send_feedback_link_label', 'Send feedback')}</IonLabel>
+          </IonItem>
+            <IonItem>
+              <IonLabel>
+                {t('sponsors_of_app_text', 'Constitution Compass is supported by')}:
+                <IonGrid className="logos">
+                  <IonRow>
+                    <IonCol sizeXs="6" sizeMd="4">
+                      <a
+                        href="https://lawlibrary.org.za"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img
+                          alt="Law Library Logo"
+                          src="/assets/lawlibrary-logo.png"
+                        />
+                      </a>
+                    </IonCol>
+                    <IonCol sizeXs="6" sizeMd="4">
+                      <a
+                        href="https://africanlii.org/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img
+                          alt="African Lii Logo"
+                          src="/assets/African Lii logo.svg"
+                        />
+                      </a>
+                    </IonCol>
+                    <IonCol sizeXs="6" sizeMd="4">
+                      <a
+                        href="https://www.kas.de/en/home"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img
+                          alt="KAS Logo"
+                          src="/assets/03_KAS_Logo_Min_RGB_Blau.jpg"
+                        />
+                      </a>
+                    </IonCol>
+                    <IonCol sizeXs="6" sizeMd="4">
+                      <a
+                        href="https://www.uct.ac.za/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img alt="UCT Logo" src="/assets/uct-logo.png" />
+                      </a>
+                    </IonCol>
 
-        <IonGrid className="logos">
-          <IonRow>
-            <IonCol sizeXs="6" sizeMd="4">
-              <a
-                href="https://lawlibrary.org.za"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  alt="Law Library Logo"
-                  src="/assets/lawlibrary-logo.png"
-                />
-              </a>
-            </IonCol>
-            <IonCol sizeXs="6" sizeMd="4">
-              <a
-                href="https://africanlii.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  alt="African Lii Logo"
-                  src="/assets/African Lii logo.svg"
-                />
-              </a>
-            </IonCol>
-            <IonCol sizeXs="6" sizeMd="4">
-              <a
-                href="https://www.kas.de/en/home"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  alt="KAS Logo"
-                  src="/assets/03_KAS_Logo_Min_RGB_Blau.jpg"
-                />
-              </a>
-            </IonCol>
-            <IonCol sizeXs="6" sizeMd="4">
-              <a
-                href="https://www.uct.ac.za/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img alt="UCT Logo" src="/assets/uct-logo.png" />
-              </a>
-            </IonCol>
+                    <IonCol sizeXs="6" sizeMd="4">
+                      <a
+                        href="https://laws.africa/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img
+                          alt="Laws Africa Logo"
+                          src="/assets/laws-africa-logo.png"
+                        />
+                      </a>
+                    </IonCol>
+                  </IonRow>
+                </IonGrid>
+              </IonLabel>
+            </IonItem>
+          </IonList>
 
-            <IonCol sizeXs="6" sizeMd="4">
-              <a
-                href="https://laws.africa/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  alt="Laws Africa Logo"
-                  src="/assets/laws-africa-logo.png"
-                />
-              </a>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
-        <br />
-        <ActionRouteLink routerLink="/help" actionText={t('about_app_link_label', 'About Constitution Compass')} />
-        <br />
-        <ActionAnchorLink
-          href="mailto:info@africanlii.org"
-          actionText={t('send_feedback_link_label', 'Send feedback')}
-        />
       </IonContent>
     </IonPage>
   );

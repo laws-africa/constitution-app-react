@@ -1,21 +1,17 @@
 import React from "react";
 import {
-  IonButton,
-  IonButtons,
-  IonCol,
   IonContent,
   IonHeader,
-  IonIcon,
+  IonItem,
+  IonLabel,
+  IonList,
   IonPage,
   IonTitle,
   IonToolbar
 } from "@ionic/react";
 import "./Help.css";
-import { svgs } from "../../assets/svgs";
-import ActionAnchorLink from "../../components/Action/ActionAnchorLink";
 import {useTranslation} from "react-i18next";
 import parse from "html-react-parser";
-import {search} from "ionicons/icons";
 
 const Tab1: React.FC = () => {
   const { t } = useTranslation('help');
@@ -28,7 +24,7 @@ const Tab1: React.FC = () => {
           </IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding">
+      <IonContent className="ion-padding" color="light">
         <h2>{t('about_heading', 'About')}</h2>
 
         {parse(t('app_description', `
@@ -102,12 +98,12 @@ const Tab1: React.FC = () => {
             .
           </p>
         `))}
-        <div>
-          <ActionAnchorLink
-            href="mailto:info@africanlii.org"
-            actionText={t('send_feedback_button_title', 'Send feedback')}
-          />
-        </div>
+
+        <IonList inset={true}>
+          <IonItem href="mailto:info@africanlii.org">
+            <IonLabel>{t('send_feedback_link_label', 'Send feedback')}</IonLabel>
+          </IonItem>
+        </IonList>
       </IonContent>
     </IonPage>
   );
