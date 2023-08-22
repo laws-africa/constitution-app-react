@@ -5,14 +5,18 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  IonButton,
+  IonButtons,
   IonText,
-  IonList,
+  IonList, IonIcon,
 } from '@ionic/react';
 import './Cases.css';
 import { CaseItem } from "../../components/case";
 import {useTranslation} from "react-i18next";
 import { getCases } from "../../data/cases";
 import {useLanguage} from "../../custom-hooks/useLanguage";
+import {svgs} from "../../assets/svgs";
+import {search} from "ionicons/icons";
 
 const Cases: React.FC = () => {
   const { t } = useTranslation('case');
@@ -23,7 +27,17 @@ const Cases: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
+          <IonButtons slot="start">
+            <IonButton>
+              <IonIcon size="small" icon={svgs.CASES} />
+            </IonButton>
+          </IonButtons>
           <IonTitle>{t('page_title', 'Cases')}</IonTitle>
+          <IonButtons slot="end">
+            <IonButton routerLink={"/search/cases"}>
+              <IonIcon slot="icon-only" icon={search}></IonIcon>
+            </IonButton>
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent>

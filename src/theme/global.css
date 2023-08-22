@@ -19,22 +19,30 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 }
 
 .app-title__left {
-  display: flex;
   align-items: center;
-  flex-direction: row;
 }
 
 .app-title h2 {
   margin: 0px;
+  flex-grow: 1;
+}
+
+.app-title__right {
+  height: 50px;
 }
 
 .app-title .logo {
   font-size: 50px;
   width: 50px;
   height: 50px;
+}
+
+.logos img {
+  max-height: 100px;
 }
 
 .related-list {
@@ -99,40 +107,6 @@ hr.divider,
 
 .list-divider {
   margin-bottom: 0;
-}
-
-.tab-title {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-
-.tab-title h2 {
-  font-size: 25px;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.2;
-  letter-spacing: -0.15px;
-  color: #262626;
-  margin-top: 10px;
-  width: 80%;
-  margin-bottom: 0;
-}
-
-.tab-title ion-button {
-  font-size: 16px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.13;
-  letter-spacing: normal;
-  text-align: right;
-  color: var(--ion-color-primary);
-  margin-bottom: 0;
-}
-
-.tab-title .icon {
-  margin-top: 1.03em;
 }
 
 .contents-label {

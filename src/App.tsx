@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import {
   IonApp,
   IonLabel,
@@ -45,7 +45,6 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 import "./theme/theme.css";
 import "./theme/global.css";
-import LandingPage from "./pages/LandingPage/LandingPage";
 import GaPageTracker from "./components/GAPageTracker";
 import { Translation } from "react-i18next";
 
@@ -87,12 +86,13 @@ class App extends React.Component<null, AppState> {
                 <IonReactRouter>
                   <GaPageTracker trackingCode="G-4DSYDBX88H"/>
                   <Switch>
-                    <Route exact path="/">
-                      <LandingPage/>
-                    </Route>
                     <Route>
                       <IonTabs>
                         <IonRouterOutlet>
+                          <Route path="/" component={Home} exact={true}/>
+                          <Route path="/home">
+                            <Redirect to="/" />
+                          </Route>
                           <Route path="/guides" component={Topics} exact={true}/>
                           <Route path="/guides/:id+" component={Topic} exact={true}/>
                           <Route
@@ -127,7 +127,6 @@ class App extends React.Component<null, AppState> {
                               component={Rules}
                               exact={true}
                           />
-                          <Route path="/home" component={Home} exact={true}/>
                           <Route path="/cases" component={Cases} exact={true}/>
                           <Route path="/cases/:id+" component={Case} exact={true}/>
                           <Route path="/help" component={Help} exact={true}/>
@@ -139,7 +138,7 @@ class App extends React.Component<null, AppState> {
                           />
                         </IonRouterOutlet>
                         <IonTabBar className="tab-bar" slot="bottom" color="light">
-                          <IonTabButton tab="home" href="/home">
+                          <IonTabButton tab="home" href="/">
                             <img src={svgs.HOME} alt="Home"/>
                             <IonLabel>{t('home_tab_label', { defaultValue: 'Home', ns: 'global' })}</IonLabel>
                           </IonTabButton>
