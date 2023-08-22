@@ -6,7 +6,6 @@ import {
   IonLabel,
   IonPage,
   IonButton,
-  IonCol,
   IonIcon, IonHeader, IonToolbar, IonButtons, IonTitle
 } from '@ionic/react';
 import './Rules.css';
