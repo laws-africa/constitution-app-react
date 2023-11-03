@@ -225,3 +225,11 @@ hr.divider,
     height: 100%;
   }
 }
+
+.toc-list {
+  height: 100%;
+}
+
+ion-menu-toggle .toc-list {
+  padding-top: var(--ion-safe-area-top, 0);
+}

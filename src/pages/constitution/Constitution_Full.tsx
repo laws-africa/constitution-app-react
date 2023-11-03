@@ -132,11 +132,11 @@ class Constitution_Full extends React.Component<Props, MyState> {
             <IonList className="full-height-mobile">
               <IonMenuToggle auto-hide="true">
                 {this.state.constitution ?
-                    <TOCList
-                        items={this.state.constitution.toc.flattened}
-                        overrideClickEvt={(data: any) => this.scroll(data)}
-                    />
-                    : null}
+                  <TOCList
+                    items={this.state.constitution.toc.flattened}
+                    overrideClickEvt={(data: any) => this.scroll(data)}
+                  />
+                  : null}
               </IonMenuToggle>
             </IonList>
           </IonContent>
