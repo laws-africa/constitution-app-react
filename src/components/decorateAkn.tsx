@@ -1,6 +1,6 @@
 import { IonIcon, IonItem, IonLabel, IonList } from "@ionic/react";
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from 'react-dom/client';
 import Portal from "./Portal";
 
 /**
@@ -41,7 +41,7 @@ export default function decorateAkn (node: HTMLDivElement, topics: any[]) {
             </Portal>
           );
 
-          ReactDOM.render(widget, div);
+          createRoot(div).render(widget);
         }
       }
 

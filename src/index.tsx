@@ -1,5 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import App from './App';
 import { setRedirect } from "./redirect";
 import * as serviceWorker from './serviceWorker';
@@ -24,7 +23,7 @@ if (path.length) {
 
 let app: any = null;
 // @ts-ignore
-ReactDOM.render(<App ref={x => { app = x; }} />, document.getElementById('root'));
+createRoot(document.getElementById('root')).render(<App ref={x => { app = x; }} />);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
