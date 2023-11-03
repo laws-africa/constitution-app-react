@@ -1,5 +1,5 @@
 {
-  "appId": "africa.laws.concompass",
+  "appId": "com.lawsafrica.concompass",
   "appName": "Constitution Compass",
   "npmClient": "npm",
   "webDir": "build"
