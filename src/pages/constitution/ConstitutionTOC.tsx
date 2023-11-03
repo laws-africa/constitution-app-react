@@ -4,8 +4,6 @@ import {
   IonTitle,
   IonContent,
   IonList,
-  IonListHeader,
-  IonLabel,
   IonPage,
   IonIcon,
   IonButton,
@@ -55,13 +53,6 @@ const ConstitutionTOC = () => {
             actionText={t('read_full_constitution_label','Read the Full Constitution')} />
         </div>
         <IonList>
-          <IonListHeader>
-            <IonLabel className="contents-label ion-no-margin">{t('toc_title',{
-              defaultValue: 'Table of Contents',
-              ns: 'global'
-            })}</IonLabel>
-          </IonListHeader>
-          <div className="ion-padding-start"><hr className="header-divider" /></div>
           <TOCList
             items={constitution.toc.flattened}
             prependRoute="/constitution/provision"

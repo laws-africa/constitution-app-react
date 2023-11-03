@@ -2,8 +2,6 @@ import React from 'react';
 import {
   IonContent,
   IonList,
-  IonListHeader,
-  IonLabel,
   IonPage,
   IonButton,
   IonIcon, IonHeader, IonToolbar, IonButtons, IonTitle
@@ -54,17 +52,6 @@ const RulesTOC = () => {
             />
           </div>
           <IonList>
-            <IonListHeader>
-              <IonLabel class="contents-label ion-no-margin">
-                { t('toc_title', {
-                  ns: 'global',
-                  defaultValue: 'Table of Contents'
-                }) }
-              </IonLabel>
-            </IonListHeader>
-            <div className="ion-padding-start">
-              <hr className="header-divider" />
-            </div>
             <TOCList
                 items={toc.flattened}
                 prependRoute="/rules/provision"

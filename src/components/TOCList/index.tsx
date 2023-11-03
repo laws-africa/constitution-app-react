@@ -90,7 +90,9 @@ const TOCList = ({ items, overrideClickEvt, prependRoute }: ITOCList) => {
   }
   return (
       <React.Fragment>
-        {renderList()}
+        <div className="toc-list">
+          {renderList()}
+        </div>
       </React.Fragment>
   );
 }
