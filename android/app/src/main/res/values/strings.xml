@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Constitution Compass</string>
+    <string name="title_activity_main">Constitution Compass</string>
+    <string name="package_name">com.lawsafrica.concompass</string>
+    <string name="custom_url_scheme">com.lawsafrica.concompass</string>
+</resources>
