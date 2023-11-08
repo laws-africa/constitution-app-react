@@ -1,0 +1,5 @@
+package com.lawsafrica.concompass;
+
+import com.getcapacitor.BridgeActivity;
+
+public class MainActivity extends BridgeActivity {}
