@@ -29,7 +29,9 @@ This should open your browser window on http://localhost:8100!
 
 ## Updating content (backend)
 
-Dependencies: Python (3.8)
+Download `src/assets/data/data.json` from https://edit.laws.africa/concompass/data.json and replace the existing file.
+
+Update the legislation content as follows:
 
 Create a Python virtual environment if you want and install the requirements
 
@@ -38,7 +40,7 @@ $ cd backend
 $ pip install -r requirements.txt 
 ```
 
-Run the script:
+Run the script to download legislation content.
 
 ```
 $ python main.py
