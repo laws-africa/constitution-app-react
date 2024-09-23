@@ -21,7 +21,7 @@ export const TopicItem: React.FC<TopicItemProps> = ({ topic }) => {
         </IonCol>
         <IonCardContent className="ion-margin-start ion-no-padding ion-padding-horizontal">
           <h3 className="ion-text-wrap">{topic.title}</h3>
-          <p className="ion-text-wrap">{parse(topic.snippet)}</p>
+          <div className="ion-text-wrap">{parse(topic.snippet)}</div>
         </IonCardContent>
       </div>
     </IonCard>
