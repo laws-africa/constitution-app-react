@@ -1,8 +1,8 @@
 {
-  "about_case_question_text": "What was the case about?",
-  "court_response_question": "What did the Court say about the right or principle?",
-  "description_text": "Summaries of cases from the Constitutional Court.",
-  "how_court_find": "How did the Court find?",
-  "page_title": "Cases",
-  "read_about_lawlibrary_label": "Read this case on LawLibrary"
+  "about_case_question_text": "Waaroor was die saak?",
+  "court_response_question": "Wat het die Hof gesê oor die reg of beginsel?",
+  "description_text": "Opsommings van sake van die Konstitusionele Hof.",
+  "how_court_find": "Wat was die hof se bevinding?",
+  "page_title": "Sake",
+  "read_about_lawlibrary_label": "Lees hierdie saak op LawLibrary"
 }
