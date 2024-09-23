@@ -11,7 +11,7 @@ const loadJSONFile = (url = "" ) => {
 
 const resources = {};
 
-['en', 'xh', 'zu'].forEach(key => {
+['af', 'en', 'xh', 'zu'].forEach(key => {
   const resource = {};
   const data =  {
     case: loadJSONFile(`${key}/case.json`),
@@ -44,7 +44,7 @@ i18next
       debug: true,
       fallbackLng: 'en',
       keySeparator: ".",
-      supportedLngs: ['en', 'zu', 'xh'],
+      supportedLngs: ['af', 'en', 'zu', 'xh'],
       saveMissing: true,
     });
 

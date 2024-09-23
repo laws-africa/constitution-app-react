@@ -13,6 +13,7 @@ PRODUCTION_DOCUMENTS_OUTPUT_PATH = r'../src/assets/data/'
 INDIGO_AUTH_TOKEN = os.environ.get('INDIGO_AUTH_TOKEN')
 
 LANG_3_TO_2 = {
+    'afr': 'af',
     'eng': 'en',
     'xho': 'xh',
     'zul': 'zu',
