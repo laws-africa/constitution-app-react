@@ -1,5 +1,6 @@
 {
   "constitution_tab_label": "Constitution",
+  "constitution_title": "Constitution",
   "guides_tab_label": "Guides",
   "home_tab_label": "Home",
   "next_button_label": "Next",
@@ -7,6 +8,5 @@
   "read_full_constitution_label": "Read the Full Constitution",
   "related_guides_label": "Related Guides",
   "rules_tab_label": "NA Rules",
-  "search_tab_label": "Search",
-  "toc_title": "Table of Contents"
+  "search_tab_label": "Search"
 }
