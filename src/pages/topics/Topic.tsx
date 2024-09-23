@@ -136,7 +136,7 @@ const Topic: React.FC<Props> = ({ match }) => {
 
             {topic.mechanism && topic.mechanism.length > 0 && (
               <>
-                <h4>How does it work?</h4>
+                <h4>{t('how_does_it_work_text', 'How does it work?')}</h4>
                 <div className="topic-content">{parse(topic.mechanism)}</div>
               </>
             )}
