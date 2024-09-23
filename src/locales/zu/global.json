@@ -1,5 +1,6 @@
 {
   "constitution_tab_label": "UMthethosisekelo",
+  "constitution_title": "UMthethosisekelo",
   "guides_tab_label": "Izinkombandlela",
   "home_tab_label": "Ekhaya",
   "next_button_label": "Okulandelayo",
@@ -7,6 +8,5 @@
   "read_full_constitution_label": "Funda uMgaqo-siseko oPheleleyo",
   "related_guides_label": "Izikhokelo eziyeleleneyo",
   "rules_tab_label": "NA Imithetho",
-  "search_tab_label": "Khangela",
-  "toc_title": "Isiqulatho"
+  "search_tab_label": "Khangela"
 }
